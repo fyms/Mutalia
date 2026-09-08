@@ -1,6 +1,7 @@
-# Mutalia — Rapport d'implémentation P0
+# Mutalia — Rapport d'implémentation
 
-Statut : **P0 stable et fonctionnel**. Non démarré : P1, P2, P3.
+Statut : **P0 stable et fonctionnel**. **P1 lot 1 (Academy, quiz, progression, cas
+pratiques avancés) livré et testé** — voir §10. Non démarré : reste de P1 éventuel, P2, P3.
 
 ## 1. Contexte et démarche
 
@@ -199,13 +200,14 @@ Aucune variable d'environnement n'est requise. La persistance locale se fait dan
 dossier ou utiliser le bouton « Réinitialiser les données de session » dans
 `/administration` remet le prototype à l'état initial.
 
-## 9. Prochaines étapes (P1 puis P2)
+## 9. Prochaines étapes
 
-**P1 — Formation structurée** (à lancer seulement après validation de ce P0) :
-- Contenu pédagogique complet des 19 modules Academy (cours, exemple, flashcards).
-- Quiz notés par module (au-delà du mini-quiz lexique déjà disponible).
-- Progression enrichie par dimension de compétence (`scoring_dimensions` du pack).
-- Cas multi-documents avancés et correction détaillée enrichie.
+Reste de **P1** (non traité dans ce lot, à faire si jugé utile avant P2) :
+- Contenu pédagogique plus long par module si besoin (le lot 1 livre un cours concis,
+  un exemple, des flashcards issues du lexique et un quiz noté par module — voir §10).
+- Progression détaillée par dimension de compétence (`scoring_dimensions` du pack :
+  comprehension_metier, lecture_documentaire, calcul, procedure, detection_anomalies,
+  conseil, justification, relation_client) plutôt que le score global actuel.
 
 **P2 — Profondeur métier** :
 - Workflow Prestations (liquidation), PEC & Devis dédiés, Cotisations, Réclamations.
@@ -215,6 +217,73 @@ dossier ou utiliser le bouton « Réinitialiser les données de session » dans
 - Génération dynamique de cas (le script `docs/mutalia-spec/generator/generate_cases.py`
   fourni par le pack est la base à intégrer côté serveur).
 
-Ce prototype P0 ne doit pas être modifié en profondeur pour ces prochaines étapes :
+Ce prototype ne doit pas être modifié en profondeur pour ces prochaines étapes :
 il s'agit d'ajouter des modules et de remplacer les pages d'état vide existantes,
 sans casser la navigation, la sécurité du corrigé ni les calculs déjà testés.
+
+## 10. Lot P1 #1 — Mutalia Academy, quiz, progression, cas pratiques avancés
+
+Premier lot cohérent de P1, livré et testé sans régression sur P0.
+
+### Contenu livré
+
+- **Mutalia Academy** (`/academy`, `/academy/[moduleId]`) : les 19 modules du
+  curriculum ont désormais un contenu réel, écrit dans
+  `src/lib/domain/academyContent.ts` — cours (2 paragraphes), exemple concret
+  (souvent recalé sur un cas vérifié comme CASE-001 ou CASE-012), flashcards, quiz
+  noté (3-4 questions à choix multiple avec explication), et lien vers un cas
+  pratique quand c'est pertinent. La séquence pédagogique du pack est respectée :
+  cours → exemple → flashcards → quiz → cas_pratique → correction (onglets).
+- **Flashcards** : générées automatiquement à partir du lexique existant (filtre par
+  catégorie associée au module) plutôt que dupliquées — pas de nouvelle source de
+  vérité, réutilisation du contenu déjà seedé.
+- **Quiz** (`/quiz` + onglet Quiz de chaque module) : moteur réutilisable
+  (`QuizRunner`), notation calculée **côté serveur** (`submitAcademyQuizAction` /
+  `scoreQuiz`, testé unitairement) pour ne pas faire confiance à un score
+  potentiellement falsifié côté client. Résultat détaillé (bonne/mauvaise réponse +
+  explication) affiché après soumission, tentative persistée dans le store runtime.
+- **Progression** (`/progression`) : nouvelle section « Mutalia Academy » sous le
+  tableau des cas, agrégeant tentatives et meilleur score par module
+  (`getAcademyProgressionSummary`).
+- **Cas pratiques avancés** : traités via le module **M19 — Cas complexes
+  multi-documents**, relié explicitement aux 3 cas déjà seedés de difficulté
+  `avance` (CASE-006 audiologie senior, CASE-011 droits fermés, CASE-012 implant
+  plafond). Choix assumé : aucun nouveau cas fictif n'a été inventé à ce stade — la
+  génération de nouveaux cas est explicitement une brique P2 (générateur dynamique)
+  et mélanger les deux aurait ajouté des données non revues dans le pack sans
+  justification P1.
+- L'onglet **Correction** de chaque module réutilise le composant `CorrectionPanel`
+  déjà construit en P0 : réservé au mode Formateur, jamais accessible en mode
+  apprenant — même garde-fou que pour les cas pratiques.
+
+### Tests exécutés pour ce lot
+
+```bash
+npm run lint       # 0 erreur
+npm run typecheck  # 0 erreur
+npm run test        # 19 tests (7 nouveaux : quizScoring.test.ts, academyContent.test.ts)
+npm run build         # 27 routes générées, dont /academy/[moduleId]
+```
+
+Nouveaux tests unitaires :
+- `quizScoring.test.ts` : notation correcte, partielle, et réponse manquante traitée
+  comme incorrecte plutôt que de planter.
+- `academyContent.test.ts` : les 19 modules du curriculum sont couverts exactement
+  une fois, chacun a un cours/exemple/quiz non vides, chaque `correctIndex` de quiz
+  est dans la plage des options, et M19 est bien relié aux 3 cas `avance`.
+
+Test end-to-end Playwright (non versionné, exécuté contre `npm run dev`) :
+navigation Academy → onglet Flashcards → quiz M04 répondu et noté 4/4 côté serveur →
+progression mise à jour → M19 relié aux 3 cas avancés → **non-régression** : la
+soumission d'un cas P0 (CASE-002) fonctionne toujours à l'identique → mode Formateur
+révèle bien le corrigé sur l'onglet Correction d'un module Academy.
+
+### Commandes de lancement (inchangées)
+
+```bash
+npm install
+npm run dev
+```
+
+Ouvrir <http://localhost:3000>, puis le menu **Mutalia Academy** ou **Quiz** dans la
+barre latérale (section Formation).

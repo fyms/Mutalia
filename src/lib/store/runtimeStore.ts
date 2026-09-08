@@ -20,14 +20,21 @@ export interface DocumentState {
   annotations: DocumentAnnotation[];
 }
 
+export interface QuizAttempt {
+  score: number;
+  maxScore: number;
+  submittedAt: string;
+}
+
 export interface RuntimeStoreShape {
-  version: 1;
+  version: 2;
   documents: Record<string, DocumentState>;
   submissions: Record<string, CaseSubmissionResult[]>;
+  quizAttempts: Record<string, QuizAttempt[]>;
 }
 
 function defaultStore(): RuntimeStoreShape {
-  return { version: 1, documents: {}, submissions: {} };
+  return { version: 2, documents: {}, submissions: {}, quizAttempts: {} };
 }
 
 /** Initialise le fichier de persistance de manière idempotente (ne réécrit rien s'il existe déjà). */
@@ -145,10 +152,28 @@ export function getAllSubmissions(): Record<string, CaseSubmissionResult[]> {
   return readStore().submissions;
 }
 
-/** Réinitialise le prototype (statuts documents, annotations, soumissions) sans toucher aux seeds. */
+export async function recordQuizAttempt(moduleId: string, attempt: QuizAttempt): Promise<void> {
+  await withStore((store) => {
+    const list = store.quizAttempts[moduleId] ?? [];
+    list.push(attempt);
+    store.quizAttempts[moduleId] = list;
+  });
+}
+
+export function getQuizAttempts(moduleId: string): QuizAttempt[] {
+  const store = readStore();
+  return store.quizAttempts[moduleId] ?? [];
+}
+
+export function getAllQuizAttempts(): Record<string, QuizAttempt[]> {
+  return readStore().quizAttempts;
+}
+
+/** Réinitialise le prototype (statuts documents, annotations, soumissions, quiz) sans toucher aux seeds. */
 export async function resetRuntimeStore(): Promise<void> {
   await withStore((store) => {
     store.documents = {};
     store.submissions = {};
+    store.quizAttempts = {};
   });
 }

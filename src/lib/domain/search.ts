@@ -58,7 +58,7 @@ export function buildSearchIndex(): SearchItem[] {
       type: "academy",
       title: `${academyModule.id} — ${academyModule.title}`,
       category: "Mutalia Academy",
-      url: `/academy`,
+      url: `/academy/${academyModule.id}`,
     });
   }
 
