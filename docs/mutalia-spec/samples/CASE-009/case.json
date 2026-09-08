@@ -1,0 +1,69 @@
+{
+  "case_id": "CASE-009",
+  "seed": 2026090809,
+  "difficulty": "intermediaire",
+  "scenario_type": "ordonnance_absente",
+  "household": {
+    "household_id": "FOY-009",
+    "members": [
+      {
+        "first_name": "Lina",
+        "last_name": "Fontaine",
+        "birth_date": "1972-11-26",
+        "role": "adherent",
+        "member_id": "MUT-DEMO-009-A",
+        "household_id": "FOY-009",
+        "synthetic": true
+      },
+      {
+        "first_name": "Mehdi",
+        "last_name": "Lefèvre",
+        "birth_date": "1986-09-06",
+        "role": "conjoint",
+        "member_id": "MUT-DEMO-009-B",
+        "household_id": "FOY-009",
+        "synthetic": true
+      },
+      {
+        "first_name": "Claire",
+        "last_name": "Martin",
+        "birth_date": "2018-07-12",
+        "role": "enfant",
+        "member_id": "MUT-DEMO-009-C",
+        "household_id": "FOY-009",
+        "synthetic": true
+      }
+    ]
+  },
+  "target_beneficiary_id": "MUT-DEMO-009-C",
+  "contract": {
+    "provider": "Harmonie Mutuelle",
+    "year": 2026,
+    "exercise_formula": "À lier au référentiel 2026",
+    "status": "actif",
+    "synthetic": true
+  },
+  "documents": [
+    {
+      "document_id": "CASE-009-01",
+      "case_id": "CASE-009",
+      "document_type": "facture_optique",
+      "file_name": "01_facture_sans_ordonnance.pdf",
+      "beneficiary_id": "MUT-DEMO-009-C",
+      "document_date": "2026-06-10",
+      "synthetic": true,
+      "status": "importe",
+      "anomalies": [
+        "ordonnance_absente"
+      ]
+    }
+  ],
+  "objectives": [
+    "Identifier l absence de prescription",
+    "Mettre en attente",
+    "Demander le justificatif"
+  ],
+  "learner_instructions": "Traiter le dossier sans consulter answer_key.json.",
+  "visible_in_learner_mode": true,
+  "synthetic": true
+}

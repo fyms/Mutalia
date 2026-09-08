@@ -1,0 +1,87 @@
+{
+  "case_id": "CASE-001",
+  "seed": 2026090801,
+  "difficulty": "debutant",
+  "scenario_type": "consultation_specialiste",
+  "household": {
+    "household_id": "FOY-001",
+    "members": [
+      {
+        "first_name": "Marc",
+        "last_name": "Garnier",
+        "birth_date": "1978-06-14",
+        "role": "adherent",
+        "member_id": "MUT-DEMO-001-A",
+        "household_id": "FOY-001",
+        "synthetic": true
+      },
+      {
+        "first_name": "Julie",
+        "last_name": "Roux",
+        "birth_date": "1993-01-20",
+        "role": "conjoint",
+        "member_id": "MUT-DEMO-001-B",
+        "household_id": "FOY-001",
+        "synthetic": true
+      },
+      {
+        "first_name": "Julie",
+        "last_name": "Fontaine",
+        "birth_date": "2013-08-22",
+        "role": "enfant",
+        "member_id": "MUT-DEMO-001-C",
+        "household_id": "FOY-001",
+        "synthetic": true
+      },
+      {
+        "first_name": "Sophie",
+        "last_name": "Diallo",
+        "birth_date": "2014-01-23",
+        "role": "enfant",
+        "member_id": "MUT-DEMO-001-D",
+        "household_id": "FOY-001",
+        "synthetic": true
+      }
+    ]
+  },
+  "target_beneficiary_id": "MUT-DEMO-001-A",
+  "contract": {
+    "provider": "Harmonie Mutuelle",
+    "year": 2026,
+    "exercise_formula": "À lier au référentiel 2026",
+    "status": "actif",
+    "synthetic": true
+  },
+  "documents": [
+    {
+      "document_id": "CASE-001-01",
+      "case_id": "CASE-001",
+      "document_type": "decompte_amo",
+      "file_name": "01_decompte_amo.pdf",
+      "beneficiary_id": "MUT-DEMO-001-A",
+      "document_date": "2026-07-11",
+      "synthetic": true,
+      "status": "importe",
+      "anomalies": []
+    },
+    {
+      "document_id": "CASE-001-02",
+      "case_id": "CASE-001",
+      "document_type": "facture_acquittee",
+      "file_name": "02_facture_acquittee.pdf",
+      "beneficiary_id": "MUT-DEMO-001-A",
+      "document_date": "2026-07-11",
+      "synthetic": true,
+      "status": "importe",
+      "anomalies": []
+    }
+  ],
+  "objectives": [
+    "Identifier BRSS et remboursement AMO",
+    "Appliquer la garantie d exercice",
+    "Calculer le reste à charge"
+  ],
+  "learner_instructions": "Traiter le dossier sans consulter answer_key.json.",
+  "visible_in_learner_mode": true,
+  "synthetic": true
+}

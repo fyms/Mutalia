@@ -1,0 +1,78 @@
+{
+  "case_id": "CASE-007",
+  "seed": 2026090807,
+  "difficulty": "intermediaire",
+  "scenario_type": "mauvais_beneficiaire",
+  "household": {
+    "household_id": "FOY-007",
+    "members": [
+      {
+        "first_name": "Sarah",
+        "last_name": "Morel",
+        "birth_date": "1966-02-16",
+        "role": "adherent",
+        "member_id": "MUT-DEMO-007-A",
+        "household_id": "FOY-007",
+        "synthetic": true
+      },
+      {
+        "first_name": "Aïcha",
+        "last_name": "Morel",
+        "birth_date": "1970-10-21",
+        "role": "conjoint",
+        "member_id": "MUT-DEMO-007-B",
+        "household_id": "FOY-007",
+        "synthetic": true
+      },
+      {
+        "first_name": "Aïcha",
+        "last_name": "Robert",
+        "birth_date": "2015-08-22",
+        "role": "enfant",
+        "member_id": "MUT-DEMO-007-C",
+        "household_id": "FOY-007",
+        "synthetic": true
+      },
+      {
+        "first_name": "Lucas",
+        "last_name": "Robert",
+        "birth_date": "2021-03-03",
+        "role": "enfant",
+        "member_id": "MUT-DEMO-007-D",
+        "household_id": "FOY-007",
+        "synthetic": true
+      }
+    ]
+  },
+  "target_beneficiary_id": "MUT-DEMO-007-B",
+  "contract": {
+    "provider": "Harmonie Mutuelle",
+    "year": 2026,
+    "exercise_formula": "À lier au référentiel 2026",
+    "status": "actif",
+    "synthetic": true
+  },
+  "documents": [
+    {
+      "document_id": "CASE-007-01",
+      "case_id": "CASE-007",
+      "document_type": "facture_acquittee",
+      "file_name": "01_facture_mauvais_beneficiaire.pdf",
+      "beneficiary_id": "MUT-DEMO-007-B",
+      "document_date": "2026-06-30",
+      "synthetic": true,
+      "status": "importe",
+      "anomalies": [
+        "mauvais_beneficiaire"
+      ]
+    }
+  ],
+  "objectives": [
+    "Repérer le mauvais bénéficiaire",
+    "Ne pas traiter sur le dossier courant",
+    "Réaffecter ou demander clarification"
+  ],
+  "learner_instructions": "Traiter le dossier sans consulter answer_key.json.",
+  "visible_in_learner_mode": true,
+  "synthetic": true
+}

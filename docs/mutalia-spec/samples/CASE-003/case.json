@@ -1,0 +1,79 @@
+{
+  "case_id": "CASE-003",
+  "seed": 2026090803,
+  "difficulty": "intermediaire",
+  "scenario_type": "optique_conjoint",
+  "household": {
+    "household_id": "FOY-003",
+    "members": [
+      {
+        "first_name": "Samuel",
+        "last_name": "Roux",
+        "birth_date": "1993-04-24",
+        "role": "adherent",
+        "member_id": "MUT-DEMO-003-A",
+        "household_id": "FOY-003",
+        "synthetic": true
+      },
+      {
+        "first_name": "Élodie",
+        "last_name": "Durand",
+        "birth_date": "1960-06-17",
+        "role": "conjoint",
+        "member_id": "MUT-DEMO-003-B",
+        "household_id": "FOY-003",
+        "synthetic": true
+      },
+      {
+        "first_name": "David",
+        "last_name": "Petit",
+        "birth_date": "2018-07-16",
+        "role": "enfant",
+        "member_id": "MUT-DEMO-003-C",
+        "household_id": "FOY-003",
+        "synthetic": true
+      }
+    ]
+  },
+  "target_beneficiary_id": "MUT-DEMO-003-B",
+  "contract": {
+    "provider": "Harmonie Mutuelle",
+    "year": 2026,
+    "exercise_formula": "À lier au référentiel 2026",
+    "status": "actif",
+    "synthetic": true
+  },
+  "documents": [
+    {
+      "document_id": "CASE-003-01",
+      "case_id": "CASE-003",
+      "document_type": "ordonnance",
+      "file_name": "01_ordonnance_optique.pdf",
+      "beneficiary_id": "MUT-DEMO-003-B",
+      "document_date": "2026-06-12",
+      "synthetic": true,
+      "status": "importe",
+      "anomalies": []
+    },
+    {
+      "document_id": "CASE-003-02",
+      "case_id": "CASE-003",
+      "document_type": "facture_optique",
+      "file_name": "02_facture_optique.pdf",
+      "beneficiary_id": "MUT-DEMO-003-B",
+      "document_date": "2026-06-12",
+      "synthetic": true,
+      "status": "importe",
+      "anomalies": []
+    }
+  ],
+  "objectives": [
+    "Rapprocher ordonnance et facture",
+    "Identifier le bénéficiaire",
+    "Appliquer le niveau Équipements 2026",
+    "Calculer le RAC"
+  ],
+  "learner_instructions": "Traiter le dossier sans consulter answer_key.json.",
+  "visible_in_learner_mode": true,
+  "synthetic": true
+}

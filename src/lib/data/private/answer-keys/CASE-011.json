@@ -1,0 +1,24 @@
+{
+  "case_id": "CASE-011",
+  "scenario_type": "droits_fermes",
+  "anomalies": [
+    "droits_fermes"
+  ],
+  "expected_actions": [
+    "Comparer date des soins et période de droits",
+    "Refuser traitement automatique",
+    "Rechercher mise à jour ou expliquer"
+  ],
+  "expected_values": {
+    "rights_closed": "2026-07-23",
+    "service_date": "2026-08-12"
+  },
+  "scoring": {
+    "document_reading": 20,
+    "anomaly_detection": 25,
+    "procedure": 25,
+    "calculation_or_analysis": 20,
+    "explanation": 10
+  },
+  "trainer_notes": "Utiliser le référentiel 2026 pour toute valeur contractuelle exacte."
+}

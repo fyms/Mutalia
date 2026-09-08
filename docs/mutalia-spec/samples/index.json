@@ -1,0 +1,65 @@
+{
+  "generated_on": "2026-09-08",
+  "cases": [
+    {
+      "case_id": "CASE-001",
+      "scenario_type": "consultation_specialiste",
+      "difficulty": "debutant"
+    },
+    {
+      "case_id": "CASE-002",
+      "scenario_type": "orthodontie_enfant",
+      "difficulty": "intermediaire"
+    },
+    {
+      "case_id": "CASE-003",
+      "scenario_type": "optique_conjoint",
+      "difficulty": "intermediaire"
+    },
+    {
+      "case_id": "CASE-004",
+      "scenario_type": "optique_enfant_doublon",
+      "difficulty": "intermediaire"
+    },
+    {
+      "case_id": "CASE-005",
+      "scenario_type": "hospitalisation",
+      "difficulty": "intermediaire"
+    },
+    {
+      "case_id": "CASE-006",
+      "scenario_type": "audiologie_senior",
+      "difficulty": "avance"
+    },
+    {
+      "case_id": "CASE-007",
+      "scenario_type": "mauvais_beneficiaire",
+      "difficulty": "intermediaire"
+    },
+    {
+      "case_id": "CASE-008",
+      "scenario_type": "reclamation_remboursement",
+      "difficulty": "intermediaire"
+    },
+    {
+      "case_id": "CASE-009",
+      "scenario_type": "ordonnance_absente",
+      "difficulty": "intermediaire"
+    },
+    {
+      "case_id": "CASE-010",
+      "scenario_type": "rib_invalide",
+      "difficulty": "debutant"
+    },
+    {
+      "case_id": "CASE-011",
+      "scenario_type": "droits_fermes",
+      "difficulty": "avance"
+    },
+    {
+      "case_id": "CASE-012",
+      "scenario_type": "implant_plafond",
+      "difficulty": "avance"
+    }
+  ]
+}

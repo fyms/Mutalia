@@ -1,0 +1,24 @@
+{
+  "case_id": "CASE-003",
+  "scenario_type": "optique_conjoint",
+  "anomalies": [],
+  "expected_actions": [
+    "Rapprocher ordonnance et facture",
+    "Identifier le bénéficiaire",
+    "Appliquer le niveau Équipements 2026",
+    "Calculer le RAC"
+  ],
+  "expected_values": {
+    "monture": 120,
+    "verres": 320,
+    "total": 440
+  },
+  "scoring": {
+    "document_reading": 20,
+    "anomaly_detection": 25,
+    "procedure": 25,
+    "calculation_or_analysis": 20,
+    "explanation": 10
+  },
+  "trainer_notes": "Utiliser le référentiel 2026 pour toute valeur contractuelle exacte."
+}

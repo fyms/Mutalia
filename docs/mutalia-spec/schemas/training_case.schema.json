@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "MutaliaTrainingCase",
+  "type": "object",
+  "required": [
+    "case_id",
+    "difficulty",
+    "household",
+    "documents",
+    "objectives"
+  ],
+  "properties": {
+    "case_id": {
+      "type": "string"
+    },
+    "difficulty": {
+      "enum": [
+        "debutant",
+        "intermediaire",
+        "avance"
+      ]
+    },
+    "scenario_type": {
+      "type": "string"
+    },
+    "household": {
+      "type": "object"
+    },
+    "documents": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "objectives": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "visible_in_learner_mode": {
+      "type": "boolean"
+    }
+  }
+}

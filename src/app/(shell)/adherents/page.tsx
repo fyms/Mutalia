@@ -1,0 +1,68 @@
+import Link from "next/link";
+import { PageHeader } from "@/components/ui/PageHeader";
+import { Card } from "@/components/ui/Card";
+import { Badge } from "@/components/ui/Badge";
+import { getAllHouseholds, computeAge } from "@/lib/domain/households";
+import { MEMBER_ROLE_LABELS } from "@/lib/domain/constants";
+import { formatDate } from "@/lib/utils/format";
+
+export default async function AdherentsPage() {
+  const households = getAllHouseholds();
+
+  return (
+    <div>
+      <PageHeader
+        title="Adhérents"
+        description="Portefeuille de foyers fictifs (particuliers uniquement) issus des 12 cas pédagogiques Mutalia."
+      />
+
+      <Card padded={false} className="overflow-hidden">
+        <div className="overflow-x-auto">
+          <table className="w-full text-left text-sm">
+            <thead className="border-b border-border bg-surface-muted text-[11px] uppercase text-foreground-muted">
+              <tr>
+                <th className="px-4 py-2 font-medium">Adhérent principal</th>
+                <th className="px-4 py-2 font-medium">Foyer</th>
+                <th className="px-4 py-2 font-medium">Bénéficiaires</th>
+                <th className="px-4 py-2 font-medium">Formule d&apos;exercice 2026</th>
+                <th className="px-4 py-2 font-medium">Cas pratique lié</th>
+              </tr>
+            </thead>
+            <tbody>
+              {households.map((h) => (
+                <tr key={h.householdId} className="border-b border-border last:border-0 hover:bg-surface-muted">
+                  <td className="px-4 py-2.5">
+                    <Link href={`/adherents/${h.householdId}`} className="font-medium text-brand hover:underline">
+                      {h.adherent.first_name} {h.adherent.last_name}
+                    </Link>
+                    <p className="text-[11px] text-foreground-muted">
+                      {computeAge(h.adherent.birth_date)} ans · né(e) le {formatDate(h.adherent.birth_date)}
+                    </p>
+                  </td>
+                  <td className="px-4 py-2.5 text-foreground-muted">{h.householdId}</td>
+                  <td className="px-4 py-2.5">
+                    <div className="flex flex-wrap gap-1">
+                      {h.beneficiaries.map((b) => (
+                        <Badge key={b.member_id} tone="neutral">
+                          {MEMBER_ROLE_LABELS[b.role]}
+                        </Badge>
+                      ))}
+                    </div>
+                  </td>
+                  <td className="px-4 py-2.5">
+                    <Badge tone="brand">{h.assignedFormula}</Badge>
+                  </td>
+                  <td className="px-4 py-2.5">
+                    <Link href={`/cas-pratiques/${h.case.case_id}`} className="text-brand hover:underline">
+                      {h.case.case_id}
+                    </Link>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </Card>
+    </div>
+  );
+}

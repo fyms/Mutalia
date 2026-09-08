@@ -1,0 +1,91 @@
+{
+  "case_id": "CASE-004",
+  "seed": 2026090804,
+  "difficulty": "intermediaire",
+  "scenario_type": "optique_enfant_doublon",
+  "household": {
+    "household_id": "FOY-004",
+    "members": [
+      {
+        "first_name": "Aïcha",
+        "last_name": "Roux",
+        "birth_date": "1967-02-03",
+        "role": "adherent",
+        "member_id": "MUT-DEMO-004-A",
+        "household_id": "FOY-004",
+        "synthetic": true
+      },
+      {
+        "first_name": "Marc",
+        "last_name": "Mercier",
+        "birth_date": "1983-10-03",
+        "role": "conjoint",
+        "member_id": "MUT-DEMO-004-B",
+        "household_id": "FOY-004",
+        "synthetic": true
+      },
+      {
+        "first_name": "Samuel",
+        "last_name": "Lefèvre",
+        "birth_date": "2019-01-02",
+        "role": "enfant",
+        "member_id": "MUT-DEMO-004-C",
+        "household_id": "FOY-004",
+        "synthetic": true
+      },
+      {
+        "first_name": "Julie",
+        "last_name": "Benali",
+        "birth_date": "2018-02-26",
+        "role": "enfant",
+        "member_id": "MUT-DEMO-004-D",
+        "household_id": "FOY-004",
+        "synthetic": true
+      }
+    ]
+  },
+  "target_beneficiary_id": "MUT-DEMO-004-C",
+  "contract": {
+    "provider": "Harmonie Mutuelle",
+    "year": 2026,
+    "exercise_formula": "À lier au référentiel 2026",
+    "status": "actif",
+    "synthetic": true
+  },
+  "documents": [
+    {
+      "document_id": "CASE-004-01",
+      "case_id": "CASE-004",
+      "document_type": "facture_optique",
+      "file_name": "01_facture_optique.pdf",
+      "beneficiary_id": "MUT-DEMO-004-C",
+      "document_date": "2026-05-26",
+      "synthetic": true,
+      "status": "importe",
+      "anomalies": [
+        "doublon"
+      ]
+    },
+    {
+      "document_id": "CASE-004-02",
+      "case_id": "CASE-004",
+      "document_type": "facture_optique",
+      "file_name": "02_facture_optique_doublon.pdf",
+      "beneficiary_id": "MUT-DEMO-004-C",
+      "document_date": "2026-05-26",
+      "synthetic": true,
+      "status": "importe",
+      "anomalies": [
+        "doublon"
+      ]
+    }
+  ],
+  "objectives": [
+    "Détecter le doublon",
+    "Ne pas liquider deux fois",
+    "Tracer l anomalie"
+  ],
+  "learner_instructions": "Traiter le dossier sans consulter answer_key.json.",
+  "visible_in_learner_mode": true,
+  "synthetic": true
+}

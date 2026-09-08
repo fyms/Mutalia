@@ -1,0 +1,21 @@
+{
+  "collections": [
+    "lexicon",
+    "faq",
+    "academy",
+    "members",
+    "contracts",
+    "claims",
+    "documents",
+    "training_cases"
+  ],
+  "boosts": {
+    "lexicon": 2.0,
+    "faq": 1.8,
+    "academy": 1.3,
+    "documents": 1.0
+  },
+  "learner_mode_filters": [
+    "hide_answer_keys"
+  ]
+}

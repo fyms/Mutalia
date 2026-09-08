@@ -1,0 +1,274 @@
+{
+  "metadata": {
+    "provider": "Harmonie Mutuelle",
+    "product_family": "Protection Santé Particuliers",
+    "reference_year": 2026,
+    "verified_on": "2026-09-08",
+    "scope": "Particuliers uniquement",
+    "source_of_truth_policy": "Utiliser uniquement les données 2026 vérifiées sur les sources officielles Harmonie Mutuelle. Les données 2022 sont exclues des exercices actuels.",
+    "official_sources": [
+      "https://www.harmonie-mutuelle.fr/sites/default/files/pdf/SYNTHESE-GARANTIES-PROTECTION-SANTE-PARTICULIERS-DEC-2026_VF.pdf",
+      "https://www.harmonie-mutuelle.fr/particuliers/solutions/mutuelle-sante/complementaire-sante",
+      "https://protection-sante-particuliers.harmonie-mutuelle.fr/tarif"
+    ]
+  },
+  "canonical_2026_architecture": {
+    "regime_general": [
+      {
+        "formula": "PSI 111",
+        "soins_stars": 1,
+        "equipements_stars": 1
+      },
+      {
+        "formula": "PSI 121",
+        "soins_stars": 1,
+        "equipements_stars": 2
+      },
+      {
+        "formula": "PSI 131",
+        "soins_stars": 1,
+        "equipements_stars": 3
+      },
+      {
+        "formula": "PSI 211",
+        "soins_stars": 2,
+        "equipements_stars": 1
+      },
+      {
+        "formula": "PSI 221",
+        "soins_stars": 2,
+        "equipements_stars": 2
+      },
+      {
+        "formula": "PSI 231",
+        "soins_stars": 2,
+        "equipements_stars": 3
+      },
+      {
+        "formula": "PSI 311",
+        "soins_stars": 3,
+        "equipements_stars": 1
+      },
+      {
+        "formula": "PSI 321",
+        "soins_stars": 3,
+        "equipements_stars": 2
+      },
+      {
+        "formula": "PSI 331",
+        "soins_stars": 3,
+        "equipements_stars": 3
+      },
+      {
+        "formula": "PSI 421",
+        "soins_stars": 4,
+        "equipements_stars": 2
+      },
+      {
+        "formula": "PSI 431",
+        "soins_stars": 4,
+        "equipements_stars": 3
+      }
+    ],
+    "reflexe_eco_pharmacie_et_chambre": [
+      "PSI 113",
+      "PSI 123",
+      "PSI 133",
+      "PSI 213",
+      "PSI 223",
+      "PSI 233",
+      "PSI 313",
+      "PSI 323",
+      "PSI 333",
+      "PSI 423",
+      "PSI 433"
+    ],
+    "reflexe_eco_pharmacie": [
+      "PSI 114",
+      "PSI 124",
+      "PSI 134",
+      "PSI 214",
+      "PSI 224",
+      "PSI 234",
+      "PSI 314",
+      "PSI 324",
+      "PSI 334",
+      "PSI 424",
+      "PSI 434"
+    ],
+    "regime_local": [
+      {
+        "formula": "PSI 211",
+        "soins_stars": 1,
+        "equipements_stars": 1
+      },
+      {
+        "formula": "PSI 221",
+        "soins_stars": 1,
+        "equipements_stars": 2
+      },
+      {
+        "formula": "PSI 231",
+        "soins_stars": 1,
+        "equipements_stars": 3
+      },
+      {
+        "formula": "PSI 411",
+        "soins_stars": 3,
+        "equipements_stars": 1
+      },
+      {
+        "formula": "PSI 421",
+        "soins_stars": 3,
+        "equipements_stars": 2
+      },
+      {
+        "formula": "PSI 431",
+        "soins_stars": 3,
+        "equipements_stars": 3
+      },
+      {
+        "formula": "PSI 511",
+        "soins_stars": 4,
+        "equipements_stars": 1
+      },
+      {
+        "formula": "PSI 521",
+        "soins_stars": 4,
+        "equipements_stars": 2
+      },
+      {
+        "formula": "PSI 531",
+        "soins_stars": 4,
+        "equipements_stars": 3
+      }
+    ]
+  },
+  "verified_live_quote_2026_sample": {
+    "warning": "Le parcours de devis officiel expose des codes PLI. Ne pas les assimiler automatiquement aux codes PSI sans source contractuelle explicite.",
+    "compared_formulas": [
+      "PLI 411",
+      "PLI 421",
+      "PLI 521"
+    ],
+    "benefits": [
+      {
+        "benefit": "Consultation généraliste",
+        "PLI 411": "150% BRSS",
+        "PLI 421": "150% BRSS",
+        "PLI 521": "200% BRSS"
+      },
+      {
+        "benefit": "Consultation spécialiste",
+        "PLI 411": "180% BRSS",
+        "PLI 421": "180% BRSS",
+        "PLI 521": "200% BRSS"
+      },
+      {
+        "benefit": "Infirmier / kiné / sage-femme",
+        "PLI 411": "100% BRSS",
+        "PLI 421": "100% BRSS",
+        "PLI 521": "100% BRSS"
+      },
+      {
+        "benefit": "Radio / IRM / scanner",
+        "PLI 411": "150% BRSS",
+        "PLI 421": "150% BRSS",
+        "PLI 521": "180% BRSS"
+      },
+      {
+        "benefit": "Examens de laboratoire",
+        "PLI 411": "150% BRSS",
+        "PLI 421": "150% BRSS",
+        "PLI 521": "150% BRSS"
+      },
+      {
+        "benefit": "Pharmacie non remboursée par la Sécurité sociale",
+        "PLI 411": "50 €/an",
+        "PLI 421": "50 €/an",
+        "PLI 521": "50 €/an"
+      },
+      {
+        "benefit": "Frais de séjour hospitalier",
+        "PLI 411": "200% BRSS",
+        "PLI 421": "200% BRSS",
+        "PLI 521": "200% BRSS"
+      },
+      {
+        "benefit": "Honoraires de chirurgie",
+        "PLI 411": "220% BRSS",
+        "PLI 421": "220% BRSS",
+        "PLI 521": "220% BRSS"
+      },
+      {
+        "benefit": "Forfait journalier hospitalier",
+        "PLI 411": "Frais réels",
+        "PLI 421": "Frais réels",
+        "PLI 521": "Frais réels"
+      },
+      {
+        "benefit": "Chambre particulière avec nuitée",
+        "PLI 411": "70 €/nuit",
+        "PLI 421": "70 €/nuit",
+        "PLI 521": "80 €/nuit"
+      },
+      {
+        "benefit": "Chambre particulière ambulatoire",
+        "PLI 411": "30 €/jour",
+        "PLI 421": "30 €/jour",
+        "PLI 521": "35 €/jour"
+      },
+      {
+        "benefit": "Prothèses dentaires hors 100% Santé",
+        "PLI 411": "150%",
+        "PLI 421": "200%",
+        "PLI 521": "200%"
+      },
+      {
+        "benefit": "Orthodontie",
+        "PLI 411": "100%",
+        "PLI 421": "100% + 300 €/an",
+        "PLI 521": "100% + 300 €/an"
+      },
+      {
+        "benefit": "Parodontologie",
+        "PLI 411": "200 €/an",
+        "PLI 421": "400 €/an",
+        "PLI 521": "400 €/an"
+      },
+      {
+        "benefit": "Implantologie",
+        "PLI 411": "Non indiqué",
+        "PLI 421": "300 €/implant, max 3/an",
+        "PLI 521": "300 €/implant, max 3/an"
+      },
+      {
+        "benefit": "Psychologue",
+        "PLI 411": "40 € x 5 séances",
+        "PLI 421": "40 € x 5 séances",
+        "PLI 521": "40 € x 5 séances"
+      },
+      {
+        "benefit": "Ostéopathie et médecines complémentaires listées",
+        "PLI 411": "200 €/an",
+        "PLI 421": "200 €/an",
+        "PLI 521": "200 €/an"
+      },
+      {
+        "benefit": "Cure thermale",
+        "PLI 411": "100% + 200 €/an",
+        "PLI 421": "100% + 200 €/an",
+        "PLI 521": "100% + 200 €/an"
+      }
+    ]
+  },
+  "training_rules": [
+    "Aucun exercice 'actuel' ne doit utiliser les anciennes appellations Sécurité / Tranquillité / Sérénité / Confort / Optimum.",
+    "Chaque scénario doit indiquer l'année de référence 2026.",
+    "Séparer la découverte des besoins en deux axes : Soins et Équipements.",
+    "Demander à l'apprenant de justifier la formule choisie à partir des besoins du client et non seulement du prix.",
+    "Calculer le reste à charge lorsque la BRSS et le tarif de l'acte sont fournis.",
+    "Si un niveau exact de remboursement n'est pas vérifié sur une source officielle 2026, afficher 'donnée à vérifier' et ne jamais l'inventer.",
+    "Ne traiter que des particuliers ; exclure TNS, entreprises et contrats collectifs professionnels."
+  ]
+}

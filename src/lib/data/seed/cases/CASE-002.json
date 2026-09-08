@@ -1,0 +1,70 @@
+{
+  "case_id": "CASE-002",
+  "seed": 2026090802,
+  "difficulty": "intermediaire",
+  "scenario_type": "orthodontie_enfant",
+  "household": {
+    "household_id": "FOY-002",
+    "members": [
+      {
+        "first_name": "Nadia",
+        "last_name": "Lefèvre",
+        "birth_date": "1967-09-05",
+        "role": "adherent",
+        "member_id": "MUT-DEMO-002-A",
+        "household_id": "FOY-002",
+        "synthetic": true
+      },
+      {
+        "first_name": "David",
+        "last_name": "Diallo",
+        "birth_date": "1966-08-14",
+        "role": "conjoint",
+        "member_id": "MUT-DEMO-002-B",
+        "household_id": "FOY-002",
+        "synthetic": true
+      },
+      {
+        "first_name": "Aïcha",
+        "last_name": "Benali",
+        "birth_date": "2018-08-06",
+        "role": "enfant",
+        "member_id": "MUT-DEMO-002-C",
+        "household_id": "FOY-002",
+        "synthetic": true
+      }
+    ]
+  },
+  "target_beneficiary_id": "MUT-DEMO-002-C",
+  "contract": {
+    "provider": "Harmonie Mutuelle",
+    "year": 2026,
+    "exercise_formula": "À lier au référentiel 2026",
+    "status": "actif",
+    "synthetic": true
+  },
+  "documents": [
+    {
+      "document_id": "CASE-002-01",
+      "case_id": "CASE-002",
+      "document_type": "devis_dentaire",
+      "file_name": "01_devis_orthodontie.pdf",
+      "beneficiary_id": "MUT-DEMO-002-C",
+      "document_date": "2026-07-25",
+      "synthetic": true,
+      "status": "importe",
+      "anomalies": [
+        "code_acte_a_controler"
+      ]
+    }
+  ],
+  "objectives": [
+    "Vérifier identité et droits",
+    "Contrôler le code acte",
+    "Comparer la garantie orthodontie",
+    "Émettre une estimation pédagogique"
+  ],
+  "learner_instructions": "Traiter le dossier sans consulter answer_key.json.",
+  "visible_in_learner_mode": true,
+  "synthetic": true
+}

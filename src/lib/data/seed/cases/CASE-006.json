@@ -1,0 +1,70 @@
+{
+  "case_id": "CASE-006",
+  "seed": 2026090806,
+  "difficulty": "avance",
+  "scenario_type": "audiologie_senior",
+  "household": {
+    "household_id": "FOY-006",
+    "members": [
+      {
+        "first_name": "Alexandre",
+        "last_name": "Morel",
+        "birth_date": "1997-12-24",
+        "role": "adherent",
+        "member_id": "MUT-DEMO-006-A",
+        "household_id": "FOY-006",
+        "synthetic": true
+      },
+      {
+        "first_name": "Camille",
+        "last_name": "Benali",
+        "birth_date": "1967-05-07",
+        "role": "conjoint",
+        "member_id": "MUT-DEMO-006-B",
+        "household_id": "FOY-006",
+        "synthetic": true
+      },
+      {
+        "first_name": "Samuel",
+        "last_name": "Garnier",
+        "birth_date": "2009-03-03",
+        "role": "enfant",
+        "member_id": "MUT-DEMO-006-C",
+        "household_id": "FOY-006",
+        "synthetic": true
+      }
+    ]
+  },
+  "target_beneficiary_id": "MUT-DEMO-006-A",
+  "contract": {
+    "provider": "Harmonie Mutuelle",
+    "year": 2026,
+    "exercise_formula": "À lier au référentiel 2026",
+    "status": "actif",
+    "synthetic": true
+  },
+  "documents": [
+    {
+      "document_id": "CASE-006-01",
+      "case_id": "CASE-006",
+      "document_type": "devis_audiologie",
+      "file_name": "01_devis_audiologie.pdf",
+      "beneficiary_id": "MUT-DEMO-006-A",
+      "document_date": "2026-05-30",
+      "synthetic": true,
+      "status": "importe",
+      "anomalies": [
+        "prescription_manquante"
+      ]
+    }
+  ],
+  "objectives": [
+    "Identifier la prescription manquante",
+    "Mettre en attente",
+    "Demander la pièce",
+    "Expliquer au bénéficiaire"
+  ],
+  "learner_instructions": "Traiter le dossier sans consulter answer_key.json.",
+  "visible_in_learner_mode": true,
+  "synthetic": true
+}

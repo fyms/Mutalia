@@ -1,0 +1,108 @@
+{
+  "track": {
+    "id": "ONBOARDING-SANTE-PART",
+    "title": "Nouveau collaborateur - Complémentaire santé particuliers"
+  },
+  "levels": [
+    "debutant",
+    "intermediaire",
+    "autonome",
+    "expert"
+  ],
+  "modules": [
+    {
+      "id": "M01",
+      "title": "Écosystème AMO / AMC"
+    },
+    {
+      "id": "M02",
+      "title": "Lexique essentiel"
+    },
+    {
+      "id": "M03",
+      "title": "Lire une garantie"
+    },
+    {
+      "id": "M04",
+      "title": "BRSS, TM et RAC"
+    },
+    {
+      "id": "M05",
+      "title": "Hospitalisation"
+    },
+    {
+      "id": "M06",
+      "title": "Optique"
+    },
+    {
+      "id": "M07",
+      "title": "Dentaire"
+    },
+    {
+      "id": "M08",
+      "title": "Audiologie"
+    },
+    {
+      "id": "M09",
+      "title": "100 % Santé"
+    },
+    {
+      "id": "M10",
+      "title": "Tiers payant et flux"
+    },
+    {
+      "id": "M11",
+      "title": "Prestations et liquidation pédagogique"
+    },
+    {
+      "id": "M12",
+      "title": "Devis et PEC"
+    },
+    {
+      "id": "M13",
+      "title": "Cotisations"
+    },
+    {
+      "id": "M14",
+      "title": "GED et pièces justificatives"
+    },
+    {
+      "id": "M15",
+      "title": "Relation adhérent et réclamations"
+    },
+    {
+      "id": "M16",
+      "title": "Anomalies et rejets"
+    },
+    {
+      "id": "M17",
+      "title": "Découverte des besoins"
+    },
+    {
+      "id": "M18",
+      "title": "Conseil de couverture"
+    },
+    {
+      "id": "M19",
+      "title": "Cas complexes multi-documents"
+    }
+  ],
+  "lesson_flow": [
+    "cours",
+    "exemple",
+    "flashcards",
+    "quiz",
+    "cas_pratique",
+    "correction"
+  ],
+  "scoring_dimensions": [
+    "comprehension_metier",
+    "lecture_documentaire",
+    "calcul",
+    "procedure",
+    "detection_anomalies",
+    "conseil",
+    "justification",
+    "relation_client"
+  ]
+}

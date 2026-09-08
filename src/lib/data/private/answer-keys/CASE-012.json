@@ -1,0 +1,25 @@
+{
+  "case_id": "CASE-012",
+  "scenario_type": "implant_plafond",
+  "anomalies": [
+    "plafond_a_controler"
+  ],
+  "expected_actions": [
+    "Récupérer le plafond 2026",
+    "Tenir compte de la consommation",
+    "Calculer le disponible",
+    "Expliquer le RAC"
+  ],
+  "expected_values": {
+    "amount": 1200,
+    "already_used": 600
+  },
+  "scoring": {
+    "document_reading": 20,
+    "anomaly_detection": 25,
+    "procedure": 25,
+    "calculation_or_analysis": 20,
+    "explanation": 10
+  },
+  "trainer_notes": "Utiliser le référentiel 2026 pour toute valeur contractuelle exacte."
+}

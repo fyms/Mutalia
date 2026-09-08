@@ -1,0 +1,69 @@
+{
+  "case_id": "CASE-010",
+  "seed": 2026090810,
+  "difficulty": "debutant",
+  "scenario_type": "rib_invalide",
+  "household": {
+    "household_id": "FOY-010",
+    "members": [
+      {
+        "first_name": "Lucas",
+        "last_name": "Lefèvre",
+        "birth_date": "1963-05-21",
+        "role": "adherent",
+        "member_id": "MUT-DEMO-010-A",
+        "household_id": "FOY-010",
+        "synthetic": true
+      },
+      {
+        "first_name": "Julie",
+        "last_name": "Martin",
+        "birth_date": "1973-02-15",
+        "role": "conjoint",
+        "member_id": "MUT-DEMO-010-B",
+        "household_id": "FOY-010",
+        "synthetic": true
+      },
+      {
+        "first_name": "Sarah",
+        "last_name": "Diallo",
+        "birth_date": "2016-02-24",
+        "role": "enfant",
+        "member_id": "MUT-DEMO-010-C",
+        "household_id": "FOY-010",
+        "synthetic": true
+      }
+    ]
+  },
+  "target_beneficiary_id": "MUT-DEMO-010-A",
+  "contract": {
+    "provider": "Harmonie Mutuelle",
+    "year": 2026,
+    "exercise_formula": "À lier au référentiel 2026",
+    "status": "actif",
+    "synthetic": true
+  },
+  "documents": [
+    {
+      "document_id": "CASE-010-01",
+      "case_id": "CASE-010",
+      "document_type": "rib",
+      "file_name": "01_rib_fictif_invalide.pdf",
+      "beneficiary_id": "MUT-DEMO-010-A",
+      "document_date": "2026-06-15",
+      "synthetic": true,
+      "status": "importe",
+      "anomalies": [
+        "rib_invalide"
+      ]
+    }
+  ],
+  "objectives": [
+    "Repérer IBAN invalide",
+    "Ne pas l enregistrer comme moyen réel",
+    "Demander un RIB conforme dans le scénario"
+  ],
+  "learner_instructions": "Traiter le dossier sans consulter answer_key.json.",
+  "visible_in_learner_mode": true,
+  "synthetic": true
+}

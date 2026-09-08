@@ -1,0 +1,21 @@
+{
+  "case_id": "CASE-010",
+  "scenario_type": "rib_invalide",
+  "anomalies": [
+    "rib_invalide"
+  ],
+  "expected_actions": [
+    "Repérer IBAN invalide",
+    "Ne pas l enregistrer comme moyen réel",
+    "Demander un RIB conforme dans le scénario"
+  ],
+  "expected_values": {},
+  "scoring": {
+    "document_reading": 20,
+    "anomaly_detection": 25,
+    "procedure": 25,
+    "calculation_or_analysis": 20,
+    "explanation": 10
+  },
+  "trainer_notes": "Utiliser le référentiel 2026 pour toute valeur contractuelle exacte."
+}

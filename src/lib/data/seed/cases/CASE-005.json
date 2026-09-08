@@ -1,0 +1,68 @@
+{
+  "case_id": "CASE-005",
+  "seed": 2026090805,
+  "difficulty": "intermediaire",
+  "scenario_type": "hospitalisation",
+  "household": {
+    "household_id": "FOY-005",
+    "members": [
+      {
+        "first_name": "Julie",
+        "last_name": "Lefèvre",
+        "birth_date": "1968-05-22",
+        "role": "adherent",
+        "member_id": "MUT-DEMO-005-A",
+        "household_id": "FOY-005",
+        "synthetic": true
+      },
+      {
+        "first_name": "Julien",
+        "last_name": "Robert",
+        "birth_date": "1964-02-01",
+        "role": "conjoint",
+        "member_id": "MUT-DEMO-005-B",
+        "household_id": "FOY-005",
+        "synthetic": true
+      },
+      {
+        "first_name": "Mehdi",
+        "last_name": "Diallo",
+        "birth_date": "2021-12-08",
+        "role": "enfant",
+        "member_id": "MUT-DEMO-005-C",
+        "household_id": "FOY-005",
+        "synthetic": true
+      }
+    ]
+  },
+  "target_beneficiary_id": "MUT-DEMO-005-A",
+  "contract": {
+    "provider": "Harmonie Mutuelle",
+    "year": 2026,
+    "exercise_formula": "À lier au référentiel 2026",
+    "status": "actif",
+    "synthetic": true
+  },
+  "documents": [
+    {
+      "document_id": "CASE-005-01",
+      "case_id": "CASE-005",
+      "document_type": "demande_pec_hospitaliere",
+      "file_name": "01_demande_pec_hospitaliere.pdf",
+      "beneficiary_id": "MUT-DEMO-005-A",
+      "document_date": "2026-07-21",
+      "synthetic": true,
+      "status": "importe",
+      "anomalies": []
+    }
+  ],
+  "objectives": [
+    "Contrôler les droits",
+    "Vérifier la garantie hospitalisation",
+    "Calculer la limite de chambre particulière",
+    "Émettre une PEC pédagogique"
+  ],
+  "learner_instructions": "Traiter le dossier sans consulter answer_key.json.",
+  "visible_in_learner_mode": true,
+  "synthetic": true
+}

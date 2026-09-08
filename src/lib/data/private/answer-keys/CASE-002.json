@@ -1,0 +1,24 @@
+{
+  "case_id": "CASE-002",
+  "scenario_type": "orthodontie_enfant",
+  "anomalies": [
+    "code_acte_a_controler"
+  ],
+  "expected_actions": [
+    "Vérifier identité et droits",
+    "Contrôler le code acte",
+    "Comparer la garantie orthodontie",
+    "Émettre une estimation pédagogique"
+  ],
+  "expected_values": {
+    "devis_total": 1100
+  },
+  "scoring": {
+    "document_reading": 20,
+    "anomaly_detection": 25,
+    "procedure": 25,
+    "calculation_or_analysis": 20,
+    "explanation": 10
+  },
+  "trainer_notes": "Utiliser le référentiel 2026 pour toute valeur contractuelle exacte."
+}

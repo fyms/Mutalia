@@ -1,0 +1,28 @@
+{
+  "modes": [
+    {
+      "id": "debutant",
+      "context_help": "high",
+      "hints": true,
+      "tooltips": "automatic"
+    },
+    {
+      "id": "intermediaire",
+      "context_help": "medium",
+      "hints": true,
+      "tooltips": "on_hover"
+    },
+    {
+      "id": "autonome",
+      "context_help": "low",
+      "hints": false,
+      "tooltips": "on_demand"
+    },
+    {
+      "id": "expert",
+      "context_help": "minimal",
+      "hints": false,
+      "tooltips": "on_demand"
+    }
+  ]
+}

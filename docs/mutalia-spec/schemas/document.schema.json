@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "MutaliaTrainingDocument",
+  "type": "object",
+  "required": [
+    "document_id",
+    "case_id",
+    "document_type",
+    "synthetic",
+    "status"
+  ],
+  "properties": {
+    "document_id": {
+      "type": "string"
+    },
+    "case_id": {
+      "type": "string"
+    },
+    "document_type": {
+      "type": "string"
+    },
+    "file_name": {
+      "type": "string"
+    },
+    "synthetic": {
+      "const": true
+    },
+    "status": {
+      "enum": [
+        "importe",
+        "a_qualifier",
+        "associe",
+        "controle",
+        "conforme",
+        "incomplet",
+        "anomalie",
+        "rejete",
+        "archive"
+      ]
+    },
+    "beneficiary_id": {
+      "type": "string"
+    },
+    "document_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "anomalies": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

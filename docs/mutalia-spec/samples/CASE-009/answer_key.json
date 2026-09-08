@@ -1,0 +1,23 @@
+{
+  "case_id": "CASE-009",
+  "scenario_type": "ordonnance_absente",
+  "anomalies": [
+    "ordonnance_absente"
+  ],
+  "expected_actions": [
+    "Identifier l absence de prescription",
+    "Mettre en attente",
+    "Demander le justificatif"
+  ],
+  "expected_values": {
+    "total": 280
+  },
+  "scoring": {
+    "document_reading": 20,
+    "anomaly_detection": 25,
+    "procedure": 25,
+    "calculation_or_analysis": 20,
+    "explanation": 10
+  },
+  "trainer_notes": "Utiliser le référentiel 2026 pour toute valeur contractuelle exacte."
+}

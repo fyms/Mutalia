@@ -1,0 +1,24 @@
+{
+  "case_id": "CASE-008",
+  "scenario_type": "reclamation_remboursement",
+  "anomalies": [
+    "reclamation"
+  ],
+  "expected_actions": [
+    "Identifier le motif",
+    "Reconstituer le calcul",
+    "Répondre pédagogiquement",
+    "Escalader seulement si incohérence"
+  ],
+  "expected_values": {
+    "billed": 120
+  },
+  "scoring": {
+    "document_reading": 20,
+    "anomaly_detection": 25,
+    "procedure": 25,
+    "calculation_or_analysis": 20,
+    "explanation": 10
+  },
+  "trainer_notes": "Utiliser le référentiel 2026 pour toute valeur contractuelle exacte."
+}

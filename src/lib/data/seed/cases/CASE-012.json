@@ -1,0 +1,70 @@
+{
+  "case_id": "CASE-012",
+  "seed": 2026090812,
+  "difficulty": "avance",
+  "scenario_type": "implant_plafond",
+  "household": {
+    "household_id": "FOY-012",
+    "members": [
+      {
+        "first_name": "Thomas",
+        "last_name": "Garnier",
+        "birth_date": "1964-03-03",
+        "role": "adherent",
+        "member_id": "MUT-DEMO-012-A",
+        "household_id": "FOY-012",
+        "synthetic": true
+      },
+      {
+        "first_name": "Sophie",
+        "last_name": "Roux",
+        "birth_date": "1995-09-09",
+        "role": "conjoint",
+        "member_id": "MUT-DEMO-012-B",
+        "household_id": "FOY-012",
+        "synthetic": true
+      },
+      {
+        "first_name": "Yann",
+        "last_name": "Durand",
+        "birth_date": "2014-06-27",
+        "role": "enfant",
+        "member_id": "MUT-DEMO-012-C",
+        "household_id": "FOY-012",
+        "synthetic": true
+      }
+    ]
+  },
+  "target_beneficiary_id": "MUT-DEMO-012-A",
+  "contract": {
+    "provider": "Harmonie Mutuelle",
+    "year": 2026,
+    "exercise_formula": "À lier au référentiel 2026",
+    "status": "actif",
+    "synthetic": true
+  },
+  "documents": [
+    {
+      "document_id": "CASE-012-01",
+      "case_id": "CASE-012",
+      "document_type": "devis_dentaire",
+      "file_name": "01_devis_implant.pdf",
+      "beneficiary_id": "MUT-DEMO-012-A",
+      "document_date": "2026-04-19",
+      "synthetic": true,
+      "status": "importe",
+      "anomalies": [
+        "plafond_a_controler"
+      ]
+    }
+  ],
+  "objectives": [
+    "Récupérer le plafond 2026",
+    "Tenir compte de la consommation",
+    "Calculer le disponible",
+    "Expliquer le RAC"
+  ],
+  "learner_instructions": "Traiter le dossier sans consulter answer_key.json.",
+  "visible_in_learner_mode": true,
+  "synthetic": true
+}

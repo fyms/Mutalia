@@ -1,0 +1,77 @@
+{
+  "case_id": "CASE-008",
+  "seed": 2026090808,
+  "difficulty": "intermediaire",
+  "scenario_type": "reclamation_remboursement",
+  "household": {
+    "household_id": "FOY-008",
+    "members": [
+      {
+        "first_name": "Karim",
+        "last_name": "Durand",
+        "birth_date": "1970-10-26",
+        "role": "adherent",
+        "member_id": "MUT-DEMO-008-A",
+        "household_id": "FOY-008",
+        "synthetic": true
+      },
+      {
+        "first_name": "Mehdi",
+        "last_name": "Martin",
+        "birth_date": "1969-11-09",
+        "role": "conjoint",
+        "member_id": "MUT-DEMO-008-B",
+        "household_id": "FOY-008",
+        "synthetic": true
+      },
+      {
+        "first_name": "Nadia",
+        "last_name": "Lefèvre",
+        "birth_date": "2015-09-13",
+        "role": "enfant",
+        "member_id": "MUT-DEMO-008-C",
+        "household_id": "FOY-008",
+        "synthetic": true
+      },
+      {
+        "first_name": "Aïcha",
+        "last_name": "Garnier",
+        "birth_date": "2010-10-18",
+        "role": "enfant",
+        "member_id": "MUT-DEMO-008-D",
+        "household_id": "FOY-008",
+        "synthetic": true
+      }
+    ]
+  },
+  "target_beneficiary_id": "MUT-DEMO-008-A",
+  "contract": {
+    "provider": "Harmonie Mutuelle",
+    "year": 2026,
+    "exercise_formula": "À lier au référentiel 2026",
+    "status": "actif",
+    "synthetic": true
+  },
+  "documents": [
+    {
+      "document_id": "CASE-008-01",
+      "case_id": "CASE-008",
+      "document_type": "courrier_reclamation",
+      "file_name": "01_reclamation.pdf",
+      "beneficiary_id": "MUT-DEMO-008-A",
+      "document_date": "2026-06-08",
+      "synthetic": true,
+      "status": "importe",
+      "anomalies": []
+    }
+  ],
+  "objectives": [
+    "Identifier le motif",
+    "Reconstituer le calcul",
+    "Répondre pédagogiquement",
+    "Escalader seulement si incohérence"
+  ],
+  "learner_instructions": "Traiter le dossier sans consulter answer_key.json.",
+  "visible_in_learner_mode": true,
+  "synthetic": true
+}

@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "MutaliaAnswerKey",
+  "type": "object",
+  "required": [
+    "case_id",
+    "expected_actions",
+    "scoring"
+  ],
+  "properties": {
+    "case_id": {
+      "type": "string"
+    },
+    "expected_actions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "expected_values": {
+      "type": "object"
+    },
+    "anomalies": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "scoring": {
+      "type": "object"
+    }
+  }
+}

@@ -1,0 +1,78 @@
+{
+  "case_id": "CASE-011",
+  "seed": 2026090811,
+  "difficulty": "avance",
+  "scenario_type": "droits_fermes",
+  "household": {
+    "household_id": "FOY-011",
+    "members": [
+      {
+        "first_name": "Sarah",
+        "last_name": "Robert",
+        "birth_date": "1979-09-14",
+        "role": "adherent",
+        "member_id": "MUT-DEMO-011-A",
+        "household_id": "FOY-011",
+        "synthetic": true
+      },
+      {
+        "first_name": "Sophie",
+        "last_name": "Lefèvre",
+        "birth_date": "1978-10-06",
+        "role": "conjoint",
+        "member_id": "MUT-DEMO-011-B",
+        "household_id": "FOY-011",
+        "synthetic": true
+      },
+      {
+        "first_name": "Yann",
+        "last_name": "Morel",
+        "birth_date": "2015-04-26",
+        "role": "enfant",
+        "member_id": "MUT-DEMO-011-C",
+        "household_id": "FOY-011",
+        "synthetic": true
+      },
+      {
+        "first_name": "Karim",
+        "last_name": "Fontaine",
+        "birth_date": "2009-09-08",
+        "role": "enfant",
+        "member_id": "MUT-DEMO-011-D",
+        "household_id": "FOY-011",
+        "synthetic": true
+      }
+    ]
+  },
+  "target_beneficiary_id": "MUT-DEMO-011-B",
+  "contract": {
+    "provider": "Harmonie Mutuelle",
+    "year": 2026,
+    "exercise_formula": "À lier au référentiel 2026",
+    "status": "actif",
+    "synthetic": true
+  },
+  "documents": [
+    {
+      "document_id": "CASE-011-01",
+      "case_id": "CASE-011",
+      "document_type": "attestation_droits",
+      "file_name": "01_attestation_droits_fictive.pdf",
+      "beneficiary_id": "MUT-DEMO-011-B",
+      "document_date": "2026-08-12",
+      "synthetic": true,
+      "status": "importe",
+      "anomalies": [
+        "droits_fermes"
+      ]
+    }
+  ],
+  "objectives": [
+    "Comparer date des soins et période de droits",
+    "Refuser traitement automatique",
+    "Rechercher mise à jour ou expliquer"
+  ],
+  "learner_instructions": "Traiter le dossier sans consulter answer_key.json.",
+  "visible_in_learner_mode": true,
+  "synthetic": true
+}

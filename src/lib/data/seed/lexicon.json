@@ -1,0 +1,1458 @@
+[
+  {
+    "id": "LEX-001",
+    "acronym": "AMO",
+    "term": "Assurance Maladie Obligatoire",
+    "category": "Écosystème",
+    "level": "debutant",
+    "definition_simple": "Régime obligatoire qui prend en charge une partie des dépenses de santé.",
+    "definition_metier": "Régime obligatoire qui prend en charge une partie des dépenses de santé.",
+    "example": "",
+    "common_mistake": "",
+    "related_terms": [],
+    "tags": [
+      "écosystème"
+    ],
+    "updated_at": "2026-09-08"
+  },
+  {
+    "id": "LEX-002",
+    "acronym": "AMC",
+    "term": "Assurance Maladie Complémentaire",
+    "category": "Écosystème",
+    "level": "debutant",
+    "definition_simple": "Couverture complémentaire intervenant selon les garanties du contrat.",
+    "definition_metier": "Couverture complémentaire intervenant selon les garanties du contrat.",
+    "example": "",
+    "common_mistake": "",
+    "related_terms": [],
+    "tags": [
+      "écosystème"
+    ],
+    "updated_at": "2026-09-08"
+  },
+  {
+    "id": "LEX-003",
+    "acronym": "BRSS",
+    "term": "Base de remboursement de la Sécurité sociale",
+    "category": "Remboursement",
+    "level": "debutant",
+    "definition_simple": "Montant de référence servant au calcul de nombreux remboursements.",
+    "definition_metier": "Montant de référence servant au calcul de nombreux remboursements.",
+    "example": "",
+    "common_mistake": "",
+    "related_terms": [],
+    "tags": [
+      "remboursement"
+    ],
+    "updated_at": "2026-09-08"
+  },
+  {
+    "id": "LEX-004",
+    "acronym": "BR",
+    "term": "Base de remboursement",
+    "category": "Remboursement",
+    "level": "debutant",
+    "definition_simple": "Abréviation courante de la base servant au calcul du remboursement.",
+    "definition_metier": "Abréviation courante de la base servant au calcul du remboursement.",
+    "example": "",
+    "common_mistake": "",
+    "related_terms": [],
+    "tags": [
+      "remboursement"
+    ],
+    "updated_at": "2026-09-08"
+  },
+  {
+    "id": "LEX-005",
+    "acronym": "TM",
+    "term": "Ticket modérateur",
+    "category": "Remboursement",
+    "level": "debutant",
+    "definition_simple": "Part de la base restant après l intervention AMO, hors sommes restant légalement à charge.",
+    "definition_metier": "Part de la base restant après l intervention AMO, hors sommes restant légalement à charge.",
+    "example": "",
+    "common_mistake": "",
+    "related_terms": [],
+    "tags": [
+      "remboursement"
+    ],
+    "updated_at": "2026-09-08"
+  },
+  {
+    "id": "LEX-006",
+    "acronym": "RAC",
+    "term": "Reste à charge",
+    "category": "Remboursement",
+    "level": "debutant",
+    "definition_simple": "Somme restant à payer après les remboursements applicables.",
+    "definition_metier": "Somme restant à payer après les remboursements applicables.",
+    "example": "",
+    "common_mistake": "",
+    "related_terms": [],
+    "tags": [
+      "remboursement"
+    ],
+    "updated_at": "2026-09-08"
+  },
+  {
+    "id": "LEX-007",
+    "acronym": "FR",
+    "term": "Frais réels",
+    "category": "Remboursement",
+    "level": "debutant",
+    "definition_simple": "Prise en charge jusqu au montant réellement dépensé, dans les limites contractuelles.",
+    "definition_metier": "Prise en charge jusqu au montant réellement dépensé, dans les limites contractuelles.",
+    "example": "",
+    "common_mistake": "",
+    "related_terms": [],
+    "tags": [
+      "remboursement"
+    ],
+    "updated_at": "2026-09-08"
+  },
+  {
+    "id": "LEX-008",
+    "acronym": "RO",
+    "term": "Régime obligatoire",
+    "category": "Écosystème",
+    "level": "debutant",
+    "definition_simple": "Régime d Assurance Maladie auquel l assuré est rattaché.",
+    "definition_metier": "Régime d Assurance Maladie auquel l assuré est rattaché.",
+    "example": "",
+    "common_mistake": "",
+    "related_terms": [],
+    "tags": [
+      "écosystème"
+    ],
+    "updated_at": "2026-09-08"
+  },
+  {
+    "id": "LEX-009",
+    "acronym": "RC",
+    "term": "Régime complémentaire",
+    "category": "Écosystème",
+    "level": "debutant",
+    "definition_simple": "Couverture complémentaire santé de l assuré.",
+    "definition_metier": "Couverture complémentaire santé de l assuré.",
+    "example": "",
+    "common_mistake": "",
+    "related_terms": [],
+    "tags": [
+      "écosystème"
+    ],
+    "updated_at": "2026-09-08"
+  },
+  {
+    "id": "LEX-010",
+    "acronym": "PEC",
+    "term": "Prise en charge",
+    "category": "Gestion",
+    "level": "debutant",
+    "definition_simple": "Accord ou estimation de prise en charge avant ou lors d une dépense.",
+    "definition_metier": "Accord ou estimation de prise en charge avant ou lors d une dépense.",
+    "example": "",
+    "common_mistake": "",
+    "related_terms": [],
+    "tags": [
+      "gestion"
+    ],
+    "updated_at": "2026-09-08"
+  },
+  {
+    "id": "LEX-011",
+    "acronym": "NOEMIE",
+    "term": "Norme Ouverte d Échanges entre la Maladie et les Intervenants Extérieurs",
+    "category": "Flux",
+    "level": "debutant",
+    "definition_simple": "Standard d échanges permettant notamment la transmission entre AMO et complémentaires.",
+    "definition_metier": "Standard d échanges permettant notamment la transmission entre AMO et complémentaires.",
+    "example": "",
+    "common_mistake": "",
+    "related_terms": [],
+    "tags": [
+      "flux"
+    ],
+    "updated_at": "2026-09-08"
+  },
+  {
+    "id": "LEX-012",
+    "acronym": "DRE",
+    "term": "Demande de Remboursement Électronique",
+    "category": "Flux",
+    "level": "debutant",
+    "definition_simple": "Flux électronique utilisé dans certains circuits de tiers payant complémentaire.",
+    "definition_metier": "Flux électronique utilisé dans certains circuits de tiers payant complémentaire.",
+    "example": "",
+    "common_mistake": "",
+    "related_terms": [],
+    "tags": [
+      "flux"
+    ],
+    "updated_at": "2026-09-08"
+  },
+  {
+    "id": "LEX-013",
+    "acronym": "ROC",
+    "term": "Remboursement des Organismes Complémentaires",
+    "category": "Flux",
+    "level": "debutant",
+    "definition_simple": "Dispositif d échanges standardisés entre établissements et organismes complémentaires.",
+    "definition_metier": "Dispositif d échanges standardisés entre établissements et organismes complémentaires.",
+    "example": "",
+    "common_mistake": "",
+    "related_terms": [],
+    "tags": [
+      "flux"
+    ],
+    "updated_at": "2026-09-08"
+  },
+  {
+    "id": "LEX-014",
+    "acronym": "CSS",
+    "term": "Complémentaire santé solidaire",
+    "category": "Réglementaire",
+    "level": "debutant",
+    "definition_simple": "Dispositif de complémentaire santé sous conditions de ressources.",
+    "definition_metier": "Dispositif de complémentaire santé sous conditions de ressources.",
+    "example": "",
+    "common_mistake": "",
+    "related_terms": [],
+    "tags": [
+      "réglementaire"
+    ],
+    "updated_at": "2026-09-08"
+  },
+  {
+    "id": "LEX-015",
+    "acronym": "ALD",
+    "term": "Affection de longue durée",
+    "category": "Réglementaire",
+    "level": "debutant",
+    "definition_simple": "Situation médicale pouvant ouvrir une prise en charge spécifique par l Assurance Maladie.",
+    "definition_metier": "Situation médicale pouvant ouvrir une prise en charge spécifique par l Assurance Maladie.",
+    "example": "",
+    "common_mistake": "",
+    "related_terms": [],
+    "tags": [
+      "réglementaire"
+    ],
+    "updated_at": "2026-09-08"
+  },
+  {
+    "id": "LEX-016",
+    "acronym": "DPTAM",
+    "term": "Dispositif de pratique tarifaire maîtrisée",
+    "category": "Médecins",
+    "level": "debutant",
+    "definition_simple": "Cadre regroupant des dispositifs visant à maîtriser les dépassements d honoraires.",
+    "definition_metier": "Cadre regroupant des dispositifs visant à maîtriser les dépassements d honoraires.",
+    "example": "",
+    "common_mistake": "",
+    "related_terms": [],
+    "tags": [
+      "médecins"
+    ],
+    "updated_at": "2026-09-08"
+  },
+  {
+    "id": "LEX-017",
+    "acronym": "OPTAM",
+    "term": "Option pratique tarifaire maîtrisée",
+    "category": "Médecins",
+    "level": "debutant",
+    "definition_simple": "Engagement de certains médecins à modérer leurs dépassements d honoraires.",
+    "definition_metier": "Engagement de certains médecins à modérer leurs dépassements d honoraires.",
+    "example": "",
+    "common_mistake": "",
+    "related_terms": [],
+    "tags": [
+      "médecins"
+    ],
+    "updated_at": "2026-09-08"
+  },
+  {
+    "id": "LEX-018",
+    "acronym": "OPTAM-CO",
+    "term": "Option pratique tarifaire maîtrisée chirurgie et obstétrique",
+    "category": "Médecins",
+    "level": "debutant",
+    "definition_simple": "Déclinaison de l OPTAM pour certaines spécialités.",
+    "definition_metier": "Déclinaison de l OPTAM pour certaines spécialités.",
+    "example": "",
+    "common_mistake": "",
+    "related_terms": [],
+    "tags": [
+      "médecins"
+    ],
+    "updated_at": "2026-09-08"
+  },
+  {
+    "id": "LEX-019",
+    "acronym": "LPP",
+    "term": "Liste des Produits et Prestations",
+    "category": "Équipements",
+    "level": "debutant",
+    "definition_simple": "Liste de référence pour certains dispositifs médicaux remboursables.",
+    "definition_metier": "Liste de référence pour certains dispositifs médicaux remboursables.",
+    "example": "",
+    "common_mistake": "",
+    "related_terms": [],
+    "tags": [
+      "équipements"
+    ],
+    "updated_at": "2026-09-08"
+  },
+  {
+    "id": "LEX-020",
+    "acronym": "TP",
+    "term": "Tiers payant",
+    "category": "Gestion",
+    "level": "debutant",
+    "definition_simple": "Mécanisme permettant d éviter l avance de tout ou partie des frais.",
+    "definition_metier": "Mécanisme permettant d éviter l avance de tout ou partie des frais.",
+    "example": "",
+    "common_mistake": "",
+    "related_terms": [],
+    "tags": [
+      "gestion"
+    ],
+    "updated_at": "2026-09-08"
+  },
+  {
+    "id": "LEX-021",
+    "acronym": "100SANTE",
+    "term": "100 % Santé",
+    "category": "Réglementaire",
+    "level": "debutant",
+    "definition_simple": "Paniers réglementés en optique, dentaire et audiologie pouvant conduire à un reste à charge nul sous conditions.",
+    "definition_metier": "Paniers réglementés en optique, dentaire et audiologie pouvant conduire à un reste à charge nul sous conditions.",
+    "example": "",
+    "common_mistake": "",
+    "related_terms": [],
+    "tags": [
+      "réglementaire"
+    ],
+    "updated_at": "2026-09-08"
+  },
+  {
+    "id": "LEX-022",
+    "acronym": "ADHERENT",
+    "term": "Adhérent",
+    "category": "Adhésion",
+    "level": "debutant",
+    "definition_simple": "Personne liée au contrat auprès de la complémentaire.",
+    "definition_metier": "Personne liée au contrat auprès de la complémentaire.",
+    "example": "",
+    "common_mistake": "",
+    "related_terms": [],
+    "tags": [
+      "adhésion"
+    ],
+    "updated_at": "2026-09-08"
+  },
+  {
+    "id": "LEX-023",
+    "acronym": "ASSURE",
+    "term": "Assuré",
+    "category": "Adhésion",
+    "level": "debutant",
+    "definition_simple": "Personne couverte au titre du contrat.",
+    "definition_metier": "Personne couverte au titre du contrat.",
+    "example": "",
+    "common_mistake": "",
+    "related_terms": [],
+    "tags": [
+      "adhésion"
+    ],
+    "updated_at": "2026-09-08"
+  },
+  {
+    "id": "LEX-024",
+    "acronym": "BENEFICIAIRE",
+    "term": "Bénéficiaire",
+    "category": "Adhésion",
+    "level": "debutant",
+    "definition_simple": "Personne dont les dépenses de santé sont couvertes par le contrat.",
+    "definition_metier": "Personne dont les dépenses de santé sont couvertes par le contrat.",
+    "example": "",
+    "common_mistake": "",
+    "related_terms": [],
+    "tags": [
+      "adhésion"
+    ],
+    "updated_at": "2026-09-08"
+  },
+  {
+    "id": "LEX-025",
+    "acronym": "AYANT_DROIT",
+    "term": "Ayant droit",
+    "category": "Adhésion",
+    "level": "debutant",
+    "definition_simple": "Personne bénéficiant d une couverture via un assuré principal selon les règles applicables.",
+    "definition_metier": "Personne bénéficiant d une couverture via un assuré principal selon les règles applicables.",
+    "example": "",
+    "common_mistake": "",
+    "related_terms": [],
+    "tags": [
+      "adhésion"
+    ],
+    "updated_at": "2026-09-08"
+  },
+  {
+    "id": "LEX-026",
+    "acronym": "SOUSCRIPTION",
+    "term": "Souscription",
+    "category": "Contrat",
+    "level": "debutant",
+    "definition_simple": "Processus de conclusion et mise en place d un contrat.",
+    "definition_metier": "Processus de conclusion et mise en place d un contrat.",
+    "example": "",
+    "common_mistake": "",
+    "related_terms": [],
+    "tags": [
+      "contrat"
+    ],
+    "updated_at": "2026-09-08"
+  },
+  {
+    "id": "LEX-027",
+    "acronym": "DATE_EFFET",
+    "term": "Date d effet",
+    "category": "Contrat",
+    "level": "debutant",
+    "definition_simple": "Date à laquelle la couverture commence.",
+    "definition_metier": "Date à laquelle la couverture commence.",
+    "example": "",
+    "common_mistake": "",
+    "related_terms": [],
+    "tags": [
+      "contrat"
+    ],
+    "updated_at": "2026-09-08"
+  },
+  {
+    "id": "LEX-028",
+    "acronym": "OUVERTURE_DROITS",
+    "term": "Ouverture des droits",
+    "category": "Contrat",
+    "level": "debutant",
+    "definition_simple": "Début de la période durant laquelle les garanties sont mobilisables.",
+    "definition_metier": "Début de la période durant laquelle les garanties sont mobilisables.",
+    "example": "",
+    "common_mistake": "",
+    "related_terms": [],
+    "tags": [
+      "contrat"
+    ],
+    "updated_at": "2026-09-08"
+  },
+  {
+    "id": "LEX-029",
+    "acronym": "FERMETURE_DROITS",
+    "term": "Fermeture des droits",
+    "category": "Contrat",
+    "level": "debutant",
+    "definition_simple": "Fin de la période de couverture.",
+    "definition_metier": "Fin de la période de couverture.",
+    "example": "",
+    "common_mistake": "",
+    "related_terms": [],
+    "tags": [
+      "contrat"
+    ],
+    "updated_at": "2026-09-08"
+  },
+  {
+    "id": "LEX-030",
+    "acronym": "AVENANT",
+    "term": "Avenant",
+    "category": "Contrat",
+    "level": "debutant",
+    "definition_simple": "Modification apportée à un contrat existant.",
+    "definition_metier": "Modification apportée à un contrat existant.",
+    "example": "",
+    "common_mistake": "",
+    "related_terms": [],
+    "tags": [
+      "contrat"
+    ],
+    "updated_at": "2026-09-08"
+  },
+  {
+    "id": "LEX-031",
+    "acronym": "RADIATION",
+    "term": "Radiation",
+    "category": "Contrat",
+    "level": "intermediaire",
+    "definition_simple": "Fin de l affiliation ou de la couverture d un bénéficiaire.",
+    "definition_metier": "Fin de l affiliation ou de la couverture d un bénéficiaire.",
+    "example": "",
+    "common_mistake": "",
+    "related_terms": [],
+    "tags": [
+      "contrat"
+    ],
+    "updated_at": "2026-09-08"
+  },
+  {
+    "id": "LEX-032",
+    "acronym": "RESILIATION",
+    "term": "Résiliation",
+    "category": "Contrat",
+    "level": "intermediaire",
+    "definition_simple": "Fin du contrat selon les règles applicables.",
+    "definition_metier": "Fin du contrat selon les règles applicables.",
+    "example": "",
+    "common_mistake": "",
+    "related_terms": [],
+    "tags": [
+      "contrat"
+    ],
+    "updated_at": "2026-09-08"
+  },
+  {
+    "id": "LEX-033",
+    "acronym": "RIA",
+    "term": "Résiliation infra-annuelle",
+    "category": "Contrat",
+    "level": "intermediaire",
+    "definition_simple": "Possibilité de résilier certains contrats santé après un an selon le cadre légal applicable.",
+    "definition_metier": "Possibilité de résilier certains contrats santé après un an selon le cadre légal applicable.",
+    "example": "",
+    "common_mistake": "",
+    "related_terms": [],
+    "tags": [
+      "contrat"
+    ],
+    "updated_at": "2026-09-08"
+  },
+  {
+    "id": "LEX-034",
+    "acronym": "PORTABILITE",
+    "term": "Portabilité",
+    "category": "Contrat",
+    "level": "intermediaire",
+    "definition_simple": "Maintien temporaire de certaines garanties collectives après la fin d un contrat de travail, sous conditions.",
+    "definition_metier": "Maintien temporaire de certaines garanties collectives après la fin d un contrat de travail, sous conditions.",
+    "example": "",
+    "common_mistake": "",
+    "related_terms": [],
+    "tags": [
+      "contrat"
+    ],
+    "updated_at": "2026-09-08"
+  },
+  {
+    "id": "LEX-035",
+    "acronym": "COTISATION",
+    "term": "Cotisation",
+    "category": "Cotisations",
+    "level": "intermediaire",
+    "definition_simple": "Montant dû en contrepartie de la couverture.",
+    "definition_metier": "Montant dû en contrepartie de la couverture.",
+    "example": "",
+    "common_mistake": "",
+    "related_terms": [],
+    "tags": [
+      "cotisations"
+    ],
+    "updated_at": "2026-09-08"
+  },
+  {
+    "id": "LEX-036",
+    "acronym": "ECHEANCE",
+    "term": "Échéance",
+    "category": "Cotisations",
+    "level": "intermediaire",
+    "definition_simple": "Date à laquelle une cotisation devient exigible.",
+    "definition_metier": "Date à laquelle une cotisation devient exigible.",
+    "example": "",
+    "common_mistake": "",
+    "related_terms": [],
+    "tags": [
+      "cotisations"
+    ],
+    "updated_at": "2026-09-08"
+  },
+  {
+    "id": "LEX-037",
+    "acronym": "IMPAYE",
+    "term": "Impayé",
+    "category": "Cotisations",
+    "level": "intermediaire",
+    "definition_simple": "Cotisation non réglée à l échéance.",
+    "definition_metier": "Cotisation non réglée à l échéance.",
+    "example": "",
+    "common_mistake": "",
+    "related_terms": [],
+    "tags": [
+      "cotisations"
+    ],
+    "updated_at": "2026-09-08"
+  },
+  {
+    "id": "LEX-038",
+    "acronym": "REGULARISATION_COTIS",
+    "term": "Régularisation de cotisation",
+    "category": "Cotisations",
+    "level": "intermediaire",
+    "definition_simple": "Correction d un montant de cotisation sur une période.",
+    "definition_metier": "Correction d un montant de cotisation sur une période.",
+    "example": "",
+    "common_mistake": "",
+    "related_terms": [],
+    "tags": [
+      "cotisations"
+    ],
+    "updated_at": "2026-09-08"
+  },
+  {
+    "id": "LEX-039",
+    "acronym": "PLAFOND",
+    "term": "Plafond",
+    "category": "Garantie",
+    "level": "intermediaire",
+    "definition_simple": "Limite maximale de prise en charge sur une période ou pour un acte.",
+    "definition_metier": "Limite maximale de prise en charge sur une période ou pour un acte.",
+    "example": "",
+    "common_mistake": "",
+    "related_terms": [],
+    "tags": [
+      "garantie"
+    ],
+    "updated_at": "2026-09-08"
+  },
+  {
+    "id": "LEX-040",
+    "acronym": "FORFAIT",
+    "term": "Forfait",
+    "category": "Garantie",
+    "level": "intermediaire",
+    "definition_simple": "Montant fixe ou enveloppe de prise en charge.",
+    "definition_metier": "Montant fixe ou enveloppe de prise en charge.",
+    "example": "",
+    "common_mistake": "",
+    "related_terms": [],
+    "tags": [
+      "garantie"
+    ],
+    "updated_at": "2026-09-08"
+  },
+  {
+    "id": "LEX-041",
+    "acronym": "CARENCe",
+    "term": "Délai de carence",
+    "category": "Contrat",
+    "level": "intermediaire",
+    "definition_simple": "Période durant laquelle certaines garanties ne s appliquent pas encore.",
+    "definition_metier": "Période durant laquelle certaines garanties ne s appliquent pas encore.",
+    "example": "",
+    "common_mistake": "",
+    "related_terms": [],
+    "tags": [
+      "contrat"
+    ],
+    "updated_at": "2026-09-08"
+  },
+  {
+    "id": "LEX-042",
+    "acronym": "GARANTIE",
+    "term": "Garantie",
+    "category": "Garantie",
+    "level": "intermediaire",
+    "definition_simple": "Règle contractuelle définissant la prise en charge d une prestation.",
+    "definition_metier": "Règle contractuelle définissant la prise en charge d une prestation.",
+    "example": "",
+    "common_mistake": "",
+    "related_terms": [],
+    "tags": [
+      "garantie"
+    ],
+    "updated_at": "2026-09-08"
+  },
+  {
+    "id": "LEX-043",
+    "acronym": "EXCLUSION",
+    "term": "Exclusion",
+    "category": "Garantie",
+    "level": "intermediaire",
+    "definition_simple": "Situation ou prestation explicitement non couverte.",
+    "definition_metier": "Situation ou prestation explicitement non couverte.",
+    "example": "",
+    "common_mistake": "",
+    "related_terms": [],
+    "tags": [
+      "garantie"
+    ],
+    "updated_at": "2026-09-08"
+  },
+  {
+    "id": "LEX-044",
+    "acronym": "LIMITATION",
+    "term": "Limitation",
+    "category": "Garantie",
+    "level": "intermediaire",
+    "definition_simple": "Restriction contractuelle de fréquence, montant, durée ou quantité.",
+    "definition_metier": "Restriction contractuelle de fréquence, montant, durée ou quantité.",
+    "example": "",
+    "common_mistake": "",
+    "related_terms": [],
+    "tags": [
+      "garantie"
+    ],
+    "updated_at": "2026-09-08"
+  },
+  {
+    "id": "LEX-045",
+    "acronym": "LIQUIDATION",
+    "term": "Liquidation",
+    "category": "Prestations",
+    "level": "intermediaire",
+    "definition_simple": "Calcul et validation d une prestation.",
+    "definition_metier": "Calcul et validation d une prestation.",
+    "example": "",
+    "common_mistake": "",
+    "related_terms": [],
+    "tags": [
+      "prestations"
+    ],
+    "updated_at": "2026-09-08"
+  },
+  {
+    "id": "LEX-046",
+    "acronym": "PRESTATION",
+    "term": "Prestation",
+    "category": "Prestations",
+    "level": "intermediaire",
+    "definition_simple": "Somme ou service dû au titre d une garantie.",
+    "definition_metier": "Somme ou service dû au titre d une garantie.",
+    "example": "",
+    "common_mistake": "",
+    "related_terms": [],
+    "tags": [
+      "prestations"
+    ],
+    "updated_at": "2026-09-08"
+  },
+  {
+    "id": "LEX-047",
+    "acronym": "INDU",
+    "term": "Indu",
+    "category": "Prestations",
+    "level": "intermediaire",
+    "definition_simple": "Somme versée à tort et susceptible d être récupérée.",
+    "definition_metier": "Somme versée à tort et susceptible d être récupérée.",
+    "example": "",
+    "common_mistake": "",
+    "related_terms": [],
+    "tags": [
+      "prestations"
+    ],
+    "updated_at": "2026-09-08"
+  },
+  {
+    "id": "LEX-048",
+    "acronym": "REJET",
+    "term": "Rejet",
+    "category": "Prestations",
+    "level": "intermediaire",
+    "definition_simple": "Refus de traitement ou paiement en raison d une règle ou anomalie.",
+    "definition_metier": "Refus de traitement ou paiement en raison d une règle ou anomalie.",
+    "example": "",
+    "common_mistake": "",
+    "related_terms": [],
+    "tags": [
+      "prestations"
+    ],
+    "updated_at": "2026-09-08"
+  },
+  {
+    "id": "LEX-049",
+    "acronym": "ANOMALIE",
+    "term": "Anomalie",
+    "category": "Prestations",
+    "level": "intermediaire",
+    "definition_simple": "Écart nécessitant une vérification avant traitement.",
+    "definition_metier": "Écart nécessitant une vérification avant traitement.",
+    "example": "",
+    "common_mistake": "",
+    "related_terms": [],
+    "tags": [
+      "prestations"
+    ],
+    "updated_at": "2026-09-08"
+  },
+  {
+    "id": "LEX-050",
+    "acronym": "DOUBLON",
+    "term": "Doublon",
+    "category": "Prestations",
+    "level": "intermediaire",
+    "definition_simple": "Même acte ou même pièce présenté ou traité plusieurs fois.",
+    "definition_metier": "Même acte ou même pièce présenté ou traité plusieurs fois.",
+    "example": "",
+    "common_mistake": "",
+    "related_terms": [],
+    "tags": [
+      "prestations"
+    ],
+    "updated_at": "2026-09-08"
+  },
+  {
+    "id": "LEX-051",
+    "acronym": "REGULARISATION",
+    "term": "Régularisation",
+    "category": "Prestations",
+    "level": "intermediaire",
+    "definition_simple": "Correction ultérieure d une prestation ou d un montant.",
+    "definition_metier": "Correction ultérieure d une prestation ou d un montant.",
+    "example": "",
+    "common_mistake": "",
+    "related_terms": [],
+    "tags": [
+      "prestations"
+    ],
+    "updated_at": "2026-09-08"
+  },
+  {
+    "id": "LEX-052",
+    "acronym": "DEVIS",
+    "term": "Devis",
+    "category": "Gestion",
+    "level": "intermediaire",
+    "definition_simple": "Estimation détaillée d une dépense avant réalisation.",
+    "definition_metier": "Estimation détaillée d une dépense avant réalisation.",
+    "example": "",
+    "common_mistake": "",
+    "related_terms": [],
+    "tags": [
+      "gestion"
+    ],
+    "updated_at": "2026-09-08"
+  },
+  {
+    "id": "LEX-053",
+    "acronym": "FACTURE",
+    "term": "Facture",
+    "category": "GED",
+    "level": "intermediaire",
+    "definition_simple": "Document établissant le montant d une prestation ou d un achat.",
+    "definition_metier": "Document établissant le montant d une prestation ou d un achat.",
+    "example": "",
+    "common_mistake": "",
+    "related_terms": [],
+    "tags": [
+      "ged"
+    ],
+    "updated_at": "2026-09-08"
+  },
+  {
+    "id": "LEX-054",
+    "acronym": "FACTURE_ACQUITTEE",
+    "term": "Facture acquittée",
+    "category": "GED",
+    "level": "intermediaire",
+    "definition_simple": "Facture attestant que la dépense a été réglée.",
+    "definition_metier": "Facture attestant que la dépense a été réglée.",
+    "example": "",
+    "common_mistake": "",
+    "related_terms": [],
+    "tags": [
+      "ged"
+    ],
+    "updated_at": "2026-09-08"
+  },
+  {
+    "id": "LEX-055",
+    "acronym": "DECOMPTE_AMO",
+    "term": "Décompte Assurance Maladie",
+    "category": "GED",
+    "level": "intermediaire",
+    "definition_simple": "Document récapitulant le traitement et le remboursement d une dépense par l AMO.",
+    "definition_metier": "Document récapitulant le traitement et le remboursement d une dépense par l AMO.",
+    "example": "",
+    "common_mistake": "",
+    "related_terms": [],
+    "tags": [
+      "ged"
+    ],
+    "updated_at": "2026-09-08"
+  },
+  {
+    "id": "LEX-056",
+    "acronym": "ORDONNANCE",
+    "term": "Ordonnance",
+    "category": "GED",
+    "level": "intermediaire",
+    "definition_simple": "Prescription médicale pouvant être requise pour certains actes ou équipements.",
+    "definition_metier": "Prescription médicale pouvant être requise pour certains actes ou équipements.",
+    "example": "",
+    "common_mistake": "",
+    "related_terms": [],
+    "tags": [
+      "ged"
+    ],
+    "updated_at": "2026-09-08"
+  },
+  {
+    "id": "LEX-057",
+    "acronym": "ATTESTATION_DROITS",
+    "term": "Attestation de droits",
+    "category": "GED",
+    "level": "intermediaire",
+    "definition_simple": "Document attestant d une situation de droits à l Assurance Maladie.",
+    "definition_metier": "Document attestant d une situation de droits à l Assurance Maladie.",
+    "example": "",
+    "common_mistake": "",
+    "related_terms": [],
+    "tags": [
+      "ged"
+    ],
+    "updated_at": "2026-09-08"
+  },
+  {
+    "id": "LEX-058",
+    "acronym": "GED",
+    "term": "Gestion électronique des documents",
+    "category": "Outils",
+    "level": "intermediaire",
+    "definition_simple": "Système de classement, consultation et suivi des pièces.",
+    "definition_metier": "Système de classement, consultation et suivi des pièces.",
+    "example": "",
+    "common_mistake": "",
+    "related_terms": [],
+    "tags": [
+      "outils"
+    ],
+    "updated_at": "2026-09-08"
+  },
+  {
+    "id": "LEX-059",
+    "acronym": "TELETRANSMISSION",
+    "term": "Télétransmission",
+    "category": "Flux",
+    "level": "intermediaire",
+    "definition_simple": "Transmission électronique de données entre acteurs.",
+    "definition_metier": "Transmission électronique de données entre acteurs.",
+    "example": "",
+    "common_mistake": "",
+    "related_terms": [],
+    "tags": [
+      "flux"
+    ],
+    "updated_at": "2026-09-08"
+  },
+  {
+    "id": "LEX-060",
+    "acronym": "FLUX_RETOUR",
+    "term": "Flux retour",
+    "category": "Flux",
+    "level": "intermediaire",
+    "definition_simple": "Message de retour contenant le résultat ou le statut d un traitement.",
+    "definition_metier": "Message de retour contenant le résultat ou le statut d un traitement.",
+    "example": "",
+    "common_mistake": "",
+    "related_terms": [],
+    "tags": [
+      "flux"
+    ],
+    "updated_at": "2026-09-08"
+  },
+  {
+    "id": "LEX-061",
+    "acronym": "RAPPROCHEMENT",
+    "term": "Rapprochement",
+    "category": "Flux",
+    "level": "intermediaire",
+    "definition_simple": "Association de données ou paiements à une opération ou un dossier attendu.",
+    "definition_metier": "Association de données ou paiements à une opération ou un dossier attendu.",
+    "example": "",
+    "common_mistake": "",
+    "related_terms": [],
+    "tags": [
+      "flux"
+    ],
+    "updated_at": "2026-09-08"
+  },
+  {
+    "id": "LEX-062",
+    "acronym": "RESEAU_SOINS",
+    "term": "Réseau de soins",
+    "category": "Services",
+    "level": "intermediaire",
+    "definition_simple": "Réseau de professionnels partenaires avec conditions négociées ou services dédiés.",
+    "definition_metier": "Réseau de professionnels partenaires avec conditions négociées ou services dédiés.",
+    "example": "",
+    "common_mistake": "",
+    "related_terms": [],
+    "tags": [
+      "services"
+    ],
+    "updated_at": "2026-09-08"
+  },
+  {
+    "id": "LEX-063",
+    "acronym": "ACTE_HORS_NOMENCLATURE",
+    "term": "Acte hors nomenclature",
+    "category": "Remboursement",
+    "level": "intermediaire",
+    "definition_simple": "Acte non inscrit dans une nomenclature de remboursement donnée.",
+    "definition_metier": "Acte non inscrit dans une nomenclature de remboursement donnée.",
+    "example": "",
+    "common_mistake": "",
+    "related_terms": [],
+    "tags": [
+      "remboursement"
+    ],
+    "updated_at": "2026-09-08"
+  },
+  {
+    "id": "LEX-064",
+    "acronym": "DEPASSEMENT",
+    "term": "Dépassement d honoraires",
+    "category": "Remboursement",
+    "level": "intermediaire",
+    "definition_simple": "Part facturée au-delà du tarif servant de référence.",
+    "definition_metier": "Part facturée au-delà du tarif servant de référence.",
+    "example": "",
+    "common_mistake": "",
+    "related_terms": [],
+    "tags": [
+      "remboursement"
+    ],
+    "updated_at": "2026-09-08"
+  },
+  {
+    "id": "LEX-065",
+    "acronym": "PARTICIPATION_FORFAITAIRE",
+    "term": "Participation forfaitaire",
+    "category": "Remboursement",
+    "level": "intermediaire",
+    "definition_simple": "Somme restant légalement à charge sur certains actes.",
+    "definition_metier": "Somme restant légalement à charge sur certains actes.",
+    "example": "",
+    "common_mistake": "",
+    "related_terms": [],
+    "tags": [
+      "remboursement"
+    ],
+    "updated_at": "2026-09-08"
+  },
+  {
+    "id": "LEX-066",
+    "acronym": "FRANCHISE_MEDICALE",
+    "term": "Franchise médicale",
+    "category": "Remboursement",
+    "level": "avance",
+    "definition_simple": "Somme déduite de certains remboursements de l Assurance Maladie.",
+    "definition_metier": "Somme déduite de certains remboursements de l Assurance Maladie.",
+    "example": "",
+    "common_mistake": "",
+    "related_terms": [],
+    "tags": [
+      "remboursement"
+    ],
+    "updated_at": "2026-09-08"
+  },
+  {
+    "id": "LEX-067",
+    "acronym": "CCAM",
+    "term": "Classification Commune des Actes Médicaux",
+    "category": "Nomenclatures",
+    "level": "avance",
+    "definition_simple": "Nomenclature de référence de nombreux actes techniques médicaux.",
+    "definition_metier": "Nomenclature de référence de nombreux actes techniques médicaux.",
+    "example": "",
+    "common_mistake": "",
+    "related_terms": [],
+    "tags": [
+      "nomenclatures"
+    ],
+    "updated_at": "2026-09-08"
+  },
+  {
+    "id": "LEX-068",
+    "acronym": "NGAP",
+    "term": "Nomenclature Générale des Actes Professionnels",
+    "category": "Nomenclatures",
+    "level": "avance",
+    "definition_simple": "Nomenclature utilisée pour certains actes de professionnels de santé.",
+    "definition_metier": "Nomenclature utilisée pour certains actes de professionnels de santé.",
+    "example": "",
+    "common_mistake": "",
+    "related_terms": [],
+    "tags": [
+      "nomenclatures"
+    ],
+    "updated_at": "2026-09-08"
+  },
+  {
+    "id": "LEX-069",
+    "acronym": "NABM",
+    "term": "Nomenclature des Actes de Biologie Médicale",
+    "category": "Nomenclatures",
+    "level": "avance",
+    "definition_simple": "Nomenclature utilisée pour les actes de biologie médicale.",
+    "definition_metier": "Nomenclature utilisée pour les actes de biologie médicale.",
+    "example": "",
+    "common_mistake": "",
+    "related_terms": [],
+    "tags": [
+      "nomenclatures"
+    ],
+    "updated_at": "2026-09-08"
+  },
+  {
+    "id": "LEX-070",
+    "acronym": "CODE_ACTE",
+    "term": "Code acte",
+    "category": "Nomenclatures",
+    "level": "avance",
+    "definition_simple": "Identifiant servant à qualifier un acte dans une nomenclature.",
+    "definition_metier": "Identifiant servant à qualifier un acte dans une nomenclature.",
+    "example": "",
+    "common_mistake": "",
+    "related_terms": [],
+    "tags": [
+      "nomenclatures"
+    ],
+    "updated_at": "2026-09-08"
+  },
+  {
+    "id": "LEX-071",
+    "acronym": "TAUX",
+    "term": "Taux de remboursement",
+    "category": "Remboursement",
+    "level": "avance",
+    "definition_simple": "Pourcentage appliqué à une base définie pour calculer une prise en charge.",
+    "definition_metier": "Pourcentage appliqué à une base définie pour calculer une prise en charge.",
+    "example": "",
+    "common_mistake": "",
+    "related_terms": [],
+    "tags": [
+      "remboursement"
+    ],
+    "updated_at": "2026-09-08"
+  },
+  {
+    "id": "LEX-072",
+    "acronym": "FORFAIT_JOURNALIER",
+    "term": "Forfait journalier hospitalier",
+    "category": "Hospitalisation",
+    "level": "avance",
+    "definition_simple": "Participation aux frais d hébergement hospitalier selon le cadre applicable.",
+    "definition_metier": "Participation aux frais d hébergement hospitalier selon le cadre applicable.",
+    "example": "",
+    "common_mistake": "",
+    "related_terms": [],
+    "tags": [
+      "hospitalisation"
+    ],
+    "updated_at": "2026-09-08"
+  },
+  {
+    "id": "LEX-073",
+    "acronym": "CHAMBRE_PARTICULIERE",
+    "term": "Chambre particulière",
+    "category": "Hospitalisation",
+    "level": "avance",
+    "definition_simple": "Prestation d hébergement individuel pouvant être couverte par un forfait.",
+    "definition_metier": "Prestation d hébergement individuel pouvant être couverte par un forfait.",
+    "example": "",
+    "common_mistake": "",
+    "related_terms": [],
+    "tags": [
+      "hospitalisation"
+    ],
+    "updated_at": "2026-09-08"
+  },
+  {
+    "id": "LEX-074",
+    "acronym": "HONORAIRES_CHIR",
+    "term": "Honoraires chirurgicaux",
+    "category": "Hospitalisation",
+    "level": "avance",
+    "definition_simple": "Honoraires liés à l intervention du chirurgien.",
+    "definition_metier": "Honoraires liés à l intervention du chirurgien.",
+    "example": "",
+    "common_mistake": "",
+    "related_terms": [],
+    "tags": [
+      "hospitalisation"
+    ],
+    "updated_at": "2026-09-08"
+  },
+  {
+    "id": "LEX-075",
+    "acronym": "AMBULATOIRE",
+    "term": "Hospitalisation ambulatoire",
+    "category": "Hospitalisation",
+    "level": "avance",
+    "definition_simple": "Prise en charge hospitalière sans nuitée.",
+    "definition_metier": "Prise en charge hospitalière sans nuitée.",
+    "example": "",
+    "common_mistake": "",
+    "related_terms": [],
+    "tags": [
+      "hospitalisation"
+    ],
+    "updated_at": "2026-09-08"
+  },
+  {
+    "id": "LEX-076",
+    "acronym": "PANIER_100",
+    "term": "Panier 100 % Santé",
+    "category": "100 % Santé",
+    "level": "avance",
+    "definition_simple": "Équipements ou actes répondant au panier réglementé applicable.",
+    "definition_metier": "Équipements ou actes répondant au panier réglementé applicable.",
+    "example": "",
+    "common_mistake": "",
+    "related_terms": [],
+    "tags": [
+      "100 % santé"
+    ],
+    "updated_at": "2026-09-08"
+  },
+  {
+    "id": "LEX-077",
+    "acronym": "PANIER_LIBRE",
+    "term": "Panier à tarifs libres",
+    "category": "100 % Santé",
+    "level": "avance",
+    "definition_simple": "Équipements ou actes à tarifs libres selon les règles applicables.",
+    "definition_metier": "Équipements ou actes à tarifs libres selon les règles applicables.",
+    "example": "",
+    "common_mistake": "",
+    "related_terms": [],
+    "tags": [
+      "100 % santé"
+    ],
+    "updated_at": "2026-09-08"
+  },
+  {
+    "id": "LEX-078",
+    "acronym": "OPTIQUE_CLASSE_A",
+    "term": "Optique classe A",
+    "category": "Optique",
+    "level": "avance",
+    "definition_simple": "Équipements optiques appartenant au panier 100 % Santé.",
+    "definition_metier": "Équipements optiques appartenant au panier 100 % Santé.",
+    "example": "",
+    "common_mistake": "",
+    "related_terms": [],
+    "tags": [
+      "optique"
+    ],
+    "updated_at": "2026-09-08"
+  },
+  {
+    "id": "LEX-079",
+    "acronym": "OPTIQUE_CLASSE_B",
+    "term": "Optique classe B",
+    "category": "Optique",
+    "level": "avance",
+    "definition_simple": "Équipements optiques à tarifs libres.",
+    "definition_metier": "Équipements optiques à tarifs libres.",
+    "example": "",
+    "common_mistake": "",
+    "related_terms": [],
+    "tags": [
+      "optique"
+    ],
+    "updated_at": "2026-09-08"
+  },
+  {
+    "id": "LEX-080",
+    "acronym": "AUDIO_CLASSE_I",
+    "term": "Aide auditive classe I",
+    "category": "Audiologie",
+    "level": "avance",
+    "definition_simple": "Équipement relevant du panier 100 % Santé sous conditions.",
+    "definition_metier": "Équipement relevant du panier 100 % Santé sous conditions.",
+    "example": "",
+    "common_mistake": "",
+    "related_terms": [],
+    "tags": [
+      "audiologie"
+    ],
+    "updated_at": "2026-09-08"
+  },
+  {
+    "id": "LEX-081",
+    "acronym": "AUDIO_CLASSE_II",
+    "term": "Aide auditive classe II",
+    "category": "Audiologie",
+    "level": "avance",
+    "definition_simple": "Équipement à tarif libre selon les règles applicables.",
+    "definition_metier": "Équipement à tarif libre selon les règles applicables.",
+    "example": "",
+    "common_mistake": "",
+    "related_terms": [],
+    "tags": [
+      "audiologie"
+    ],
+    "updated_at": "2026-09-08"
+  },
+  {
+    "id": "LEX-082",
+    "acronym": "PARODONTOLOGIE",
+    "term": "Parodontologie",
+    "category": "Dentaire",
+    "level": "avance",
+    "definition_simple": "Soins portant sur les tissus de soutien de la dent.",
+    "definition_metier": "Soins portant sur les tissus de soutien de la dent.",
+    "example": "",
+    "common_mistake": "",
+    "related_terms": [],
+    "tags": [
+      "dentaire"
+    ],
+    "updated_at": "2026-09-08"
+  },
+  {
+    "id": "LEX-083",
+    "acronym": "IMPLANTOLOGIE",
+    "term": "Implantologie",
+    "category": "Dentaire",
+    "level": "avance",
+    "definition_simple": "Actes liés à la pose et au suivi d implants dentaires.",
+    "definition_metier": "Actes liés à la pose et au suivi d implants dentaires.",
+    "example": "",
+    "common_mistake": "",
+    "related_terms": [],
+    "tags": [
+      "dentaire"
+    ],
+    "updated_at": "2026-09-08"
+  },
+  {
+    "id": "LEX-084",
+    "acronym": "ORTHODONTIE",
+    "term": "Orthodontie",
+    "category": "Dentaire",
+    "level": "avance",
+    "definition_simple": "Traitements visant à corriger la position des dents ou mâchoires.",
+    "definition_metier": "Traitements visant à corriger la position des dents ou mâchoires.",
+    "example": "",
+    "common_mistake": "",
+    "related_terms": [],
+    "tags": [
+      "dentaire"
+    ],
+    "updated_at": "2026-09-08"
+  },
+  {
+    "id": "LEX-085",
+    "acronym": "RECLAMATION",
+    "term": "Réclamation",
+    "category": "Relation adhérent",
+    "level": "avance",
+    "definition_simple": "Expression formalisée d un mécontentement nécessitant une réponse et un suivi.",
+    "definition_metier": "Expression formalisée d un mécontentement nécessitant une réponse et un suivi.",
+    "example": "",
+    "common_mistake": "",
+    "related_terms": [],
+    "tags": [
+      "relation adhérent"
+    ],
+    "updated_at": "2026-09-08"
+  },
+  {
+    "id": "LEX-086",
+    "acronym": "ESCALADE",
+    "term": "Escalade",
+    "category": "Relation adhérent",
+    "level": "avance",
+    "definition_simple": "Transmission d un dossier à un niveau de compétence ou décision supérieur.",
+    "definition_metier": "Transmission d un dossier à un niveau de compétence ou décision supérieur.",
+    "example": "",
+    "common_mistake": "",
+    "related_terms": [],
+    "tags": [
+      "relation adhérent"
+    ],
+    "updated_at": "2026-09-08"
+  },
+  {
+    "id": "LEX-087",
+    "acronym": "DELAI_TRAITEMENT",
+    "term": "Délai de traitement",
+    "category": "Pilotage",
+    "level": "avance",
+    "definition_simple": "Temps nécessaire entre la réception d une demande et son traitement.",
+    "definition_metier": "Temps nécessaire entre la réception d une demande et son traitement.",
+    "example": "",
+    "common_mistake": "",
+    "related_terms": [],
+    "tags": [
+      "pilotage"
+    ],
+    "updated_at": "2026-09-08"
+  },
+  {
+    "id": "LEX-088",
+    "acronym": "RGPD",
+    "term": "Règlement général sur la protection des données",
+    "category": "Données",
+    "level": "avance",
+    "definition_simple": "Cadre européen de protection des données personnelles.",
+    "definition_metier": "Cadre européen de protection des données personnelles.",
+    "example": "",
+    "common_mistake": "",
+    "related_terms": [],
+    "tags": [
+      "données"
+    ],
+    "updated_at": "2026-09-08"
+  },
+  {
+    "id": "LEX-089",
+    "acronym": "DONNEE_SANTE",
+    "term": "Donnée de santé",
+    "category": "Données",
+    "level": "avance",
+    "definition_simple": "Donnée personnelle relative à la santé d une personne.",
+    "definition_metier": "Donnée personnelle relative à la santé d une personne.",
+    "example": "",
+    "common_mistake": "",
+    "related_terms": [],
+    "tags": [
+      "données"
+    ],
+    "updated_at": "2026-09-08"
+  },
+  {
+    "id": "LEX-090",
+    "acronym": "ANONYMISATION",
+    "term": "Anonymisation",
+    "category": "Données",
+    "level": "avance",
+    "definition_simple": "Transformation irréversible visant à empêcher l identification d une personne.",
+    "definition_metier": "Transformation irréversible visant à empêcher l identification d une personne.",
+    "example": "",
+    "common_mistake": "",
+    "related_terms": [],
+    "tags": [
+      "données"
+    ],
+    "updated_at": "2026-09-08"
+  },
+  {
+    "id": "LEX-091",
+    "acronym": "PSEUDONYMISATION",
+    "term": "Pseudonymisation",
+    "category": "Données",
+    "level": "avance",
+    "definition_simple": "Remplacement d identifiants directs par des références distinctes tout en gardant un risque de réidentification.",
+    "definition_metier": "Remplacement d identifiants directs par des références distinctes tout en gardant un risque de réidentification.",
+    "example": "",
+    "common_mistake": "",
+    "related_terms": [],
+    "tags": [
+      "données"
+    ],
+    "updated_at": "2026-09-08"
+  }
+]

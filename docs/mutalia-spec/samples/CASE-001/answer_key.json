@@ -1,0 +1,23 @@
+{
+  "case_id": "CASE-001",
+  "scenario_type": "consultation_specialiste",
+  "anomalies": [],
+  "expected_actions": [
+    "Identifier BRSS et remboursement AMO",
+    "Appliquer la garantie d exercice",
+    "Calculer le reste à charge"
+  ],
+  "expected_values": {
+    "billed": 80,
+    "brss": 35,
+    "amo": 24.5
+  },
+  "scoring": {
+    "document_reading": 20,
+    "anomaly_detection": 25,
+    "procedure": 25,
+    "calculation_or_analysis": 20,
+    "explanation": 10
+  },
+  "trainer_notes": "Utiliser le référentiel 2026 pour toute valeur contractuelle exacte."
+}

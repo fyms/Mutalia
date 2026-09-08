@@ -1,0 +1,23 @@
+{
+  "case_id": "CASE-004",
+  "scenario_type": "optique_enfant_doublon",
+  "anomalies": [
+    "doublon"
+  ],
+  "expected_actions": [
+    "Détecter le doublon",
+    "Ne pas liquider deux fois",
+    "Tracer l anomalie"
+  ],
+  "expected_values": {
+    "total": 450
+  },
+  "scoring": {
+    "document_reading": 20,
+    "anomaly_detection": 25,
+    "procedure": 25,
+    "calculation_or_analysis": 20,
+    "explanation": 10
+  },
+  "trainer_notes": "Utiliser le référentiel 2026 pour toute valeur contractuelle exacte."
+}
