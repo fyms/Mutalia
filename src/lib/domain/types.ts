@@ -131,6 +131,8 @@ export interface CaseSubmissionResult {
     expectedValues: Record<string, string | number>;
     trainerNotes?: string;
   };
+  /** Valeurs telles que saisies par l'apprenant (pas le corrigé) — utilisées pour l'historique Prestations. */
+  submittedValues: Record<string, string>;
 }
 
 /**

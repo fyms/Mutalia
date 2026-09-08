@@ -1,7 +1,9 @@
 # Mutalia — Rapport d'implémentation
 
-Statut : **P0 stable et fonctionnel**. **P1 lot 1 (Academy, quiz, progression, cas
-pratiques avancés) livré et testé** — voir §10. Non démarré : reste de P1 éventuel, P2, P3.
+Statut : **P0 stable et fonctionnel**. **P1 (Academy, quiz, progression, cas
+pratiques avancés) livré et testé** — voir §10. **P2 (prestations, PEC, cotisations,
+réclamations, flux simulés, anomalies, pilotage formateur, génération dynamique de
+cas) livré et testé** — voir §11. Non démarré : P3.
 
 ## 1. Contexte et démarche
 
@@ -120,15 +122,11 @@ Règle appliquée strictement, y compris après soumission :
   (voir §7) qui grep la réponse HTML/JSON en mode apprenant pour confirmer l'absence
   de toute valeur ou champ du corrigé, avant et après soumission.
 
-## 6. Ce qui est mocké / hors périmètre P0
+## 6. Ce qui est mocké / hors périmètre (mis à jour après P1/P2)
 
-- **Prospects, Pilotage formateur multi-utilisateurs, catalogue de parcours** : hors
-  P0/P1/P2 explicites du pack (P3) — page d'état vide.
-- **Prestations, PEC & Devis dédiés, Cotisations, Flux & Anomalies, Relation
-  adhérent** : modules P2 du roadmap — pages d'état vide renvoyant vers l'exercice
-  équivalent déjà disponible (ex. simulateur, cas CASE-005 pour la PEC).
-- **Academy détaillée, Quiz, flashcards** : structure du curriculum affichée, contenu
-  pédagogique détaillé = P1.
+- **Prospects, catalogue de parcours, comptes multi-apprenants** : hors P0/P1/P2
+  explicites du pack (P3) — page d'état vide. Le pilotage formateur livré en P2 reste
+  **mono-session** faute de modèle de comptes (voir §11).
 - **Contrats** : pas d'entité séparée créée ; les données contractuelles vivent dans
   l'onglet « Contrat » de la fiche 360 (le modèle de données du pack ne distingue pas
   un CRUD contrat indépendant en P0).
@@ -200,25 +198,21 @@ Aucune variable d'environnement n'est requise. La persistance locale se fait dan
 dossier ou utiliser le bouton « Réinitialiser les données de session » dans
 `/administration` remet le prototype à l'état initial.
 
-## 9. Prochaines étapes
+## 9. Prochaines étapes (P3)
 
-Reste de **P1** (non traité dans ce lot, à faire si jugé utile avant P2) :
-- Contenu pédagogique plus long par module si besoin (le lot 1 livre un cours concis,
-  un exemple, des flashcards issues du lexique et un quiz noté par module — voir §10).
+- Comptes formateur/apprenant réels (le prototype est mono-session jusqu'ici : rôle et
+  niveau d'aide sont des cookies locaux, pas des comptes) — condition pour un vrai
+  pilotage multi-apprenants.
+- Catalogue de parcours et reporting/export des résultats.
+- Personnalisation par organisme (au-delà de Harmonie Mutuelle 2026).
 - Progression détaillée par dimension de compétence (`scoring_dimensions` du pack :
   comprehension_metier, lecture_documentaire, calcul, procedure, detection_anomalies,
-  conseil, justification, relation_client) plutôt que le score global actuel.
+  conseil, justification, relation_client) plutôt que le score global actuel par cas.
+- Grille tarifaire de cotisations réelle si un jour fournie par le pack (aujourd'hui
+  aucune donnée 2026 de cotisation n'existe dans le pack ; le module Cotisations livré
+  en P2 reste donc un calculateur générique de régularisation, pas un barème réel).
 
-**P2 — Profondeur métier** :
-- Workflow Prestations (liquidation), PEC & Devis dédiés, Cotisations, Réclamations.
-- Flux simulés (NOEMIE/DRE/ROC pédagogiques, jamais réels) et tableau de bord
-  Anomalies.
-- Pilotage formateur multi-apprenants (nécessite un modèle de comptes).
-- Génération dynamique de cas (le script `docs/mutalia-spec/generator/generate_cases.py`
-  fourni par le pack est la base à intégrer côté serveur).
-
-Ce prototype ne doit pas être modifié en profondeur pour ces prochaines étapes :
-il s'agit d'ajouter des modules et de remplacer les pages d'état vide existantes,
+Ce prototype ne doit pas être modifié en profondeur pour cette prochaine étape :
 sans casser la navigation, la sécurité du corrigé ni les calculs déjà testés.
 
 ## 10. Lot P1 #1 — Mutalia Academy, quiz, progression, cas pratiques avancés
@@ -287,3 +281,109 @@ npm run dev
 
 Ouvrir <http://localhost:3000>, puis le menu **Mutalia Academy** ou **Quiz** dans la
 barre latérale (section Formation).
+
+## 11. Lot P2 — Prestations, PEC, Cotisations, Réclamations, Flux, Anomalies, Pilotage, Générateur
+
+Deuxième priorité livrée, testée sans régression sur P0 et P1.
+
+### Principe directeur : ne jamais dériver l'UI du corrigé
+
+Plusieurs modules P2 auraient pu être peuplés directement depuis `answer_key.json`
+(prestations « déjà liquidées », anomalies « déjà connues »). Cela aurait
+silencieusement révélé la réponse attendue des cas pratiques en dehors du parcours de
+soumission. Choix systématique retenu à la place : chaque module P2 est **dérivé du
+travail réel de l'utilisateur** (soumissions de cas, statuts GED positionnés à la
+main), jamais du corrigé privé. Voir le détail par module ci-dessous.
+
+### Contenu livré
+
+- **Prestations** (`/prestations`, onglet Prestations de la fiche 360) : historique
+  dérivé exclusivement des soumissions de cas pratiques déjà enregistrées — montant
+  retenu = valeur saisie par l'apprenant (nouveau champ `submittedValues` sur
+  `CaseSubmissionResult`, jamais le corrigé), statut « Liquidée »/« À vérifier » selon
+  le score obtenu.
+- **PEC & Devis** (`/pec-devis`, onglet PEC de la fiche 360) : formulaire d'émission
+  de PEC pédagogique (foyer, bénéficiaire, acte, établissement, date des soins,
+  montant garanti optionnel avec bascule « Donnée 2026 à vérifier » plutôt que
+  d'inventer un montant), historique consultable.
+- **Cotisations** (`/cotisations`, onglet Cotisations de la fiche 360) : suivi de
+  statut par foyer (à jour / en relance / impayée, modifiable en mode Formateur
+  uniquement) + calculateur de régularisation au prorata jour par jour lors d'un
+  changement de formule en cours de mois (`computeCotisationRegularisation`, testé
+  unitairement). Aucune grille tarifaire 2026 n'étant fournie par le pack, le
+  calculateur reste générique (voir §9).
+- **Relation adhérent** (`/relation-adherent`) : CRUD réclamations (entité
+  `Complaint`) rattachées à un foyer et, si pertinent, au cas pratique correspondant
+  (ex. CASE-008), avec suivi de statut (ouverte / en cours / clôturée).
+- **Flux & Anomalies** (`/flux-anomalies`) : tableau de bord des documents
+  actuellement en anomalie, **calculé à partir des statuts que l'utilisateur positionne
+  dans la GED** (jamais du champ `anomalies` déjà présent dans les `case.json`
+  sources, qui préfigurerait la réponse attendue de l'exercice) + journal des flux
+  simulés (un évènement « retour en anomalie » est loggué automatiquement à chaque
+  changement de statut de document vers « Anomalie » — toujours explicitement
+  qualifié de simulé, jamais un flux NOEMIE/DRE/ROC réel).
+- **Pilotage formateur** (`/pilotage`) : tableau de bord réservé au rôle Formateur
+  (accès refusé sinon, avec message explicite) agrégeant cas tentés, score moyen,
+  modules Academy tentés, réclamations ouvertes, PEC émises, documents en anomalie —
+  et hébergeant le générateur de cas. Explicitement documenté comme **mono-session**
+  : un vrai pilotage multi-apprenants suppose des comptes (P3).
+- **Génération dynamique de cas** (`src/lib/domain/caseGenerator.ts`) : port
+  TypeScript déterministe (PRNG mulberry32, seed obligatoire) du principe de
+  `docs/mutalia-spec/generator/generate_cases.py` — mêmes familles de scénarios et
+  d'anomalies, mêmes réserves de prénoms/noms fictifs. Un cas généré produit un
+  `TrainingCase` + `AnswerKey` au même format que les 12 cas seedés, un vrai PDF par
+  document (bandeau obligatoire « DOCUMENT FICTIF - FORMATION MUTALIA - SANS VALEUR »,
+  généré avec `pdf-lib`, servi via une route API dédiée `/api/generated-doc/…`
+  distincte des PDFs statiques), et apparaît immédiatement dans `/cas-pratiques`,
+  `/progression` et le simulateur de scoring — **avec le même garde-fou answer_key
+  que les cas seedés** (corrigé jamais envoyé au client apprenant, y compris pour un
+  cas généré). Réservé au mode Formateur.
+
+### Tests exécutés pour ce lot
+
+```bash
+npm run lint       # 0 erreur
+npm run typecheck  # 0 erreur
+npm run test        # 27 tests (8 nouveaux : cotisations, caseGenerator)
+npm run build         # 28 routes générées, dont /api/generated-doc/[caseId]/[fileName]
+```
+
+Nouveaux tests unitaires :
+- `cotisations.test.ts` : prorata correct sur un mois de 30 jours, régularisation
+  nulle si le montant ne change pas, montants négatifs rejetés.
+- `caseGenerator.test.ts` : déterminisme strict (même seed + séquence ⇒ cas
+  rigoureusement identique), deux séquences différentes produisent des cas différents,
+  aucun IBAN ni numéro de sécurité sociale à l'apparence valide n'est jamais généré,
+  membres et documents toujours marqués `synthetic`, total de scoring du corrigé
+  toujours égal à 100 (cohérent avec les 12 cas seedés).
+
+Un bug de frontière client/serveur a été détecté puis corrigé pendant ce lot : deux
+composants client (`CotisationStatusSelect`, `ComplaintStatusControl`) importaient une
+constante (`COTISATION_STATUSES`/`COMPLAINT_STATUSES`) depuis `runtimeStore.ts`, un
+module marqué `server-only` — ce qui faisait échouer le build (`next build` refuse
+qu'un module `server-only` soit atteignable depuis un Client Component). Corrigé en
+déplaçant ces constantes/types partagés vers `src/lib/domain/constants.ts` (déjà
+sans dépendance serveur), qui reste la seule source pour le client comme pour le
+serveur.
+
+Test end-to-end Playwright (non versionné, exécuté contre `npm run dev`), en plus de
+la re-exécution complète des suites de non-régression P0 et P1 :
+mode Formateur → génération d'un cas (`CASE-GEN-777-00x`) → cas visible immédiatement
+dans `/cas-pratiques` → PDF généré servi correctement (`Content-Type: application/pdf`)
+→ **aucune fuite de corrigé** sur la page du cas généré avant affichage volontaire
+côté formateur → réclamation créée sur `/relation-adherent` → PEC émise sur
+`/pec-devis` → changement de statut de cotisation + calculateur de régularisation sur
+`/cotisations` → document marqué « Anomalie » dans un cas pratique → apparition
+immédiate dans `/flux-anomalies` → soumission d'un cas par un apprenant → apparition
+immédiate dans `/prestations` avec le montant qu'il a lui-même saisi.
+
+### Commandes de lancement (inchangées)
+
+```bash
+npm install
+npm run dev
+```
+
+Ouvrir <http://localhost:3000>. Le générateur de cas et les tableaux de bord P2
+réservés (Pilotage, changement de statut de cotisation) nécessitent de basculer en
+mode **Formateur** dans la barre du haut ou sur `/administration`.

@@ -1,5 +1,11 @@
 export const DATA_TO_VERIFY = "Donnée 2026 à vérifier" as const;
 
+export const COMPLAINT_STATUSES = ["ouverte", "en_cours", "cloturee"] as const;
+export type ComplaintStatus = (typeof COMPLAINT_STATUSES)[number];
+
+export const COTISATION_STATUSES = ["a_jour", "en_relance", "impayee"] as const;
+export type CotisationStatus = (typeof COTISATION_STATUSES)[number];
+
 export const ROLES = ["apprenant", "formateur"] as const;
 export type Role = (typeof ROLES)[number];
 

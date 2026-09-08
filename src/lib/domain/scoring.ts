@@ -155,6 +155,7 @@ export function scoreCaseSubmission(
       expectedValues: answerKey.expected_values,
       trainerNotes: answerKey.trainer_notes,
     },
+    submittedValues: input.values,
   };
 }
 

@@ -12,6 +12,7 @@ import {
   type LexiconEntry,
   type TrainingCase,
 } from "@/lib/domain/types";
+import { getGeneratedCase, getGeneratedCases } from "@/lib/store/runtimeStore";
 
 const SEED_DIR = path.join(process.cwd(), "src", "lib", "data", "seed");
 const ANSWER_KEY_DIR = path.join(process.cwd(), "src", "lib", "data", "private", "answer-keys");
@@ -22,6 +23,7 @@ function readJson<T>(filePath: string): T {
 }
 
 let casesCache: TrainingCase[] | null = null;
+/** Les 12 cas pédagogiques seedés du pack (portefeuille figé, hors génération dynamique). */
 export function getAllCases(): TrainingCase[] {
   if (casesCache) return casesCache;
   const dir = path.join(SEED_DIR, "cases");
@@ -30,15 +32,22 @@ export function getAllCases(): TrainingCase[] {
   return casesCache;
 }
 
+/** Cas seedés + cas générés dynamiquement (P2), pour les vues qui doivent montrer l'ensemble du portefeuille. */
+export function getAllTrainingCases(): TrainingCase[] {
+  return [...getAllCases(), ...getGeneratedCases().map((g) => g.case)];
+}
+
 export function getCaseById(caseId: string): TrainingCase | undefined {
-  return getAllCases().find((c) => c.case_id === caseId);
+  return getAllCases().find((c) => c.case_id === caseId) ?? getGeneratedCase(caseId)?.case;
 }
 
 /** Réservé au serveur : ne jamais transmettre ce résultat brut à un client en mode apprenant. */
 export function getAnswerKey(caseId: string): AnswerKey | undefined {
   const filePath = path.join(ANSWER_KEY_DIR, `${caseId}.json`);
-  if (!fs.existsSync(filePath)) return undefined;
-  return AnswerKeySchema.parse(readJson(filePath));
+  if (fs.existsSync(filePath)) {
+    return AnswerKeySchema.parse(readJson(filePath));
+  }
+  return getGeneratedCase(caseId)?.answerKey;
 }
 
 let lexiconCache: LexiconEntry[] | null = null;

@@ -14,17 +14,20 @@ export function DocumentViewer({
   viewedCount,
   annotations,
   author,
+  pdfUrl,
 }: {
   document: CaseDocument;
   status: DocumentStatus;
   viewedCount: number;
   annotations: DocumentAnnotation[];
   author: string;
+  /** Surcharge l'emplacement du PDF (utilisé pour les cas générés dynamiquement, servis via une route API). */
+  pdfUrl?: string;
 }) {
   const [expanded, setExpanded] = useState(false);
   const [note, setNote] = useState("");
   const [isPending, startTransition] = useTransition();
-  const url = `/exercices/${document.case_id}/${document.file_name}`;
+  const url = pdfUrl ?? `/exercices/${document.case_id}/${document.file_name}`;
 
   function handleOpen() {
     setExpanded((v) => !v);

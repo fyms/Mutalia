@@ -1,5 +1,5 @@
 import "server-only";
-import { getAcademyCurriculum, getAllCases } from "@/lib/data/loaders";
+import { getAcademyCurriculum, getAllTrainingCases } from "@/lib/data/loaders";
 import { getAllQuizAttempts, getAllSubmissions } from "@/lib/store/runtimeStore";
 import { getAcademyModuleContent } from "@/lib/domain/academyContent";
 
@@ -22,7 +22,7 @@ export interface ProgressionSummary {
 }
 
 export function getProgressionSummary(): ProgressionSummary {
-  const cases = getAllCases();
+  const cases = getAllTrainingCases();
   const submissions = getAllSubmissions();
 
   const perCase: CaseProgress[] = cases.map((c) => {

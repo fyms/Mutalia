@@ -83,6 +83,7 @@ export default async function CaseDetailPage({
             <div className="space-y-2">
               {trainingCase.documents.map((doc) => {
                 const state = getDocumentState(doc.document_id);
+                const isGenerated = trainingCase.case_id.startsWith("CASE-GEN-");
                 return (
                   <DocumentViewer
                     key={doc.document_id}
@@ -91,6 +92,7 @@ export default async function CaseDetailPage({
                     viewedCount={state.viewedAt.length}
                     annotations={state.annotations}
                     author={session.role === "formateur" ? "Formateur" : "Apprenant"}
+                    pdfUrl={isGenerated ? `/api/generated-doc/${doc.case_id}/${doc.file_name}` : undefined}
                   />
                 );
               })}

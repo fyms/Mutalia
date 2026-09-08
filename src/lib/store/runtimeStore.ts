@@ -1,8 +1,8 @@
 import "server-only";
 import fs from "node:fs";
 import path from "node:path";
-import type { DocumentStatus } from "@/lib/domain/constants";
-import type { CaseSubmissionResult } from "@/lib/domain/types";
+import type { ComplaintStatus, CotisationStatus, DocumentStatus } from "@/lib/domain/constants";
+import type { AnswerKey, CaseSubmissionResult, TrainingCase } from "@/lib/domain/types";
 
 const STORE_DIR = path.join(process.cwd(), ".data");
 const STORE_FILE = path.join(STORE_DIR, "runtime-store.json");
@@ -26,15 +26,79 @@ export interface QuizAttempt {
   submittedAt: string;
 }
 
+export interface ComplaintRecord {
+  id: string;
+  householdId: string;
+  caseId?: string;
+  motif: string;
+  status: ComplaintStatus;
+  createdAt: string;
+  updatedAt: string;
+  resolutionNote?: string;
+}
+
+export interface CotisationState {
+  status: CotisationStatus;
+  updatedAt: string;
+  note?: string;
+}
+
+export interface PecRecord {
+  id: string;
+  householdId: string;
+  caseId?: string;
+  beneficiaryId: string;
+  acte: string;
+  etablissement: string;
+  dateSoins: string;
+  montantGaranti: number | null;
+  createdAt: string;
+  createdBy: string;
+}
+
+export const FLUX_EVENT_TYPES = ["teletransmission_simulee", "retour_anomalie", "controle_manuel"] as const;
+export type FluxEventType = (typeof FLUX_EVENT_TYPES)[number];
+
+export interface FluxEvent {
+  id: string;
+  type: FluxEventType;
+  documentId?: string;
+  caseId?: string;
+  label: string;
+  createdAt: string;
+}
+
+export interface GeneratedCaseRecord {
+  case: TrainingCase;
+  answerKey: AnswerKey;
+  seed: number;
+  createdAt: string;
+}
+
 export interface RuntimeStoreShape {
-  version: 2;
+  version: 3;
   documents: Record<string, DocumentState>;
   submissions: Record<string, CaseSubmissionResult[]>;
   quizAttempts: Record<string, QuizAttempt[]>;
+  complaints: ComplaintRecord[];
+  cotisations: Record<string, CotisationState>;
+  pecRecords: PecRecord[];
+  fluxEvents: FluxEvent[];
+  generatedCases: Record<string, GeneratedCaseRecord>;
 }
 
 function defaultStore(): RuntimeStoreShape {
-  return { version: 2, documents: {}, submissions: {}, quizAttempts: {} };
+  return {
+    version: 3,
+    documents: {},
+    submissions: {},
+    quizAttempts: {},
+    complaints: [],
+    cotisations: {},
+    pecRecords: [],
+    fluxEvents: [],
+    generatedCases: {},
+  };
 }
 
 /** Initialise le fichier de persistance de manière idempotente (ne réécrit rien s'il existe déjà). */
@@ -98,6 +162,15 @@ export async function setDocumentStatus(documentId: string, status: DocumentStat
     const current = store.documents[documentId] ?? emptyDocumentState();
     current.status = status;
     store.documents[documentId] = current;
+    if (status === "anomalie") {
+      store.fluxEvents.push({
+        id: `FLUX-${Date.now()}-${Math.round(Math.random() * 1000)}`,
+        type: "retour_anomalie",
+        documentId,
+        label: `Retour en anomalie simulé sur le document ${documentId}`,
+        createdAt: new Date().toISOString(),
+      });
+    }
   });
 }
 
@@ -169,11 +242,122 @@ export function getAllQuizAttempts(): Record<string, QuizAttempt[]> {
   return readStore().quizAttempts;
 }
 
-/** Réinitialise le prototype (statuts documents, annotations, soumissions, quiz) sans toucher aux seeds. */
+export async function createComplaint(input: {
+  householdId: string;
+  caseId?: string;
+  motif: string;
+}): Promise<ComplaintRecord> {
+  const now = new Date().toISOString();
+  const record: ComplaintRecord = {
+    id: `RECL-${Date.now()}-${Math.round(Math.random() * 1000)}`,
+    householdId: input.householdId,
+    caseId: input.caseId,
+    motif: input.motif,
+    status: "ouverte",
+    createdAt: now,
+    updatedAt: now,
+  };
+  await withStore((store) => {
+    store.complaints.push(record);
+  });
+  return record;
+}
+
+export async function updateComplaintStatus(
+  id: string,
+  status: ComplaintStatus,
+  resolutionNote?: string,
+): Promise<void> {
+  await withStore((store) => {
+    const record = store.complaints.find((c) => c.id === id);
+    if (!record) return;
+    record.status = status;
+    record.updatedAt = new Date().toISOString();
+    if (resolutionNote) record.resolutionNote = resolutionNote;
+  });
+}
+
+export function getComplaints(householdId?: string): ComplaintRecord[] {
+  const store = readStore();
+  return householdId ? store.complaints.filter((c) => c.householdId === householdId) : store.complaints;
+}
+
+export async function setCotisationStatus(
+  householdId: string,
+  status: CotisationStatus,
+  note?: string,
+): Promise<void> {
+  await withStore((store) => {
+    store.cotisations[householdId] = { status, updatedAt: new Date().toISOString(), note };
+  });
+}
+
+export function getCotisationState(householdId: string): CotisationState {
+  const store = readStore();
+  return store.cotisations[householdId] ?? { status: "a_jour", updatedAt: new Date(0).toISOString() };
+}
+
+export function getAllCotisationStates(): Record<string, CotisationState> {
+  return readStore().cotisations;
+}
+
+export async function createPecRecord(
+  input: Omit<PecRecord, "id" | "createdAt">,
+): Promise<PecRecord> {
+  const record: PecRecord = {
+    ...input,
+    id: `PEC-${Date.now()}-${Math.round(Math.random() * 1000)}`,
+    createdAt: new Date().toISOString(),
+  };
+  await withStore((store) => {
+    store.pecRecords.push(record);
+  });
+  return record;
+}
+
+export function getPecRecords(householdId?: string): PecRecord[] {
+  const store = readStore();
+  return householdId ? store.pecRecords.filter((p) => p.householdId === householdId) : store.pecRecords;
+}
+
+export async function logFluxEvent(input: Omit<FluxEvent, "id" | "createdAt">): Promise<void> {
+  await withStore((store) => {
+    store.fluxEvents.push({
+      ...input,
+      id: `FLUX-${Date.now()}-${Math.round(Math.random() * 1000)}`,
+      createdAt: new Date().toISOString(),
+    });
+  });
+}
+
+export function getFluxEvents(): FluxEvent[] {
+  return readStore().fluxEvents.slice().reverse();
+}
+
+export async function saveGeneratedCase(record: GeneratedCaseRecord): Promise<void> {
+  await withStore((store) => {
+    store.generatedCases[record.case.case_id] = record;
+  });
+}
+
+export function getGeneratedCases(): GeneratedCaseRecord[] {
+  return Object.values(readStore().generatedCases);
+}
+
+export function getGeneratedCase(caseId: string): GeneratedCaseRecord | undefined {
+  return readStore().generatedCases[caseId];
+}
+
+/** Réinitialise le prototype (statuts documents, annotations, soumissions, quiz, P2) sans toucher aux seeds. */
 export async function resetRuntimeStore(): Promise<void> {
   await withStore((store) => {
     store.documents = {};
     store.submissions = {};
     store.quizAttempts = {};
+    store.complaints = [];
+    store.cotisations = {};
+    store.pecRecords = [];
+    store.fluxEvents = [];
+    store.generatedCases = {};
   });
 }

@@ -92,6 +92,7 @@ describe("scoreCaseSubmission", () => {
       "maxScore",
       "breakdown",
       "correction",
+      "submittedValues",
     ]);
   });
 

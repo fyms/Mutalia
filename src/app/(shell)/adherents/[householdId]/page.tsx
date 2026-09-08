@@ -7,11 +7,18 @@ import { QueryTabs } from "@/components/ui/QueryTabs";
 import { DocumentStatusPill } from "@/components/ui/StatusPill";
 import { getHouseholdById, computeAge } from "@/lib/domain/households";
 import { getHarmonieReferential } from "@/lib/data/loaders";
-import { getSubmissions } from "@/lib/store/runtimeStore";
-import { getDocumentState } from "@/lib/store/runtimeStore";
+import {
+  getComplaints,
+  getCotisationState,
+  getDocumentState,
+  getPecRecords,
+  getSubmissions,
+} from "@/lib/store/runtimeStore";
+import { getPrestationsForHousehold } from "@/lib/domain/prestations";
 import { DOCUMENT_TYPE_LABELS, MEMBER_ROLE_LABELS, type DocumentStatus } from "@/lib/domain/constants";
-import { formatDate, formatDateTime } from "@/lib/utils/format";
-import { EmptyState } from "@/components/ui/EmptyState";
+import { formatCurrency, formatDate, formatDateTime } from "@/lib/utils/format";
+
+const COTISATION_STATUS_LABELS = { a_jour: "À jour", en_relance: "En relance", impayee: "Impayée" } as const;
 
 const TABS = [
   { key: "vue-generale", label: "Vue générale" },
@@ -42,6 +49,10 @@ export default async function Fiche360Page({
   const basePath = `/adherents/${householdId}`;
   const referential = getHarmonieReferential();
   const submissions = getSubmissions(household.case.case_id);
+  const cotisationState = getCotisationState(householdId);
+  const householdPrestations = getPrestationsForHousehold(householdId);
+  const householdPecRecords = getPecRecords(householdId);
+  const householdComplaints = getComplaints(householdId);
 
   return (
     <div>
@@ -166,13 +177,84 @@ export default async function Fiche360Page({
       )}
 
       {activeTab === "cotisations" && (
-        <StubTab label="Cotisations" note="Module de calcul de cotisation prévu en P2 (Cotisations, régularisations)." />
+        <Card>
+          <CardHeader title="Cotisation" />
+          <div className="flex items-center gap-2 text-sm">
+            <span className="text-foreground-muted">Statut :</span>
+            <Badge tone={cotisationState.status === "a_jour" ? "success" : cotisationState.status === "en_relance" ? "warning" : "danger"}>
+              {COTISATION_STATUS_LABELS[cotisationState.status]}
+            </Badge>
+          </div>
+          <p className="mt-3 text-xs text-foreground-muted">
+            Le calculateur de régularisation (prorata en cas de changement de formule) est disponible sur la page{" "}
+            <Link href="/cotisations" className="text-brand hover:underline">Cotisations</Link>.
+          </p>
+        </Card>
       )}
       {activeTab === "prestations" && (
-        <StubTab label="Prestations" note="Workflow de liquidation des prestations prévu en P2." />
+        <Card padded={false}>
+          {householdPrestations.length === 0 ? (
+            <p className="p-4 text-xs text-foreground-muted">
+              Aucune prestation liquidée : résolvez le cas pratique {household.case.case_id} pour en générer une.
+            </p>
+          ) : (
+            <table className="w-full text-left text-sm">
+              <thead className="border-b border-border bg-surface-muted text-[11px] uppercase text-foreground-muted">
+                <tr>
+                  <th className="px-4 py-2 font-medium">Cas</th>
+                  <th className="px-4 py-2 font-medium">Montant retenu</th>
+                  <th className="px-4 py-2 font-medium">Statut</th>
+                  <th className="px-4 py-2 font-medium">Date</th>
+                </tr>
+              </thead>
+              <tbody>
+                {householdPrestations.map((p, idx) => (
+                  <tr key={idx} className="border-b border-border last:border-0">
+                    <td className="px-4 py-2.5">{p.caseId}</td>
+                    <td className="px-4 py-2.5">{p.retainedAmount !== null ? formatCurrency(p.retainedAmount) : "—"}</td>
+                    <td className="px-4 py-2.5">
+                      <Badge tone={p.status === "liquidee" ? "success" : "warning"}>
+                        {p.status === "liquidee" ? "Liquidée" : "À vérifier"}
+                      </Badge>
+                    </td>
+                    <td className="px-4 py-2.5 text-foreground-muted">{formatDateTime(p.submittedAt)}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          )}
+        </Card>
       )}
       {activeTab === "pec" && (
-        <StubTab label="PEC & Devis" note="Émission de prise en charge dédiée prévue en P2 (voir le cas pratique pour un exercice guidé)." />
+        <Card padded={false}>
+          {householdPecRecords.length === 0 ? (
+            <p className="p-4 text-xs text-foreground-muted">
+              Aucune PEC émise pour ce foyer. Utilisez la page{" "}
+              <Link href="/pec-devis" className="text-brand hover:underline">PEC &amp; Devis</Link> pour en créer une.
+            </p>
+          ) : (
+            <table className="w-full text-left text-sm">
+              <thead className="border-b border-border bg-surface-muted text-[11px] uppercase text-foreground-muted">
+                <tr>
+                  <th className="px-4 py-2 font-medium">Acte</th>
+                  <th className="px-4 py-2 font-medium">Établissement</th>
+                  <th className="px-4 py-2 font-medium">Date des soins</th>
+                  <th className="px-4 py-2 font-medium">Montant garanti</th>
+                </tr>
+              </thead>
+              <tbody>
+                {householdPecRecords.map((p) => (
+                  <tr key={p.id} className="border-b border-border last:border-0">
+                    <td className="px-4 py-2.5">{p.acte}</td>
+                    <td className="px-4 py-2.5">{p.etablissement}</td>
+                    <td className="px-4 py-2.5">{formatDate(p.dateSoins)}</td>
+                    <td className="px-4 py-2.5">{p.montantGaranti !== null ? formatCurrency(p.montantGaranti) : <DataToVerifyBadge />}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          )}
+        </Card>
       )}
 
       {activeTab === "documents" && (
@@ -210,10 +292,29 @@ export default async function Fiche360Page({
       )}
 
       {activeTab === "contacts" && (
-        <EmptyState
-          title="Aucune coordonnée fictive seedée"
-          description="Le pack de données P0 ne fournit pas de téléphone/email fictif par foyer. Ce point pourra être enrichi en P2/P3 (module Relation adhérent)."
-        />
+        <Card>
+          <CardHeader title="Réclamations du foyer" subtitle="Aucune coordonnée fictive seedée dans le pack P0 (téléphone/email) : cet onglet suit les réclamations." />
+          {householdComplaints.length === 0 ? (
+            <p className="text-xs text-foreground-muted">
+              Aucune réclamation. Ouvrez-en une depuis{" "}
+              <Link href="/relation-adherent" className="text-brand hover:underline">Relation adhérent</Link>.
+            </p>
+          ) : (
+            <ul className="space-y-2 text-sm">
+              {householdComplaints.map((c) => (
+                <li key={c.id} className="border-b border-border pb-2 last:border-0">
+                  <div className="flex items-center justify-between">
+                    <span>{c.motif}</span>
+                    <Badge tone={c.status === "ouverte" ? "danger" : c.status === "en_cours" ? "warning" : "success"}>
+                      {c.status}
+                    </Badge>
+                  </div>
+                  <p className="text-[11px] text-foreground-muted">{formatDateTime(c.createdAt)}</p>
+                </li>
+              ))}
+            </ul>
+          )}
+        </Card>
       )}
 
       {activeTab === "historique" && (
@@ -254,8 +355,4 @@ function Row({ label, children }: { label: string; children: React.ReactNode }) 
       <dd className="font-medium text-foreground">{children}</dd>
     </div>
   );
-}
-
-function StubTab({ label, note }: { label: string; note: string }) {
-  return <EmptyState title={`${label} — à venir`} description={note} />;
 }

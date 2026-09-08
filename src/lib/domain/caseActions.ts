@@ -22,13 +22,15 @@ export async function submitCaseAction(input: CaseSubmissionInput): Promise<Lear
   revalidatePath("/cockpit");
 
   // Le corrigé brut (`correction`) n'est jamais renvoyé au client en mode apprenant :
-  // seuls le score et les commentaires dérivés par dimension le sont.
+  // seuls le score, les commentaires dérivés par dimension et la propre saisie de
+  // l'apprenant (déjà connue de lui) le sont.
   return {
     caseId: result.caseId,
     submittedAt: result.submittedAt,
     score: result.score,
     maxScore: result.maxScore,
     breakdown: result.breakdown,
+    submittedValues: result.submittedValues,
   };
 }
 
