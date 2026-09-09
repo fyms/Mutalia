@@ -1,7 +1,6 @@
 import { PageHeader } from "@/components/ui/PageHeader";
 import { Card, CardHeader } from "@/components/ui/Card";
 import { Badge } from "@/components/ui/Badge";
-import { ModeSwitcher } from "@/components/layout/ModeSwitcher";
 import { ResetButton } from "@/components/admin/ResetButton";
 import { getSession } from "@/lib/store/session";
 import { getTrainingModes } from "@/lib/data/loaders";
@@ -27,10 +26,10 @@ export default async function AdministrationPage() {
             <span className="text-foreground-muted">Niveau d&apos;aide :</span>
             <Badge tone="brand">{ASSISTANCE_LEVEL_LABELS[session.level]}</Badge>
           </div>
-          <ModeSwitcher role={session.role} level={session.level} newHireMode={session.newHireMode} />
-          <p className="mt-3 text-xs text-foreground-muted">
-            Le mode Formateur donne accès au corrigé des cas pratiques (jamais visible en mode Apprenant,
-            avant ou après soumission).
+          <p className="text-xs text-foreground-muted">
+            Utilisez les sélecteurs <strong>Rôle</strong> et <strong>Niveau d&apos;aide</strong> dans la barre
+            du haut (visible sur toutes les pages) pour changer de mode. Le mode Formateur donne accès au
+            corrigé des cas pratiques (jamais visible en mode Apprenant, avant ou après soumission).
           </p>
         </Card>
 

@@ -34,6 +34,29 @@ export function ModeSwitcher({
   const [, startTransition] = useTransition();
   const router = useRouter();
 
+  // Resynchronise l'état local si la vérité serveur change pour une raison
+  // externe à ce composant (ex. une autre instance du sélecteur ailleurs sur
+  // la même page, un autre onglet, ou une réinitialisation) : sans cela, deux
+  // instances montées simultanément peuvent diverger, l'une restant bloquée
+  // sur son état initial pendant que l'autre a changé le cookie. Ajusté
+  // pendant le rendu (pattern recommandé par React) plutôt que dans un
+  // useEffect, pour éviter un rendu supplémentaire après commit.
+  const [prevRole, setPrevRole] = useState(role);
+  if (role !== prevRole) {
+    setPrevRole(role);
+    setCurrentRole(role);
+  }
+  const [prevLevel, setPrevLevel] = useState(level);
+  if (level !== prevLevel) {
+    setPrevLevel(level);
+    setCurrentLevel(level);
+  }
+  const [prevNewHire, setPrevNewHire] = useState(newHireMode);
+  if (newHireMode !== prevNewHire) {
+    setPrevNewHire(newHireMode);
+    setCurrentNewHire(newHireMode);
+  }
+
   function handleRoleChange(next: Role) {
     setCurrentRole(next);
     startTransition(async () => {
