@@ -14,12 +14,15 @@ export async function submitCaseAction(input: CaseSubmissionInput): Promise<Lear
   const answerKey = getAnswerKey(input.caseId);
   if (!answerKey) throw new Error("Corrigé introuvable pour ce cas.");
 
+  const session = await getSession();
   const viewedIds = getViewedDocumentIds(trainingCase.documents.map((d) => d.document_id));
   const result = scoreCaseSubmission(trainingCase, answerKey, input, viewedIds.size);
-  await recordSubmission(input.caseId, result);
+  await recordSubmission(session.profileId, input.caseId, result);
   revalidatePath(`/cas-pratiques/${input.caseId}`);
   revalidatePath("/progression");
   revalidatePath("/cockpit");
+  revalidatePath("/pilotage");
+  revalidatePath("/prestations");
 
   // Le corrigé brut (`correction`) n'est jamais renvoyé au client en mode apprenant :
   // seuls le score, les commentaires dérivés par dimension et la propre saisie de

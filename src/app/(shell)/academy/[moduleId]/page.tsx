@@ -39,7 +39,7 @@ export default async function AcademyModulePage({
   const session = await getSession();
   const lexicon = getLexicon();
   const flashcardEntries = lexicon.filter((e) => content.lexiconCategories.includes(e.category));
-  const attempts = getQuizAttempts(moduleId);
+  const attempts = getQuizAttempts(session.profileId, moduleId);
   const activeTab = TABS.some((t) => t.key === tab) ? tab! : "cours";
   const basePath = `/academy/${moduleId}`;
 

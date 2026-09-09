@@ -5,10 +5,12 @@ import { Badge } from "@/components/ui/Badge";
 import { getAcademyCurriculum } from "@/lib/data/loaders";
 import { getAcademyModuleContent } from "@/lib/domain/academyContent";
 import { getAcademyProgressionSummary } from "@/lib/domain/progression";
+import { getSession } from "@/lib/store/session";
 
 export default async function QuizPage() {
   const curriculum = getAcademyCurriculum();
-  const progression = getAcademyProgressionSummary();
+  const session = await getSession();
+  const progression = getAcademyProgressionSummary(session.profileId);
   const byId = new Map(progression.perModule.map((m) => [m.moduleId, m]));
 
   return (

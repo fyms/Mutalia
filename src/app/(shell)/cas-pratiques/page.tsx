@@ -4,6 +4,7 @@ import { Card } from "@/components/ui/Card";
 import { Badge } from "@/components/ui/Badge";
 import { getAllTrainingCases } from "@/lib/data/loaders";
 import { getProgressionSummary } from "@/lib/domain/progression";
+import { getSession } from "@/lib/store/session";
 import { DIFFICULTY_LABELS } from "@/lib/domain/constants";
 
 const DIFFICULTY_TONE: Record<string, "success" | "brand" | "warning"> = {
@@ -13,8 +14,9 @@ const DIFFICULTY_TONE: Record<string, "success" | "brand" | "warning"> = {
 };
 
 export default async function CasPratiquesPage() {
+  const session = await getSession();
   const cases = getAllTrainingCases();
-  const progression = getProgressionSummary();
+  const progression = getProgressionSummary(session.profileId);
   const byId = new Map(progression.perCase.map((c) => [c.caseId, c]));
   const generatedCount = cases.filter((c) => c.case_id.startsWith("CASE-GEN-")).length;
 

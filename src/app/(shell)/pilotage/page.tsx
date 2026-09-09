@@ -4,7 +4,7 @@ import { Card, CardHeader } from "@/components/ui/Card";
 import { Badge } from "@/components/ui/Badge";
 import { EmptyState } from "@/components/ui/EmptyState";
 import { GeneratorPanel } from "@/components/pilotage/GeneratorPanel";
-import { getProgressionSummary, getAcademyProgressionSummary } from "@/lib/domain/progression";
+import { getAllProfilesProgression } from "@/lib/domain/progression";
 import { getFlaggedDocuments } from "@/lib/domain/anomalies";
 import { getSession } from "@/lib/store/session";
 import {
@@ -29,9 +29,8 @@ export default async function PilotagePage() {
     );
   }
 
-  const [progression, academyProgression, complaints, pecRecords, generatedCases, flagged] = await Promise.all([
-    Promise.resolve(getProgressionSummary()),
-    Promise.resolve(getAcademyProgressionSummary()),
+  const [profilesProgression, complaints, pecRecords, generatedCases, flagged] = await Promise.all([
+    Promise.resolve(getAllProfilesProgression()),
     Promise.resolve(getComplaints()),
     Promise.resolve(getPecRecords()),
     Promise.resolve(getGeneratedCases()),
@@ -40,21 +39,83 @@ export default async function PilotagePage() {
 
   const openComplaints = complaints.filter((c) => c.status !== "cloturee").length;
 
+  const totalCasesAttempted = profilesProgression.reduce((sum, p) => sum + p.cases.attemptedCases, 0);
+  const totalModulesAttempted = profilesProgression.reduce((sum, p) => sum + p.academy.attemptedModules, 0);
+  const allScorePercents = profilesProgression.flatMap((p) => [
+    ...p.cases.perCase.filter((c) => c.bestMaxScore).map((c) => (c.bestScore! / c.bestMaxScore!) * 100),
+    ...p.academy.perModule.filter((m) => m.bestMaxScore).map((m) => (m.bestScore! / m.bestMaxScore!) * 100),
+  ]);
+  const averageScorePercent =
+    allScorePercents.length > 0
+      ? Math.round(allScorePercents.reduce((a, b) => a + b, 0) / allScorePercents.length)
+      : null;
+
   return (
     <div>
       <PageHeader
         title="Pilotage formateur"
-        description="Vue d'ensemble mono-session du portefeuille pédagogique. Le pilotage multi-apprenants nécessite un modèle de comptes (P3)."
+        description="Vue d'ensemble de tous les profils apprenant connus de ce navigateur (pas de compte serveur distant : voir la note en bas de page)."
+        action={
+          <a
+            href="/api/report/csv"
+            className="rounded-md border border-brand px-3 py-1.5 text-xs font-medium text-brand hover:bg-brand-soft"
+          >
+            ⬇ Exporter le rapport (CSV)
+          </a>
+        }
       />
 
       <div className="mb-4 grid grid-cols-2 gap-3 sm:grid-cols-3 xl:grid-cols-6">
-        <Stat label="Cas tentés" value={`${progression.attemptedCases}/${progression.totalCases}`} />
-        <Stat label="Score moyen cas" value={progression.averageBestScorePercent !== null ? `${progression.averageBestScorePercent}%` : "—"} />
-        <Stat label="Modules Academy tentés" value={`${academyProgression.attemptedModules}/${academyProgression.totalModules}`} />
+        <Stat label="Profils suivis" value={profilesProgression.length} />
+        <Stat label="Cas tentés (tous profils)" value={totalCasesAttempted} />
+        <Stat label="Modules Academy tentés" value={totalModulesAttempted} />
+        <Stat label="Score moyen global" value={averageScorePercent !== null ? `${averageScorePercent}%` : "—"} />
         <Stat label="Réclamations ouvertes" value={openComplaints} />
         <Stat label="PEC émises" value={pecRecords.length} />
         <Stat label="Documents en anomalie" value={flagged.length} />
       </div>
+
+      <Card padded={false} className="mb-4">
+        <CardHeader title="Progression par profil apprenant" />
+        <table className="w-full text-left text-sm">
+          <thead className="border-b border-border bg-surface-muted text-[11px] uppercase text-foreground-muted">
+            <tr>
+              <th className="px-4 py-2 font-medium">Profil</th>
+              <th className="px-4 py-2 font-medium">Cas tentés</th>
+              <th className="px-4 py-2 font-medium">Score moyen cas</th>
+              <th className="px-4 py-2 font-medium">Modules Academy tentés</th>
+              <th className="px-4 py-2 font-medium">Score moyen Academy</th>
+            </tr>
+          </thead>
+          <tbody>
+            {profilesProgression.map(({ profile, cases, academy }) => (
+              <tr key={profile.id} className="border-b border-border last:border-0 hover:bg-surface-muted">
+                <td className="px-4 py-2.5 font-medium">👤 {profile.name}</td>
+                <td className="px-4 py-2.5">{cases.attemptedCases}/{cases.totalCases}</td>
+                <td className="px-4 py-2.5">
+                  {cases.averageBestScorePercent !== null ? (
+                    <Badge tone={cases.averageBestScorePercent >= 70 ? "success" : "warning"}>
+                      {cases.averageBestScorePercent}%
+                    </Badge>
+                  ) : (
+                    <span className="text-foreground-muted">—</span>
+                  )}
+                </td>
+                <td className="px-4 py-2.5">{academy.attemptedModules}/{academy.totalModules}</td>
+                <td className="px-4 py-2.5">
+                  {academy.averageBestScorePercent !== null ? (
+                    <Badge tone={academy.averageBestScorePercent >= 70 ? "success" : "warning"}>
+                      {academy.averageBestScorePercent}%
+                    </Badge>
+                  ) : (
+                    <span className="text-foreground-muted">—</span>
+                  )}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </Card>
 
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
         <GeneratorPanel />
@@ -88,6 +149,13 @@ export default async function PilotagePage() {
           )}
         </Card>
       </div>
+
+      <p className="mt-4 text-[11px] text-foreground-muted">
+        Les profils apprenant (menu déroulant 👤 de la barre du haut) sont des identités locales sans mot de
+        passe, stockées dans ce navigateur/serveur de développement — pas des comptes réels multi-appareils.
+        Suffisant pour simuler un pilotage multi-apprenants en formation ; un vrai système de comptes
+        (authentification, isolation par organisation) resterait à construire pour un déploiement client.
+      </p>
     </div>
   );
 }

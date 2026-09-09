@@ -26,6 +26,14 @@ export interface QuizAttempt {
   submittedAt: string;
 }
 
+export const DEFAULT_PROFILE_ID = "default";
+
+export interface LearnerProfile {
+  id: string;
+  name: string;
+  createdAt: string;
+}
+
 export interface ComplaintRecord {
   id: string;
   householdId: string;
@@ -75,11 +83,16 @@ export interface GeneratedCaseRecord {
   createdAt: string;
 }
 
+const RUNTIME_STORE_VERSION = 4;
+
 export interface RuntimeStoreShape {
-  version: 3;
+  version: typeof RUNTIME_STORE_VERSION;
   documents: Record<string, DocumentState>;
-  submissions: Record<string, CaseSubmissionResult[]>;
-  quizAttempts: Record<string, QuizAttempt[]>;
+  /** Soumissions par profil apprenant, puis par cas — permet un pilotage multi-apprenants réel. */
+  submissions: Record<string, Record<string, CaseSubmissionResult[]>>;
+  /** Tentatives de quiz par profil apprenant, puis par module. */
+  quizAttempts: Record<string, Record<string, QuizAttempt[]>>;
+  profiles: Record<string, LearnerProfile>;
   complaints: ComplaintRecord[];
   cotisations: Record<string, CotisationState>;
   pecRecords: PecRecord[];
@@ -89,10 +102,11 @@ export interface RuntimeStoreShape {
 
 function defaultStore(): RuntimeStoreShape {
   return {
-    version: 3,
+    version: RUNTIME_STORE_VERSION,
     documents: {},
     submissions: {},
     quizAttempts: {},
+    profiles: {},
     complaints: [],
     cotisations: {},
     pecRecords: [],
@@ -116,6 +130,12 @@ function readStore(): RuntimeStoreShape {
   const raw = fs.readFileSync(STORE_FILE, "utf-8");
   try {
     const parsed = JSON.parse(raw) as Partial<RuntimeStoreShape>;
+    // Un changement de version de schéma (ex. passage des soumissions à un
+    // scope par profil apprenant) rend l'ancienne forme incompatible : on
+    // repart d'un store vide plutôt que de fusionner des données mal formées.
+    if (parsed.version !== RUNTIME_STORE_VERSION) {
+      return defaultStore();
+    }
     return { ...defaultStore(), ...parsed };
   } catch {
     return defaultStore();
@@ -200,45 +220,104 @@ export function getViewedDocumentIds(documentIds: string[]): Set<string> {
   return viewed;
 }
 
+function ensureProfileRecord(store: RuntimeStoreShape, profileId: string): void {
+  if (store.profiles[profileId]) return;
+  store.profiles[profileId] = {
+    id: profileId,
+    name: profileId === DEFAULT_PROFILE_ID ? "Apprenant" : profileId,
+    createdAt: new Date().toISOString(),
+  };
+}
+
+export async function createProfile(name: string): Promise<LearnerProfile> {
+  const trimmed = name.trim();
+  if (!trimmed) throw new Error("Le nom du profil est requis.");
+  const id = `profil-${Date.now()}-${Math.round(Math.random() * 1000)}`;
+  const profile: LearnerProfile = { id, name: trimmed, createdAt: new Date().toISOString() };
+  await withStore((store) => {
+    store.profiles[id] = profile;
+  });
+  return profile;
+}
+
+export function getProfiles(): LearnerProfile[] {
+  const store = readStore();
+  ensureProfileRecord(store, DEFAULT_PROFILE_ID);
+  return Object.values(store.profiles).sort((a, b) => (a.createdAt < b.createdAt ? -1 : 1));
+}
+
+export function getProfile(profileId: string): LearnerProfile {
+  const store = readStore();
+  return (
+    store.profiles[profileId] ?? {
+      id: profileId,
+      name: profileId === DEFAULT_PROFILE_ID ? "Apprenant" : profileId,
+      createdAt: new Date(0).toISOString(),
+    }
+  );
+}
+
 export async function recordSubmission(
+  profileId: string,
   caseId: string,
   result: CaseSubmissionResult,
 ): Promise<void> {
   await withStore((store) => {
-    const list = store.submissions[caseId] ?? [];
+    ensureProfileRecord(store, profileId);
+    const byCase = store.submissions[profileId] ?? {};
+    const list = byCase[caseId] ?? [];
     list.push(result);
-    store.submissions[caseId] = list;
+    byCase[caseId] = list;
+    store.submissions[profileId] = byCase;
   });
 }
 
-export function getSubmissions(caseId: string): CaseSubmissionResult[] {
+export function getSubmissions(profileId: string, caseId: string): CaseSubmissionResult[] {
   const store = readStore();
-  return store.submissions[caseId] ?? [];
+  return store.submissions[profileId]?.[caseId] ?? [];
 }
 
-export function getLatestSubmission(caseId: string): CaseSubmissionResult | undefined {
-  const list = getSubmissions(caseId);
+export function getLatestSubmission(profileId: string, caseId: string): CaseSubmissionResult | undefined {
+  const list = getSubmissions(profileId, caseId);
   return list[list.length - 1];
 }
 
-export function getAllSubmissions(): Record<string, CaseSubmissionResult[]> {
+/** Soumissions du profil demandé, par cas. */
+export function getSubmissionsForProfile(profileId: string): Record<string, CaseSubmissionResult[]> {
+  return readStore().submissions[profileId] ?? {};
+}
+
+/** Toutes les soumissions, tous profils confondus — réservé au pilotage formateur. */
+export function getAllSubmissions(): Record<string, Record<string, CaseSubmissionResult[]>> {
   return readStore().submissions;
 }
 
-export async function recordQuizAttempt(moduleId: string, attempt: QuizAttempt): Promise<void> {
+export async function recordQuizAttempt(
+  profileId: string,
+  moduleId: string,
+  attempt: QuizAttempt,
+): Promise<void> {
   await withStore((store) => {
-    const list = store.quizAttempts[moduleId] ?? [];
+    ensureProfileRecord(store, profileId);
+    const byModule = store.quizAttempts[profileId] ?? {};
+    const list = byModule[moduleId] ?? [];
     list.push(attempt);
-    store.quizAttempts[moduleId] = list;
+    byModule[moduleId] = list;
+    store.quizAttempts[profileId] = byModule;
   });
 }
 
-export function getQuizAttempts(moduleId: string): QuizAttempt[] {
+export function getQuizAttempts(profileId: string, moduleId: string): QuizAttempt[] {
   const store = readStore();
-  return store.quizAttempts[moduleId] ?? [];
+  return store.quizAttempts[profileId]?.[moduleId] ?? [];
 }
 
-export function getAllQuizAttempts(): Record<string, QuizAttempt[]> {
+export function getQuizAttemptsForProfile(profileId: string): Record<string, QuizAttempt[]> {
+  return readStore().quizAttempts[profileId] ?? {};
+}
+
+/** Toutes les tentatives de quiz, tous profils confondus — réservé au pilotage formateur. */
+export function getAllQuizAttempts(): Record<string, Record<string, QuizAttempt[]>> {
   return readStore().quizAttempts;
 }
 
@@ -348,12 +427,13 @@ export function getGeneratedCase(caseId: string): GeneratedCaseRecord | undefine
   return readStore().generatedCases[caseId];
 }
 
-/** Réinitialise le prototype (statuts documents, annotations, soumissions, quiz, P2) sans toucher aux seeds. */
+/** Réinitialise le prototype (statuts documents, annotations, soumissions, quiz, profils, P2) sans toucher aux seeds. */
 export async function resetRuntimeStore(): Promise<void> {
   await withStore((store) => {
     store.documents = {};
     store.submissions = {};
     store.quizAttempts = {};
+    store.profiles = {};
     store.complaints = [];
     store.cotisations = {};
     store.pecRecords = [];

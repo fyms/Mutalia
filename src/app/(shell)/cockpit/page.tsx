@@ -10,13 +10,13 @@ import { DIFFICULTY_LABELS } from "@/lib/domain/constants";
 import { formatDateTime } from "@/lib/utils/format";
 
 export default async function CockpitPage() {
-  const [households, cases, lexicon, faq, progression, session] = await Promise.all([
+  const session = await getSession();
+  const [households, cases, lexicon, faq, progression] = await Promise.all([
     Promise.resolve(getAllHouseholds()),
     Promise.resolve(getAllCases()),
     Promise.resolve(getLexicon()),
     Promise.resolve(getFaq()),
-    Promise.resolve(getProgressionSummary()),
-    getSession(),
+    Promise.resolve(getProgressionSummary(session.profileId)),
   ]);
 
   const recentAttempts = progression.perCase

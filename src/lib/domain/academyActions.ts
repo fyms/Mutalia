@@ -4,6 +4,7 @@ import { revalidatePath } from "next/cache";
 import { getAcademyModuleContent } from "@/lib/domain/academyContent";
 import { scoreQuiz, type QuizScoreResult } from "@/lib/domain/quizScoring";
 import { recordQuizAttempt } from "@/lib/store/runtimeStore";
+import { getSession } from "@/lib/store/session";
 
 export type QuizSubmissionResult = QuizScoreResult;
 
@@ -16,9 +17,10 @@ export async function submitAcademyQuizAction(
     throw new Error("Quiz introuvable pour ce module.");
   }
 
+  const session = await getSession();
   const result = scoreQuiz(content.quiz, answers);
 
-  await recordQuizAttempt(moduleId, {
+  await recordQuizAttempt(session.profileId, moduleId, {
     score: result.score,
     maxScore: result.maxScore,
     submittedAt: new Date().toISOString(),
@@ -29,6 +31,7 @@ export async function submitAcademyQuizAction(
   revalidatePath("/quiz");
   revalidatePath("/progression");
   revalidatePath("/cockpit");
+  revalidatePath("/pilotage");
 
   return result;
 }

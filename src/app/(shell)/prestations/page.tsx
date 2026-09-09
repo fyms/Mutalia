@@ -33,6 +33,7 @@ export default async function PrestationsPage() {
               <tr>
                 <th className="px-4 py-2 font-medium">Foyer</th>
                 <th className="px-4 py-2 font-medium">Cas</th>
+                <th className="px-4 py-2 font-medium">Traité par</th>
                 <th className="px-4 py-2 font-medium">Montant retenu</th>
                 <th className="px-4 py-2 font-medium">Score</th>
                 <th className="px-4 py-2 font-medium">Statut</th>
@@ -53,6 +54,7 @@ export default async function PrestationsPage() {
                     </Link>
                     <p className="text-[11px] capitalize text-foreground-muted">{p.scenarioType.replace(/_/g, " ")}</p>
                   </td>
+                  <td className="px-4 py-2.5 text-foreground-muted">{p.profileName}</td>
                   <td className="px-4 py-2.5">{p.retainedAmount !== null ? formatCurrency(p.retainedAmount) : "—"}</td>
                   <td className="px-4 py-2.5">{p.score}/{p.maxScore}</td>
                   <td className="px-4 py-2.5">

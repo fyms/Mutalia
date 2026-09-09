@@ -15,6 +15,7 @@ import {
   getSubmissions,
 } from "@/lib/store/runtimeStore";
 import { getPrestationsForHousehold } from "@/lib/domain/prestations";
+import { getSession } from "@/lib/store/session";
 import { DOCUMENT_TYPE_LABELS, MEMBER_ROLE_LABELS, type DocumentStatus } from "@/lib/domain/constants";
 import { formatCurrency, formatDate, formatDateTime } from "@/lib/utils/format";
 
@@ -48,7 +49,8 @@ export default async function Fiche360Page({
   const activeTab = TABS.some((t) => t.key === tab) ? tab! : "vue-generale";
   const basePath = `/adherents/${householdId}`;
   const referential = getHarmonieReferential();
-  const submissions = getSubmissions(household.case.case_id);
+  const session = await getSession();
+  const submissions = getSubmissions(session.profileId, household.case.case_id);
   const cotisationState = getCotisationState(householdId);
   const householdPrestations = getPrestationsForHousehold(householdId);
   const householdPecRecords = getPecRecords(householdId);
@@ -319,7 +321,7 @@ export default async function Fiche360Page({
 
       {activeTab === "historique" && (
         <Card>
-          <CardHeader title="Historique des tentatives" subtitle="Soumissions du cas pratique lié à ce foyer" />
+          <CardHeader title="Historique des tentatives" subtitle="Vos soumissions du cas pratique lié à ce foyer (profil courant)" />
           {submissions.length === 0 ? (
             <p className="text-xs text-foreground-muted">Aucune soumission enregistrée pour ce dossier.</p>
           ) : (

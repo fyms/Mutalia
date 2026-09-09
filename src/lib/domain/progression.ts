@@ -1,7 +1,16 @@
 import "server-only";
 import { getAcademyCurriculum, getAllTrainingCases } from "@/lib/data/loaders";
-import { getAllQuizAttempts, getAllSubmissions } from "@/lib/store/runtimeStore";
+import {
+  getAllQuizAttempts,
+  getAllSubmissions,
+  getProfiles,
+  getQuizAttemptsForProfile,
+  getSubmissionsForProfile,
+  type LearnerProfile,
+  type QuizAttempt,
+} from "@/lib/store/runtimeStore";
 import { getAcademyModuleContent } from "@/lib/domain/academyContent";
+import type { CaseSubmissionResult } from "@/lib/domain/types";
 
 export interface CaseProgress {
   caseId: string;
@@ -21,12 +30,11 @@ export interface ProgressionSummary {
   perCase: CaseProgress[];
 }
 
-export function getProgressionSummary(): ProgressionSummary {
+function summariseCaseProgress(submissionsByCase: Record<string, CaseSubmissionResult[]>): ProgressionSummary {
   const cases = getAllTrainingCases();
-  const submissions = getAllSubmissions();
 
   const perCase: CaseProgress[] = cases.map((c) => {
-    const list = submissions[c.case_id] ?? [];
+    const list = submissionsByCase[c.case_id] ?? [];
     const best = list.reduce<{ score: number; maxScore: number } | null>((acc, s) => {
       if (!acc || s.score > acc.score) return { score: s.score, maxScore: s.maxScore };
       return acc;
@@ -59,6 +67,11 @@ export function getProgressionSummary(): ProgressionSummary {
   };
 }
 
+/** Progression du profil apprenant courant (par défaut) sur les cas pratiques. */
+export function getProgressionSummary(profileId: string): ProgressionSummary {
+  return summariseCaseProgress(getSubmissionsForProfile(profileId));
+}
+
 export interface AcademyModuleProgress {
   moduleId: string;
   title: string;
@@ -76,13 +89,14 @@ export interface AcademyProgressionSummary {
   perModule: AcademyModuleProgress[];
 }
 
-export function getAcademyProgressionSummary(): AcademyProgressionSummary {
+function summariseAcademyProgress(
+  attemptsByModule: Record<string, QuizAttempt[]>,
+): AcademyProgressionSummary {
   const curriculum = getAcademyCurriculum();
-  const attempts = getAllQuizAttempts();
 
   const perModule: AcademyModuleProgress[] = curriculum.modules.map((m) => {
     const content = getAcademyModuleContent(m.id);
-    const list = attempts[m.id] ?? [];
+    const list = attemptsByModule[m.id] ?? [];
     const best = list.reduce<{ score: number; maxScore: number } | null>((acc, a) => {
       if (!acc || a.score > acc.score) return { score: a.score, maxScore: a.maxScore };
       return acc;
@@ -112,4 +126,32 @@ export function getAcademyProgressionSummary(): AcademyProgressionSummary {
         : null,
     perModule,
   };
+}
+
+/** Progression Academy du profil apprenant courant. */
+export function getAcademyProgressionSummary(profileId: string): AcademyProgressionSummary {
+  return summariseAcademyProgress(getQuizAttemptsForProfile(profileId));
+}
+
+export interface ProfileProgressionRow {
+  profile: LearnerProfile;
+  cases: ProgressionSummary;
+  academy: AcademyProgressionSummary;
+}
+
+/**
+ * Pilotage multi-apprenants : progression cas + Academy pour chaque profil connu.
+ * Réservé aux vues formateur — jamais utilisé pour filtrer ce qu'un apprenant voit
+ * de son propre parcours (cela reste `getProgressionSummary(profileId)`).
+ */
+export function getAllProfilesProgression(): ProfileProgressionRow[] {
+  const profiles = getProfiles();
+  const allSubmissions = getAllSubmissions();
+  const allQuizAttempts = getAllQuizAttempts();
+
+  return profiles.map((profile) => ({
+    profile,
+    cases: summariseCaseProgress(allSubmissions[profile.id] ?? {}),
+    academy: summariseAcademyProgress(allQuizAttempts[profile.id] ?? {}),
+  }));
 }

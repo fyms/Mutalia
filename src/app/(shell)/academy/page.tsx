@@ -4,10 +4,12 @@ import { Card, CardHeader } from "@/components/ui/Card";
 import { Badge } from "@/components/ui/Badge";
 import { getAcademyCurriculum } from "@/lib/data/loaders";
 import { getAcademyProgressionSummary } from "@/lib/domain/progression";
+import { getSession } from "@/lib/store/session";
 
 export default async function AcademyPage() {
   const curriculum = getAcademyCurriculum();
-  const progression = getAcademyProgressionSummary();
+  const session = await getSession();
+  const progression = getAcademyProgressionSummary(session.profileId);
   const byId = new Map(progression.perModule.map((m) => [m.moduleId, m]));
 
   return (

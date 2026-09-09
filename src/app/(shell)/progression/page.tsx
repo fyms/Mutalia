@@ -3,18 +3,22 @@ import { PageHeader } from "@/components/ui/PageHeader";
 import { Card, CardHeader } from "@/components/ui/Card";
 import { Badge } from "@/components/ui/Badge";
 import { getAcademyProgressionSummary, getProgressionSummary } from "@/lib/domain/progression";
+import { getSession } from "@/lib/store/session";
+import { getProfile } from "@/lib/store/runtimeStore";
 import { DIFFICULTY_LABELS } from "@/lib/domain/constants";
 import { formatDateTime } from "@/lib/utils/format";
 
 export default async function ProgressionPage() {
-  const progression = getProgressionSummary();
-  const academyProgression = getAcademyProgressionSummary();
+  const session = await getSession();
+  const progression = getProgressionSummary(session.profileId);
+  const academyProgression = getAcademyProgressionSummary(session.profileId);
+  const profile = getProfile(session.profileId);
 
   return (
     <div>
       <PageHeader
         title="Progression"
-        description="Suivi des cas pratiques et des quiz Mutalia Academy."
+        description={`Suivi des cas pratiques et des quiz Mutalia Academy pour le profil « ${profile.name} ».`}
       />
 
       <div className="mb-4 grid grid-cols-2 gap-3 sm:grid-cols-4">

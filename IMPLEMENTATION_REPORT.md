@@ -3,7 +3,9 @@
 Statut : **P0 stable et fonctionnel**. **P1 (Academy, quiz, progression, cas
 pratiques avancés) livré et testé** — voir §10. **P2 (prestations, PEC, cotisations,
 réclamations, flux simulés, anomalies, pilotage formateur, génération dynamique de
-cas) livré et testé** — voir §11. Non démarré : P3.
+cas) livré et testé** — voir §11. **P3 lot 1 (profils apprenant, pilotage
+multi-apprenants réel, export/reporting) livré et testé** — voir §12, scope volontaire
+détaillé ci-dessous.
 
 ## 1. Contexte et démarche
 
@@ -198,13 +200,22 @@ Aucune variable d'environnement n'est requise. La persistance locale se fait dan
 dossier ou utiliser le bouton « Réinitialiser les données de session » dans
 `/administration` remet le prototype à l'état initial.
 
-## 9. Prochaines étapes (P3)
+## 9. Ce qui reste (au-delà du lot P3 #1)
 
-- Comptes formateur/apprenant réels (le prototype est mono-session jusqu'ici : rôle et
-  niveau d'aide sont des cookies locaux, pas des comptes) — condition pour un vrai
-  pilotage multi-apprenants.
-- Catalogue de parcours et reporting/export des résultats.
-- Personnalisation par organisme (au-delà de Harmonie Mutuelle 2026).
+- **Comptes réels avec authentification** (mot de passe, email, isolation
+  multi-appareils/multi-organisation). Le lot P3 #1 livre des **profils apprenant
+  locaux sans mot de passe** (voir §12) qui couvrent le besoin fonctionnel de
+  pilotage multi-apprenants pour un prototype de formation, mais ne sont pas des
+  comptes au sens produit final — un vrai système d'authentification resterait à
+  construire pour un déploiement client réel.
+- **Catalogue de parcours** : le pack ne fournit qu'un seul curriculum
+  (« Nouveau collaborateur - Complémentaire santé particuliers », 19 modules).
+  Créer plusieurs parcours nécessiterait d'inventer un contenu pédagogique
+  supplémentaire non fourni par le pack — volontairement laissé de côté plutôt que
+  fabriqué.
+- **Personnalisation par organisme** : le pack ne couvre qu'Harmonie Mutuelle 2026 ;
+  ajouter d'autres organismes nécessiterait des données/une identité visuelle non
+  fournies — même logique de non-invention.
 - Progression détaillée par dimension de compétence (`scoring_dimensions` du pack :
   comprehension_metier, lecture_documentaire, calcul, procedure, detection_anomalies,
   conseil, justification, relation_client) plutôt que le score global actuel par cas.
@@ -212,7 +223,7 @@ dossier ou utiliser le bouton « Réinitialiser les données de session » dans
   aucune donnée 2026 de cotisation n'existe dans le pack ; le module Cotisations livré
   en P2 reste donc un calculateur générique de régularisation, pas un barème réel).
 
-Ce prototype ne doit pas être modifié en profondeur pour cette prochaine étape :
+Ce prototype ne doit pas être modifié en profondeur pour ces prochaines étapes :
 sans casser la navigation, la sécurité du corrigé ni les calculs déjà testés.
 
 ## 10. Lot P1 #1 — Mutalia Academy, quiz, progression, cas pratiques avancés
@@ -387,3 +398,88 @@ npm run dev
 Ouvrir <http://localhost:3000>. Le générateur de cas et les tableaux de bord P2
 réservés (Pilotage, changement de statut de cotisation) nécessitent de basculer en
 mode **Formateur** dans la barre du haut ou sur `/administration`.
+
+## 12. Lot P3 #1 — Profils apprenant, pilotage multi-apprenants réel, reporting
+
+Premier lot de P3, livré et testé sans régression sur P0/P1/P2.
+
+### Cadrage assumé
+
+« Comptes formateur/apprenant » du roadmap a été interprété comme **profils
+apprenant légers** (nom, pas de mot de passe) plutôt que comme un système
+d'authentification complet — disproportionné pour un prototype pédagogique et non
+requis explicitement par le pack. Ce choix débloque le vrai besoin sous-jacent : un
+pilotage formateur qui distingue réellement plusieurs apprenants, plutôt que le
+pilotage mono-session livré en P2. Catalogue de parcours et personnalisation
+organisme restent hors périmètre (voir §9) : les construire aurait exigé d'inventer
+du contenu ou une marque non fournis par le pack.
+
+### Contenu livré
+
+- **Profils apprenant** (sélecteur 👤 dans la barre du haut, partout dans
+  l'application) : créer un profil par nom, basculer entre profils existants. Un
+  profil « Apprenant » par défaut existe toujours. Stockés dans le même store
+  runtime JSON que le reste du prototype (`.data/runtime-store.json`), sans mot de
+  passe ni compte serveur distant — explicitement documenté comme tel dans l'UI
+  (`/pilotage`) pour ne pas laisser croire à un vrai système multi-utilisateurs.
+- **Cloisonnement réel des données d'apprentissage** : les soumissions de cas
+  pratiques et les tentatives de quiz Academy sont désormais stockées **par profil**
+  (`submissions[profileId][caseId]`, `quizAttempts[profileId][moduleId]` — la
+  version du schéma de stockage passe de 3 à 4). Chaque profil a sa propre page
+  Progression, ses propres modules Academy tentés, son propre historique de cas.
+  Vérifié : soumettre un cas sous le profil « Marie » n'affecte pas la progression
+  du profil « Apprenant » par défaut.
+- **Pilotage multi-apprenants réel** (`/pilotage`) : table de progression par
+  profil (cas tentés, score moyen, modules Academy tentés, score moyen Academy),
+  agrégats globaux recalculés sur l'ensemble des profils plutôt que sur la seule
+  session courante. Toujours réservé au mode Formateur.
+- **Export / reporting** (`/api/report/csv`, bouton « Exporter le rapport » sur
+  `/pilotage`) : export CSV (BOM UTF-8, séparateur `;`) de toutes les tentatives de
+  tous les profils, cas pratiques et quiz Academy confondus — colonnes profil, type,
+  identifiant, titre, tentatives, meilleur score, score max, date. Réservé au mode
+  Formateur (403 sinon).
+- **Prestations** enrichi d'une colonne « Traité par » (nom du profil), puisque la
+  vue reste volontairement agrégée tous profils confondus (vue opérationnelle d'un
+  foyer, comme un vrai back-office où plusieurs gestionnaires peuvent traiter le même
+  dossier) — à la différence de Progression qui reste strictement personnelle au
+  profil actif.
+
+### Compatibilité et migration
+
+Le changement de forme du store (soumissions/quiz désormais imbriqués par profil)
+n'est pas rétrocompatible avec un `.data/runtime-store.json` généré par une version
+antérieure : `readStore()` détecte le changement de version de schéma et repart d'un
+store vide plutôt que de fusionner une forme incompatible (cf. `RUNTIME_STORE_VERSION`
+dans `runtimeStore.ts`). Sans conséquence pratique : ce fichier est local,
+non versionné, et régénéré automatiquement.
+
+### Tests exécutés pour ce lot
+
+```bash
+npm run lint       # 0 erreur
+npm run typecheck  # 0 erreur
+npm run test        # 27 tests (inchangé : refactor sans nouvelle logique de calcul isolée)
+npm run build         # 27 routes générées, dont /api/report/csv
+```
+
+Test end-to-end Playwright (non versionné, exécuté contre `npm run dev`) :
+création d'un profil « Marie » → soumission de CASE-001 sous ce profil → page
+Progression scoped au profil affichant l'attempt de Marie → bascule sur le profil
+par défaut → mode Formateur → `/pilotage` affichant Marie **et** le profil par
+défaut avec des scores distincts dans une table de progression par profil → export
+CSV contenant bien la ligne de Marie → page Prestations affichant « Traité par
+Marie ». Cas limite testé : réinitialisation des données (`/administration`) pendant
+qu'un profil non par défaut est actif — l'application continue de fonctionner sans
+plantage. Re-exécution complète des suites de régression P0/P1/P2 : aucune
+régression.
+
+### Commandes de lancement (inchangées)
+
+```bash
+npm install
+npm run dev
+```
+
+Ouvrir <http://localhost:3000>. Le sélecteur de profil (👤) est disponible en haut à
+gauche du sélecteur de rôle, sur toutes les pages. Le tableau de pilotage
+multi-apprenants et l'export CSV nécessitent le mode Formateur.
