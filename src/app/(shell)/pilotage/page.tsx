@@ -54,7 +54,7 @@ export default async function PilotagePage() {
     <div>
       <PageHeader
         title="Pilotage formateur"
-        description="Vue d'ensemble de tous les profils apprenant connus de ce navigateur (pas de compte serveur distant : voir la note en bas de page)."
+        description="Vue d'ensemble de tous les comptes apprenant et formateur créés sur ce prototype (voir la note en bas de page)."
         action={
           <a
             href="/api/report/csv"
@@ -151,10 +151,10 @@ export default async function PilotagePage() {
       </div>
 
       <p className="mt-4 text-[11px] text-foreground-muted">
-        Les profils apprenant (menu déroulant 👤 de la barre du haut) sont des identités locales sans mot de
-        passe, stockées dans ce navigateur/serveur de développement — pas des comptes réels multi-appareils.
-        Suffisant pour simuler un pilotage multi-apprenants en formation ; un vrai système de comptes
-        (authentification, isolation par organisation) resterait à construire pour un déploiement client.
+        Chaque compte (email + mot de passe, voir /inscription) constitue un profil apprenant ou formateur
+        suivi individuellement. Authentification réelle par session serveur — données stockées dans le
+        magasin de démonstration du prototype (pas d&apos;annuaire d&apos;entreprise ni d&apos;isolation
+        multi-organisation : à construire pour un déploiement client réel).
       </p>
     </div>
   );

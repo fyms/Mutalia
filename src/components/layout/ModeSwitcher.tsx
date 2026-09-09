@@ -17,10 +17,12 @@ import {
 } from "@/lib/domain/constants";
 
 export function ModeSwitcher({
+  accountRole,
   role,
   level,
   newHireMode,
 }: {
+  accountRole: Role;
   role: Role;
   level: AssistanceLevel;
   newHireMode: boolean;
@@ -90,18 +92,27 @@ export function ModeSwitcher({
 
   return (
     <div className="flex items-center gap-2 text-xs">
-      <select
-        value={currentRole}
-        onChange={(e) => handleRoleChange(e.target.value as Role)}
-        className="rounded-md border border-border bg-surface px-2 py-1.5 text-xs"
-        title="Rôle actif"
-      >
-        {ROLES.map((r) => (
-          <option key={r} value={r}>
-            {ROLE_LABELS[r]}
-          </option>
-        ))}
-      </select>
+      {accountRole === "formateur" ? (
+        <select
+          value={currentRole}
+          onChange={(e) => handleRoleChange(e.target.value as Role)}
+          className="rounded-md border border-border bg-surface px-2 py-1.5 text-xs"
+          title="Aperçu de rôle (compte Formateur uniquement)"
+        >
+          {ROLES.map((r) => (
+            <option key={r} value={r}>
+              {r === "apprenant" ? "👁 Aperçu Apprenant" : ROLE_LABELS[r]}
+            </option>
+          ))}
+        </select>
+      ) : (
+        <span
+          className="rounded-md border border-border bg-surface-muted px-2 py-1.5 text-xs font-medium text-foreground-muted"
+          title="Rôle du compte connecté"
+        >
+          {ROLE_LABELS[currentRole]}
+        </span>
+      )}
 
       <select
         value={currentLevel}

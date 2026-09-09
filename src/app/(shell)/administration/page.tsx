@@ -19,17 +19,24 @@ export default async function AdministrationPage() {
 
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
         <Card>
-          <CardHeader title="Session courante" subtitle="Aucun compte réel : profil local au navigateur" />
-          <div className="mb-3 flex items-center gap-2 text-sm">
-            <span className="text-foreground-muted">Rôle :</span>
-            <Badge tone="brand">{ROLE_LABELS[session.role]}</Badge>
+          <CardHeader title="Session courante" subtitle={`Connecté en tant que ${session.displayName} (${session.email})`} />
+          <div className="mb-3 flex flex-wrap items-center gap-2 text-sm">
+            <span className="text-foreground-muted">Compte :</span>
+            <Badge tone="brand">{ROLE_LABELS[session.accountRole]}</Badge>
+            {session.role !== session.accountRole ? (
+              <>
+                <span className="text-foreground-muted">Aperçu :</span>
+                <Badge tone="warning">{ROLE_LABELS[session.role]}</Badge>
+              </>
+            ) : null}
             <span className="text-foreground-muted">Niveau d&apos;aide :</span>
             <Badge tone="brand">{ASSISTANCE_LEVEL_LABELS[session.level]}</Badge>
           </div>
           <p className="text-xs text-foreground-muted">
-            Utilisez les sélecteurs <strong>Rôle</strong> et <strong>Niveau d&apos;aide</strong> dans la barre
-            du haut (visible sur toutes les pages) pour changer de mode. Le mode Formateur donne accès au
-            corrigé des cas pratiques (jamais visible en mode Apprenant, avant ou après soumission).
+            Authentification réelle (email + mot de passe, session serveur). Un compte Formateur peut, via le
+            sélecteur de la barre du haut, activer un <strong>aperçu Apprenant</strong> sans jamais perdre son
+            rôle réel ; un compte Apprenant ne peut pas obtenir l&apos;accès Formateur. Le mode Formateur donne
+            accès au corrigé des cas pratiques (jamais visible en mode Apprenant, avant ou après soumission).
           </p>
         </Card>
 

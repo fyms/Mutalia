@@ -1,21 +1,24 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
-import { setLevel, setNewHireMode, setProfileId, setRole } from "@/lib/store/session";
+import { getAuthSession, setLevel, setNewHireMode, setRolePreview } from "@/lib/store/session";
 import type { AssistanceLevel, Role } from "@/lib/domain/constants";
 import {
   addDocumentAnnotation,
-  createProfile,
   markDocumentViewed,
   resetRuntimeStore,
   setDocumentStatus,
-  type LearnerProfile,
 } from "@/lib/store/runtimeStore";
 import type { DocumentStatus } from "@/lib/domain/constants";
 
 export async function updateRoleAction(formData: FormData): Promise<void> {
+  // L'aperçu de rôle ne s'applique jamais qu'aux comptes réellement Formateur
+  // (voir getAuthSession) : ce contrôle applicatif évite en plus qu'un compte
+  // Apprenant ne dépose inutilement le cookie d'aperçu.
+  const session = await getAuthSession();
+  if (!session || session.accountRole !== "formateur") return;
   const role = formData.get("role") as Role;
-  await setRole(role);
+  await setRolePreview(role);
   revalidatePath("/", "layout");
 }
 
@@ -45,18 +48,6 @@ export async function setDocumentStatusAction(
   await setDocumentStatus(documentId, status);
   revalidatePath(`/cas-pratiques/${caseId}`);
   revalidatePath("/documents");
-}
-
-export async function switchProfileAction(profileId: string): Promise<void> {
-  await setProfileId(profileId);
-  revalidatePath("/", "layout");
-}
-
-export async function createProfileAction(name: string): Promise<LearnerProfile> {
-  const profile = await createProfile(name);
-  await setProfileId(profile.id);
-  revalidatePath("/", "layout");
-  return profile;
 }
 
 export async function resetRuntimeStoreAction(): Promise<void> {

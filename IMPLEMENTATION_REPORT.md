@@ -5,7 +5,9 @@ pratiques avancés) livré et testé** — voir §10. **P2 (prestations, PEC, co
 réclamations, flux simulés, anomalies, pilotage formateur, génération dynamique de
 cas) livré et testé** — voir §11. **P3 lot 1 (profils apprenant, pilotage
 multi-apprenants réel, export/reporting) livré et testé** — voir §12, scope volontaire
-détaillé ci-dessous.
+détaillé ci-dessous. **P3 lot 2 (authentification réelle, CRUD adhérents,
+application des garanties 2026, génération de devis) livré et testé** — voir §13 :
+le prototype est démontrable à un client avec de vrais comptes email/mot de passe.
 
 ## 1. Contexte et démarche
 
@@ -200,14 +202,13 @@ Aucune variable d'environnement n'est requise. La persistance locale se fait dan
 dossier ou utiliser le bouton « Réinitialiser les données de session » dans
 `/administration` remet le prototype à l'état initial.
 
-## 9. Ce qui reste (au-delà du lot P3 #1)
+## 9. Ce qui reste (au-delà du lot P3 #2)
 
-- **Comptes réels avec authentification** (mot de passe, email, isolation
-  multi-appareils/multi-organisation). Le lot P3 #1 livre des **profils apprenant
-  locaux sans mot de passe** (voir §12) qui couvrent le besoin fonctionnel de
-  pilotage multi-apprenants pour un prototype de formation, mais ne sont pas des
-  comptes au sens produit final — un vrai système d'authentification resterait à
-  construire pour un déploiement client réel.
+- **Isolation multi-organisation / annuaire d'entreprise.** Le lot P3 #2 (§13) livre
+  une authentification réelle (email + mot de passe, session serveur) qui remplace
+  les profils sans mot de passe du lot P3 #1, mais tous les comptes créés partagent
+  le même magasin de démonstration — pas de notion d'organisation/tenant, ni de SSO
+  d'entreprise. À construire pour un déploiement multi-client réel.
 - **Catalogue de parcours** : le pack ne fournit qu'un seul curriculum
   (« Nouveau collaborateur - Complémentaire santé particuliers », 19 modules).
   Créer plusieurs parcours nécessiterait d'inventer un contenu pédagogique
@@ -483,3 +484,149 @@ npm run dev
 Ouvrir <http://localhost:3000>. Le sélecteur de profil (👤) est disponible en haut à
 gauche du sélecteur de rôle, sur toutes les pages. Le tableau de pilotage
 multi-apprenants et l'export CSV nécessitent le mode Formateur.
+
+## 13. Lot P3 #2 — Authentification réelle, CRUD adhérents, garanties, devis
+
+Deuxième lot de P3, livré et testé sans régression sur P0/P1/P2/P3#1. Demande
+initiale : permettre de créer/modifier/supprimer un adhérent, appliquer les niveaux
+de garantie 2026, générer un devis avec formule et prix, mettre en place une
+authentification réelle, et rendre le prototype démontrable à un client.
+
+### Authentification réelle (remplace les profils sans mot de passe du lot P3 #1)
+
+- **Comptes** (`UserAccount` dans `runtimeStore.ts`) : email + mot de passe haché
+  (`node:crypto scrypt` + `timingSafeEqual`, sel aléatoire par compte — pas de
+  dépendance ajoutée), nom affiché, rôle (`apprenant`/`formateur`).
+- **Sessions serveur classiques** : identifiant de session opaque en cookie
+  `httpOnly` (`mutalia_session`), résolu côté serveur contre une table `sessions`
+  (expiration 7 jours). Choix délibéré face à un JWT signé : la résolution se fait
+  dans des Server Components / Route Handlers Node (`getSession()`), jamais dans
+  `middleware.ts` (Edge Runtime, sans accès `fs`) — évite toute contrainte Edge tout
+  en restant un vrai contrôle serveur, non falsifiable côté client.
+- **Pages `/login` et `/inscription`** (hors du groupe de routes `(shell)`, sans
+  sidebar) : formulaires `useActionState` + Server Actions (`src/lib/auth/actions.ts`).
+  `(shell)/layout.tsx` appelle `getSession()`, qui redirige vers `/login` si aucune
+  session valide — toutes les pages métier sont donc désormais protégées.
+- **Séparation `accountRole` / `role`** (`src/lib/store/session.ts`) : `accountRole`
+  provient uniquement de la session authentifiée (infalsifiable, utilisé pour tous
+  les contrôles de sécurité, ex. `assertFormateur`). `role` reste la valeur
+  affichée à l'UI et peut être basculée sur « aperçu Apprenant » — **mais
+  uniquement si `accountRole === "formateur"`** (cookie d'aperçu
+  `mutalia_role_preview`, appliqué seulement pour ce cas dans `getAuthSession()`).
+  Un compte Apprenant ne peut donc jamais obtenir l'accès Formateur en modifiant ses
+  cookies : la condition qui autoriserait la bascule ne peut être vraie que pour un
+  compte réellement Formateur. Ce design conserve la bascule de démo Formateur ⇄
+  aperçu Apprenant déjà appréciée dans les lots précédents, tout en la rendant sûre.
+- **Comptes de démonstration** créés automatiquement et de façon idempotente à la
+  première initialisation du magasin (`seedDemoUsers()` dans `runtimeStore.ts`,
+  appelée une seule fois à la création du fichier ou lors d'une migration de
+  schéma — jamais réécrite ensuite) :
+  - `formateur.demo@mutalia.local` / `Formateur2026!`
+  - `apprenant.demo@mutalia.local` / `Apprenant2026!`
+  Le formulaire d'inscription reste ouvert (auto-attribution du rôle Formateur
+  possible) — cohérent avec un prototype de démonstration, explicitement noté comme
+  tel dans le formulaire.
+- **Sélecteur de profil libre du lot P3 #1 retiré** (`ProfileSwitcher.tsx`
+  supprimé) : `getProfiles()`/`getProfile()` dérivent désormais des comptes réels
+  (`users`) sans changer de forme de retour — aucune modification nécessaire dans
+  `progression.ts`/`prestations.ts`, qui continuent de fonctionner à l'identique
+  avec `profileId = userId`.
+
+### CRUD adhérents (portefeuille de démonstration, distinct des 12 foyers pédagogiques)
+
+Les 12 foyers pédagogiques (`getAllHouseholds()`) restent **en lecture seule** :
+structurellement dérivés des cas seedés (PDFs, corrigés, scoring y sont rattachés),
+les modifier aurait cassé le moteur de cas. Un second portefeuille, indépendant et
+librement éditable, a donc été créé (`ClientRecord` dans `runtimeStore.ts`) :
+
+- **Créer** (`/adherents/nouveau`) : adhérent principal + bénéficiaires (conjoint,
+  enfants) ajoutés dynamiquement, formulaire client (`ClientForm.tsx`) réutilisé en
+  création et modification.
+- **Modifier** (`/adherents/clients/[clientId]/modifier`) et **supprimer**
+  (bouton avec confirmation, cascade sur les devis liés) via
+  `src/lib/domain/clientActions.ts` (`createClientAction`/`updateClientAction`/
+  `deleteClientAction`).
+- **Page `/adherents`** mise à jour : deux tables distinctes — portefeuille de
+  démonstration (badge « Démo ») et foyers pédagogiques (inchangés, badge implicite
+  via le lien vers le cas pratique).
+- **Fiche adhérent** (`/adherents/clients/[clientId]`) : identité, composition du
+  foyer, statut (prospect/actif/résilié), formule appliquée, historique des devis.
+
+### Application des niveaux de garantie 2026
+
+Sur la fiche adhérent, panneau `GuaranteeQuotePanel.tsx` permettant d'appliquer au
+client soit une formule de l'**architecture PSI 2026** (régime général ou régime
+local Alsace-Moselle, niveaux ★ vérifiés — `getHarmonieReferential()`), soit une
+formule du **comparateur vérifié** (codes PLI). Les deux catalogues sont présentés
+séparément et jamais mélangés dans un même sélecteur, conformément à la règle
+PSI ≠ PLI du pack.
+
+### Génération de devis (formule + prix)
+
+Contrainte du pack directement en tension avec cette demande : **aucune donnée
+tarifaire 2026 n'existe dans le pack** pour aucune formule Harmonie Mutuelle — en
+inventer une aurait violé la règle centrale « ne jamais halluciner une valeur
+contractuelle ». Décision retenue : la cotisation mensuelle d'un devis est un champ
+**saisi manuellement par le conseiller** (comme avec un outil de tarification
+externe), jamais calculée ni sourcée automatiquement du référentiel 2026 :
+
+- Champ facultatif dans `GuaranteeQuotePanel.tsx` ; laissé vide, le PDF affiche
+  « Donnée 2026 à vérifier » plutôt qu'un montant inventé.
+- `generateQuoteAction` (`clientActions.ts`) crée un `QuoteRecord` (formule,
+  catalogue, prime mensuelle ou `null`, validité 30 jours, auteur).
+- PDF généré à la volée avec `pdf-lib` (`buildQuotePdf` dans `pdfGenerator.ts`),
+  bandeau obligatoire « DOCUMENT FICTIF - FORMATION MUTALIA - SANS VALEUR » et,
+  quand un prix est saisi, mention explicite « Montant saisi manuellement par le
+  conseiller (outil de tarification externe) — non issu automatiquement du
+  référentiel officiel Harmonie Mutuelle 2026 » directement sur le document. Servi
+  via `/api/devis/[quoteId]` (authentification requise, 401 sinon).
+- Historique des devis consultable sur la fiche adhérent, avec lien d'ouverture du
+  PDF pour chaque devis généré.
+
+### Tests exécutés pour ce lot
+
+```bash
+npm run lint       # 0 erreur
+npx tsc --noEmit   # 0 erreur
+npm run test        # 27 tests (inchangé : aucun nouveau calcul isolé à tester unitairement)
+npm run build         # 34 routes générées, dont /login, /inscription, /adherents/nouveau,
+                       # /adherents/clients/[clientId], /adherents/clients/[clientId]/modifier,
+                       # /api/devis/[quoteId]
+```
+
+Test end-to-end Playwright (non versionné, exécuté contre `npm run dev`), en plus
+d'une re-exécution de régression sur les parcours P0/P1/P2/P3#1 (soumission de cas,
+quiz Academy, prestations, cotisations, PEC, flux/anomalies, réclamations,
+garanties, lexique, FAQ, simulateur, générateur de cas, export CSV) :
+
+- Accès à `/` sans session → redirection `/login` : OK.
+- Inscription d'un nouveau compte Formateur → session ouverte → `/cockpit` : OK.
+- Déconnexion → redirection `/login` : OK.
+- Connexion avec le compte de démonstration Apprenant → aucun sélecteur d'aperçu de
+  rôle visible (compte non-Formateur) → accès à `/pilotage` refusé : OK.
+- Connexion avec le compte de démonstration Formateur → sélecteur d'aperçu de rôle
+  visible → bascule en aperçu Apprenant → `/pilotage` refusé → bascule retour en
+  Formateur → `/pilotage` de nouveau accessible (confirme que `accountRole` protège
+  bien l'accès indépendamment de l'aperçu) : OK.
+- Création d'un adhérent (Alice Dupont + bénéficiaire Bob Dupont) → redirection vers
+  sa fiche : OK.
+- Application d'une formule PSI régime général → confirmation affichée : OK.
+- Génération d'un devis sans prime → badge « Donnée 2026 à vérifier » affiché sur la
+  fiche après rechargement : OK.
+- Génération d'un devis avec prime (87,30 €) → PDF servi en `Content-Type:
+  application/pdf` : OK.
+- Modification de l'adhérent (changement de prénom) → fiche mise à jour : OK.
+- Suppression de l'adhérent (avec confirmation) → retiré de la liste `/adherents` :
+  OK.
+
+### Commandes de lancement (inchangées)
+
+```bash
+npm install
+npm run dev
+```
+
+Ouvrir <http://localhost:3000> — redirige désormais vers `/login` si aucune session.
+Se connecter avec l'un des comptes de démonstration ci-dessus, ou créer un compte
+sur `/inscription`. Le portefeuille d'adhérents démontrable au client est sur
+`/adherents` (bouton « + Nouvel adhérent »).

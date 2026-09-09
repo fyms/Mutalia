@@ -1,8 +1,9 @@
 import "server-only";
 import fs from "node:fs";
 import path from "node:path";
-import type { ComplaintStatus, CotisationStatus, DocumentStatus } from "@/lib/domain/constants";
-import type { AnswerKey, CaseSubmissionResult, TrainingCase } from "@/lib/domain/types";
+import type { ComplaintStatus, CotisationStatus, DocumentStatus, Role } from "@/lib/domain/constants";
+import type { AnswerKey, CaseSubmissionResult, Household, TrainingCase } from "@/lib/domain/types";
+import { hashPassword, verifyPassword } from "@/lib/auth/password";
 
 const STORE_DIR = path.join(process.cwd(), ".data");
 const STORE_FILE = path.join(STORE_DIR, "runtime-store.json");
@@ -26,12 +27,52 @@ export interface QuizAttempt {
   submittedAt: string;
 }
 
-export const DEFAULT_PROFILE_ID = "default";
-
 export interface LearnerProfile {
   id: string;
   name: string;
   createdAt: string;
+}
+
+export interface UserAccount {
+  id: string;
+  email: string;
+  passwordHash: string;
+  passwordSalt: string;
+  role: Role;
+  displayName: string;
+  createdAt: string;
+}
+
+export interface SessionRecord {
+  id: string;
+  userId: string;
+  createdAt: string;
+  expiresAt: string;
+}
+
+export const CLIENT_STATUSES = ["prospect", "actif", "resilie"] as const;
+export type ClientStatus = (typeof CLIENT_STATUSES)[number];
+
+export interface ClientRecord {
+  id: string;
+  household: Household;
+  formulaCode: string | null;
+  formulaCatalog: "psi_general" | "psi_local" | "pli_verifie" | null;
+  status: ClientStatus;
+  createdAt: string;
+  updatedAt: string;
+  createdBy: string;
+}
+
+export interface QuoteRecord {
+  id: string;
+  clientId: string;
+  formulaCode: string;
+  formulaCatalog: "psi_general" | "psi_local" | "pli_verifie";
+  monthlyPremium: number | null;
+  createdAt: string;
+  createdBy: string;
+  validUntil: string;
 }
 
 export interface ComplaintRecord {
@@ -83,16 +124,19 @@ export interface GeneratedCaseRecord {
   createdAt: string;
 }
 
-const RUNTIME_STORE_VERSION = 4;
+const RUNTIME_STORE_VERSION = 5;
 
 export interface RuntimeStoreShape {
   version: typeof RUNTIME_STORE_VERSION;
   documents: Record<string, DocumentState>;
-  /** Soumissions par profil apprenant, puis par cas — permet un pilotage multi-apprenants réel. */
+  /** Soumissions par profil apprenant (= identifiant de compte), puis par cas. */
   submissions: Record<string, Record<string, CaseSubmissionResult[]>>;
   /** Tentatives de quiz par profil apprenant, puis par module. */
   quizAttempts: Record<string, Record<string, QuizAttempt[]>>;
-  profiles: Record<string, LearnerProfile>;
+  users: Record<string, UserAccount>;
+  sessions: Record<string, SessionRecord>;
+  clients: Record<string, ClientRecord>;
+  quotes: Record<string, QuoteRecord>;
   complaints: ComplaintRecord[];
   cotisations: Record<string, CotisationState>;
   pecRecords: PecRecord[];
@@ -106,7 +150,10 @@ function defaultStore(): RuntimeStoreShape {
     documents: {},
     submissions: {},
     quizAttempts: {},
-    profiles: {},
+    users: {},
+    sessions: {},
+    clients: {},
+    quotes: {},
     complaints: [],
     cotisations: {},
     pecRecords: [],
@@ -115,13 +162,50 @@ function defaultStore(): RuntimeStoreShape {
   };
 }
 
+/** Comptes de démonstration créés une seule fois, à l'initialisation du magasin (mots de passe fictifs). */
+function seedDemoUsers(): Record<string, UserAccount> {
+  const now = new Date().toISOString();
+  const accounts: Array<{ id: string; email: string; password: string; displayName: string; role: Role }> = [
+    {
+      id: "usr-demo-formateur",
+      email: "formateur.demo@mutalia.local",
+      password: "Formateur2026!",
+      displayName: "Formateur Démo",
+      role: "formateur",
+    },
+    {
+      id: "usr-demo-apprenant",
+      email: "apprenant.demo@mutalia.local",
+      password: "Apprenant2026!",
+      displayName: "Apprenant Démo",
+      role: "apprenant",
+    },
+  ];
+  const users: Record<string, UserAccount> = {};
+  for (const account of accounts) {
+    const { hash, salt } = hashPassword(account.password);
+    users[account.id] = {
+      id: account.id,
+      email: account.email,
+      passwordHash: hash,
+      passwordSalt: salt,
+      role: account.role,
+      displayName: account.displayName,
+      createdAt: now,
+    };
+  }
+  return users;
+}
+
 /** Initialise le fichier de persistance de manière idempotente (ne réécrit rien s'il existe déjà). */
 function ensureStoreFile(): void {
   if (!fs.existsSync(STORE_DIR)) {
     fs.mkdirSync(STORE_DIR, { recursive: true });
   }
   if (!fs.existsSync(STORE_FILE)) {
-    fs.writeFileSync(STORE_FILE, JSON.stringify(defaultStore(), null, 2), "utf-8");
+    const store = defaultStore();
+    store.users = seedDemoUsers();
+    fs.writeFileSync(STORE_FILE, JSON.stringify(store, null, 2), "utf-8");
   }
 }
 
@@ -132,13 +216,20 @@ function readStore(): RuntimeStoreShape {
     const parsed = JSON.parse(raw) as Partial<RuntimeStoreShape>;
     // Un changement de version de schéma (ex. passage des soumissions à un
     // scope par profil apprenant) rend l'ancienne forme incompatible : on
-    // repart d'un store vide plutôt que de fusionner des données mal formées.
+    // repart d'un store vide (re-seedé et persisté immédiatement, de façon
+    // idempotente) plutôt que de fusionner des données mal formées.
     if (parsed.version !== RUNTIME_STORE_VERSION) {
-      return defaultStore();
+      const fresh = defaultStore();
+      fresh.users = seedDemoUsers();
+      writeStore(fresh);
+      return fresh;
     }
     return { ...defaultStore(), ...parsed };
   } catch {
-    return defaultStore();
+    const fresh = defaultStore();
+    fresh.users = seedDemoUsers();
+    writeStore(fresh);
+    return fresh;
   }
 }
 
@@ -220,41 +311,111 @@ export function getViewedDocumentIds(documentIds: string[]): Set<string> {
   return viewed;
 }
 
-function ensureProfileRecord(store: RuntimeStoreShape, profileId: string): void {
-  if (store.profiles[profileId]) return;
-  store.profiles[profileId] = {
-    id: profileId,
-    name: profileId === DEFAULT_PROFILE_ID ? "Apprenant" : profileId,
-    createdAt: new Date().toISOString(),
-  };
-}
-
-export async function createProfile(name: string): Promise<LearnerProfile> {
-  const trimmed = name.trim();
-  if (!trimmed) throw new Error("Le nom du profil est requis.");
-  const id = `profil-${Date.now()}-${Math.round(Math.random() * 1000)}`;
-  const profile: LearnerProfile = { id, name: trimmed, createdAt: new Date().toISOString() };
-  await withStore((store) => {
-    store.profiles[id] = profile;
-  });
-  return profile;
-}
-
+/**
+ * Un « profil apprenant » (utilisé pour le scope des soumissions/quiz et le
+ * pilotage multi-apprenants) correspond désormais à un compte utilisateur réel :
+ * il n'existe plus de profil libre sans authentification.
+ */
 export function getProfiles(): LearnerProfile[] {
   const store = readStore();
-  ensureProfileRecord(store, DEFAULT_PROFILE_ID);
-  return Object.values(store.profiles).sort((a, b) => (a.createdAt < b.createdAt ? -1 : 1));
+  return Object.values(store.users)
+    .map((u) => ({ id: u.id, name: u.displayName, createdAt: u.createdAt }))
+    .sort((a, b) => (a.createdAt < b.createdAt ? -1 : 1));
 }
 
 export function getProfile(profileId: string): LearnerProfile {
   const store = readStore();
-  return (
-    store.profiles[profileId] ?? {
-      id: profileId,
-      name: profileId === DEFAULT_PROFILE_ID ? "Apprenant" : profileId,
-      createdAt: new Date(0).toISOString(),
+  const user = store.users[profileId];
+  return user
+    ? { id: user.id, name: user.displayName, createdAt: user.createdAt }
+    : { id: profileId, name: profileId, createdAt: new Date(0).toISOString() };
+}
+
+const SESSION_DURATION_MS = 1000 * 60 * 60 * 24 * 7;
+
+function normaliseEmail(email: string): string {
+  return email.trim().toLowerCase();
+}
+
+export async function createUser(input: {
+  email: string;
+  password: string;
+  displayName: string;
+  role: Role;
+}): Promise<UserAccount> {
+  const email = normaliseEmail(input.email);
+  if (!email || !input.password || !input.displayName.trim()) {
+    throw new Error("Email, mot de passe et nom sont requis.");
+  }
+  if (input.password.length < 8) {
+    throw new Error("Le mot de passe doit contenir au moins 8 caractères.");
+  }
+  return withStore((store) => {
+    const exists = Object.values(store.users).some((u) => u.email === email);
+    if (exists) {
+      throw new Error("Un compte existe déjà avec cet email.");
     }
-  );
+    const { hash, salt } = hashPassword(input.password);
+    const user: UserAccount = {
+      id: `usr-${Date.now()}-${Math.round(Math.random() * 1000)}`,
+      email,
+      passwordHash: hash,
+      passwordSalt: salt,
+      role: input.role,
+      displayName: input.displayName.trim(),
+      createdAt: new Date().toISOString(),
+    };
+    store.users[user.id] = user;
+    return user;
+  });
+}
+
+export function getUserByEmail(email: string): UserAccount | undefined {
+  const normalised = normaliseEmail(email);
+  return Object.values(readStore().users).find((u) => u.email === normalised);
+}
+
+export function getUserById(userId: string): UserAccount | undefined {
+  return readStore().users[userId];
+}
+
+export function getAllUsers(): UserAccount[] {
+  return Object.values(readStore().users).sort((a, b) => (a.createdAt < b.createdAt ? -1 : 1));
+}
+
+export async function verifyCredentials(email: string, password: string): Promise<UserAccount | null> {
+  const user = getUserByEmail(email);
+  if (!user) return null;
+  const ok = verifyPassword(password, user.passwordHash, user.passwordSalt);
+  return ok ? user : null;
+}
+
+export async function createSession(userId: string): Promise<string> {
+  const id = `sess-${Date.now()}-${Math.round(Math.random() * 1_000_000)}`;
+  const now = new Date();
+  const record: SessionRecord = {
+    id,
+    userId,
+    createdAt: now.toISOString(),
+    expiresAt: new Date(now.getTime() + SESSION_DURATION_MS).toISOString(),
+  };
+  await withStore((store) => {
+    store.sessions[id] = record;
+  });
+  return id;
+}
+
+export function getValidSession(sessionId: string): SessionRecord | undefined {
+  const record = readStore().sessions[sessionId];
+  if (!record) return undefined;
+  if (new Date(record.expiresAt).getTime() < Date.now()) return undefined;
+  return record;
+}
+
+export async function deleteSession(sessionId: string): Promise<void> {
+  await withStore((store) => {
+    delete store.sessions[sessionId];
+  });
 }
 
 export async function recordSubmission(
@@ -263,7 +424,6 @@ export async function recordSubmission(
   result: CaseSubmissionResult,
 ): Promise<void> {
   await withStore((store) => {
-    ensureProfileRecord(store, profileId);
     const byCase = store.submissions[profileId] ?? {};
     const list = byCase[caseId] ?? [];
     list.push(result);
@@ -298,7 +458,6 @@ export async function recordQuizAttempt(
   attempt: QuizAttempt,
 ): Promise<void> {
   await withStore((store) => {
-    ensureProfileRecord(store, profileId);
     const byModule = store.quizAttempts[profileId] ?? {};
     const list = byModule[moduleId] ?? [];
     list.push(attempt);
@@ -427,13 +586,87 @@ export function getGeneratedCase(caseId: string): GeneratedCaseRecord | undefine
   return readStore().generatedCases[caseId];
 }
 
-/** Réinitialise le prototype (statuts documents, annotations, soumissions, quiz, profils, P2) sans toucher aux seeds. */
+export async function createClient(input: {
+  household: Household;
+  createdBy: string;
+}): Promise<ClientRecord> {
+  const now = new Date().toISOString();
+  const record: ClientRecord = {
+    id: `CLI-${Date.now()}-${Math.round(Math.random() * 1000)}`,
+    household: input.household,
+    formulaCode: null,
+    formulaCatalog: null,
+    status: "prospect",
+    createdAt: now,
+    updatedAt: now,
+    createdBy: input.createdBy,
+  };
+  await withStore((store) => {
+    store.clients[record.id] = record;
+  });
+  return record;
+}
+
+export async function updateClient(
+  clientId: string,
+  updates: Partial<Pick<ClientRecord, "household" | "formulaCode" | "formulaCatalog" | "status">>,
+): Promise<ClientRecord> {
+  return withStore((store) => {
+    const record = store.clients[clientId];
+    if (!record) throw new Error("Client introuvable.");
+    Object.assign(record, updates, { updatedAt: new Date().toISOString() });
+    return record;
+  });
+}
+
+export async function deleteClient(clientId: string): Promise<void> {
+  await withStore((store) => {
+    delete store.clients[clientId];
+    for (const quoteId of Object.keys(store.quotes)) {
+      if (store.quotes[quoteId].clientId === clientId) delete store.quotes[quoteId];
+    }
+  });
+}
+
+export function getClients(): ClientRecord[] {
+  return Object.values(readStore().clients).sort((a, b) => (a.createdAt < b.createdAt ? 1 : -1));
+}
+
+export function getClientById(clientId: string): ClientRecord | undefined {
+  return readStore().clients[clientId];
+}
+
+export async function createQuote(input: Omit<QuoteRecord, "id" | "createdAt">): Promise<QuoteRecord> {
+  const record: QuoteRecord = {
+    ...input,
+    id: `DEV-${Date.now()}-${Math.round(Math.random() * 1000)}`,
+    createdAt: new Date().toISOString(),
+  };
+  await withStore((store) => {
+    store.quotes[record.id] = record;
+  });
+  return record;
+}
+
+export function getQuotes(clientId?: string): QuoteRecord[] {
+  const store = readStore();
+  const all = Object.values(store.quotes).sort((a, b) => (a.createdAt < b.createdAt ? 1 : -1));
+  return clientId ? all.filter((q) => q.clientId === clientId) : all;
+}
+
+export function getQuoteById(quoteId: string): QuoteRecord | undefined {
+  return readStore().quotes[quoteId];
+}
+
+/** Réinitialise les données de démonstration (statuts documents, soumissions, quiz, portefeuille clients, P2)
+ *  sans toucher aux seeds pédagogiques ni aux comptes utilisateurs / sessions. */
 export async function resetRuntimeStore(): Promise<void> {
   await withStore((store) => {
     store.documents = {};
     store.submissions = {};
     store.quizAttempts = {};
-    store.profiles = {};
+    store.clients = {};
+    store.quotes = {};
     store.complaints = [];
     store.cotisations = {};
     store.pecRecords = [];
