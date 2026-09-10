@@ -84,3 +84,14 @@
 
 ## Prochain travail
 - Attendre les instructions suivantes. Commit local uniquement, aucun push.
+
+## Terminé — étape 6 PEC & Devis
+- Création, correction, estimation AMC/RAC par le moteur existant et workflows Devis/PEC avec refus motivé obligatoire, historique et persistance runtimeStore par compte.
+- Liste et historique 360°, dossiers et anomalies synchronisés ; données contractuelles inconnues conservées sous « Donnée 2026 à vérifier ». Refus : clôture administrative documentée sans accord ni effacement du contrôle source.
+- Validation finale : 42 tests ciblés réussis, typecheck et lint réussis. Foyers pédagogiques préservés, aucun calcul dupliqué ni flux réel.
+
+## Restant — étape 6
+- Aucun problème bloquant constaté.
+
+## Prochain travail
+- Attendre les instructions suivantes ; commit local uniquement, aucun push.

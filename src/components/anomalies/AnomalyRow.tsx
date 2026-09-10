@@ -11,9 +11,9 @@ export function AnomalyRow({a}: {a:OperationalAnomaly}) {
   const router=useRouter();
   return <>
     <tr className="border-b border-border align-top" id={a.id}>
-      <td className="p-2"><Link className="text-brand underline" href={`/adherents/${a.householdId}`}>{a.adherentName}</Link><p><Link className="text-brand underline" href={`/prestations#${a.prestationId}`}>Prestation</Link> · <Link className="text-brand underline" href={`/dossiers#${a.dossierId}`}>Dossier</Link></p><p className="text-xs break-all">{a.prestationId}</p></td>
+      <td className="p-2"><Link className="text-brand underline" href={`/adherents/${a.householdId}`}>{a.adherentName}</Link><p><Link className="text-brand underline" href={a.quoteId ? `/pec-devis#${a.quoteId}` : `/prestations#${a.prestationId}`}>{a.quoteId ? "Devis / PEC" : "Prestation"}</Link> · <Link className="text-brand underline" href={`/dossiers#${a.dossierId}`}>Dossier</Link></p><p className="text-xs break-all">{a.quoteId ?? a.prestationId}</p></td>
       <td className="p-2">{a.type}</td><td className="p-2 font-semibold">{a.severity}</td><td className="p-2">{formatDateTime(a.createdAt)}</td>
-      <td className="p-2"><strong>{a.status}</strong><p className="text-xs">{a.conditionActive ? "Cause encore présente" : "Cause corrigée"}</p></td>
+      <td className="p-2"><strong>{a.status}</strong><p className="text-xs">{a.conditionActive ? "Cause encore présente" : "Contrôle levé / refus documenté"}</p></td>
       <td className="p-2"><dl><dt className="font-semibold">Cause probable</dt><dd>{a.cause}</dd><dt className="font-semibold mt-2">Impact</dt><dd>{a.impact}</dd><dt className="font-semibold mt-2">Action recommandée</dt><dd>{a.recommendation}</dd></dl></td>
     </tr>
     <tr className="border-b border-border"><td colSpan={6} className="p-2">
@@ -26,7 +26,7 @@ export function AnomalyRow({a}: {a:OperationalAnomaly}) {
             <label><span className="m-label">Statut de l’anomalie</span><select className="m-field" name="status" defaultValue={a.status}>{ANOMALY_STATUSES.map(s=><option key={s} disabled={s==="Résolue" && a.conditionActive}>{s}</option>)}</select></label>
             <label className="md:col-span-2"><span className="m-label">Suivi / résolution</span><textarea className="m-field" name="resolution" maxLength={3000} defaultValue={a.resolution} /></label>
           </fieldset>
-          <p className="m-help">{a.conditionActive ? "Corrigez d’abord la cause dans la prestation ; la résolution restera bloquée jusque-là." : "Pour résoudre : décrire la correction et le contrôle effectué (10 caractères minimum)."}</p>
+          <p className="m-help">{a.conditionActive ? "Corrigez d’abord la cause dans la source liée ; la résolution restera bloquée jusque-là." : "Pour résoudre : décrire la correction et le contrôle effectué (10 caractères minimum)."}</p>
           <button className="m-button" disabled={pending}>{pending?"Enregistrement…":"Enregistrer le traitement"}</button>
           {error && <p role="alert" className="m-error">{error}</p>}
         </form>

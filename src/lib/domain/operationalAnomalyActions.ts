@@ -9,7 +9,7 @@ export async function updateAnomalyAction(id:string,revision:number,raw:unknown)
   if(!input.success)return {error:"Statut ou résolution invalide."};
   try {
     const a=updateOperationalAnomaly(userId,id,revision,input.data);
-    for(const path of ["/flux-anomalies","/prestations","/dossiers","/cockpit",`/adherents/${a.householdId}`])revalidatePath(path);
+    for(const path of ["/pec-devis","/flux-anomalies","/prestations","/dossiers","/cockpit",`/adherents/${a.householdId}`])revalidatePath(path);
     return {};
   }catch(e){return {error:e instanceof HouseholdEditError ? e.message : "Enregistrement impossible."};}
 }

@@ -1,6 +1,6 @@
 import "server-only";
 import { getAllHouseholds } from "./households";
-import { getOperationalAnomalies, getPrestations, getDossierStates, saveDossierState } from "@/lib/store/runtimeStore";
+import { getDevisPec, getOperationalAnomalies, getPrestations, getDossierStates, saveDossierState } from "@/lib/store/runtimeStore";
 import { sortDossiers, type Dossier, type DossierState } from "./dossiers";
 const examples = [
   {type: "Contrôle d’adhésion", status: "À traiter", priority: "Normal", anomaly: null},
@@ -41,7 +41,16 @@ export function getDossiers(owner: string): Dossier[] {
       nextAction:p.anomalies.length ? "Compléter le contrôle de la prestation" : pendingResolution ? "Documenter la résolution dans Flux & Anomalies" : ["Validée","Payée","Clôturée"].includes(p.status) ? "Contrôle terminé" : "Contrôler puis liquider la prestation",
     };
   });
-  return sortDossiers([...base,...prestations]);
+  const quotes:Dossier[]=getDevisPec(owner).map(p=>{
+    const h=households.find(h=>h.householdId===p.householdId);
+    const state=states[p.dossierId] ?? {status:"À traiter" as const,priority:"Normal" as const,revision:0};
+    const pending=anomalies.some(a=>a.quoteId===p.id && a.status!=="Résolue");
+    return {...state,id:p.dossierId,householdId:p.householdId,adherent:h ? `${h.adherent.first_name} ${h.adherent.last_name}` : p.adherentName,
+      type:`${p.kind === "devis" ? "Devis" : "PEC"} — ${p.act}`,createdAt:p.createdAt,
+      anomaly:state.status === "Terminé" ? null : p.anomalies.join(" · ") || (pending ? "Résolution d’anomalie à documenter" : null),
+      nextAction:state.status === "Terminé" ? "Aucune action requise" : pending && !p.anomalies.length ? "Documenter la résolution dans Flux & Anomalies" : "Contrôler la demande dans PEC & Devis"};
+  });
+  return sortDossiers([...base,...prestations,...quotes]);
 }
 export function updateDossier(owner: string, id: string, revision: number, raw: unknown) {
   if (!getDossiers(owner).some(d => d.id === id)) throw new Error("Dossier introuvable.");

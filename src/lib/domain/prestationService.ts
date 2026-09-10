@@ -2,7 +2,7 @@ import "server-only";
 import { getHouseholdById } from "./households";
 import { getPrestations, createStoredPrestation, changeStoredPrestation, HouseholdEditError } from "@/lib/store/runtimeStore";
 import { PrestationInputSchema, contractAnomalies, calculatePrestation, nextPrestationStatus, type PrestationInput, type PrestationStatus } from "./prestations";
-function context(owner: string, input: PrestationInput) {
+export function context(owner: string, input: PrestationInput) {
   const h = getHouseholdById(input.householdId, owner);
   const member = h?.household.members.find(m => m.member_id === input.memberId);
   if (!h || !member) throw new HouseholdEditError("Adhérent ou bénéficiaire introuvable pour ce compte.");

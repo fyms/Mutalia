@@ -1,3 +1,4 @@
+import { DevisPecHistory } from "@/components/devisPec/DevisPecHistory";
 import { PrestationHistory } from "@/components/prestations/PrestationHistory";
 import { ManualHouseholdDetails } from "@/components/adherents/ManualHouseholdDetails";
 import { getSession } from "@/lib/store/session";
@@ -23,7 +24,7 @@ const TABS = [
   { key: "garanties", label: "Garanties" },
   { key: "cotisations", label: "Cotisations" },
   { key: "prestations", label: "Prestations" },
-  { key: "pec", label: "PEC" },
+  { key: "pec", label: "PEC & Devis" },
   { key: "documents", label: "Documents" },
   { key: "contacts", label: "Contacts" },
   { key: "historique", label: "Historique" },
@@ -177,7 +178,7 @@ export default async function Fiche360Page({
         <PrestationHistory owner={owner} householdId={householdId} />
       )}
       {activeTab === "pec" && (
-        <StubTab label="PEC & Devis" note="Émission de prise en charge dédiée prévue en P2 (voir le cas pratique pour un exercice guidé)." />
+        <DevisPecHistory owner={owner} householdId={householdId} />
       )}
 
       {activeTab === "documents" && (

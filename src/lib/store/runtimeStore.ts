@@ -1,3 +1,4 @@
+import { isRefused, type DevisPec } from "@/lib/domain/devisPec";
 import { describeControl, AnomalyUpdateSchema, type OperationalAnomaly } from "@/lib/domain/operationalAnomalies";
 import type { Prestation } from "@/lib/domain/prestations";
 import { DossierStateSchema, type DossierState } from "@/lib/domain/dossiers";
@@ -25,6 +26,7 @@ export interface DocumentState {
 export interface RuntimeStoreShape {
   version: 1;
   operationalAnomalies?: Record<string, OperationalAnomaly>;
+  devisPec?: Record<string, DevisPec>;
   prestations?: Record<string, Prestation>;
   dossiers?: Record<string, DossierState>;
   manualHouseholds?: Record<string, ManualHousehold>;
@@ -264,21 +266,33 @@ export function changeStoredPrestation(owner: string, id: string, revision: numb
     return value;
   });
 }
-function syncPrestationDossier(store: RuntimeStoreShape, value: Prestation) {
+function syncPrestationDossier(store: RuntimeStoreShape, value: Prestation | DevisPec) {
   store.dossiers ??= {};
   const old = store.dossiers[value.dossierId];
-  const done = ["Validée", "Payée", "Clôturée"].includes(value.status);
+  const refused = "kind" in value && isRefused(value);
+  const done = ["Validée", "Payée", "Clôturée", "Accepté", "Accordée", "Clôturé"].includes(value.status);
   store.dossiers[value.dossierId] = {
-    status: value.anomalies.length || Object.values(store.operationalAnomalies ?? {}).some(a => a.prestationId === value.id && a.conditionActive) ? "Incomplet" : Object.values(store.operationalAnomalies ?? {}).some(a => a.prestationId === value.id && a.status !== "Résolue") ? "À traiter" : done ? "Terminé" : "À traiter",
+    status: refused ? "Terminé" : value.anomalies.length || Object.values(store.operationalAnomalies ?? {}).some(a => (a.quoteId ?? a.prestationId) === value.id && a.conditionActive) ? "Incomplet" : Object.values(store.operationalAnomalies ?? {}).some(a => (a.quoteId ?? a.prestationId) === value.id && a.status !== "Résolue") ? "À traiter" : done ? "Terminé" : "À traiter",
     priority: old?.priority ?? "Normal", revision: (old?.revision ?? 0) + 1,
     updatedAt: new Date().toISOString(),
   };
 }
 
-function syncOperationalAnomalies(store: RuntimeStoreShape, p: Prestation): boolean {
+function syncOperationalAnomalies(store: RuntimeStoreShape, p: Prestation | DevisPec): boolean {
   store.operationalAnomalies ??= {};
   let changed = false;
   const active = new Set<string>();
+  if ("kind" in p && isRefused(p)) {
+    for(const a of Object.values(store.operationalAnomalies)) {
+      if(a.quoteId === p.id && (a.status !== "Résolue" || a.conditionActive)) {
+        a.conditionActive=false; a.status="Résolue"; a.resolution=`Refus motivé, sans accord : ${p.refusalReason}`;
+        a.updatedAt=p.updatedAt; a.revision++;
+        a.history.push({at:p.updatedAt,status:a.status,event:"Clôture administrative par refus ; donnée source conservée",resolution:a.resolution});
+        changed=true;
+      }
+    }
+    return changed;
+  }
   for (const message of p.anomalies) {
     const control = describeControl(message);
     const id = `ANO-${p.id}-${control.code}`;
@@ -287,7 +301,7 @@ function syncOperationalAnomalies(store: RuntimeStoreShape, p: Prestation): bool
     if (!prior) {
       const at = p.updatedAt;
       store.operationalAnomalies[id] = {
-        id, prestationId:p.id, dossierId:p.dossierId, householdId:p.householdId, adherentName:p.adherentName,
+        id, ...("kind" in p ? {quoteId:p.id} : {prestationId:p.id}), dossierId:p.dossierId, householdId:p.householdId, adherentName:p.adherentName,
         type:control.type, severity:"Bloquante", status:"À analyser", cause:control.cause,
         impact:control.impact, recommendation:control.recommendation, conditionActive:true,
         createdAt:at, updatedAt:at, revision:1, resolution:"",
@@ -303,11 +317,11 @@ function syncOperationalAnomalies(store: RuntimeStoreShape, p: Prestation): bool
     }
   }
   for (const a of Object.values(store.operationalAnomalies)) {
-    if (a.prestationId === p.id && a.conditionActive && !active.has(a.id)) {
+    if ((a.quoteId ?? a.prestationId) === p.id && a.conditionActive && !active.has(a.id)) {
       // Monetary corrections are confirmed only by a successful engine calculation.
       if (a.id.endsWith("-amo") && !p.result) continue;
       a.conditionActive=false; a.updatedAt=p.updatedAt; a.revision++;
-      a.history.push({at:p.updatedAt,status:a.status,event:"Cause corrigée dans la prestation ; résolution à documenter",resolution:a.resolution});
+      a.history.push({at:p.updatedAt,status:a.status,event:"Cause corrigée dans la source ; résolution à documenter",resolution:a.resolution});
       changed=true;
     }
   }
@@ -316,7 +330,7 @@ function syncOperationalAnomalies(store: RuntimeStoreShape, p: Prestation): bool
 export function getOperationalAnomalies(owner:string): OperationalAnomaly[] {
   return withStore(owner, store => {
     // Backfill controls from prestations already saved before this step, once.
-    for (const p of Object.values(store.prestations ?? {})) {
+    for (const p of [...Object.values(store.prestations ?? {}), ...Object.values(store.devisPec ?? {})]) {
       if (syncOperationalAnomalies(store,p)) syncPrestationDossier(store,p);
     }
     return Object.values(store.operationalAnomalies ?? {});
@@ -327,15 +341,36 @@ export function updateOperationalAnomaly(owner:string, id:string, revision:numbe
   return withStore(owner, store => {
     const a=store.operationalAnomalies?.[id];
     if (!a) throw new HouseholdEditError("Anomalie introuvable.");
-    const p=store.prestations?.[a.prestationId];
-    if (!p) throw new HouseholdEditError("Prestation liée introuvable.");
+    const p=a.quoteId ? store.devisPec?.[a.quoteId] : a.prestationId ? store.prestations?.[a.prestationId] : undefined;
+    if (!p) throw new HouseholdEditError("Source liée introuvable.");
     syncOperationalAnomalies(store,p);
     if (!Number.isInteger(revision) || a.revision !== revision) throw new HouseholdEditError("Anomalie modifiée dans un autre onglet. Rechargez la page.");
-    if (input.status === "Résolue" && a.conditionActive) throw new HouseholdEditError("Corrigez d’abord la cause dans la prestation liée.");
+    if (input.status === "Résolue" && a.conditionActive) throw new HouseholdEditError("Corrigez d’abord la cause dans la source liée.");
     if (input.status === "Résolue" && input.resolution.length < 10) throw new HouseholdEditError("Décrivez la résolution (10 caractères minimum).");
     a.status=input.status; a.resolution=input.resolution; a.revision++; a.updatedAt=new Date().toISOString();
     a.history.push({at:a.updatedAt,status:a.status,event:"Traitement de l’anomalie mis à jour",resolution:a.resolution});
     syncPrestationDossier(store,p);
     return a;
+  });
+}
+
+export function getDevisPec(owner:string):DevisPec[] {
+  return Object.values(readStore(owner).devisPec ?? {}).sort((a,b)=>b.createdAt.localeCompare(a.createdAt)||a.id.localeCompare(b.id));
+}
+export function createStoredDevisPec(owner:string,value:Omit<DevisPec,"id"|"dossierId"|"revision"|"createdAt"|"updatedAt"|"history">):DevisPec {
+  return withStore(owner,store=>{
+    const id=`${value.kind === "devis" ? "DEV" : "PEC"}-${randomUUID()}`, at=new Date().toISOString();
+    const record:DevisPec={...value,id,dossierId:`DOS-${id}`,revision:1,createdAt:at,updatedAt:at,history:[{at,status:value.status,event:"Demande enregistrée"}]};
+    store.devisPec ??= {}; store.devisPec[id]=record;
+    syncOperationalAnomalies(store,record);syncPrestationDossier(store,record);return record;
+  });
+}
+export function changeStoredDevisPec(owner:string,id:string,revision:number,change:(p:DevisPec)=>void):DevisPec {
+  return withStore(owner,store=>{
+    const p=store.devisPec?.[id];
+    if(!p)throw new HouseholdEditError("Devis / PEC introuvable.");
+    if(!Number.isInteger(revision)||revision!==p.revision)throw new HouseholdEditError("Demande modifiée dans un autre onglet. Rechargez la page.");
+    change(p);p.revision++;p.updatedAt=new Date().toISOString();
+    syncOperationalAnomalies(store,p);syncPrestationDossier(store,p);return p;
   });
 }
