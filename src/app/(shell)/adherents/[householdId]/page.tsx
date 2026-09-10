@@ -1,3 +1,4 @@
+import { PrestationHistory } from "@/components/prestations/PrestationHistory";
 import { ManualHouseholdDetails } from "@/components/adherents/ManualHouseholdDetails";
 import { getSession } from "@/lib/store/session";
 import Link from "next/link";
@@ -42,7 +43,7 @@ export default async function Fiche360Page({
   if (!household) notFound();
 
   const activeTab = TABS.some((t) => t.key === tab) ? tab! : "vue-generale";
-  if (!household.case) return <ManualHouseholdDetails record={household.manual} activeTab={activeTab} tabs={TABS} />;
+  if (!household.case) return <ManualHouseholdDetails owner={owner} record={household.manual} activeTab={activeTab} tabs={TABS} />;
   const basePath = `/adherents/${householdId}`;
   const referential = getHarmonieReferential();
   const submissions = getSubmissions(owner, household.case.case_id);
@@ -173,7 +174,7 @@ export default async function Fiche360Page({
         <StubTab label="Cotisations" note="Module de calcul de cotisation prévu en P2 (Cotisations, régularisations)." />
       )}
       {activeTab === "prestations" && (
-        <StubTab label="Prestations" note="Workflow de liquidation des prestations prévu en P2." />
+        <PrestationHistory owner={owner} householdId={householdId} />
       )}
       {activeTab === "pec" && (
         <StubTab label="PEC & Devis" note="Émission de prise en charge dédiée prévue en P2 (voir le cas pratique pour un exercice guidé)." />

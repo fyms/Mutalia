@@ -1,3 +1,4 @@
+import { PrestationHistory } from "@/components/prestations/PrestationHistory";
 import { HouseholdEditor } from "./HouseholdEditor";
 import Link from "next/link";
 import { PageHeader } from "@/components/ui/PageHeader";
@@ -6,8 +7,8 @@ import { getHouseholdFormulas } from "@/lib/domain/householdFormulas";
 import type { ManualHousehold } from "@/lib/domain/manualHouseholds";
 import { formatDate, formatDateTime } from "@/lib/utils/format";
 
-export function ManualHouseholdDetails({record, activeTab, tabs}: {
-  record: ManualHousehold; activeTab: string; tabs: {key: string; label: string}[];
+export function ManualHouseholdDetails({owner, record, activeTab, tabs}: {
+  owner: string; record: ManualHousehold; activeTab: string; tabs: {key: string; label: string}[];
 }) {
   const formula = getHouseholdFormulas().find(f => f.key === record.formulaKey);
   const identity = <dl className="space-y-2">
@@ -37,13 +38,14 @@ export function ManualHouseholdDetails({record, activeTab, tabs}: {
       <section className="m-panel"><h2>Coordonnées</h2>{contact}</section>
     </div>}
     {activeTab === "beneficiaires" && <section className="m-panel"><h2>Adhérent principal</h2>{identity}<p>{(record.beneficiaries ?? []).length} bénéficiaire(s) supplémentaire(s), visibles dans la gestion du foyer ci-dessus.</p></section>}
+    {activeTab === "prestations" && <PrestationHistory owner={owner} householdId={record.id} />}
     {activeTab === "contacts" && <section className="m-panel"><h2>Coordonnées</h2>{contact}</section>}
     {activeTab === "contrat" && <section className="m-panel"><h2>Adhésion</h2>{contract}</section>}
     {activeTab === "garanties" && <section className="m-panel"><h2>{formula?.label}</h2>
       <p>La sélection de formule ne vaut pas validation des droits ni des remboursements.</p>
       <Link className="underline" href="/garanties">Consulter le référentiel 2026</Link></section>}
     {activeTab === "historique" && <section className="m-panel"><h2>Historique</h2><p>Création du foyer le {formatDateTime(record.createdAt)}.</p></section>}
-    {["documents", "cotisations", "prestations", "pec"].includes(activeTab) && <section className="m-panel"><h2>{tabs.find(t => t.key === activeTab)?.label}</h2><p>Aucun élément enregistré pour ce nouveau foyer.</p></section>}
+    {["documents", "cotisations", "pec"].includes(activeTab) && <section className="m-panel"><h2>{tabs.find(t => t.key === activeTab)?.label}</h2><p>Aucun élément enregistré pour ce nouveau foyer.</p></section>}
   </div>;
 }
 function Row({label, children}: {label: string; children: React.ReactNode}) {

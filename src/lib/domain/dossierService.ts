@@ -1,6 +1,6 @@
 import "server-only";
 import { getAllHouseholds } from "./households";
-import { getDossierStates, saveDossierState } from "@/lib/store/runtimeStore";
+import { getPrestations, getDossierStates, saveDossierState } from "@/lib/store/runtimeStore";
 import { sortDossiers, type Dossier, type DossierState } from "./dossiers";
 const examples = [
   {type: "Contrôle d’adhésion", status: "À traiter", priority: "Normal", anomaly: null},
@@ -18,7 +18,8 @@ const nextActions: Record<DossierState["status"], string> = {
 };
 export function getDossiers(owner: string): Dossier[] {
   const states = getDossierStates(owner);
-  return sortDossiers(getAllHouseholds(owner).map((h, i) => {
+  const households = getAllHouseholds(owner);
+  const base: Dossier[] = households.map((h, i) => {
     const id = `DOS-${h.householdId}`;
     const example = h.case ? examples[i % examples.length] : examples[0];
     const state = states[id] ?? {status: example.status, priority: example.priority, revision: 0};
@@ -28,7 +29,17 @@ export function getDossiers(owner: string): Dossier[] {
       anomaly: state.status === "Terminé" ? null : example.anomaly ?? (state.status === "Incomplet" ? "Pièces à compléter (simulation)" : null),
       nextAction: nextActions[state.status],
     };
-  }));
+  });
+  const prestations: Dossier[] = getPrestations(owner).map(p => {
+    const h = households.find(h => h.householdId === p.householdId);
+    const state = states[p.dossierId] ?? {status:"À traiter" as const,priority:"Normal" as const,revision:0};
+    return {...state,id:p.dossierId,householdId:p.householdId,
+      adherent:h ? `${h.adherent.first_name} ${h.adherent.last_name}` : p.adherentName,
+      type:`Prestation — ${p.act}`,createdAt:p.createdAt,anomaly:p.anomalies.join(" · ") || null,
+      nextAction:p.anomalies.length ? "Compléter le contrôle de la prestation" : ["Validée","Payée","Clôturée"].includes(p.status) ? "Contrôle terminé" : "Contrôler puis liquider la prestation",
+    };
+  });
+  return sortDossiers([...base,...prestations]);
 }
 export function updateDossier(owner: string, id: string, revision: number, raw: unknown) {
   if (!getDossiers(owner).some(d => d.id === id)) throw new Error("Dossier introuvable.");

@@ -1,16 +1,9 @@
-import { StubPage } from "@/components/ui/EmptyState";
-
-export default function PrestationsPage() {
-  return (
-    <StubPage
-      title="Prestations"
-      phase="P2"
-      description="Le workflow complet de liquidation des prestations (contrôle, calcul, mise en paiement pédagogique) est prévu en P2. Le simulateur de remboursement (menu Simulateur) couvre déjà le calcul BRSS/AMO/AMC en P0."
-      bullets={[
-        "Historique de prestations liquidées par bénéficiaire",
-        "Rapprochement devis / facture / décompte",
-        "Détection d'anomalies intégrée au workflow (aujourd'hui disponible via les cas pratiques)",
-      ]}
-    />
-  );
+import { getSession } from "@/lib/store/session";
+import { PageHeader } from "@/components/ui/PageHeader";
+import { PrestationHistory } from "@/components/prestations/PrestationHistory";
+export default async function PrestationsPage() {
+  const {userId} = await getSession();
+  return <div><PageHeader title="Prestations santé" description="Reçue → À contrôler → Calculée → Validée → Payée → Clôturée. Liquidation pédagogique : aucun paiement réel." />
+    <PrestationHistory owner={userId} allowCreate />
+  </div>;
 }

@@ -1,3 +1,4 @@
+import type { Prestation } from "@/lib/domain/prestations";
 import { DossierStateSchema, type DossierState } from "@/lib/domain/dossiers";
 import "server-only";
 import { randomUUID } from "node:crypto";
@@ -22,6 +23,7 @@ export interface DocumentState {
 
 export interface RuntimeStoreShape {
   version: 1;
+  prestations?: Record<string, Prestation>;
   dossiers?: Record<string, DossierState>;
   manualHouseholds?: Record<string, ManualHousehold>;
   documents: Record<string, DocumentState>;
@@ -229,4 +231,42 @@ export function saveDossierState(owner: string, id: string, revision: number, ra
     store.dossiers ??= {};
     return store.dossiers[id] = {...input, revision: revision + 1, updatedAt: new Date().toISOString()};
   });
+}
+
+export function getPrestations(owner: string): Prestation[] {
+  return Object.values(readStore(owner).prestations ?? {}).sort((a,b) => b.createdAt.localeCompare(a.createdAt) || a.id.localeCompare(b.id));
+}
+export function createStoredPrestation(owner: string, value: Omit<Prestation, "id" | "dossierId" | "revision" | "createdAt" | "updatedAt" | "history">): Prestation {
+  return withStore(owner, store => {
+    const id = `PRE-${randomUUID()}`;
+    const at = new Date().toISOString();
+    const record: Prestation = {...value, id, dossierId: `DOS-${id}`, revision: 1,
+      createdAt: at, updatedAt: at, history: [{at, status: "Reçue", event: "Prestation reçue"}]};
+    store.prestations ??= {};
+    store.prestations[id] = record;
+    syncPrestationDossier(store, record);
+    return record;
+  });
+}
+export function changeStoredPrestation(owner: string, id: string, revision: number, change: (value: Prestation) => void): Prestation {
+  return withStore(owner, store => {
+    const value = store.prestations?.[id];
+    if (!value) throw new HouseholdEditError("Prestation introuvable.");
+    if (!Number.isInteger(revision) || revision !== value.revision) throw new HouseholdEditError("Prestation modifiée dans un autre onglet. Rechargez la page.");
+    change(value);
+    value.revision++;
+    value.updatedAt = new Date().toISOString();
+    syncPrestationDossier(store, value);
+    return value;
+  });
+}
+function syncPrestationDossier(store: RuntimeStoreShape, value: Prestation) {
+  store.dossiers ??= {};
+  const old = store.dossiers[value.dossierId];
+  const done = ["Validée", "Payée", "Clôturée"].includes(value.status);
+  store.dossiers[value.dossierId] = {
+    status: done ? "Terminé" : value.anomalies.length ? "Incomplet" : "À traiter",
+    priority: old?.priority ?? "Normal", revision: (old?.revision ?? 0) + 1,
+    updatedAt: new Date().toISOString(),
+  };
 }

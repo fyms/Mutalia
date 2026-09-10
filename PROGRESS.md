@@ -54,3 +54,19 @@
 
 ## Prochain travail
 - Attendre les instructions de l’étape suivante. Commit local uniquement, aucun push.
+
+## Terminé — étape 4 : Prestations
+- Page Prestations fonctionnelle : création, adhérent/bénéficiaire, acte et date de soins, montants, anomalies, résultats et historique des statuts.
+- Réutilisation directe de computeReimbursement : % BRSS, forfait complémentaire et frais réels ; aucune copie des calculs ni affectation automatique de garantie depuis une formule.
+- Garantie/source/droits non contrôlés : « Donnée 2026 à vérifier », aucun résultat présenté comme liquidé et validation bloquée. Correction possible avant calcul ; contrôle des dates et de l’AMO supérieure au facturé.
+- Workflow séquentiel Reçue → À contrôler → Calculée → Validée → Payée → Clôturée ; paiement strictement pédagogique, sans flux financier.
+- Persistance et historique dans le runtimeStore par compte, conflits de révision contrôlés ; historique dans l’onglet Prestations des fiches 360° pédagogiques et manuelles.
+- Dossier de contrôle lié automatiquement à chaque prestation, actualisé sans doublon avec les anomalies et l’avancement ; cockpit actualisé.
+- Validation finale : 37 tests ciblés (prestations, moteur existant, dossiers, adhérents, comptes), typecheck et lint réussis.
+
+## Restant — étape 4
+- Aucun problème bloquant constaté. Les garanties doivent être renseignées et vérifiées pour l’exercice ; aucun barème contractuel manquant inventé.
+- PEC, cotisations, NOEMIE complet et paiement réel hors périmètre.
+
+## Prochain travail
+- Attendre les instructions suivantes. Commit local uniquement, aucun push.
