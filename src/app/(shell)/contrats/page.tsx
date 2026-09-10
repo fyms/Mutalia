@@ -1,10 +1,11 @@
+import { getSession } from "@/lib/store/session";
 import Link from "next/link";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { Card } from "@/components/ui/Card";
 import { getAllHouseholds } from "@/lib/domain/households";
 
 export default async function ContratsPage() {
-  const households = getAllHouseholds();
+  const households = getAllHouseholds((await getSession()).userId);
 
   return (
     <div>
@@ -30,8 +31,8 @@ export default async function ContratsPage() {
                     {h.adherent.first_name} {h.adherent.last_name}
                   </Link>
                 </td>
-                <td className="px-4 py-2.5">{h.case.contract.provider}</td>
-                <td className="px-4 py-2.5">{h.case.contract.status}</td>
+                <td className="px-4 py-2.5">{h.case?.contract.provider ?? "Harmonie Mutuelle"}</td>
+                <td className="px-4 py-2.5">{h.case?.contract.status ?? "Adhésion saisie"}</td>
                 <td className="px-4 py-2.5">{h.assignedFormula}</td>
               </tr>
             ))}

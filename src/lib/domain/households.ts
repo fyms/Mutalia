@@ -1,9 +1,12 @@
+import { getManualHouseholds } from "@/lib/store/runtimeStore";
+import { getHouseholdFormulas } from "./householdFormulas";
+import type { ManualHousehold } from "./manualHouseholds";
 import "server-only";
 import { getAllCases, getHarmonieReferential } from "@/lib/data/loaders";
 import type { Household, Member, TrainingCase } from "@/lib/domain/types";
 import { DATA_TO_VERIFY } from "@/lib/domain/constants";
 
-export interface HouseholdView {
+export interface PedagogicalHouseholdView {
   householdId: string;
   case: TrainingCase;
   household: Household;
@@ -29,9 +32,11 @@ function hashString(input: string): number {
   return hash;
 }
 
-let cache: HouseholdView[] | null = null;
+export type HouseholdView = PedagogicalHouseholdView | (Omit<PedagogicalHouseholdView, "case"> & {case: null; manual: ManualHousehold});
 
-export function getAllHouseholds(): HouseholdView[] {
+let cache: PedagogicalHouseholdView[] | null = null;
+
+function getPedagogicalHouseholds(): PedagogicalHouseholdView[] {
   if (cache) return cache;
   const cases = getAllCases();
   const referential = getHarmonieReferential();
@@ -55,13 +60,32 @@ export function getAllHouseholds(): HouseholdView[] {
       assignedFormula: formula.formula,
       starsSoins: formula.soins_stars,
       starsEquipements: formula.equipements_stars,
-    } satisfies HouseholdView;
+    } satisfies PedagogicalHouseholdView;
   });
   return cache;
 }
 
-export function getHouseholdById(householdId: string): HouseholdView | undefined {
-  return getAllHouseholds().find((h) => h.householdId === householdId);
+export function getAllHouseholds(owner?: string): HouseholdView[] {
+  const seeds = getPedagogicalHouseholds();
+  if (!owner) return seeds;
+  const formulas = getHouseholdFormulas();
+  const manual: HouseholdView[] = getManualHouseholds(owner).map(record => {
+    const adherent: Member = {
+      member_id: record.memberId, household_id: record.id, role: "adherent",
+      first_name: record.firstName, last_name: record.lastName, birth_date: record.birthDate,
+    };
+    return {
+      householdId: record.id, case: null, manual: record, adherent, beneficiaries: [],
+      household: {household_id: record.id, members: [adherent]},
+      assignedFormula: formulas.find(f => f.key === record.formulaKey)?.formula ?? DATA_TO_VERIFY,
+      starsSoins: DATA_TO_VERIFY, starsEquipements: DATA_TO_VERIFY,
+    };
+  });
+  return [...seeds, ...manual];
+}
+
+export function getHouseholdById(householdId: string, owner?: string): HouseholdView | undefined {
+  return getAllHouseholds(owner).find((h) => h.householdId === householdId);
 }
 
 export function computeAge(birthDate: string): number {

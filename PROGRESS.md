@@ -17,3 +17,15 @@
 
 ## Prochain travail
 - Prochain lot distinct : compléter les postes CCN manquants depuis les sources officielles, en maintenant la séparation des conventions.
+
+## Terminé — étape 1 : création d’adhérent
+- Formulaire /adherents/nouveau, validation serveur, formules issues du référentiel 2026, identifiants uniques et persistance SQLite par compte.
+- Redirection vers la fiche 360°, présence après rechargement, liste et recherche actualisées ; 12 foyers pédagogiques conservés.
+- Modèle préparé pour modification/suppression futures, sans développer ces fonctions.
+- Validation déjà effectuée : 14 tests ciblés, typecheck, lint et parcours navigateur. Foyer de recette retiré après vérification.
+
+## Restant — étape 1
+- Aucun problème bloquant constaté.
+
+## Prochain travail
+- Attendre les instructions pour l’étape suivante.

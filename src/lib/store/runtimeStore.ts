@@ -1,4 +1,7 @@
 import "server-only";
+import { randomUUID } from "node:crypto";
+import { ManualHouseholdInputSchema, type ManualHousehold } from "@/lib/domain/manualHouseholds";
+import { getHouseholdFormulas } from "@/lib/domain/householdFormulas";
 import { db } from "@/lib/db";
 import type { DocumentStatus } from "@/lib/domain/constants";
 import type { CaseSubmissionResult } from "@/lib/domain/types";
@@ -18,6 +21,7 @@ export interface DocumentState {
 
 export interface RuntimeStoreShape {
   version: 1;
+  manualHouseholds?: Record<string, ManualHousehold>;
   documents: Record<string, DocumentState>;
   submissions: Record<string, CaseSubmissionResult[]>;
 }
@@ -152,4 +156,25 @@ export function recordSubmissionOnce(
     ).run(ownerId, result.caseId, revision, JSON.stringify(result));
     return result;
   })();
+}
+
+export function getManualHouseholds(owner: string): ManualHousehold[] {
+  return Object.values(readStore(owner).manualHouseholds ?? {}).filter(h => !h.deletedAt);
+}
+
+export function createManualHousehold(owner: string, raw: unknown): ManualHousehold {
+  const input = ManualHouseholdInputSchema.parse(raw);
+  if (!getHouseholdFormulas().some(f => f.key === input.formulaKey))
+    throw new Error("Choisissez une formule du référentiel Harmonie 2026.");
+  return withStore(owner, store => {
+    const now = new Date().toISOString();
+    const household: ManualHousehold = {
+      ...input, id: `FOY-M-${randomUUID()}`, memberId: `MEM-M-${randomUUID()}`,
+      source: "manual", referenceYear: 2026, createdAt: now, updatedAt: now,
+      revision: 1, deletedAt: null,
+    };
+    store.manualHouseholds ??= {};
+    store.manualHouseholds[household.id] = household;
+    return household;
+  });
 }

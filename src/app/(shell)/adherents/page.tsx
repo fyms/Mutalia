@@ -1,3 +1,4 @@
+import { getSession } from "@/lib/store/session";
 import Link from "next/link";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { Card } from "@/components/ui/Card";
@@ -7,13 +8,14 @@ import { MEMBER_ROLE_LABELS } from "@/lib/domain/constants";
 import { formatDate } from "@/lib/utils/format";
 
 export default async function AdherentsPage() {
-  const households = getAllHouseholds();
+  const households = getAllHouseholds((await getSession()).userId);
 
   return (
     <div>
       <PageHeader
         title="Adhérents"
-        description="Portefeuille de foyers fictifs (particuliers uniquement) issus des 12 cas pédagogiques Mutalia."
+        description="Les 12 foyers pédagogiques et vos adhérents créés manuellement."
+        action={<Link href="/adherents/nouveau" className="m-button">Nouvel adhérent</Link>}
       />
 
       <Card padded={false} className="overflow-hidden">
@@ -53,9 +55,9 @@ export default async function AdherentsPage() {
                     <Badge tone="brand">{h.assignedFormula}</Badge>
                   </td>
                   <td className="px-4 py-2.5">
-                    <Link href={`/cas-pratiques/${h.case.case_id}`} className="text-brand hover:underline">
+                    {h.case ? <Link href={`/cas-pratiques/${h.case.case_id}`} className="text-brand hover:underline">
                       {h.case.case_id}
-                    </Link>
+                    </Link> : <span>Création manuelle</span>}
                   </td>
                 </tr>
               ))}

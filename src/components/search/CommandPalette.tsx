@@ -43,15 +43,16 @@ export function CommandPalette() {
 
   useEffect(() => {
     if (!open) return;
-    if (items === null) {
-      fetch("/api/search-index")
+    const controller = new AbortController();
+    {
+      fetch("/api/search-index", {cache: "no-store", signal: controller.signal})
         .then((r) => r.json())
         .then((data: SearchItem[]) => setItems(data))
-        .catch(() => setItems([]));
+        .catch(() => { if (!controller.signal.aborted) setItems([]); });
     }
     const timer = setTimeout(() => inputRef.current?.focus(), 10);
-    return () => clearTimeout(timer);
-  }, [open, items]);
+    return () => { clearTimeout(timer); controller.abort(); };
+  }, [open]);
 
   const fuse = useMemo(() => {
     if (!items) return null;

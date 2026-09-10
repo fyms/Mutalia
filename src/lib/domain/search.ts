@@ -25,8 +25,8 @@ const STATIC_PAGES: SearchItem[] = [
   { id: "page-academy", type: "page", title: "Mutalia Academy", url: "/academy" },
 ];
 
-/** Index public de recherche globale : ne contient jamais de contenu d'answer_key. */
-export function buildSearchIndex(): SearchItem[] {
+/** Index de recherche du compte : ne contient jamais de contenu d'answer_key. */
+export function buildSearchIndex(owner?: string): SearchItem[] {
   const items: SearchItem[] = [...STATIC_PAGES];
 
   for (const entry of getLexicon()) {
@@ -62,7 +62,7 @@ export function buildSearchIndex(): SearchItem[] {
     });
   }
 
-  for (const household of getAllHouseholds()) {
+  for (const household of getAllHouseholds(owner)) {
     items.push({
       id: `adh-${household.householdId}`,
       type: "adherent",

@@ -1,3 +1,4 @@
+import { ManualHouseholdDetails } from "@/components/adherents/ManualHouseholdDetails";
 import { getSession } from "@/lib/store/session";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -37,10 +38,11 @@ export default async function Fiche360Page({
   const owner = (await getSession()).userId;
   const { householdId } = await params;
   const { tab } = await searchParams;
-  const household = getHouseholdById(householdId);
+  const household = getHouseholdById(householdId, owner);
   if (!household) notFound();
 
   const activeTab = TABS.some((t) => t.key === tab) ? tab! : "vue-generale";
+  if (!household.case) return <ManualHouseholdDetails record={household.manual} activeTab={activeTab} tabs={TABS} />;
   const basePath = `/adherents/${householdId}`;
   const referential = getHarmonieReferential();
   const submissions = getSubmissions(owner, household.case.case_id);
