@@ -1,3 +1,5 @@
+import { EmptyState } from "@/components/ui/EmptyState";
+import { CotisationHistory } from "@/components/cotisations/CotisationHistory";
 import { DevisPecHistory } from "@/components/devisPec/DevisPecHistory";
 import { PrestationHistory } from "@/components/prestations/PrestationHistory";
 import { ManualHouseholdDetails } from "@/components/adherents/ManualHouseholdDetails";
@@ -15,7 +17,6 @@ import { getSubmissions } from "@/lib/store/runtimeStore";
 import { getDocumentState } from "@/lib/store/runtimeStore";
 import { DOCUMENT_TYPE_LABELS, MEMBER_ROLE_LABELS, type DocumentStatus } from "@/lib/domain/constants";
 import { formatDate, formatDateTime } from "@/lib/utils/format";
-import { EmptyState } from "@/components/ui/EmptyState";
 
 const TABS = [
   { key: "vue-generale", label: "Vue générale" },
@@ -172,7 +173,7 @@ export default async function Fiche360Page({
       )}
 
       {activeTab === "cotisations" && (
-        <StubTab label="Cotisations" note="Module de calcul de cotisation prévu en P2 (Cotisations, régularisations)." />
+        <CotisationHistory owner={owner} householdId={householdId} />
       )}
       {activeTab === "prestations" && (
         <PrestationHistory owner={owner} householdId={householdId} />
@@ -260,8 +261,4 @@ function Row({ label, children }: { label: string; children: React.ReactNode }) 
       <dd className="font-medium text-foreground">{children}</dd>
     </div>
   );
-}
-
-function StubTab({ label, note }: { label: string; note: string }) {
-  return <EmptyState title={`${label} — à venir`} description={note} />;
 }

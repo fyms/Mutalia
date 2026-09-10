@@ -1,3 +1,4 @@
+import { CotisationHistory } from "@/components/cotisations/CotisationHistory";
 import { DevisPecHistory } from "@/components/devisPec/DevisPecHistory";
 import { PrestationHistory } from "@/components/prestations/PrestationHistory";
 import { HouseholdEditor } from "./HouseholdEditor";
@@ -39,6 +40,7 @@ export function ManualHouseholdDetails({owner, record, activeTab, tabs}: {
       <section className="m-panel"><h2>Coordonnées</h2>{contact}</section>
     </div>}
     {activeTab === "beneficiaires" && <section className="m-panel"><h2>Adhérent principal</h2>{identity}<p>{(record.beneficiaries ?? []).length} bénéficiaire(s) supplémentaire(s), visibles dans la gestion du foyer ci-dessus.</p></section>}
+    {activeTab === "cotisations" && <CotisationHistory owner={owner} householdId={record.id} />}
     {activeTab === "pec" && <DevisPecHistory owner={owner} householdId={record.id} />}
     {activeTab === "prestations" && <PrestationHistory owner={owner} householdId={record.id} />}
     {activeTab === "contacts" && <section className="m-panel"><h2>Coordonnées</h2>{contact}</section>}
@@ -47,7 +49,7 @@ export function ManualHouseholdDetails({owner, record, activeTab, tabs}: {
       <p>La sélection de formule ne vaut pas validation des droits ni des remboursements.</p>
       <Link className="underline" href="/garanties">Consulter le référentiel 2026</Link></section>}
     {activeTab === "historique" && <section className="m-panel"><h2>Historique</h2><p>Création du foyer le {formatDateTime(record.createdAt)}.</p></section>}
-    {["documents", "cotisations"].includes(activeTab) && <section className="m-panel"><h2>{tabs.find(t => t.key === activeTab)?.label}</h2><p>Aucun élément enregistré pour ce nouveau foyer.</p></section>}
+    {["documents"].includes(activeTab) && <section className="m-panel"><h2>{tabs.find(t => t.key === activeTab)?.label}</h2><p>Aucun élément enregistré pour ce nouveau foyer.</p></section>}
   </div>;
 }
 function Row({label, children}: {label: string; children: React.ReactNode}) {

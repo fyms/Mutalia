@@ -1,3 +1,4 @@
+import { cotisationSummary, type Cotisation } from "@/lib/domain/cotisations";
 import { isRefused, type DevisPec } from "@/lib/domain/devisPec";
 import { describeControl, AnomalyUpdateSchema, type OperationalAnomaly } from "@/lib/domain/operationalAnomalies";
 import type { Prestation } from "@/lib/domain/prestations";
@@ -25,6 +26,7 @@ export interface DocumentState {
 
 export interface RuntimeStoreShape {
   version: 1;
+  cotisations?: Record<string, Cotisation>;
   operationalAnomalies?: Record<string, OperationalAnomaly>;
   devisPec?: Record<string, DevisPec>;
   prestations?: Record<string, Prestation>;
@@ -373,4 +375,39 @@ export function changeStoredDevisPec(owner:string,id:string,revision:number,chan
     change(p);p.revision++;p.updatedAt=new Date().toISOString();
     syncOperationalAnomalies(store,p);syncPrestationDossier(store,p);return p;
   });
+}
+
+function syncCotisationDossier(store:RuntimeStoreShape,p:Cotisation) {
+ const summary=cotisationSummary(p);
+ if(!summary.overdue && !p.dossierId)return;
+ p.dossierId ??= `DOS-${p.id}`;store.dossiers ??= {};
+ const old=store.dossiers[p.dossierId];
+ const status=summary.overdue ? "À traiter" : "Terminé";
+ if(old?.status===status)return;
+ store.dossiers[p.dossierId]={status,priority:old?.priority ?? "Normal",revision:(old?.revision ?? 0)+1,updatedAt:new Date().toISOString()};
+}
+export function getCotisations(owner:string):Cotisation[] {
+ return withStore(owner,store=>{
+  const rows=Object.values(store.cotisations ?? {});
+  for(const p of rows)syncCotisationDossier(store,p);
+  return rows.sort((a,b)=>a.dueDate.localeCompare(b.dueDate)||a.id.localeCompare(b.id));
+ });
+}
+export function createStoredCotisation(owner:string,input:Pick<Cotisation,"householdId"|"adherentName"|"period"|"expectedCents"|"dueDate">) {
+ return withStore(owner,store=>{
+  const at=new Date().toISOString();
+  const p:Cotisation={...input,id:`COT-${randomUUID()}`,revision:1,createdAt:at,updatedAt:at,entries:[]};
+  store.cotisations ??= {};store.cotisations[p.id]=p;syncCotisationDossier(store,p);return p;
+ });
+}
+export function addStoredCotisationEntry(owner:string,id:string,revision:number,entry:Omit<Cotisation["entries"][number],"id"|"createdAt">) {
+ return withStore(owner,store=>{
+  const p=store.cotisations?.[id];
+  if(!p)throw new HouseholdEditError("Échéance introuvable.");
+  if(!Number.isInteger(revision)||p.revision!==revision)throw new HouseholdEditError("Échéance modifiée dans un autre onglet. Rechargez la page.");
+  if(!Number.isSafeInteger(entry.cents)||entry.cents<=0||entry.cents>cotisationSummary(p).balance)throw new HouseholdEditError("Le montant doit être positif et ne pas dépasser le solde.");
+  p.updatedAt=new Date().toISOString();p.revision++;
+  p.entries.push({...entry,id:`REG-${randomUUID()}`,createdAt:p.updatedAt});
+  syncCotisationDossier(store,p);return p;
+ });
 }

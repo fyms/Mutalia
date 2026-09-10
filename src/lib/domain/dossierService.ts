@@ -1,6 +1,7 @@
+import { cotisationSummary } from "./cotisations";
 import "server-only";
 import { getAllHouseholds } from "./households";
-import { getDevisPec, getOperationalAnomalies, getPrestations, getDossierStates, saveDossierState } from "@/lib/store/runtimeStore";
+import { getCotisations, getDevisPec, getOperationalAnomalies, getPrestations, getDossierStates, saveDossierState } from "@/lib/store/runtimeStore";
 import { sortDossiers, type Dossier, type DossierState } from "./dossiers";
 const examples = [
   {type: "Contrôle d’adhésion", status: "À traiter", priority: "Normal", anomaly: null},
@@ -18,6 +19,7 @@ const nextActions: Record<DossierState["status"], string> = {
 };
 export function getDossiers(owner: string): Dossier[] {
   const anomalies = getOperationalAnomalies(owner);
+  const cotisations = getCotisations(owner);
   const states = getDossierStates(owner);
   const households = getAllHouseholds(owner);
   const base: Dossier[] = households.map((h, i) => {
@@ -50,7 +52,13 @@ export function getDossiers(owner: string): Dossier[] {
       anomaly:state.status === "Terminé" ? null : p.anomalies.join(" · ") || (pending ? "Résolution d’anomalie à documenter" : null),
       nextAction:state.status === "Terminé" ? "Aucune action requise" : pending && !p.anomalies.length ? "Documenter la résolution dans Flux & Anomalies" : "Contrôler la demande dans PEC & Devis"};
   });
-  return sortDossiers([...base,...prestations,...quotes]);
+  const dues:Dossier[]=cotisations.filter(p=>p.dossierId).map(p=>{
+    const summary=cotisationSummary(p),h=households.find(h=>h.householdId===p.householdId);
+    return {...states[p.dossierId!],id:p.dossierId!,householdId:p.householdId,adherent:h ? `${h.adherent.first_name} ${h.adherent.last_name}` : p.adherentName,
+      type:`Cotisation pédagogique — ${p.period}`,createdAt:p.createdAt,anomaly:summary.overdue ? "Solde impayé après échéance" : null,
+      nextAction:summary.overdue ? "Enregistrer le règlement ou la régularisation dans Cotisations" : "Aucune action requise"};
+  });
+  return sortDossiers([...base,...prestations,...quotes,...dues]);
 }
 export function updateDossier(owner: string, id: string, revision: number, raw: unknown) {
   if (!getDossiers(owner).some(d => d.id === id)) throw new Error("Dossier introuvable.");

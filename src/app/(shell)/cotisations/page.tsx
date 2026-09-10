@@ -1,11 +1,5 @@
-import { StubPage } from "@/components/ui/EmptyState";
-
-export default function CotisationsPage() {
-  return (
-    <StubPage
-      title="Cotisations"
-      phase="P2"
-      description="Calcul et régularisation de cotisations, gestion des impayés : prévu en P2, en cohérence avec le lexique (catégorie Cotisations) et la FAQ déjà disponibles en P0."
-    />
-  );
+import { getSession } from "@/lib/store/session";
+import { CotisationHistory } from "@/components/cotisations/CotisationHistory";
+export default async function CotisationsPage() {
+ const {userId}=await getSession();return <div className="space-y-4"><h1 className="text-2xl font-semibold">Cotisations</h1><CotisationHistory owner={userId} allowCreate/></div>;
 }

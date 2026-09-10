@@ -95,3 +95,15 @@
 
 ## Prochain travail
 - Attendre les instructions suivantes ; commit local uniquement, aucun push.
+
+## Terminé — étape 7 Cotisations
+- Échéances pédagogiques manuelles, règlements fictifs et régularisations motivées persistants dans runtimeStore, historique et accès 360°, filtres statut/période.
+- Solde calculé en centimes à partir des montants saisis ; régularisation distincte du montant réglé. Rejet des montants incohérents, dépassements de solde et conflits de version.
+- Dossier créé lors d’un impayé, y compris après passage de la date d’échéance ; suivi des règlements partiels et clôture après règlement/régularisation complète. Aucun tarif Harmonie inventé ni prélèvement réel.
+- Validation : 42 tests ciblés réussis ; typecheck et lint réussis après correction d’un import de la fiche 360°.
+
+## Restant — étape 7
+- Aucun problème bloquant constaté.
+
+## Prochain travail
+- Attendre les instructions suivantes ; commit local uniquement, aucun push.
