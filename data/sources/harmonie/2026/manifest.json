@@ -1,0 +1,27 @@
+{
+  "405": {
+    "file": "CCN 65 TG-TC 2026 v2.pdf",
+    "sha256": "759da1ecc93398b9f95c456709519295325656ed5930590ba2e42691903871d9",
+    "effectiveDate": "2026-01-01",
+    "transcribedPages": [
+      1
+    ],
+    "notesPages": [
+      1,
+      5
+    ],
+    "scope": "Hospitalisation : lignes en pourcentage BR uniquement"
+  },
+  "2691": {
+    "file": "Tableau_garantie_CCN_EPI.pdf",
+    "sha256": "496a99b00513fb784e13f753d33057ee8d34d4c435012eb0c4b705fc713fce1e",
+    "effectiveDate": "2026-01-01",
+    "transcribedPages": [
+      1
+    ],
+    "notesPages": [
+      3
+    ],
+    "scope": "Hospitalisation : lignes en pourcentage BR uniquement"
+  }
+}

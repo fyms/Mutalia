@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { Card, CardHeader } from "@/components/ui/Card";
 import { Badge, DataToVerifyBadge } from "@/components/ui/Badge";
@@ -15,6 +16,7 @@ export default async function GarantiesPage() {
         description={`Référentiel ${metadata.provider} — ${metadata.product_family} — année ${metadata.reference_year} (particuliers uniquement). Vérifié le ${metadata.verified_on}.`}
       />
 
+      <p className="mb-4"><Link className="inline-block rounded bg-brand px-4 py-3 text-white" href="/garanties/conventions">Conventions collectives 2026 — IDCC 405 / 2691</Link></p>
       <Card className="mb-4 border-warning/40 bg-warning-soft">
         <p className="text-sm font-semibold text-warning">⚠ Ne jamais confondre PSI et PLI</p>
         <p className="mt-1 text-xs text-warning">{verified_live_quote_2026_sample.warning}</p>

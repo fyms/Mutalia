@@ -1,7 +1,10 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  outputFileTracingRoot: process.cwd(),
+  outputFileTracingIncludes: {
+    "/api/sources/harmonie/*": ["./data/sources/harmonie/2026/*.pdf"],
+  },
 };
 
 export default nextConfig;
