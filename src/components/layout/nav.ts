@@ -1,7 +1,7 @@
 export interface NavItem {
   label: string;
   href: string;
-  phase: "P0" | "P1" | "P2" | "P3";
+  phase: "Disponible" | "P0" | "P1" | "P2" | "P3";
 }
 
 export interface NavSection {
@@ -12,27 +12,25 @@ export interface NavSection {
 export const NAV_SECTIONS: NavSection[] = [
   {
     title: "Pilotage",
-    items: [{ label: "Cockpit", href: "/cockpit", phase: "P0" }],
+    items: [{ label: "Cockpit", href: "/cockpit", phase: "P0" }, { label: "Mes dossiers", href: "/dossiers", phase: "Disponible" }],
   },
   {
     title: "Portefeuille",
     items: [
-      { label: "Prospects", href: "/prospects", phase: "P3" },
       { label: "Adhérents", href: "/adherents", phase: "P0" },
       { label: "Contrats", href: "/contrats", phase: "P0" },
       { label: "Garanties", href: "/garanties", phase: "P0" },
-      { label: "Prestations", href: "/prestations", phase: "P2" },
-      { label: "PEC & Devis", href: "/pec-devis", phase: "P2" },
-      { label: "Cotisations", href: "/cotisations", phase: "P2" },
+      { label: "Prestations", href: "/prestations", phase: "Disponible" },
+      { label: "PEC & Devis", href: "/pec-devis", phase: "Disponible" },
+      { label: "Cotisations", href: "/cotisations", phase: "Disponible" },
     ],
   },
   {
     title: "Documents & qualité",
     items: [
       { label: "Documents / GED", href: "/documents", phase: "P0" },
-      { label: "Flux & Anomalies", href: "/flux-anomalies", phase: "P2" },
-      { label: "Relation adhérent", href: "/relation-adherent", phase: "P2" },
-      { label: "Pilotage formateur", href: "/pilotage", phase: "P2" },
+      { label: "Flux & Anomalies", href: "/flux-anomalies", phase: "Disponible" },
+      { label: "Relation adhérent", href: "/relation-adherent", phase: "Disponible" },
     ],
   },
   {
@@ -43,7 +41,6 @@ export const NAV_SECTIONS: NavSection[] = [
       { label: "FAQ & Procédures", href: "/faq", phase: "P0" },
       { label: "Cas pratiques", href: "/cas-pratiques", phase: "P0" },
       { label: "Simulateur", href: "/simulateur", phase: "P0" },
-      { label: "Quiz", href: "/quiz", phase: "P1" },
       { label: "Progression", href: "/progression", phase: "P0" },
     ],
   },

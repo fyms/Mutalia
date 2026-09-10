@@ -17,6 +17,8 @@ const groups = [
       ["Prestations", "/prestations"],
       ["PEC & Devis", "/pec-devis"],
       ["Anomalies", "/flux-anomalies"],
+      ["Cotisations", "/cotisations"],
+      ["Relation adhérent", "/relation-adherent"],
     ],
   },
   {
@@ -95,11 +97,6 @@ export function Sidebar() {
             <summary className="m-nav-link">Autres rubriques</summary>
             {[
               ["Cas pratiques", "/cas-pratiques"],
-              ["Cotisations", "/cotisations"],
-              ["Relation adhérent", "/relation-adherent"],
-              ["Prospects", "/prospects"],
-              ["Quiz", "/quiz"],
-              ["Pilotage formateur", "/pilotage"],
               ["Administration", "/administration"],
             ].map(link)}
           </details>

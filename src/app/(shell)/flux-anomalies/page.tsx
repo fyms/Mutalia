@@ -15,7 +15,7 @@ export default async function FluxAnomaliesPage({searchParams}: {searchParams:Pr
   const types=[...new Set(all.map(a=>a.type))].sort();
   const rows=filterOperationalAnomalies(all,filters);
   return <div>
-    <PageHeader title="Flux & Anomalies" description="Contrôles pédagogiques des prestations : corriger la cause, documenter la résolution et retrouver l’historique. Aucun flux NOEMIE/DRE/ROC simulé." />
+    <PageHeader title="Flux & Anomalies" description="Contrôles pédagogiques des prestations et PEC/devis : corriger la cause, documenter la résolution et retrouver l’historique. Aucun flux NOEMIE/DRE/ROC simulé." />
     <form action="/flux-anomalies" className="m-panel mb-4 flex flex-wrap items-end gap-3">
       <label><span className="m-label">Gravité</span><select name="severity" className="m-field" defaultValue={filters.severity??""}><option value="">Toutes les gravités</option>{ANOMALY_SEVERITIES.map(s=><option key={s}>{s}</option>)}</select></label>
       <label><span className="m-label">Statut</span><select name="status" className="m-field" defaultValue={filters.status??""}><option value="">Tous les statuts</option>{ANOMALY_STATUSES.map(s=><option key={s}>{s}</option>)}</select></label>
@@ -25,7 +25,7 @@ export default async function FluxAnomaliesPage({searchParams}: {searchParams:Pr
     <p className="mb-2 text-sm">{rows.length} anomalie(s) · Gravité puis ancienneté, les plus anciennes d’abord.</p>
     <div className="m-panel overflow-x-auto"><table className="w-full text-left text-sm"><caption className="sr-only">Centre opérationnel des anomalies</caption>
       <thead className="bg-surface-muted"><tr>{["Adhérent / liens","Type","Gravité","Détection","Statut","Cause → impact → action"].map(t=><th key={t} scope="col" className="p-2">{t}</th>)}</tr></thead>
-      <tbody>{rows.map(a=><AnomalyRow key={`${a.id}-${a.revision}`} a={a} />)}{!rows.length&&<tr><td className="p-4" colSpan={6}>Aucune anomalie pour ces filtres. Les contrôles bloquants des prestations alimentent ce centre automatiquement.</td></tr>}</tbody>
+      <tbody>{rows.map(a=><AnomalyRow key={`${a.id}-${a.revision}`} a={a} />)}{!rows.length&&<tr><td className="p-4" colSpan={6}>Aucune anomalie pour ces filtres. Les contrôles bloquants des prestations et PEC/devis alimentent ce centre automatiquement.</td></tr>}</tbody>
     </table></div>
   </div>;
 }
