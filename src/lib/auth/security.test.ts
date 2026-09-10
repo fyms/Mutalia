@@ -164,6 +164,20 @@ describe("real accounts and persistent work", () => {
     expect(() => drafts.saveDraft(a, input, 0)).toThrow("Conflit");
     expect(work.getAllSubmissions(b)).toEqual({});
   });
+  it("keeps repeated submissions idempotent and preserves historical payloads", () => {
+    const historical = JSON.stringify({version: 5, untouched: true});
+    db.prepare("INSERT INTO learner_work(owner,payload) VALUES(?,?)").run(a, historical);
+    const result = {
+      caseId: "CASE-001", submittedAt: new Date().toISOString(), score: 0,
+      maxScore: 100, breakdown: [],
+      correction: {anomalies: [], expectedActions: [], expectedValues: {}, trainerNotes: ""},
+    };
+    expect(work.recordSubmissionOnce(a, 1, result)).toEqual(result);
+    expect(work.recordSubmissionOnce(a, 1, {...result, score: 100})).toEqual(result);
+    expect(work.getSubmissions(a, "CASE-001")).toHaveLength(1);
+    expect(work.getSubmissions(b, "CASE-001")).toEqual([]);
+    expect(db.prepare("SELECT payload FROM learner_work WHERE owner=?").get(a)).toEqual({payload: historical});
+  });
   it("revokes logout sessions and restores saved work on reconnect", async () => {
     await post("sign-out", {}, cookie);
     expect(
