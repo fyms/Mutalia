@@ -2,8 +2,8 @@
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import { getSession } from "@/lib/store/session";
-import { createManualHousehold } from "@/lib/store/runtimeStore";
-import { ManualHouseholdInputSchema } from "./manualHouseholds";
+import { HouseholdEditError, updateManualHousehold, saveManualBeneficiary, removeManualBeneficiary, createManualHousehold } from "@/lib/store/runtimeStore";
+import { BeneficiaryInputSchema, ManualHouseholdInputSchema } from "./manualHouseholds";
 import { getHouseholdFormulas } from "./householdFormulas";
 
 export async function createHouseholdAction(formData: FormData): Promise<{error: string}> {
@@ -19,4 +19,26 @@ export async function createHouseholdAction(formData: FormData): Promise<{error:
   revalidatePath("/contrats");
   revalidatePath("/api/search-index");
   redirect(`/adherents/${id}`);
+}
+
+export async function editHouseholdAction(id: string, revision: number, operation: "adherent" | "beneficiary" | "remove", beneficiaryId: string | null, data: FormData): Promise<{error?: string}> {
+  const session = await getSession();
+  if (!["adherent", "beneficiary", "remove"].includes(operation)) return {error: "Action invalide."};
+  const parsed = (operation === "adherent" ? ManualHouseholdInputSchema : BeneficiaryInputSchema).safeParse(Object.fromEntries(data));
+  if (operation !== "remove" && !parsed.success) return {error: parsed.error.issues[0].message};
+  try {
+    if (operation === "adherent") updateManualHousehold(session.userId, id, revision, parsed.data);
+    else if (operation === "beneficiary") saveManualBeneficiary(session.userId, id, revision, beneficiaryId, parsed.data);
+    else {
+      if (!beneficiaryId) return {error: "Bénéficiaire requis."};
+      removeManualBeneficiary(session.userId, id, revision, beneficiaryId);
+    }
+  } catch (error) {
+    return {error: error instanceof HouseholdEditError ? error.message : "Enregistrement impossible. Réessayez."};
+  }
+  revalidatePath(`/adherents/${id}`);
+  revalidatePath("/adherents");
+  revalidatePath("/contrats");
+  revalidatePath("/api/search-index");
+  return {};
 }

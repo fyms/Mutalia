@@ -74,9 +74,13 @@ export function getAllHouseholds(owner?: string): HouseholdView[] {
       member_id: record.memberId, household_id: record.id, role: "adherent",
       first_name: record.firstName, last_name: record.lastName, birth_date: record.birthDate,
     };
+    const beneficiaries: Member[] = (record.beneficiaries ?? []).map(b => ({
+      member_id: b.id, household_id: record.id, role: b.role,
+      first_name: b.firstName, last_name: b.lastName, birth_date: b.birthDate,
+    }));
     return {
-      householdId: record.id, case: null, manual: record, adherent, beneficiaries: [],
-      household: {household_id: record.id, members: [adherent]},
+      householdId: record.id, case: null, manual: record, adherent, beneficiaries,
+      household: {household_id: record.id, members: [adherent, ...beneficiaries]},
       assignedFormula: formulas.find(f => f.key === record.formulaKey)?.formula ?? DATA_TO_VERIFY,
       starsSoins: DATA_TO_VERIFY, starsEquipements: DATA_TO_VERIFY,
     };

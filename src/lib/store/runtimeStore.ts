@@ -1,6 +1,6 @@
 import "server-only";
 import { randomUUID } from "node:crypto";
-import { ManualHouseholdInputSchema, type ManualHousehold } from "@/lib/domain/manualHouseholds";
+import { BeneficiaryInputSchema, ManualHouseholdInputSchema, type ManualHousehold } from "@/lib/domain/manualHouseholds";
 import { getHouseholdFormulas } from "@/lib/domain/householdFormulas";
 import { db } from "@/lib/db";
 import type { DocumentStatus } from "@/lib/domain/constants";
@@ -176,5 +176,42 @@ export function createManualHousehold(owner: string, raw: unknown): ManualHouseh
     store.manualHouseholds ??= {};
     store.manualHouseholds[household.id] = household;
     return household;
+  });
+}
+
+export class HouseholdEditError extends Error {}
+function editManualHousehold(owner: string, id: string, revision: number, edit: (h: ManualHousehold) => void) {
+  return withStore(owner, store => {
+    const h = store.manualHouseholds?.[id];
+    if (!h || h.deletedAt || h.source !== "manual") throw new HouseholdEditError("Foyer introuvable.");
+    if (!Number.isInteger(revision) || h.revision !== revision)
+      throw new HouseholdEditError("Le foyer a changé dans un autre onglet. Rechargez la fiche avant de reprendre.");
+    edit(h);
+    h.revision++;
+    h.updatedAt = new Date().toISOString();
+    return h;
+  });
+}
+export function updateManualHousehold(owner: string, id: string, revision: number, raw: unknown) {
+  const input = ManualHouseholdInputSchema.parse(raw);
+  if (!getHouseholdFormulas().some(f => f.key === input.formulaKey))
+    throw new HouseholdEditError("Choisissez une formule du référentiel Harmonie 2026.");
+  return editManualHousehold(owner, id, revision, h => { Object.assign(h, input); });
+}
+export function saveManualBeneficiary(owner: string, id: string, revision: number, beneficiaryId: string | null, raw: unknown) {
+  const input = BeneficiaryInputSchema.parse(raw);
+  return editManualHousehold(owner, id, revision, h => {
+    h.beneficiaries ??= [];
+    if (beneficiaryId) {
+      const b = h.beneficiaries.find(b => b.id === beneficiaryId);
+      if (!b) throw new HouseholdEditError("Bénéficiaire introuvable.");
+      Object.assign(b, input);
+    } else h.beneficiaries.push({...input, id: `MEM-M-${randomUUID()}`});
+  });
+}
+export function removeManualBeneficiary(owner: string, id: string, revision: number, beneficiaryId: string) {
+  return editManualHousehold(owner, id, revision, h => {
+    if (!h.beneficiaries?.some(b => b.id === beneficiaryId)) throw new HouseholdEditError("Bénéficiaire introuvable.");
+    h.beneficiaries = h.beneficiaries.filter(b => b.id !== beneficiaryId);
   });
 }

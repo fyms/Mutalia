@@ -1,3 +1,4 @@
+import { HouseholdEditor } from "./HouseholdEditor";
 import Link from "next/link";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { QueryTabs } from "@/components/ui/QueryTabs";
@@ -28,13 +29,14 @@ export function ManualHouseholdDetails({record, activeTab, tabs}: {
   return <div>
     <PageHeader title={`${record.firstName} ${record.lastName}`} description="Fiche adhérent 360° · Création manuelle"
       action={<Link href="/adherents" className="m-button m-button--secondary">Retour aux adhérents</Link>} />
+    <HouseholdEditor record={record} formulas={getHouseholdFormulas()} />
     <QueryTabs basePath={`/adherents/${record.id}`} activeKey={activeTab} tabs={tabs} />
     {activeTab === "vue-generale" && <div className="grid gap-4 lg:grid-cols-2">
       <section className="m-panel"><h2>Identité</h2>{identity}</section>
       <section className="m-panel"><h2>Adhésion</h2>{contract}</section>
       <section className="m-panel"><h2>Coordonnées</h2>{contact}</section>
     </div>}
-    {activeTab === "beneficiaires" && <section className="m-panel"><h2>Adhérent principal</h2>{identity}<p>Aucun bénéficiaire supplémentaire.</p></section>}
+    {activeTab === "beneficiaires" && <section className="m-panel"><h2>Adhérent principal</h2>{identity}<p>{(record.beneficiaries ?? []).length} bénéficiaire(s) supplémentaire(s), visibles dans la gestion du foyer ci-dessus.</p></section>}
     {activeTab === "contacts" && <section className="m-panel"><h2>Coordonnées</h2>{contact}</section>}
     {activeTab === "contrat" && <section className="m-panel"><h2>Adhésion</h2>{contract}</section>}
     {activeTab === "garanties" && <section className="m-panel"><h2>{formula?.label}</h2>

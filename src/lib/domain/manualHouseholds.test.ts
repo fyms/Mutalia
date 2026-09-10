@@ -81,4 +81,52 @@ describe("manual households on the Codex store", () => {
     await expect(createHouseholdAction(data)).rejects.toThrow(/REDIRECT:\/adherents\/FOY-M-/);
     expect(store.getManualHouseholds("owner-a")).toHaveLength(3);
   });
+  it("updates identity without changing identifiers or seed households and refreshes search", async () => {
+    const h = store.createManualHousehold("editor", input);
+    const seeds = households.getAllHouseholds();
+    const updated = store.updateManualHousehold("editor", h.id, h.revision, {...input, firstName: "Lucie", city: "Lyon", id: "forged"});
+    expect(updated).toMatchObject({id: h.id, memberId: h.memberId, firstName: "Lucie", city: "Lyon", revision: 2, createdAt: h.createdAt});
+    expect(households.getHouseholdById(h.id, "editor")?.adherent.first_name).toBe("Lucie");
+    const {buildSearchIndex} = await import("./search");
+    expect(buildSearchIndex("editor").find(i => i.url === `/adherents/${h.id}`)?.title).toBe("Lucie Démonstration");
+    expect(() => store.updateManualHousehold("editor", h.id, 1, input)).toThrow("autre onglet");
+    expect(() => store.updateManualHousehold("other", h.id, 2, input)).toThrow("introuvable");
+    expect(() => store.updateManualHousehold("editor", "FOY-001", 1, input)).toThrow("introuvable");
+    expect(households.getAllHouseholds()).toEqual(seeds);
+  });
+  it("persists beneficiary add/edit/removal and refuses invalid or foreign mutations", async () => {
+    const h = store.createManualHousehold("family", input);
+    const child = {firstName: "Alex", lastName: "Exemple", birthDate: "2015-01-20", role: "enfant"};
+    const added = store.saveManualBeneficiary("family", h.id, 1, null, child);
+    const id = added.beneficiaries![0].id;
+    expect(id).not.toBe(h.memberId);
+    expect(households.getHouseholdById(h.id, "family")?.beneficiaries).toHaveLength(1);
+    expect(() => store.saveManualBeneficiary("family", h.id, 2, null, {...child, role: "adherent"})).toThrow();
+    expect(() => store.saveManualBeneficiary("family", h.id, 2, "foreign", child)).toThrow("introuvable");
+    const edited = store.saveManualBeneficiary("family", h.id, 2, id, {...child, firstName: "Alix"});
+    expect(edited.beneficiaries![0]).toMatchObject({id, firstName: "Alix"});
+    const {buildSearchIndex} = await import("./search");
+    expect(buildSearchIndex("family").find(i => i.url === `/adherents/${h.id}`)?.subtitle).toContain("Alix Exemple");
+    expect(() => store.removeManualBeneficiary("other", h.id, 3, id)).toThrow("introuvable");
+    expect(() => store.removeManualBeneficiary("family", h.id, 2, id)).toThrow("autre onglet");
+    expect(() => store.removeManualBeneficiary("family", h.id, 3, h.memberId)).toThrow("introuvable");
+    store.removeManualBeneficiary("family", h.id, 3, id);
+    expect(store.getManualHouseholds("family")[0]).toMatchObject({revision: 4, beneficiaries: []});
+    expect(households.getHouseholdById(h.id, "family")?.household.members).toHaveLength(1);
+    expect(buildSearchIndex("family").find(i => i.url === `/adherents/${h.id}`)?.subtitle).not.toContain("Alix Exemple");
+  });
+  it("edit actions authenticate and revalidate list, detail and search", async () => {
+    const {editHouseholdAction} = await import("./householdActions");
+    const {getSession} = await import("../store/session");
+    const {revalidatePath} = await import("next/cache");
+    const h = store.createManualHousehold("owner-a", input);
+    const data = new FormData();
+    Object.entries({...input, firstName: "Action"}).forEach(([k,v]) => data.set(k,v));
+    vi.mocked(getSession).mockRejectedValueOnce(new Error("Connexion requise"));
+    await expect(editHouseholdAction(h.id, 1, "adherent", null, data)).rejects.toThrow("Connexion requise");
+    expect(await editHouseholdAction(h.id, 1, "adherent", null, data)).toEqual({});
+    for (const route of ["/adherents", `/adherents/${h.id}`, "/api/search-index"]) expect(revalidatePath).toHaveBeenCalledWith(route);
+    expect(await editHouseholdAction(h.id, 1, "adherent", null, data)).toHaveProperty("error");
+  });
+
 });

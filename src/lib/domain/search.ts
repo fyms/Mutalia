@@ -67,7 +67,7 @@ export function buildSearchIndex(owner?: string): SearchItem[] {
       id: `adh-${household.householdId}`,
       type: "adherent",
       title: `${household.adherent.first_name} ${household.adherent.last_name}`,
-      subtitle: `Foyer ${household.householdId} · ${household.assignedFormula}`,
+      subtitle: `Foyer ${household.householdId} · ${household.assignedFormula}${!household.case && household.beneficiaries.length ? " · " + household.beneficiaries.map(b => `${b.first_name} ${b.last_name}`).join(", ") : ""}`,
       category: "Adhérents",
       url: `/adherents/${household.householdId}`,
     });

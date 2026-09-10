@@ -24,4 +24,13 @@ export interface ManualHousehold extends ManualHouseholdInput {
   updatedAt: string;
   revision: number;
   deletedAt: string | null;
+  beneficiaries?: ManualBeneficiary[];
 }
+
+export const BeneficiaryInputSchema = z.object({
+  firstName: required("Prénom"), lastName: required("Nom"),
+  birthDate: date.refine(value => value <= new Date().toISOString().slice(0, 10), "La naissance ne peut pas être dans le futur."),
+  role: z.enum(["conjoint", "enfant"], {error: "Lien familial invalide."}),
+});
+export type BeneficiaryInput = z.infer<typeof BeneficiaryInputSchema>;
+export interface ManualBeneficiary extends BeneficiaryInput { id: string; }

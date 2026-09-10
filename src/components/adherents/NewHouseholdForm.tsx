@@ -1,7 +1,8 @@
 "use client";
 import { useState, useTransition } from "react";
 import Link from "next/link";
-import { createHouseholdAction } from "@/lib/domain/householdActions";
+import type { ManualHousehold } from "@/lib/domain/manualHouseholds";
+import { editHouseholdAction, createHouseholdAction } from "@/lib/domain/householdActions";
 
 const fields = [
   ["firstName", "Prénom", "text", 100], ["lastName", "Nom", "text", 100],
@@ -10,7 +11,7 @@ const fields = [
   ["postalCode", "Code postal", "text", 5], ["city", "Ville", "text", 100],
   ["effectiveDate", "Date d’effet / adhésion", "date", 10],
 ] as const;
-export function NewHouseholdForm({formulas}: {formulas: {key: string; label: string}[]}) {
+export function NewHouseholdForm({formulas, record, onDone}: {formulas: {key: string; label: string}[]; record?: ManualHousehold; onDone?: () => void}) {
   const [error, setError] = useState("");
   const [pending, startTransition] = useTransition();
   return <form className="m-panel space-y-4" onSubmit={event => {
@@ -18,8 +19,9 @@ export function NewHouseholdForm({formulas}: {formulas: {key: string; label: str
     const data = new FormData(event.currentTarget);
     setError("");
     startTransition(async () => {
-      const result = await createHouseholdAction(data);
-      setError(result.error);
+      const result = record ? await editHouseholdAction(record.id, record.revision, "adherent", null, data) : await createHouseholdAction(data);
+      setError(result.error ?? "");
+      if (!result.error) onDone?.();
     });
   }}>
     <p className="m-help">Tous les champs sont requis. Pour la démonstration, utilisez des coordonnées fictives.</p>
@@ -27,11 +29,11 @@ export function NewHouseholdForm({formulas}: {formulas: {key: string; label: str
       <legend className="sr-only">Identité et adhésion</legend>
       {fields.map(([name, label, type, maxLength]) => <label key={name} className="block">
         <span className="m-label">{label}</span>
-        <input className="m-field" name={name} type={type} required maxLength={maxLength}
+        <input className="m-field" name={name} defaultValue={record?.[name]} type={type} required maxLength={maxLength}
           pattern={name === "postalCode" ? "[0-9]{5}" : undefined} />
       </label>)}
       <label className="block"><span className="m-label">Formule Harmonie 2026</span>
-        <select name="formulaKey" className="m-field" required defaultValue="">
+        <select name="formulaKey" className="m-field" required defaultValue={record?.formulaKey ?? ""}>
           <option value="" disabled>Choisir une formule</option>
           {formulas.map(f => <option key={f.key} value={f.key}>{f.label}</option>)}
         </select>
@@ -39,8 +41,8 @@ export function NewHouseholdForm({formulas}: {formulas: {key: string; label: str
     </fieldset>
     {error && <p role="alert" className="m-error">{error}</p>}
     <div className="flex flex-wrap gap-3">
-      <button className="m-button" disabled={pending}>{pending ? "Enregistrement…" : "Créer l’adhérent"}</button>
-      <Link className="m-button m-button--secondary" href="/adherents">Annuler</Link>
+      <button className="m-button" disabled={pending}>{pending ? "Enregistrement…" : record ? "Enregistrer les modifications" : "Créer l’adhérent"}</button>
+      {onDone ? <button type="button" disabled={pending} className="m-button m-button--secondary" onClick={onDone}>Annuler</button> : <Link className="m-button m-button--secondary" href="/adherents">Annuler</Link>}
     </div>
   </form>;
 }

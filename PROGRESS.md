@@ -29,3 +29,15 @@
 
 ## Prochain travail
 - Attendre les instructions pour l’étape suivante.
+
+## Terminé — étape 2 : édition et bénéficiaires
+- Modification des informations de l’adhérent manuel depuis la fiche 360° avec réutilisation du formulaire de création.
+- Ajout, modification et retrait confirmé des bénéficiaires ; persistance transactionnelle dans le runtimeStore existant, identifiants stables et contrôle de révision.
+- Liste, fiche et recherche actualisées, y compris les noms des bénéficiaires ; isolation par compte et 12 foyers pédagogiques conservés.
+- Validation finale : typecheck, lint et 19 tests concernés réussis, dont confirmation/annulation du retrait, conflits, isolation et conservation des données existantes.
+
+## Restant — étape 2
+- Aucun problème bloquant constaté. Aucun autre module développé.
+
+## Prochain travail
+- Attendre les instructions pour la suite. Commit local uniquement ; push manuel à l’initiative de l’utilisateur.
