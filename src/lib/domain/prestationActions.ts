@@ -23,5 +23,5 @@ export async function advancePrestationAction(id: string, revision: number, targ
   } catch (e) {return {error:e instanceof HouseholdEditError ? e.message : "Opération impossible."};}
 }
 function refresh(householdId: string) {
-  for (const path of ["/prestations", `/adherents/${householdId}`, "/dossiers", "/cockpit"]) revalidatePath(path);
+  for (const path of ["/flux-anomalies", "/prestations", `/adherents/${householdId}`, "/dossiers", "/cockpit"]) revalidatePath(path);
 }

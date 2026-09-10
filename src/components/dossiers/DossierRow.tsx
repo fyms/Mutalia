@@ -16,7 +16,7 @@ export function DossierRow({row, age}: {row: Dossier; age: number}) {
     });
   }
   const cell = "px-3 py-3 align-top";
-  return <tr className="border-b border-border hover:bg-surface-muted" aria-busy={pending}>
+  return <tr id={row.id} className="scroll-mt-4 border-b border-border hover:bg-surface-muted" aria-busy={pending}>
     <td className={cell}><Link className="font-semibold text-brand underline" href={`/adherents/${row.householdId}`}>{row.adherent}</Link><p className="text-xs text-foreground-muted break-all">{row.id}</p></td>
     <td className={cell}>{row.type}</td>
     <td className={cell}><select className="m-field" aria-label={`Priorité de ${row.adherent}`} value={row.priority} disabled={pending} onChange={e => update("priority", e.target.value)}>{DOSSIER_PRIORITIES.map(p => <option key={p}>{p}</option>)}</select></td>

@@ -70,3 +70,17 @@
 
 ## Prochain travail
 - Attendre les instructions suivantes. Commit local uniquement, aucun push.
+
+## Terminé — étape 5 : Flux & Anomalies
+- Centre opérationnel /flux-anomalies : adhérent, liens directs prestation/dossier/360°, type, gravité, date, statut et lecture cause probable → impact → action recommandée.
+- Filtres combinés gravité/statut/type et tri gravité puis ancienneté ; gravités Bloquante/Majeure/Mineure disponibles, sans inventer de contrôles pour remplir les catégories.
+- Anomalies créées dans le runtimeStore avec les contrôles bloquants déjà identifiés par les prestations ; reprise des contrôles actifs des prestations antérieures sans doublon.
+- Traitement À analyser/En cours/Résolue, note de résolution persistante, contrôle des versions et isolation par compte. Résolution refusée tant que la cause persiste ; incohérence AMO confirmée corrigée uniquement après recalcul réussi.
+- Historique conservé, réouverture du même identifiant si le blocage revient, synchronisation des dossiers et du cockpit sans clôturer un contrôle restant actif ni modifier la liquidation.
+- Validation finale : 39 tests concernés, typecheck et lint réussis (détection, reprise, résolution, réouverture, conflits, isolation, filtres, tri et synchronisation).
+
+## Restant — étape 5
+- Aucun problème bloquant constaté. Aucun flux NOEMIE/DRE/ROC complet ni règle contractuelle Harmonie ajoutés.
+
+## Prochain travail
+- Attendre les instructions suivantes. Commit local uniquement, aucun push.

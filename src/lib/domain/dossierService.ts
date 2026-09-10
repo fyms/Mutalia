@@ -1,6 +1,6 @@
 import "server-only";
 import { getAllHouseholds } from "./households";
-import { getPrestations, getDossierStates, saveDossierState } from "@/lib/store/runtimeStore";
+import { getOperationalAnomalies, getPrestations, getDossierStates, saveDossierState } from "@/lib/store/runtimeStore";
 import { sortDossiers, type Dossier, type DossierState } from "./dossiers";
 const examples = [
   {type: "Contrôle d’adhésion", status: "À traiter", priority: "Normal", anomaly: null},
@@ -17,6 +17,7 @@ const nextActions: Record<DossierState["status"], string> = {
   "Terminé": "Aucune action requise",
 };
 export function getDossiers(owner: string): Dossier[] {
+  const anomalies = getOperationalAnomalies(owner);
   const states = getDossierStates(owner);
   const households = getAllHouseholds(owner);
   const base: Dossier[] = households.map((h, i) => {
@@ -32,11 +33,12 @@ export function getDossiers(owner: string): Dossier[] {
   });
   const prestations: Dossier[] = getPrestations(owner).map(p => {
     const h = households.find(h => h.householdId === p.householdId);
+    const pendingResolution = anomalies.some(a => a.prestationId === p.id && a.status !== "Résolue");
     const state = states[p.dossierId] ?? {status:"À traiter" as const,priority:"Normal" as const,revision:0};
     return {...state,id:p.dossierId,householdId:p.householdId,
       adherent:h ? `${h.adherent.first_name} ${h.adherent.last_name}` : p.adherentName,
-      type:`Prestation — ${p.act}`,createdAt:p.createdAt,anomaly:p.anomalies.join(" · ") || null,
-      nextAction:p.anomalies.length ? "Compléter le contrôle de la prestation" : ["Validée","Payée","Clôturée"].includes(p.status) ? "Contrôle terminé" : "Contrôler puis liquider la prestation",
+      type:`Prestation — ${p.act}`,createdAt:p.createdAt,anomaly:p.anomalies.join(" · ") || (pendingResolution ? "Résolution d’anomalie à documenter" : null),
+      nextAction:p.anomalies.length ? "Compléter le contrôle de la prestation" : pendingResolution ? "Documenter la résolution dans Flux & Anomalies" : ["Validée","Payée","Clôturée"].includes(p.status) ? "Contrôle terminé" : "Contrôler puis liquider la prestation",
     };
   });
   return sortDossiers([...base,...prestations]);

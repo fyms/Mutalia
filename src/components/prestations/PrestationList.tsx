@@ -26,12 +26,12 @@ function PrestationRows({p,households}: {p:Prestation;households:PrestationHouse
   const next = nextPrestationStatus(p.status);
   const h = households.find(h => h.id === p.householdId);
   return <>
-    <tr className="border-b border-border align-top">
+    <tr id={p.id} className="scroll-mt-4 border-b border-border align-top">
       <td className="p-2"><Link className="text-brand underline" href={`/adherents/${p.householdId}?tab=prestations`}>{h?.name ?? p.adherentName}</Link><p>{h?.members.find(m => m.id === p.memberId)?.name ?? p.beneficiaryName}</p></td>
       <td className="p-2">{p.act}<p>{formatDate(p.careDate)}</p></td><td className="p-2 whitespace-nowrap">{formatCurrency(p.billed)}</td>
       <td className="p-2">{p.result ? <><p>AMC : {formatCurrency(p.result.amcReimbursement)}</p><p>RAC : {formatCurrency(p.result.remainingCharge)}</p><p>AMO : {formatCurrency(p.result.amoReimbursement)}</p></> : p.anomalies.includes(DATA_TO_VERIFY) ? DATA_TO_VERIFY : "Non calculée"}</td>
       <td className="p-2">{p.status}{p.status === "Payée" && <p className="m-help">Simulation uniquement</p>}</td>
-      <td className="p-2">{p.anomalies.length ? p.anomalies.join(" · ") : "—"}<p><Link className="text-brand underline" href="/dossiers">Dossier de contrôle {p.dossierId}</Link></p></td>
+      <td className="p-2">{p.anomalies.length ? p.anomalies.join(" · ") : "—"}<p><Link className="text-brand underline" href={`/dossiers#${p.dossierId}`}>Dossier de contrôle {p.dossierId}</Link></p></td>
       <td className="p-2 space-y-2">{next && <button className="m-button m-button--secondary" disabled={pending || editing} onClick={() => {
         setError("");startTransition(async () => {const r=await advancePrestationAction(p.id,p.revision,next);if(r.error)setError(r.error);router.refresh();});
       }}>{pending ? "Enregistrement…" : next === "Payée" ? "Simuler le paiement" : `Passer à « ${next} »`}</button>}

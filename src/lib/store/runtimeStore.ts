@@ -1,3 +1,4 @@
+import { describeControl, AnomalyUpdateSchema, type OperationalAnomaly } from "@/lib/domain/operationalAnomalies";
 import type { Prestation } from "@/lib/domain/prestations";
 import { DossierStateSchema, type DossierState } from "@/lib/domain/dossiers";
 import "server-only";
@@ -23,6 +24,7 @@ export interface DocumentState {
 
 export interface RuntimeStoreShape {
   version: 1;
+  operationalAnomalies?: Record<string, OperationalAnomaly>;
   prestations?: Record<string, Prestation>;
   dossiers?: Record<string, DossierState>;
   manualHouseholds?: Record<string, ManualHousehold>;
@@ -244,6 +246,7 @@ export function createStoredPrestation(owner: string, value: Omit<Prestation, "i
       createdAt: at, updatedAt: at, history: [{at, status: "Reçue", event: "Prestation reçue"}]};
     store.prestations ??= {};
     store.prestations[id] = record;
+    syncOperationalAnomalies(store, record);
     syncPrestationDossier(store, record);
     return record;
   });
@@ -256,6 +259,7 @@ export function changeStoredPrestation(owner: string, id: string, revision: numb
     change(value);
     value.revision++;
     value.updatedAt = new Date().toISOString();
+    syncOperationalAnomalies(store, value);
     syncPrestationDossier(store, value);
     return value;
   });
@@ -265,8 +269,73 @@ function syncPrestationDossier(store: RuntimeStoreShape, value: Prestation) {
   const old = store.dossiers[value.dossierId];
   const done = ["Validée", "Payée", "Clôturée"].includes(value.status);
   store.dossiers[value.dossierId] = {
-    status: done ? "Terminé" : value.anomalies.length ? "Incomplet" : "À traiter",
+    status: value.anomalies.length || Object.values(store.operationalAnomalies ?? {}).some(a => a.prestationId === value.id && a.conditionActive) ? "Incomplet" : Object.values(store.operationalAnomalies ?? {}).some(a => a.prestationId === value.id && a.status !== "Résolue") ? "À traiter" : done ? "Terminé" : "À traiter",
     priority: old?.priority ?? "Normal", revision: (old?.revision ?? 0) + 1,
     updatedAt: new Date().toISOString(),
   };
+}
+
+function syncOperationalAnomalies(store: RuntimeStoreShape, p: Prestation): boolean {
+  store.operationalAnomalies ??= {};
+  let changed = false;
+  const active = new Set<string>();
+  for (const message of p.anomalies) {
+    const control = describeControl(message);
+    const id = `ANO-${p.id}-${control.code}`;
+    active.add(id);
+    const prior = store.operationalAnomalies[id];
+    if (!prior) {
+      const at = p.updatedAt;
+      store.operationalAnomalies[id] = {
+        id, prestationId:p.id, dossierId:p.dossierId, householdId:p.householdId, adherentName:p.adherentName,
+        type:control.type, severity:"Bloquante", status:"À analyser", cause:control.cause,
+        impact:control.impact, recommendation:control.recommendation, conditionActive:true,
+        createdAt:at, updatedAt:at, revision:1, resolution:"",
+        history:[{at,status:"À analyser",event:"Contrôle bloquant détecté",resolution:""}],
+      };
+      changed = true;
+    } else if (!prior.conditionActive || prior.status === "Résolue") {
+      prior.conditionActive = true;
+      if (prior.status === "Résolue") {prior.status="À analyser"; prior.resolution="";}
+      prior.updatedAt=p.updatedAt; prior.revision++;
+      prior.history.push({at:p.updatedAt,status:prior.status,event:"Contrôle bloquant détecté à nouveau",resolution:prior.resolution});
+      changed = true;
+    }
+  }
+  for (const a of Object.values(store.operationalAnomalies)) {
+    if (a.prestationId === p.id && a.conditionActive && !active.has(a.id)) {
+      // Monetary corrections are confirmed only by a successful engine calculation.
+      if (a.id.endsWith("-amo") && !p.result) continue;
+      a.conditionActive=false; a.updatedAt=p.updatedAt; a.revision++;
+      a.history.push({at:p.updatedAt,status:a.status,event:"Cause corrigée dans la prestation ; résolution à documenter",resolution:a.resolution});
+      changed=true;
+    }
+  }
+  return changed;
+}
+export function getOperationalAnomalies(owner:string): OperationalAnomaly[] {
+  return withStore(owner, store => {
+    // Backfill controls from prestations already saved before this step, once.
+    for (const p of Object.values(store.prestations ?? {})) {
+      if (syncOperationalAnomalies(store,p)) syncPrestationDossier(store,p);
+    }
+    return Object.values(store.operationalAnomalies ?? {});
+  });
+}
+export function updateOperationalAnomaly(owner:string, id:string, revision:number, raw:unknown) {
+  const input = AnomalyUpdateSchema.parse(raw);
+  return withStore(owner, store => {
+    const a=store.operationalAnomalies?.[id];
+    if (!a) throw new HouseholdEditError("Anomalie introuvable.");
+    const p=store.prestations?.[a.prestationId];
+    if (!p) throw new HouseholdEditError("Prestation liée introuvable.");
+    syncOperationalAnomalies(store,p);
+    if (!Number.isInteger(revision) || a.revision !== revision) throw new HouseholdEditError("Anomalie modifiée dans un autre onglet. Rechargez la page.");
+    if (input.status === "Résolue" && a.conditionActive) throw new HouseholdEditError("Corrigez d’abord la cause dans la prestation liée.");
+    if (input.status === "Résolue" && input.resolution.length < 10) throw new HouseholdEditError("Décrivez la résolution (10 caractères minimum).");
+    a.status=input.status; a.resolution=input.resolution; a.revision++; a.updatedAt=new Date().toISOString();
+    a.history.push({at:a.updatedAt,status:a.status,event:"Traitement de l’anomalie mis à jour",resolution:a.resolution});
+    syncPrestationDossier(store,p);
+    return a;
+  });
 }
