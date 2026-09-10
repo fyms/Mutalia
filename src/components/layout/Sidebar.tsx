@@ -8,6 +8,7 @@ const groups = [
     title: "Travail",
     items: [
       ["Cockpit", "/cockpit"],
+      ["Mes dossiers", "/dossiers"],
       ["Adhérents", "/adherents"],
       ["Contrats", "/contrats"],
       ["Garanties", "/garanties"],

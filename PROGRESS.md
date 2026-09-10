@@ -41,3 +41,16 @@
 
 ## Prochain travail
 - Attendre les instructions pour la suite. Commit local uniquement ; push manuel à l’initiative de l’utilisateur.
+
+## Terminé — étape 3 : Mes dossiers
+- Page /dossiers accessible dans la navigation : adhérent lié à la fiche 360°, type, priorité, statut, ancienneté, anomalie simulée et prochaine action.
+- Dossiers fictifs stables liés aux 12 foyers pédagogiques et aux foyers manuels visibles du compte ; aucun workflow Prestations/PEC/Cotisations développé.
+- Filtres combinables statut/priorité, tri urgence puis ancienneté, changement immédiat des statuts et priorités dans le runtimeStore existant avec isolation et contrôle des conflits.
+- Résumé compact du cockpit : à traiter, urgents non terminés, incomplets, en attente.
+- Validation finale : 23 tests ciblés, typecheck et lint réussis ; persistance SQLite, isolation, liens aux foyers, tri, compteurs et actualisation contrôlés.
+
+## Restant — étape 3
+- Aucun problème bloquant constaté. Les dossiers et anomalies affichés sont des simulations.
+
+## Prochain travail
+- Attendre les instructions de l’étape suivante. Commit local uniquement, aucun push.

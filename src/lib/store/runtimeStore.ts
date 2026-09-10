@@ -1,3 +1,4 @@
+import { DossierStateSchema, type DossierState } from "@/lib/domain/dossiers";
 import "server-only";
 import { randomUUID } from "node:crypto";
 import { BeneficiaryInputSchema, ManualHouseholdInputSchema, type ManualHousehold } from "@/lib/domain/manualHouseholds";
@@ -21,6 +22,7 @@ export interface DocumentState {
 
 export interface RuntimeStoreShape {
   version: 1;
+  dossiers?: Record<string, DossierState>;
   manualHouseholds?: Record<string, ManualHousehold>;
   documents: Record<string, DocumentState>;
   submissions: Record<string, CaseSubmissionResult[]>;
@@ -213,5 +215,18 @@ export function removeManualBeneficiary(owner: string, id: string, revision: num
   return editManualHousehold(owner, id, revision, h => {
     if (!h.beneficiaries?.some(b => b.id === beneficiaryId)) throw new HouseholdEditError("Bénéficiaire introuvable.");
     h.beneficiaries = h.beneficiaries.filter(b => b.id !== beneficiaryId);
+  });
+}
+
+export function getDossierStates(owner: string): Record<string, DossierState> {
+  return readStore(owner).dossiers ?? {};
+}
+export function saveDossierState(owner: string, id: string, revision: number, raw: unknown) {
+  const input = DossierStateSchema.parse(raw);
+  return withStore(owner, store => {
+    if (!Number.isInteger(revision) || (store.dossiers?.[id]?.revision ?? 0) !== revision)
+      throw new HouseholdEditError("Ce dossier a changé. Rechargez la page avant de reprendre.");
+    store.dossiers ??= {};
+    return store.dossiers[id] = {...input, revision: revision + 1, updatedAt: new Date().toISOString()};
   });
 }

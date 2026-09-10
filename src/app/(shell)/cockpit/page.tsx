@@ -1,3 +1,5 @@
+import { getDossiers } from "@/lib/domain/dossierService";
+import { dossierSummary } from "@/lib/domain/dossiers";
 import { getSession } from "@/lib/store/session";
 import { getAllCases } from "@/lib/data/loaders";
 import { getLatestSubmission } from "@/lib/store/runtimeStore";
@@ -7,6 +9,7 @@ import { formatDateTime } from "@/lib/utils/format";
 import Link from "next/link";
 export default async function Page() {
   const s = await getSession();
+  const summary = dossierSummary(getDossiers(s.userId));
   const rows = getAllCases().map((c) => {
     const draft = getDraft(s.userId, c.case_id);
     const result = getLatestSubmission(s.userId, c.case_id);
@@ -43,6 +46,15 @@ export default async function Page() {
           Rechercher un adhérent
         </Link>
       </div>
+      <section className="m-panel mb-4" aria-label="Résumé Mes dossiers">
+        <h2><Link className="text-brand underline" href="/dossiers">Mes dossiers</Link></h2>
+        <div className="flex flex-wrap gap-4 text-sm">
+          <Link href="/dossiers?status=À traiter">À traiter : <strong>{summary.todo}</strong></Link>
+          <span>Urgents non terminés : <strong>{summary.urgent}</strong></span>
+          <Link href="/dossiers?status=Incomplet">Incomplets : <strong>{summary.incomplete}</strong></Link>
+          <Link href="/dossiers?status=En attente">En attente : <strong>{summary.waiting}</strong></Link>
+        </div>
+      </section>
       <div className="m-stats">
         {stats.map(([label, value]) => (
           <div className="m-panel" key={label}>
