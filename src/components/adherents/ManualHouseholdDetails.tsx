@@ -1,3 +1,4 @@
+import { RelationHistory } from "@/components/relation/RelationHistory";
 import { CotisationHistory } from "@/components/cotisations/CotisationHistory";
 import { DevisPecHistory } from "@/components/devisPec/DevisPecHistory";
 import { PrestationHistory } from "@/components/prestations/PrestationHistory";
@@ -43,7 +44,7 @@ export function ManualHouseholdDetails({owner, record, activeTab, tabs}: {
     {activeTab === "cotisations" && <CotisationHistory owner={owner} householdId={record.id} />}
     {activeTab === "pec" && <DevisPecHistory owner={owner} householdId={record.id} />}
     {activeTab === "prestations" && <PrestationHistory owner={owner} householdId={record.id} />}
-    {activeTab === "contacts" && <section className="m-panel"><h2>Coordonnées</h2>{contact}</section>}
+    {activeTab === "contacts" && <><section className="m-panel"><h2>Coordonnées</h2>{contact}</section><RelationHistory owner={owner} householdId={record.id}/></>}
     {activeTab === "contrat" && <section className="m-panel"><h2>Adhésion</h2>{contract}</section>}
     {activeTab === "garanties" && <section className="m-panel"><h2>{formula?.label}</h2>
       <p>La sélection de formule ne vaut pas validation des droits ni des remboursements.</p>

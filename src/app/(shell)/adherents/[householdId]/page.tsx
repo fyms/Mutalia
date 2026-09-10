@@ -1,4 +1,4 @@
-import { EmptyState } from "@/components/ui/EmptyState";
+import { RelationHistory } from "@/components/relation/RelationHistory";
 import { CotisationHistory } from "@/components/cotisations/CotisationHistory";
 import { DevisPecHistory } from "@/components/devisPec/DevisPecHistory";
 import { PrestationHistory } from "@/components/prestations/PrestationHistory";
@@ -217,10 +217,7 @@ export default async function Fiche360Page({
       )}
 
       {activeTab === "contacts" && (
-        <EmptyState
-          title="Aucune coordonnée fictive seedée"
-          description="Le pack de données P0 ne fournit pas de téléphone/email fictif par foyer. Ce point pourra être enrichi en P2/P3 (module Relation adhérent)."
-        />
+        <RelationHistory owner={owner} householdId={householdId} />
       )}
 
       {activeTab === "historique" && (

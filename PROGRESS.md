@@ -107,3 +107,15 @@
 
 ## Prochain travail
 - Attendre les instructions suivantes ; commit local uniquement, aucun push.
+
+## Terminé — étape 8 Relation adhérent & Réclamations
+- Contacts Appel/Email/Courrier/Note interne persistants, motif, résumé et action suivante ; timeline compacte et formulaires dans la fiche 360° et le module Relation adhérent.
+- Réclamations avec priorité, réception, description, réponse/résolution, historique et six statuts ; résolution motivée requise, réouverture avant clôture finale et contrôles de version.
+- Rattachements facultatifs aux prestations, PEC/devis, cotisations et dossiers existants, contrôlés par adhérent et compte. Dossier de traitement créé automatiquement et synchronisé ; filtres statut/priorité/type.
+- Validation finale : 48 tests ciblés réussis, typecheck et lint réussis. Aucun envoi de message ni fonction commerciale.
+
+## Restant — étape 8
+- Aucun problème bloquant constaté.
+
+## Prochain travail
+- Attendre les instructions suivantes ; commit local uniquement, aucun push.

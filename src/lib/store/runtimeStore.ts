@@ -1,3 +1,4 @@
+import { complaintTransitions, type Contact, type Complaint } from "@/lib/domain/relationAdherent";
 import { cotisationSummary, type Cotisation } from "@/lib/domain/cotisations";
 import { isRefused, type DevisPec } from "@/lib/domain/devisPec";
 import { describeControl, AnomalyUpdateSchema, type OperationalAnomaly } from "@/lib/domain/operationalAnomalies";
@@ -26,6 +27,8 @@ export interface DocumentState {
 
 export interface RuntimeStoreShape {
   version: 1;
+  contacts?: Record<string, Contact>;
+  complaints?: Record<string, Complaint>;
   cotisations?: Record<string, Cotisation>;
   operationalAnomalies?: Record<string, OperationalAnomaly>;
   devisPec?: Record<string, DevisPec>;
@@ -409,5 +412,38 @@ export function addStoredCotisationEntry(owner:string,id:string,revision:number,
   p.updatedAt=new Date().toISOString();p.revision++;
   p.entries.push({...entry,id:`REG-${randomUUID()}`,createdAt:p.updatedAt});
   syncCotisationDossier(store,p);return p;
+ });
+}
+
+export function getContacts(owner:string):Contact[] {
+ return Object.values(readStore(owner).contacts ?? {}).sort((a,b)=>b.date.localeCompare(a.date)||b.createdAt.localeCompare(a.createdAt)||a.id.localeCompare(b.id));
+}
+export function createStoredContact(owner:string,input:Omit<Contact,"id"|"createdAt">) {
+ return withStore(owner,store=>{
+  const p:Contact={...input,id:`CONTACT-${randomUUID()}`,createdAt:new Date().toISOString()};
+  store.contacts ??= {};store.contacts[p.id]=p;return p;
+ });
+}
+export function getComplaints(owner:string):Complaint[] {
+ return Object.values(readStore(owner).complaints ?? {}).sort((a,b)=>b.receivedDate.localeCompare(a.receivedDate)||a.id.localeCompare(b.id));
+}
+function syncComplaintDossier(store:RuntimeStoreShape,p:Complaint) {
+ store.dossiers ??= {};const old=store.dossiers[p.dossierId];
+ store.dossiers[p.dossierId]={status:["Résolue","Clôturée"].includes(p.status) ? "Terminé" : p.status==="En attente adhérent" ? "En attente" : "À traiter",priority:p.priority,revision:(old?.revision ?? 0)+1,updatedAt:p.updatedAt};
+}
+export function createStoredComplaint(owner:string,input:Omit<Complaint,"id"|"dossierId"|"status"|"response"|"revision"|"createdAt"|"updatedAt"|"history">) {
+ return withStore(owner,store=>{
+  const id=`REC-${randomUUID()}`,at=new Date().toISOString();
+  const p:Complaint={...input,id,dossierId:`DOS-${id}`,status:"Nouvelle",response:"",revision:1,createdAt:at,updatedAt:at,history:[{at,status:"Nouvelle",priority:input.priority,response:""}]};
+  store.complaints ??= {};store.complaints[id]=p;syncComplaintDossier(store,p);return p;
+ });
+}
+export function updateStoredComplaint(owner:string,id:string,revision:number,input:Pick<Complaint,"status"|"priority"|"response">) {
+ return withStore(owner,store=>{
+  const p=store.complaints?.[id];if(!p)throw new HouseholdEditError("Réclamation introuvable.");
+  if(!Number.isInteger(revision)||p.revision!==revision)throw new HouseholdEditError("Réclamation modifiée dans un autre onglet. Rechargez la page.");
+  if(!complaintTransitions(p.status).includes(input.status))throw new HouseholdEditError("Transition non autorisée.");
+  Object.assign(p,input);p.revision++;p.updatedAt=new Date().toISOString();
+  p.history.push({at:p.updatedAt,...input});syncComplaintDossier(store,p);return p;
  });
 }
