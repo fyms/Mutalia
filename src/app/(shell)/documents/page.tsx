@@ -1,3 +1,4 @@
+import { getSession } from "@/lib/store/session";
 import Link from "next/link";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { Card } from "@/components/ui/Card";
@@ -19,6 +20,7 @@ export default async function DocumentsPage({
 }: {
   searchParams: Promise<{ status?: string; type?: string }>;
 }) {
+  const owner = (await getSession()).userId;
   const { status: statusFilter, type: typeFilter } = await searchParams;
   const cases = getAllCases();
 
@@ -26,7 +28,7 @@ export default async function DocumentsPage({
     c.documents.map((doc) => ({
       caseId: c.case_id,
       doc,
-      state: getDocumentState(doc.document_id),
+      state: getDocumentState(owner, doc.document_id),
     })),
   );
 

@@ -1,11 +1,7 @@
 import "server-only";
-import fs from "node:fs";
-import path from "node:path";
+import { db } from "@/lib/db";
 import type { DocumentStatus } from "@/lib/domain/constants";
 import type { CaseSubmissionResult } from "@/lib/domain/types";
-
-const STORE_DIR = path.join(process.cwd(), ".data");
-const STORE_FILE = path.join(STORE_DIR, "runtime-store.json");
 
 export interface DocumentAnnotation {
   id: string;
@@ -30,64 +26,43 @@ function defaultStore(): RuntimeStoreShape {
   return { version: 1, documents: {}, submissions: {} };
 }
 
-/** Initialise le fichier de persistance de manière idempotente (ne réécrit rien s'il existe déjà). */
-function ensureStoreFile(): void {
-  if (!fs.existsSync(STORE_DIR)) {
-    fs.mkdirSync(STORE_DIR, { recursive: true });
-  }
-  if (!fs.existsSync(STORE_FILE)) {
-    fs.writeFileSync(STORE_FILE, JSON.stringify(defaultStore(), null, 2), "utf-8");
-  }
+// Separate P0 state from the extended historical payload; never overwrite it.
+function readStore(owner: string): RuntimeStoreShape {
+  if (!owner) throw new Error("Compte requis");
+  const row = db.prepare("SELECT payload FROM codex_learner_work WHERE owner=?").get(owner) as {payload: string} | undefined;
+  return row ? JSON.parse(row.payload) : defaultStore();
 }
-
-function readStore(): RuntimeStoreShape {
-  ensureStoreFile();
-  const raw = fs.readFileSync(STORE_FILE, "utf-8");
-  try {
-    const parsed = JSON.parse(raw) as Partial<RuntimeStoreShape>;
-    return { ...defaultStore(), ...parsed };
-  } catch {
-    return defaultStore();
-  }
+function writeStore(owner: string, store: RuntimeStoreShape): void {
+  db.prepare("INSERT INTO codex_learner_work(owner,payload) VALUES(?,?) ON CONFLICT(owner) DO UPDATE SET payload=excluded.payload").run(owner, JSON.stringify(store));
 }
-
-function writeStore(store: RuntimeStoreShape): void {
-  ensureStoreFile();
-  fs.writeFileSync(STORE_FILE, JSON.stringify(store, null, 2), "utf-8");
-}
-
-/** Sérialise les écritures pour éviter les écrasements concurrents (process Node unique en développement). */
-let writeQueue: Promise<unknown> = Promise.resolve();
-function withStore<T>(mutator: (store: RuntimeStoreShape) => T): Promise<T> {
-  const run = writeQueue.then(() => {
-    const store = readStore();
+function withStore<T>(owner: string, mutator: (store: RuntimeStoreShape) => T): T {
+  return db.transaction(() => {
+    const store = readStore(owner);
     const result = mutator(store);
-    writeStore(store);
+    writeStore(owner, store);
     return result;
-  });
-  writeQueue = run.catch(() => undefined);
-  return run;
+  })();
 }
 
 function emptyDocumentState(): DocumentState {
   return { viewedAt: [], annotations: [] };
 }
 
-export function getDocumentState(documentId: string): DocumentState {
-  const store = readStore();
+export function getDocumentState(owner: string, documentId: string): DocumentState {
+  const store = readStore(owner);
   return store.documents[documentId] ?? emptyDocumentState();
 }
 
-export async function markDocumentViewed(documentId: string): Promise<void> {
-  await withStore((store) => {
+export async function markDocumentViewed(owner: string, documentId: string): Promise<void> {
+  await withStore(owner, (store) => {
     const current = store.documents[documentId] ?? emptyDocumentState();
     current.viewedAt.push(new Date().toISOString());
     store.documents[documentId] = current;
   });
 }
 
-export async function setDocumentStatus(documentId: string, status: DocumentStatus): Promise<void> {
-  await withStore((store) => {
+export async function setDocumentStatus(owner: string, documentId: string, status: DocumentStatus): Promise<void> {
+  await withStore(owner, (store) => {
     const current = store.documents[documentId] ?? emptyDocumentState();
     current.status = status;
     store.documents[documentId] = current;
@@ -95,11 +70,12 @@ export async function setDocumentStatus(documentId: string, status: DocumentStat
 }
 
 export async function addDocumentAnnotation(
+  owner: string,
   documentId: string,
   text: string,
   author: string,
 ): Promise<void> {
-  await withStore((store) => {
+  await withStore(owner, (store) => {
     const current = store.documents[documentId] ?? emptyDocumentState();
     current.annotations.push({
       id: `ANNOT-${Date.now()}-${Math.round(Math.random() * 1000)}`,
@@ -111,8 +87,8 @@ export async function addDocumentAnnotation(
   });
 }
 
-export function getViewedDocumentIds(documentIds: string[]): Set<string> {
-  const store = readStore();
+export function getViewedDocumentIds(owner: string, documentIds: string[]): Set<string> {
+  const store = readStore(owner);
   const viewed = new Set<string>();
   for (const id of documentIds) {
     if ((store.documents[id]?.viewedAt.length ?? 0) > 0) viewed.add(id);
@@ -121,34 +97,59 @@ export function getViewedDocumentIds(documentIds: string[]): Set<string> {
 }
 
 export async function recordSubmission(
+  owner: string,
   caseId: string,
   result: CaseSubmissionResult,
 ): Promise<void> {
-  await withStore((store) => {
+  await withStore(owner, (store) => {
     const list = store.submissions[caseId] ?? [];
     list.push(result);
     store.submissions[caseId] = list;
   });
 }
 
-export function getSubmissions(caseId: string): CaseSubmissionResult[] {
-  const store = readStore();
+export function getSubmissions(owner: string, caseId: string): CaseSubmissionResult[] {
+  const store = readStore(owner);
   return store.submissions[caseId] ?? [];
 }
 
-export function getLatestSubmission(caseId: string): CaseSubmissionResult | undefined {
-  const list = getSubmissions(caseId);
+export function getLatestSubmission(owner: string, caseId: string): CaseSubmissionResult | undefined {
+  const list = getSubmissions(owner, caseId);
   return list[list.length - 1];
 }
 
-export function getAllSubmissions(): Record<string, CaseSubmissionResult[]> {
-  return readStore().submissions;
+export function getAllSubmissions(owner: string): Record<string, CaseSubmissionResult[]> {
+  return readStore(owner).submissions;
 }
 
 /** Réinitialise le prototype (statuts documents, annotations, soumissions) sans toucher aux seeds. */
-export async function resetRuntimeStore(): Promise<void> {
-  await withStore((store) => {
+export async function resetRuntimeStore(owner: string): Promise<void> {
+  await withStore(owner, (store) => {
     store.documents = {};
     store.submissions = {};
   });
+}
+
+export function recordSubmissionOnce(
+  ownerId: string,
+  revision: number,
+  result: CaseSubmissionResult,
+): CaseSubmissionResult {
+  return db.transaction(() => {
+    const prior = db
+      .prepare(
+        "SELECT payload FROM codex_submission_receipt WHERE owner=? AND case_id=? AND revision=?",
+      )
+      .get(ownerId, result.caseId, revision) as { payload: string } | undefined;
+    if (prior) return JSON.parse(prior.payload) as CaseSubmissionResult;
+    const store = readStore(ownerId);
+    store.submissions[result.caseId] = [...(store.submissions[result.caseId] ?? []), result];
+    db.prepare(
+      "INSERT INTO codex_learner_work(owner,payload) VALUES(?,?) ON CONFLICT(owner) DO UPDATE SET payload=excluded.payload",
+    ).run(ownerId, JSON.stringify(store));
+    db.prepare(
+      "INSERT INTO codex_submission_receipt(owner,case_id,revision,payload) VALUES(?,?,?,?)",
+    ).run(ownerId, result.caseId, revision, JSON.stringify(result));
+    return result;
+  })();
 }

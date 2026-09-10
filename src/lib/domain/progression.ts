@@ -20,9 +20,9 @@ export interface ProgressionSummary {
   perCase: CaseProgress[];
 }
 
-export function getProgressionSummary(): ProgressionSummary {
+export function getProgressionSummary(owner: string): ProgressionSummary {
   const cases = getAllCases();
-  const submissions = getAllSubmissions();
+  const submissions = getAllSubmissions(owner);
 
   const perCase: CaseProgress[] = cases.map((c) => {
     const list = submissions[c.case_id] ?? [];

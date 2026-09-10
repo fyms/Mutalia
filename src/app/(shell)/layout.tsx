@@ -5,16 +5,25 @@ import { LexiconProvider } from "@/components/lexicon/LexiconProvider";
 import { getLexicon } from "@/lib/data/loaders";
 import { getSession } from "@/lib/store/session";
 
-export default async function ShellLayout({ children }: { children: ReactNode }) {
+export default async function ShellLayout({
+  children,
+}: {
+  children: ReactNode;
+}) {
   const [lexicon, session] = await Promise.all([getLexicon(), getSession()]);
 
   return (
     <LexiconProvider entries={lexicon} level={session.level}>
-      <div className="flex min-h-screen w-full">
+      <div className="m-shell">
+        <a href="#contenu" className="m-skip">
+          Aller au contenu
+        </a>
         <Sidebar />
-        <div className="flex min-h-screen flex-1 flex-col">
+        <div className="m-content flex min-h-screen flex-col">
           <Topbar />
-          <main className="flex-1 overflow-y-auto bg-background px-6 py-6">{children}</main>
+          <main id="contenu" tabIndex={-1} className="m-main flex-1">
+            {children}
+          </main>
         </div>
       </div>
     </LexiconProvider>

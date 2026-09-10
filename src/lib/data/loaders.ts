@@ -22,12 +22,52 @@ function readJson<T>(filePath: string): T {
 }
 
 let casesCache: TrainingCase[] | null = null;
-export function getAllCases(): TrainingCase[] {
+function getSourceCases(): TrainingCase[] {
   if (casesCache) return casesCache;
   const dir = path.join(SEED_DIR, "cases");
   const files = fs.readdirSync(dir).filter((f) => f.endsWith(".json")).sort();
   casesCache = files.map((f) => TrainingCaseSchema.parse(readJson(path.join(dir, f))));
   return casesCache;
+}
+
+export const NEUTRAL_CHECKS = [
+  "Identité du bénéficiaire",
+  "Date et lisibilité",
+  "Cohérence des pièces",
+  "Référentiel et droits",
+];
+function learnerCase(c: TrainingCase): TrainingCase {
+  return {
+    case_id: c.case_id,
+    difficulty: c.difficulty,
+    scenario_type: "dossier_documentaire",
+    household: c.household,
+    target_beneficiary_id: c.target_beneficiary_id,
+    contract: c.contract,
+    synthetic: true,
+    visible_in_learner_mode: c.visible_in_learner_mode,
+    objectives: NEUTRAL_CHECKS,
+    learner_instructions:
+      "Qualifiez les pièces, contrôlez leur cohérence et justifiez votre décision.",
+    documents: c.documents.map((d, i) => ({
+      document_id: d.document_id,
+      case_id: c.case_id,
+      document_type: d.document_type,
+      file_name: `piece-${i + 1}.pdf`,
+      document_date: d.document_date,
+      synthetic: true,
+      status: "a_qualifier",
+      anomalies: [],
+    })),
+  };
+}
+export function getAllCases(): TrainingCase[] {
+  return getSourceCases()
+    .filter((c) => c.visible_in_learner_mode)
+    .map(learnerCase);
+}
+export function getSourceCase(caseId: string): TrainingCase | undefined {
+  return getSourceCases().find(c => c.case_id === caseId);
 }
 
 export function getCaseById(caseId: string): TrainingCase | undefined {
@@ -36,6 +76,7 @@ export function getCaseById(caseId: string): TrainingCase | undefined {
 
 /** Réservé au serveur : ne jamais transmettre ce résultat brut à un client en mode apprenant. */
 export function getAnswerKey(caseId: string): AnswerKey | undefined {
+  if (!getSourceCase(caseId)) return undefined;
   const filePath = path.join(ANSWER_KEY_DIR, `${caseId}.json`);
   if (!fs.existsSync(filePath)) return undefined;
   return AnswerKeySchema.parse(readJson(filePath));

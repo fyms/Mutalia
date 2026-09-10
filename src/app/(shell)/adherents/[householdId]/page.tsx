@@ -1,3 +1,4 @@
+import { getSession } from "@/lib/store/session";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { PageHeader } from "@/components/ui/PageHeader";
@@ -33,6 +34,7 @@ export default async function Fiche360Page({
   params: Promise<{ householdId: string }>;
   searchParams: Promise<{ tab?: string }>;
 }) {
+  const owner = (await getSession()).userId;
   const { householdId } = await params;
   const { tab } = await searchParams;
   const household = getHouseholdById(householdId);
@@ -41,7 +43,7 @@ export default async function Fiche360Page({
   const activeTab = TABS.some((t) => t.key === tab) ? tab! : "vue-generale";
   const basePath = `/adherents/${householdId}`;
   const referential = getHarmonieReferential();
-  const submissions = getSubmissions(household.case.case_id);
+  const submissions = getSubmissions(owner, household.case.case_id);
 
   return (
     <div>
@@ -188,7 +190,7 @@ export default async function Fiche360Page({
             </thead>
             <tbody>
               {household.case.documents.map((doc) => {
-                const state = getDocumentState(doc.document_id);
+                const state = getDocumentState(owner, doc.document_id);
                 return (
                   <tr key={doc.document_id} className="border-b border-border last:border-0">
                     <td className="px-4 py-2.5">

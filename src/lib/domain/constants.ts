@@ -1,6 +1,6 @@
 export const DATA_TO_VERIFY = "Donnée 2026 à vérifier" as const;
 
-export const ROLES = ["apprenant", "formateur"] as const;
+export const ROLES = ["apprenant", "formateur", "administrateur"] as const;
 export type Role = (typeof ROLES)[number];
 
 export const ASSISTANCE_LEVELS = [
@@ -27,6 +27,7 @@ export const DIFFICULTY_LABELS: Record<string, string> = {
 export const ROLE_LABELS: Record<Role, string> = {
   apprenant: "Apprenant",
   formateur: "Formateur",
+  administrateur: "Administrateur",
 };
 
 export const MEMBER_ROLE_LABELS: Record<string, string> = {

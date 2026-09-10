@@ -1,3 +1,4 @@
+import { getSession } from "@/lib/store/session";
 import Link from "next/link";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { Card } from "@/components/ui/Card";
@@ -13,8 +14,9 @@ const DIFFICULTY_TONE: Record<string, "success" | "brand" | "warning"> = {
 };
 
 export default async function CasPratiquesPage() {
+  const owner = (await getSession()).userId;
   const cases = getAllCases();
-  const progression = getProgressionSummary();
+  const progression = getProgressionSummary(owner);
   const byId = new Map(progression.perCase.map((c) => [c.caseId, c]));
 
   return (

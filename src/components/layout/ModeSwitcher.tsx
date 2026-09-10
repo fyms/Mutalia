@@ -1,86 +1,46 @@
 "use client";
-
-import { useTransition } from "react";
+import { useState, useTransition } from "react";
+import { toggleNewHireModeAction } from "@/lib/store/actions";
 import {
-  updateLevelAction,
-  updateRoleAction,
-  toggleNewHireModeAction,
-} from "@/lib/store/actions";
-import {
-  ASSISTANCE_LEVELS,
-  ASSISTANCE_LEVEL_LABELS,
   ROLE_LABELS,
-  ROLES,
-  type AssistanceLevel,
   type Role,
+  type AssistanceLevel,
 } from "@/lib/domain/constants";
-
 export function ModeSwitcher({
-  role,
-  level,
+  accountRole,
   newHireMode,
 }: {
+  accountRole: Role;
   role: Role;
   level: AssistanceLevel;
   newHireMode: boolean;
 }) {
-  const [, startTransition] = useTransition();
-
+  const [enabled, setEnabled] = useState(newHireMode);
+  const [pending, start] = useTransition();
+  const [error, setError] = useState("");
   return (
-    <div className="flex items-center gap-2 text-xs">
-      <form
-        action={(formData) => startTransition(() => updateRoleAction(formData))}
-        onChange={(e) => (e.currentTarget as HTMLFormElement).requestSubmit()}
+    <div className="flex flex-wrap items-center gap-2">
+      <span className="m-badge">{ROLE_LABELS[accountRole]}</span>
+      <button
+        className="m-button m-button--secondary"
+        disabled={pending}
+        aria-pressed={enabled}
+        onClick={() =>
+          start(async () => {
+            try {
+              const f = new FormData();
+              f.set("enabled", enabled ? "0" : "1");
+              await toggleNewHireModeAction(f);
+              setEnabled(!enabled);
+            } catch {
+              setError("Préférence non enregistrée");
+            }
+          })
+        }
       >
-        <select
-          name="role"
-          defaultValue={role}
-          className="rounded-md border border-border bg-surface px-2 py-1.5 text-xs"
-          title="Rôle actif"
-        >
-          {ROLES.map((r) => (
-            <option key={r} value={r}>
-              {ROLE_LABELS[r]}
-            </option>
-          ))}
-        </select>
-      </form>
-
-      <form
-        action={(formData) => startTransition(() => updateLevelAction(formData))}
-        onChange={(e) => (e.currentTarget as HTMLFormElement).requestSubmit()}
-      >
-        <select
-          name="level"
-          defaultValue={level}
-          className="rounded-md border border-border bg-surface px-2 py-1.5 text-xs"
-          title="Niveau d'aide"
-        >
-          {ASSISTANCE_LEVELS.map((l) => (
-            <option key={l} value={l}>
-              {ASSISTANCE_LEVEL_LABELS[l]}
-            </option>
-          ))}
-        </select>
-      </form>
-
-      <form
-        action={(formData) => startTransition(() => toggleNewHireModeAction(formData))}
-        onChange={(e) => (e.currentTarget as HTMLFormElement).requestSubmit()}
-      >
-        <input type="hidden" name="enabled" value={newHireMode ? "0" : "1"} />
-        <button
-          type="submit"
-          className={`rounded-md border px-2 py-1.5 text-xs font-medium ${
-            newHireMode
-              ? "border-brand bg-brand-soft text-brand-strong"
-              : "border-border bg-surface text-foreground-muted"
-          }`}
-          title="Mode Nouveau collaborateur : aides et indices renforcés"
-        >
-          🎓 Nouveau collaborateur : {newHireMode ? "activé" : "désactivé"}
-        </button>
-      </form>
+        Nouveau collaborateur : {enabled ? "activé" : "désactivé"}
+      </button>
+      {error && <p role="alert">{error}</p>}
     </div>
   );
 }

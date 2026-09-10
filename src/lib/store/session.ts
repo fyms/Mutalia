@@ -1,50 +1,78 @@
 import "server-only";
-import { cookies } from "next/headers";
+import { headers } from "next/headers";
+import { redirect } from "next/navigation";
+import { auth } from "@/lib/auth/config";
+import { db } from "@/lib/db";
 import {
   ASSISTANCE_LEVELS,
-  ROLES,
   type AssistanceLevel,
   type Role,
 } from "@/lib/domain/constants";
-
-const ROLE_COOKIE = "mutalia_role";
-const LEVEL_COOKIE = "mutalia_level";
-const NEW_HIRE_COOKIE = "mutalia_new_hire";
-
 export interface Session {
+  userId: string;
+  email: string;
+  displayName: string;
+  accountRole: Role;
   role: Role;
   level: AssistanceLevel;
   newHireMode: boolean;
+  profileId: string;
 }
-
+export async function getAuthSession(): Promise<Session | null> {
+  const result = await auth.api.getSession({ headers: await headers() });
+  if (!result) return null;
+  const u = result.user;
+  if (!u.active || u.banned) return null;
+  const role = u.role;
+  if (role !== "apprenant" && role !== "formateur" && role !== "administrateur")
+    return null;
+  const row = db
+    .prepare("SELECT payload FROM preferences WHERE owner=?")
+    .get(u.id) as { payload: string } | undefined;
+  const prefs = row ? JSON.parse(row.payload) : {};
+  return {
+    userId: u.id,
+    email: u.email,
+    displayName: u.name,
+    accountRole: role,
+    role,
+    level: prefs.level || "debutant",
+    newHireMode: prefs.newHireMode ?? true,
+    profileId: u.id,
+  };
+}
 export async function getSession(): Promise<Session> {
-  const store = await cookies();
-  const rawRole = store.get(ROLE_COOKIE)?.value;
-  const rawLevel = store.get(LEVEL_COOKIE)?.value;
-  const rawNewHire = store.get(NEW_HIRE_COOKIE)?.value;
-
-  const role = (ROLES as readonly string[]).includes(rawRole ?? "")
-    ? (rawRole as Role)
-    : "apprenant";
-  const level = (ASSISTANCE_LEVELS as readonly string[]).includes(rawLevel ?? "")
-    ? (rawLevel as AssistanceLevel)
-    : "debutant";
-  const newHireMode = rawNewHire ? rawNewHire === "1" : true;
-
-  return { role, level, newHireMode };
+  const s = await getAuthSession();
+  if (!s) {
+    const cookie = (await headers()).get("cookie") || "";
+    redirect(
+      /(?:better-auth|__Secure-better-auth)\.session_token=/.test(cookie)
+        ? "/login?expired=1"
+        : "/login",
+    );
+  }
+  return s;
 }
-
-export async function setRole(role: Role): Promise<void> {
-  const store = await cookies();
-  store.set(ROLE_COOKIE, role, { path: "/", maxAge: 60 * 60 * 24 * 365 });
+async function savePreference(update: Record<string, unknown>) {
+  const s = await getSession();
+  const row = db
+    .prepare("SELECT payload FROM preferences WHERE owner=?")
+    .get(s.userId) as { payload: string } | undefined;
+  db.prepare(
+    "INSERT INTO preferences(owner,payload) VALUES(?,?) ON CONFLICT(owner) DO UPDATE SET payload=excluded.payload",
+  ).run(
+    s.userId,
+    JSON.stringify({ ...(row ? JSON.parse(row.payload) : {}), ...update }),
+  );
 }
-
-export async function setLevel(level: AssistanceLevel): Promise<void> {
-  const store = await cookies();
-  store.set(LEVEL_COOKIE, level, { path: "/", maxAge: 60 * 60 * 24 * 365 });
+export async function setLevel(level: AssistanceLevel) {
+  if (!ASSISTANCE_LEVELS.includes(level)) throw new Error("Niveau invalide");
+  await savePreference({ level });
 }
-
-export async function setNewHireMode(enabled: boolean): Promise<void> {
-  const store = await cookies();
-  store.set(NEW_HIRE_COOKIE, enabled ? "1" : "0", { path: "/", maxAge: 60 * 60 * 24 * 365 });
+export async function setNewHireMode(enabled: boolean) {
+  await savePreference({ newHireMode: enabled });
+}
+export async function setRolePreview(role: Role) {
+  if (role !== (await getSession()).accountRole)
+    throw new Error("Le rôle ne se modifie pas depuis les préférences.");
 }

@@ -1,3 +1,4 @@
+import { getSession } from "@/lib/store/session";
 import Link from "next/link";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { Card } from "@/components/ui/Card";
@@ -7,7 +8,8 @@ import { DIFFICULTY_LABELS } from "@/lib/domain/constants";
 import { formatDateTime } from "@/lib/utils/format";
 
 export default async function ProgressionPage() {
-  const progression = getProgressionSummary();
+  const owner = (await getSession()).userId;
+  const progression = getProgressionSummary(owner);
 
   return (
     <div>

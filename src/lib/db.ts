@@ -1,0 +1,16 @@
+import Database from "better-sqlite3";
+import fs from "node:fs";
+import path from "node:path";
+export const dataDir = path.resolve(process.env.MUTALIA_DATA_DIR || ".data");
+fs.mkdirSync(dataDir, { recursive: true, mode: 0o700 });
+export const db = new Database(path.join(dataDir, "mutalia.sqlite"));
+db.pragma("journal_mode = WAL");
+db.pragma("busy_timeout = 5000");
+db.pragma("foreign_keys = ON");
+db.exec(`CREATE TABLE IF NOT EXISTS codex_learner_work (owner TEXT PRIMARY KEY, payload TEXT NOT NULL);
+CREATE TABLE IF NOT EXISTS codex_submission_receipt (owner TEXT NOT NULL, case_id TEXT NOT NULL, revision INTEGER NOT NULL, payload TEXT NOT NULL, PRIMARY KEY(owner,case_id,revision));
+CREATE TABLE IF NOT EXISTS learner_work (owner TEXT PRIMARY KEY, payload TEXT NOT NULL);
+CREATE TABLE IF NOT EXISTS trainer_assignment (trainer TEXT NOT NULL, learner TEXT NOT NULL, PRIMARY KEY(trainer,learner));
+CREATE TABLE IF NOT EXISTS case_draft (owner TEXT NOT NULL, case_id TEXT NOT NULL, revision INTEGER NOT NULL, payload TEXT NOT NULL, updated_at TEXT NOT NULL, PRIMARY KEY(owner,case_id));
+CREATE TABLE IF NOT EXISTS submission_receipt (owner TEXT NOT NULL, case_id TEXT NOT NULL, revision INTEGER NOT NULL, payload TEXT NOT NULL, PRIMARY KEY(owner,case_id,revision));
+CREATE TABLE IF NOT EXISTS preferences (owner TEXT PRIMARY KEY, payload TEXT NOT NULL);`);
