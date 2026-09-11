@@ -2,10 +2,11 @@ import type { CockpitData } from "@/components/cockpit/Cockpit";
 import type { HouseholdLifecycle } from "@/lib/domain/householdLifecycle";
 import { STATUS_LABELS,REASON_LABELS } from "@/lib/domain/householdLifecycle";
 export interface HouseholdEvent {id:string;at:string;type:string;summary:string;href:string;}
-export function householdTimeline(data:CockpitData,householdId:string,lifecycle?:HouseholdLifecycle,names:Record<string,string>={},createdAt?:string) {
+export function householdTimeline(data:CockpitData,householdId:string,lifecycle?:HouseholdLifecycle,names:Record<string,string>={},createdAt?:string,bankingHistory:{at:string;event:string}[]=[]) {
  const events:HouseholdEvent[]=[];
  const add=(source:string,id:string,at:string,type:string,summary:string,href:string)=>{if(at)events.push({id:`${source}:${id}:${at}:${summary}`,at,type,summary,href});};
  const href=`/adherents/${householdId}`;
+ bankingHistory.forEach((e,i)=>add("banking",String(i),e.at,"Coordonnées bancaires","Coordonnées bancaires mises à jour",`${href}?tab=vue-generale`));
  if(createdAt)add("creation",householdId,createdAt,"Adhésion","Création du foyer",`${href}?tab=vue-generale`);
  data.contacts.filter(p=>p.householdId===householdId).forEach(p=>add("contact",p.id,p.date,p.channel,p.reason,`${href}?tab=contacts`));
  data.appointments.filter(p=>p.householdId===householdId).forEach(p=>{

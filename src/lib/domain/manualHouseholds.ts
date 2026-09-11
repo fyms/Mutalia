@@ -1,8 +1,10 @@
 import { z } from "zod";
+import { BankingInputSchema } from "./demoBanking";
 
 const required = (label: string, max = 100) => z.string().trim().min(1, `${label} requis.`).max(max, `${label} trop long.`);
 const date = z.iso.date("Date invalide.");
 export const ManualHouseholdInputSchema = z.object({
+  banking: BankingInputSchema,
   firstName: required("Prénom"),
   lastName: required("Nom"),
   birthDate: date.refine(value => value <= new Date().toISOString().slice(0, 10), "La naissance ne peut pas être dans le futur."),
@@ -25,6 +27,7 @@ export interface ManualHousehold extends ManualHouseholdInput {
   revision: number;
   deletedAt: string | null;
   beneficiaries?: ManualBeneficiary[];
+  bankingHistory?: {at: string; event: "Coordonnées bancaires mises à jour"}[];
 }
 
 export const BeneficiaryInputSchema = z.object({

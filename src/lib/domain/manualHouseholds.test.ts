@@ -186,3 +186,23 @@ it("persists manual beneficiary exit and reactivation without losing earlier int
  expect(restored.lifecycle?.beneficiaries[id]).toMatchObject({status:"inactive",endDate:"2026-09-10",endReason:"age_limit"});
  expect(()=>store.changeHouseholdLifecycle("manual-lifecycle",h.id,1,id,{status:"deceased",endDate:"2026-09-11",endReason:"divorce"})).toThrow("incompatibles");
 });
+
+it("persists demo banking per owner and records only generic updates",async()=>{
+ const {generateDemoAccount,DemoBankingSchema}=await import("./demoBanking");
+ const first=DemoBankingSchema.parse({paymentAccount:{...generateDemoAccount(),paymentMethod:"Prélèvement pédagogique",mandateDate:"2026-09-11",mandateStatus:"Actif"},refundAccount:{sameAsPayment:true}});
+ const h=store.createManualHousehold("bank-a",{...input,banking:JSON.stringify(first)});
+ expect(store.getManualHouseholds("bank-a")[0].banking?.refundAccount.iban).toBe(first.paymentAccount.iban);
+ expect(store.getManualHouseholds("bank-b")).toEqual([]);
+ const next=DemoBankingSchema.parse({paymentAccount:{...first.paymentAccount,...generateDemoAccount(),mandateStatus:"Révoqué"},refundAccount:{...generateDemoAccount(),sameAsPayment:false}});
+ store.updateManualHousehold("bank-a",h.id,h.revision,{...input,banking:next});
+ const saved=store.getManualHouseholds("bank-a")[0];expect(saved.banking).toEqual(next);
+ expect(saved.bankingHistory).toEqual([{at:expect.any(String),event:"Coordonnées bancaires mises à jour"}]);
+ expect(JSON.stringify(saved.bankingHistory)).not.toContain(first.paymentAccount.iban);
+ const connection=new Database(path.join(dir,"mutalia.sqlite"),{readonly:true});
+ try{const row=connection.prepare("SELECT payload FROM codex_learner_work WHERE owner=?").get("bank-a") as {payload:string};expect(JSON.parse(row.payload).manualHouseholds[h.id].banking).toEqual(next);}finally{connection.close();}
+ const {buildSearchIndex}=await import("./search");expect(JSON.stringify(buildSearchIndex("bank-a"))).not.toContain(next.paymentAccount.iban);
+ const {householdTimeline}=await import("@/components/adherents/householdTimeline");
+ const events=householdTimeline({dossiers:[],anomalies:[],appointments:[],prestations:[],complaints:[],quotes:[],cotisations:[],contacts:[]},h.id,undefined,{},h.createdAt,saved.bankingHistory);
+ expect(events.some(e=>e.summary==="Coordonnées bancaires mises à jour")).toBe(true);
+ expect(JSON.stringify(events)).not.toContain(next.paymentAccount.iban);
+});

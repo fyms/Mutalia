@@ -216,7 +216,14 @@ export function updateManualHousehold(owner: string, id: string, revision: numbe
   const input = ManualHouseholdInputSchema.parse(raw);
   if (!getHouseholdFormulas().some(f => f.key === input.formulaKey))
     throw new HouseholdEditError("Choisissez une formule du référentiel Harmonie 2026.");
-  return editManualHousehold(owner, id, revision, h => { Object.assign(h, input); });
+  return editManualHousehold(owner, id, revision, h => {
+    if (input.banking && JSON.stringify(h.banking) !== JSON.stringify(input.banking)) {
+      h.bankingHistory ??= [];
+      h.bankingHistory.push({at: new Date().toISOString(), event: "Coordonnées bancaires mises à jour"});
+    }
+    // Older forms omitting banking preserve the current account.
+    Object.assign(h, {...input, banking: input.banking ?? h.banking});
+  });
 }
 export function saveManualBeneficiary(owner: string, id: string, revision: number, beneficiaryId: string | null, raw: unknown) {
   const input = BeneficiaryInputSchema.parse(raw);
