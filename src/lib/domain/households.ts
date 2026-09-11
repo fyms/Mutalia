@@ -1,4 +1,5 @@
-import { getManualHouseholds } from "@/lib/store/runtimeStore";
+import type { HouseholdLifecycle } from "./householdLifecycle";
+import { getManualHouseholds, getHouseholdLifecycles } from "@/lib/store/runtimeStore";
 import { getHouseholdFormulas } from "./householdFormulas";
 import type { ManualHousehold } from "./manualHouseholds";
 import "server-only";
@@ -8,6 +9,7 @@ import { DATA_TO_VERIFY } from "@/lib/domain/constants";
 
 export interface PedagogicalHouseholdView {
   householdId: string;
+  lifecycle?: HouseholdLifecycle;
   case: TrainingCase;
   household: Household;
   adherent: Member;
@@ -85,7 +87,8 @@ export function getAllHouseholds(owner?: string): HouseholdView[] {
       starsSoins: DATA_TO_VERIFY, starsEquipements: DATA_TO_VERIFY,
     };
   });
-  return [...seeds, ...manual];
+  const lifecycles = getHouseholdLifecycles(owner);
+  return [...seeds, ...manual].map(h => lifecycles[h.householdId] ? {...h,lifecycle:lifecycles[h.householdId]} : h);
 }
 
 export function getHouseholdById(householdId: string, owner?: string): HouseholdView | undefined {

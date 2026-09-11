@@ -1,3 +1,4 @@
+import { LifecycleEditor } from "@/components/adherents/LifecycleEditor";
 import { RelationHistory } from "@/components/relation/RelationHistory";
 import { CotisationHistory } from "@/components/cotisations/CotisationHistory";
 import { DevisPecHistory } from "@/components/devisPec/DevisPecHistory";
@@ -65,6 +66,7 @@ export default async function Fiche360Page({
         }
       />
 
+      <LifecycleEditor id={householdId} lifecycle={household.lifecycle} members={household.beneficiaries.map(b=>({id:b.member_id,name:`${b.first_name} ${b.last_name}`}))}/>
       <QueryTabs basePath={basePath} activeKey={activeTab} tabs={TABS} />
 
       {activeTab === "vue-generale" && (

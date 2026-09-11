@@ -1,3 +1,4 @@
+import { activeAt } from "@/lib/domain/householdLifecycle";
 import { getSession } from "@/lib/store/session";
 import Link from "next/link";
 import { PageHeader } from "@/components/ui/PageHeader";
@@ -7,8 +8,10 @@ import { getAllHouseholds, computeAge } from "@/lib/domain/households";
 import { MEMBER_ROLE_LABELS } from "@/lib/domain/constants";
 import { formatDate } from "@/lib/utils/format";
 
-export default async function AdherentsPage() {
-  const households = getAllHouseholds((await getSession()).userId);
+export default async function AdherentsPage({searchParams}: {searchParams: Promise<{status?:string}>}) {
+  const archived = (await searchParams).status === "archived";
+  const today = new Date().toISOString().slice(0,10);
+  const households = getAllHouseholds((await getSession()).userId).filter(h=>activeAt(h.lifecycle?.adherent,today) !== archived);
 
   return (
     <div>
@@ -18,6 +21,7 @@ export default async function AdherentsPage() {
         action={<Link href="/adherents/nouveau" className="m-button">Nouvel adhérent</Link>}
       />
 
+      <nav className="flex gap-3 mb-4" aria-label="Statut des adhérents"><Link className="m-button m-button--secondary" aria-current={!archived?"page":undefined} href="/adherents">Actifs</Link><Link className="m-button m-button--secondary" aria-current={archived?"page":undefined} href="/adherents?status=archived">Archivés / clôturés</Link></nav>
       <Card padded={false} className="overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-left text-sm">
@@ -44,7 +48,7 @@ export default async function AdherentsPage() {
                   <td className="px-4 py-2.5 text-foreground-muted">{h.householdId}</td>
                   <td className="px-4 py-2.5">
                     <div className="flex flex-wrap gap-1">
-                      {h.beneficiaries.map((b) => (
+                      {h.beneficiaries.filter(b=>activeAt(h.lifecycle?.beneficiaries[b.member_id],today)).map((b) => (
                         <Badge key={b.member_id} tone="neutral">
                           {MEMBER_ROLE_LABELS[b.role]}
                         </Badge>

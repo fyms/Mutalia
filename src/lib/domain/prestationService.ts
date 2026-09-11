@@ -1,3 +1,4 @@
+import { eligibleAt } from "./householdLifecycle";
 import "server-only";
 import { getHouseholdById } from "./households";
 import { getPrestations, createStoredPrestation, changeStoredPrestation, HouseholdEditError } from "@/lib/store/runtimeStore";
@@ -6,6 +7,7 @@ export function context(owner: string, input: PrestationInput) {
   const h = getHouseholdById(input.householdId, owner);
   const member = h?.household.members.find(m => m.member_id === input.memberId);
   if (!h || !member) throw new HouseholdEditError("Adhérent ou bénéficiaire introuvable pour ce compte.");
+  if (!eligibleAt(h.lifecycle,input.memberId,input.careDate)) throw new HouseholdEditError("Adhésion ou bénéficiaire inactif à la date des soins.");
   if (input.careDate < member.birth_date) throw new HouseholdEditError("Date de soins antérieure à la naissance.");
   return {adherentName: `${h.adherent.first_name} ${h.adherent.last_name}`, beneficiaryName: `${member.first_name} ${member.last_name}`,
     anomalies: !h.case && input.careDate < h.manual.effectiveDate ? ["Soins antérieurs à la date d’adhésion : droits à vérifier."] : []};

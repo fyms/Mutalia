@@ -110,10 +110,10 @@ describe("manual households on the Codex store", () => {
     expect(() => store.removeManualBeneficiary("other", h.id, 3, id)).toThrow("introuvable");
     expect(() => store.removeManualBeneficiary("family", h.id, 2, id)).toThrow("autre onglet");
     expect(() => store.removeManualBeneficiary("family", h.id, 3, h.memberId)).toThrow("introuvable");
-    store.removeManualBeneficiary("family", h.id, 3, id);
-    expect(store.getManualHouseholds("family")[0]).toMatchObject({revision: 4, beneficiaries: []});
-    expect(households.getHouseholdById(h.id, "family")?.household.members).toHaveLength(1);
-    expect(buildSearchIndex("family").find(i => i.url === `/adherents/${h.id}`)?.subtitle).not.toContain("Alix Exemple");
+    expect(() => store.removeManualBeneficiary("family", h.id, 3, id)).toThrow("Modifier le statut");
+    expect(store.getManualHouseholds("family")[0]).toMatchObject({revision: 3, beneficiaries: [{id,firstName:"Alix"}]});
+    expect(households.getHouseholdById(h.id, "family")?.household.members).toHaveLength(2);
+    expect(buildSearchIndex("family").find(i => i.url === `/adherents/${h.id}`)?.subtitle).toContain("Alix Exemple");
   });
   it("edit actions authenticate and revalidate list, detail and search", async () => {
     const {editHouseholdAction} = await import("./householdActions");
@@ -129,4 +129,60 @@ describe("manual households on the Codex store", () => {
     expect(await editHouseholdAction(h.id, 1, "adherent", null, data)).toHaveProperty("error");
   });
 
+});
+
+it("preserves lifecycle histories and operations, isolates accounts and resets only seed overlays", async () => {
+ const {eligibleAt}=await import("./householdLifecycle");
+ const seed=households.getAllHouseholds()[0];const snapshot=JSON.stringify(households.getAllHouseholds());
+ const members=seed.beneficiaries;
+ for (const [i,reason] of (["detached","divorce","deceased"] as const).entries()) {
+  const owner=`lifecycle-${i}`;const member=members.find(m=>reason==="divorce"?m.role==="conjoint":m.role==="enfant")!;
+  const life=store.changeHouseholdLifecycle(owner,seed.householdId,0,member.member_id,{status:reason==="deceased"?"deceased":"inactive",endDate:"2026-08-01",endReason:reason});
+  expect(life.beneficiaries[member.member_id].history).toHaveLength(1);
+  expect(eligibleAt(life,member.member_id,"2026-07-31")).toBe(true);
+  expect(eligibleAt(life,member.member_id,"2026-08-01")).toBe(false);
+  expect(households.getHouseholdById(seed.householdId,owner)?.lifecycle).toEqual(life);
+  expect(households.getHouseholdById(seed.householdId,owner)?.household.members).toEqual(seed.household.members);
+  expect(households.getHouseholdById(seed.householdId,"unaffected")?.lifecycle).toBeUndefined();
+  await store.resetRuntimeStore(owner);expect(households.getHouseholdById(seed.householdId,owner)?.lifecycle).toBeUndefined();
+ }
+ const h=store.createManualHousehold("closed",input);
+ const life=store.changeHouseholdLifecycle("closed",h.id,0,null,{status:"terminated",endDate:"2026-09-11",endReason:"termination"});
+ expect(eligibleAt(life,h.memberId,"2026-09-11")).toBe(false);
+ expect(households.getHouseholdById(h.id,"closed")).toBeDefined();
+ expect(store.getManualHouseholds("closed")[0]).toEqual(h);
+ await store.resetRuntimeStore("closed");expect(store.getHouseholdLifecycles("closed")[h.id]).toEqual(life);
+ expect(JSON.stringify(households.getAllHouseholds())).toBe(snapshot);
+ expect(()=>store.changeHouseholdLifecycle("closed",h.id,0,null,{status:"terminated",endDate:"2026-09-11",endReason:"termination"})).toThrow("autre onglet");
+ const {context}=await import("./prestationService");
+ expect(()=>context("closed",{householdId:h.id,memberId:h.memberId,careDate:"2026-09-11"} as never)).toThrow("inactif");
+ expect(()=>context("closed",{householdId:h.id,memberId:h.memberId,careDate:"2026-09-10"} as never)).not.toThrow();
+});
+
+it("retains all linked records on closure and rejects physical deletion with historical links", () => {
+ const owner="linked-lifecycle";const h=store.createManualHousehold(owner,input);
+ const connection=new Database(path.join(dir,"mutalia.sqlite"));
+ const payload=JSON.parse((connection.prepare("SELECT payload FROM codex_learner_work WHERE owner=?").get(owner) as {payload:string}).payload);
+ for(const key of ["prestations","devisPec","cotisations","contacts","complaints"]){payload[key]={history:{id:"history",householdId:h.id}};}
+ connection.prepare("UPDATE codex_learner_work SET payload=? WHERE owner=?").run(JSON.stringify(payload),owner);
+ store.changeHouseholdLifecycle(owner,h.id,0,null,{status:"archived",endDate:"2026-09-11",endReason:"error"});
+ expect(()=>store.deleteErroneousHousehold(owner,h.id,`SUPPRIMER ${h.id}`)).toThrow("historique métier");
+ const after=JSON.parse((connection.prepare("SELECT payload FROM codex_learner_work WHERE owner=?").get(owner) as {payload:string}).payload);
+ for(const key of ["prestations","devisPec","cotisations","contacts","complaints"])expect(after[key]).toEqual(payload[key]);
+ expect(after.householdLifecycles[h.id].adherent.history).toHaveLength(1);connection.close();
+ const empty=store.createManualHousehold("error-only",input);
+ store.changeHouseholdLifecycle("error-only",empty.id,0,null,{status:"archived",endDate:"2026-09-11",endReason:"error"});
+ expect(()=>store.deleteErroneousHousehold("error-only",empty.id,"oui")).toThrow("Confirmation");
+ store.deleteErroneousHousehold("error-only",empty.id,`SUPPRIMER ${empty.id}`);
+ expect(households.getHouseholdById(empty.id,"error-only")).toBeUndefined();
+});
+it("persists manual beneficiary exit and reactivation without losing earlier intervals", () => {
+ const h=store.createManualHousehold("manual-lifecycle",input);
+ const added=store.saveManualBeneficiary("manual-lifecycle",h.id,1,null,{firstName:"Alex",lastName:"Exemple",birthDate:"2005-01-01",role:"enfant"});
+ const id=added.beneficiaries![0].id;
+ store.changeHouseholdLifecycle("manual-lifecycle",h.id,0,id,{status:"inactive",endDate:"2026-09-10",endReason:"age_limit"});
+ const restored=households.getHouseholdById(h.id,"manual-lifecycle")!;
+ expect(restored.beneficiaries).toHaveLength(1);
+ expect(restored.lifecycle?.beneficiaries[id]).toMatchObject({status:"inactive",endDate:"2026-09-10",endReason:"age_limit"});
+ expect(()=>store.changeHouseholdLifecycle("manual-lifecycle",h.id,1,id,{status:"deceased",endDate:"2026-09-11",endReason:"divorce"})).toThrow("incompatibles");
 });

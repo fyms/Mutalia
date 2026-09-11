@@ -2,7 +2,7 @@
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import { getSession } from "@/lib/store/session";
-import { HouseholdEditError, updateManualHousehold, saveManualBeneficiary, removeManualBeneficiary, createManualHousehold } from "@/lib/store/runtimeStore";
+import { deleteErroneousHousehold, changeHouseholdLifecycle, HouseholdEditError, updateManualHousehold, saveManualBeneficiary, removeManualBeneficiary, createManualHousehold } from "@/lib/store/runtimeStore";
 import { BeneficiaryInputSchema, ManualHouseholdInputSchema } from "./manualHouseholds";
 import { getHouseholdFormulas } from "./householdFormulas";
 
@@ -41,4 +41,20 @@ export async function editHouseholdAction(id: string, revision: number, operatio
   revalidatePath("/contrats");
   revalidatePath("/api/search-index");
   return {};
+}
+
+export async function lifecycleAction(id: string, revision: number, memberId: string | null, data: FormData): Promise<{error?:string}> {
+  const {userId} = await getSession();
+  try { changeHouseholdLifecycle(userId,id,revision,memberId,Object.fromEntries(data)); }
+  catch (e) { return {error:e instanceof HouseholdEditError ? e.message : "Statut, date et motif valides requis."}; }
+  for (const path of ["/adherents",`/adherents/${id}`,"/api/search-index","/prestations","/pec-devis","/contrats","/dossiers"]) revalidatePath(path);
+  return {};
+}
+
+export async function deleteErroneousHouseholdAction(id:string,confirmation:string):Promise<{error?:string}> {
+ const {userId}=await getSession();
+ try { deleteErroneousHousehold(userId,id,confirmation); }
+ catch(e){return {error:e instanceof HouseholdEditError?e.message:"Suppression impossible."};}
+ for(const path of ["/adherents","/contrats","/api/search-index"])revalidatePath(path);
+ redirect("/adherents");
 }

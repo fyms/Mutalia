@@ -1,3 +1,5 @@
+import { getHouseholdLifecycles } from "@/lib/store/runtimeStore";
+import { STATUS_LABELS } from "@/lib/domain/householdLifecycle";
 import { RelationHistory } from "@/components/relation/RelationHistory";
 import { CotisationHistory } from "@/components/cotisations/CotisationHistory";
 import { DevisPecHistory } from "@/components/devisPec/DevisPecHistory";
@@ -13,6 +15,7 @@ import { formatDate, formatDateTime } from "@/lib/utils/format";
 export function ManualHouseholdDetails({owner, record, activeTab, tabs}: {
   owner: string; record: ManualHousehold; activeTab: string; tabs: {key: string; label: string}[];
 }) {
+  const lifecycle = getHouseholdLifecycles(owner)[record.id];
   const formula = getHouseholdFormulas().find(f => f.key === record.formulaKey);
   const identity = <dl className="space-y-2">
     <Row label="Prénom et nom">{record.firstName} {record.lastName}</Row>
@@ -28,12 +31,12 @@ export function ManualHouseholdDetails({owner, record, activeTab, tabs}: {
     <Row label="Organisme">Harmonie Mutuelle</Row><Row label="Année du référentiel">2026</Row>
     <Row label="Formule">{formula?.label ?? "Donnée 2026 à vérifier"}</Row>
     <Row label="Date d’effet / adhésion">{formatDate(record.effectiveDate)}</Row>
-    <Row label="Statut">Adhésion saisie</Row>
+    <Row label="Statut">{STATUS_LABELS[lifecycle?.adherent.status ?? "active"]}</Row>
   </dl>;
   return <div>
     <PageHeader title={`${record.firstName} ${record.lastName}`} description="Fiche adhérent 360° · Création manuelle"
       action={<Link href="/adherents" className="m-button m-button--secondary">Retour aux adhérents</Link>} />
-    <HouseholdEditor record={record} formulas={getHouseholdFormulas()} />
+    <HouseholdEditor lifecycle={lifecycle} record={record} formulas={getHouseholdFormulas()} />
     <QueryTabs basePath={`/adherents/${record.id}`} activeKey={activeTab} tabs={tabs} />
     {activeTab === "vue-generale" && <div className="grid gap-4 lg:grid-cols-2">
       <section className="m-panel"><h2>Identité</h2>{identity}</section>

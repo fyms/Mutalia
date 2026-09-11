@@ -2,10 +2,10 @@
 import { afterEach, expect, it, vi } from "vitest";
 import { cleanup, fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { HouseholdEditor } from "./HouseholdEditor";
-import { editHouseholdAction } from "@/lib/domain/householdActions";
+import { editHouseholdAction, lifecycleAction } from "@/lib/domain/householdActions";
 import type { ManualHousehold } from "@/lib/domain/manualHouseholds";
 vi.mock("next/navigation", () => ({useRouter: () => ({refresh: vi.fn()})}));
-vi.mock("@/lib/domain/householdActions", () => ({editHouseholdAction: vi.fn(async () => ({})), createHouseholdAction: vi.fn()}));
+vi.mock("@/lib/domain/householdActions", () => ({lifecycleAction: vi.fn(async () => ({})), editHouseholdAction: vi.fn(async () => ({})), createHouseholdAction: vi.fn()}));
 const record: ManualHousehold = {
   id: "manual", memberId: "primary", source: "manual", referenceYear: 2026,
   firstName: "Camille", lastName: "Exemple", birthDate: "1990-01-01",
@@ -15,17 +15,17 @@ const record: ManualHousehold = {
   beneficiaries: [{id: "child", firstName: "Alex", lastName: "Exemple", birthDate: "2015-01-01", role: "enfant"}],
 };
 afterEach(() => {cleanup(); vi.clearAllMocks();});
-it("does not remove a beneficiary before explicit confirmation and supports cancellation", async () => {
-  render(<HouseholdEditor record={record} formulas={[]} />);
-  fireEvent.click(screen.getByRole("button", {name: "Retirer Alex Exemple"}));
-  expect(screen.getByRole("alertdialog")).toBeTruthy();
-  expect(editHouseholdAction).not.toHaveBeenCalled();
-  fireEvent.click(screen.getByRole("button", {name: "Annuler"}));
-  expect(screen.queryByRole("alertdialog")).toBeNull();
-  expect(editHouseholdAction).not.toHaveBeenCalled();
-  fireEvent.click(screen.getByRole("button", {name: "Retirer Alex Exemple"}));
-  fireEvent.click(screen.getByRole("button", {name: "Confirmer le retrait"}));
-  await waitFor(() => expect(editHouseholdAction).toHaveBeenCalledWith("manual", 3, "remove", "child", expect.any(FormData)));
+it("requires explicit status confirmation and keeps cancellation non destructive", async () => {
+ render(<HouseholdEditor record={record} formulas={[]}/>);
+ fireEvent.click(screen.getByRole("button",{name:"Modifier le statut de Alex Exemple"}));
+ expect(lifecycleAction).not.toHaveBeenCalled();
+ fireEvent.click(screen.getByRole("button",{name:"Annuler"}));
+ expect(screen.queryByRole("form",{name:"Changement de statut"})).toBeNull();
+ fireEvent.click(screen.getByRole("button",{name:"Modifier le statut de Alex Exemple"}));
+ fireEvent.click(screen.getByRole("checkbox"));
+ fireEvent.submit(screen.getByRole("form",{name:"Changement de statut"}));
+ await waitFor(()=>expect(lifecycleAction).toHaveBeenCalledWith("manual",0,"child",expect.any(FormData)));
+ expect(editHouseholdAction).not.toHaveBeenCalled();
 });
 it("reuses the prefilled member form and preserves entered values on conflict", async () => {
   vi.mocked(editHouseholdAction).mockResolvedValueOnce({error: "Conflit de révision"});

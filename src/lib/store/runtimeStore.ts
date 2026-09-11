@@ -1,3 +1,5 @@
+import { getAllCases } from "@/lib/data/loaders";
+import { LifecycleChangeSchema, emptyLifecycle, activeLifecycle, type HouseholdLifecycle } from "@/lib/domain/householdLifecycle";
 import { complaintTransitions, type Contact, type Complaint } from "@/lib/domain/relationAdherent";
 import { cotisationSummary, type Cotisation } from "@/lib/domain/cotisations";
 import { isRefused, type DevisPec } from "@/lib/domain/devisPec";
@@ -27,6 +29,7 @@ export interface DocumentState {
 
 export interface RuntimeStoreShape {
   version: 1;
+  householdLifecycles?: Record<string, HouseholdLifecycle>;
   contacts?: Record<string, Contact>;
   complaints?: Record<string, Complaint>;
   cotisations?: Record<string, Cotisation>;
@@ -142,6 +145,8 @@ export function getAllSubmissions(owner: string): Record<string, CaseSubmissionR
 /** Réinitialise le prototype (statuts documents, annotations, soumissions) sans toucher aux seeds. */
 export async function resetRuntimeStore(owner: string): Promise<void> {
   await withStore(owner, (store) => {
+    const seedIds = new Set(getAllCases().map(c => c.household.household_id));
+    for (const id of Object.keys(store.householdLifecycles ?? {})) if (seedIds.has(id)) delete store.householdLifecycles![id];
     store.documents = {};
     store.submissions = {};
   });
@@ -225,7 +230,7 @@ export function saveManualBeneficiary(owner: string, id: string, revision: numbe
 export function removeManualBeneficiary(owner: string, id: string, revision: number, beneficiaryId: string) {
   return editManualHousehold(owner, id, revision, h => {
     if (!h.beneficiaries?.some(b => b.id === beneficiaryId)) throw new HouseholdEditError("Bénéficiaire introuvable.");
-    h.beneficiaries = h.beneficiaries.filter(b => b.id !== beneficiaryId);
+    throw new HouseholdEditError("Utilisez Modifier le statut : aucun bénéficiaire ne peut être supprimé.");
   });
 }
 
@@ -445,5 +450,53 @@ export function updateStoredComplaint(owner:string,id:string,revision:number,inp
   if(!complaintTransitions(p.status).includes(input.status))throw new HouseholdEditError("Transition non autorisée.");
   Object.assign(p,input);p.revision++;p.updatedAt=new Date().toISOString();
   p.history.push({at:p.updatedAt,...input});syncComplaintDossier(store,p);return p;
+ });
+}
+
+export function getHouseholdLifecycles(owner: string): Record<string, HouseholdLifecycle> {
+  return readStore(owner).householdLifecycles ?? {};
+}
+export function changeHouseholdLifecycle(owner: string, id: string, revision: number, memberId: string | null, raw: unknown) {
+  const input = LifecycleChangeSchema.parse(raw);
+  const beneficiary = memberId !== null;
+  const allowed = beneficiary ? ["active","inactive","deceased"] : ["active","terminated","deceased","archived"];
+  const reasons = beneficiary ? ["detached","divorce","deceased","age_limit","other"] : ["termination","death","duplicate","error","other"];
+  if (!allowed.includes(input.status) || !reasons.includes(input.endReason) ||
+      (input.status === "deceased") !== (input.endReason === (beneficiary ? "deceased" : "death")))
+    throw new HouseholdEditError("Statut et motif incompatibles.");
+  return withStore(owner, store => {
+    const manual = store.manualHouseholds?.[id];
+    const seed = getAllCases().find(c => c.household.household_id === id)?.household;
+    if ((!manual || manual.deletedAt) && !seed) throw new HouseholdEditError("Foyer introuvable.");
+    const birthDate = memberId ? manual?.beneficiaries?.find(b=>b.id===memberId)?.birthDate ?? seed?.members.find(m=>m.member_id===memberId && m.role!=="adherent")?.birth_date : manual?.birthDate ?? seed?.members.find(m=>m.role==="adherent")?.birth_date;
+    if (!birthDate) throw new HouseholdEditError("Bénéficiaire introuvable.");
+    if (input.endDate < birthDate || (!memberId && manual && input.endDate < manual.effectiveDate)) throw new HouseholdEditError("Date de sortie antérieure à la naissance ou à l’adhésion.");
+    store.householdLifecycles ??= {};
+    const lifecycle = store.householdLifecycles[id] ?? emptyLifecycle();
+    if (!Number.isInteger(revision) || revision !== lifecycle.revision) throw new HouseholdEditError("Statut modifié dans un autre onglet. Rechargez la fiche.");
+    const previous = memberId ? lifecycle.beneficiaries[memberId] ?? activeLifecycle() : lifecycle.adherent;
+    if (previous.endDate && input.endDate < previous.endDate) throw new HouseholdEditError("Le changement ne peut pas précéder le dernier changement de statut.");
+    const next = {...input,history:[...previous.history,{...input,at:new Date().toISOString()}]};
+    if (memberId) lifecycle.beneficiaries[memberId]=next; else lifecycle.adherent=next;
+    lifecycle.revision++;
+    store.householdLifecycles[id]=lifecycle;
+    return lifecycle;
+  });
+}
+
+/** Suppression exceptionnelle : création manuelle erronée sans aucune pièce métier liée. */
+export function deleteErroneousHousehold(owner:string,id:string,confirmation:string) {
+ return withStore(owner,store=>{
+  const h=store.manualHouseholds?.[id];
+  if(!h || h.deletedAt || h.source!=="manual")throw new HouseholdEditError("Création manuelle introuvable.");
+  if(confirmation!==`SUPPRIMER ${id}`)throw new HouseholdEditError("Confirmation renforcée incorrecte.");
+  if(store.householdLifecycles?.[id]?.adherent.endReason!=="error")throw new HouseholdEditError("Clôturez d’abord l’adhérent avec le motif Création par erreur.");
+  const related=[store.prestations,store.devisPec,store.cotisations,store.contacts,store.complaints,store.dossiers,store.operationalAnomalies];
+  // Inspect all identifiers in the existing records, including nested links.
+  const identifiers=new Set([id,h.memberId,...(h.beneficiaries??[]).map(b=>b.id)]);
+  const contains=(value:unknown):boolean=>typeof value==="string" ? identifiers.has(value) : value!==null && typeof value==="object" && Object.values(value).some(contains);
+  if(store.dossiers?.[`DOS-${id}`] || related.some(records=>contains(records)))throw new HouseholdEditError("Suppression interdite : historique métier associé. Conservez la clôture.");
+  delete store.manualHouseholds![id];
+  if(store.householdLifecycles)delete store.householdLifecycles[id];
  });
 }
