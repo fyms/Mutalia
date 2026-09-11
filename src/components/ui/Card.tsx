@@ -13,7 +13,7 @@ export function Card({
   return (
     <div
       className={cx(
-        "rounded-lg border border-border bg-surface shadow-sm",
+        "m-card bg-surface",
         padded && "p-4",
         className,
       )}

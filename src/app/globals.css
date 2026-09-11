@@ -27,7 +27,7 @@
   --m-info: #215d91;
   --m-infobg: #eaf2f8;
   --m-neutralbg: #edf1f4;
-  --m-font: Arial, Helvetica, sans-serif;
+  --m-font: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --m-logo-font: "Trebuchet MS", Arial, sans-serif;
   --m-space-1: 4px;
   --m-space-2: 8px;
@@ -372,21 +372,21 @@ textarea.m-field {
    leurs composants sémantiques. Ne pas masquer des liens via CSS sans remplacement. */
 
 :root {
-  --background: #f3f6f8;
-  --surface: #ffffff;
-  --surface-muted: #edf1f4;
-  --border: #d5dfe6;
-  --foreground: #203342;
-  --foreground-muted: #526675;
-  --brand: #215d91;
-  --brand-strong: #184a76;
-  --brand-soft: #eaf2f8;
-  --success: #236443;
-  --success-soft: #eaf4ee;
-  --warning: #785000;
-  --warning-soft: #fff3d6;
-  --danger: #af2929;
-  --danger-soft: #fff0f0;
+  --background: var(--m-bg);
+  --surface: var(--m-white);
+  --surface-muted: var(--m-neutralbg);
+  --border: var(--m-line);
+  --foreground: var(--m-text);
+  --foreground-muted: var(--m-muted);
+  --brand: var(--m-brand);
+  --brand-strong: var(--m-hover);
+  --brand-soft: var(--m-tint);
+  --success: var(--m-good);
+  --success-soft: var(--m-goodbg);
+  --warning: var(--m-warn);
+  --warning-soft: var(--m-warnbg);
+  --danger: var(--m-bad);
+  --danger-soft: var(--m-badbg);
 }
 
 @theme inline {
@@ -405,7 +405,7 @@ textarea.m-field {
   --color-warning-soft: var(--warning-soft);
   --color-danger: var(--danger);
   --color-danger-soft: var(--danger-soft);
-  --font-sans: Arial, Helvetica, sans-serif;
+  --font-sans: var(--m-font);
 }
 
 body {
@@ -823,4 +823,60 @@ a.bg-brand:hover {
 .m-pdf-host details {
   padding: 12px;
   background: white;
+}
+
+/* Mutalia 11A — shared shell identity and geometry. */
+:root {
+  --m-sidebar-width: 252px;
+  --m-content-max: 1600px;
+  --m-shadow-panel: 0 1px 3px rgb(24 42 58 / 5%);
+  --m-nav-muted: #b7c9d7;
+  --m-radius-panel: 10px;
+  --m-radius-control: 6px;
+  --m-logo-font: var(--m-font);
+}
+.m-shell { grid-template-columns: var(--m-sidebar-width) minmax(0, 1fr); }
+.m-sidebar { padding: var(--m-space-4) var(--m-space-3); }
+.m-logo { gap: var(--m-space-3); padding: var(--m-space-2); min-height: 68px; }
+.m-monogram { display: grid; place-items: center; width: 36px; height: 36px; flex-shrink: 0; border-radius: var(--m-radius-panel); background: var(--m-tint); color: var(--m-nav); font-size: 23px; }
+.m-logo-copy { font-size: 23px; letter-spacing: -.5px; line-height: 1.3; }
+.m-logo-copy small { display: block; font-size: 10px; letter-spacing: .1px; font-weight: 400; color: var(--m-nav-muted); white-space: nowrap; }
+.m-nav-group { margin: var(--m-space-4) var(--m-space-3) var(--m-space-1); color: var(--m-nav-muted); font-size: 11px; letter-spacing: .055em; text-transform: uppercase; font-weight: 600; }
+.m-nav-link { min-height: 42px; padding: 8px 12px; gap: 10px; font-size: 13px; font-weight: 450; border-radius: var(--m-radius-control); }
+.m-nav-link svg { width: 19px; height: 19px; stroke-width: 1.7; }
+.m-nav-link[aria-current="page"] { background: var(--m-tint); color: var(--m-nav); font-weight: 650; }
+.m-nav-link[aria-current="page"]::before { background: var(--m-brand); }
+.m-nav-link[aria-current="page"]:focus-visible { outline-color: var(--m-brand); }
+table select.m-field { min-width: 128px; }
+.m-nav-search { width: 100%; text-align: left; background: transparent; border: 0; cursor: pointer; }
+.m-sidebar footer { color: var(--m-nav-muted); font-size: 11px; line-height: 1.6; padding: var(--m-space-3) 0; border-top: 1px solid var(--m-navactive); }
+.m-main { width: 100%; max-width: var(--m-content-max); margin: 0 auto; padding: var(--m-space-6); }
+.m-topbar { background: var(--m-white); border-bottom: 1px solid var(--m-line); min-height: 68px; padding-inline: var(--m-space-6); }
+.m-card { border: 1px solid var(--m-line); border-radius: var(--m-radius-panel); box-shadow: var(--m-shadow-panel); }
+.m-panel { border-radius: var(--m-radius-panel); }
+.m-page-header h1 { letter-spacing: -.025em; font-weight: 650; }
+.m-page-header p { line-height: 1.6; }
+.font-medium { font-weight: 500; }
+.font-semibold { font-weight: 600; }
+button, .m-button, .m-field, input, select, textarea { border-radius: var(--m-radius-control); }
+.m-button { font-size: .875rem; padding: 8px 14px; }
+input:not([type="checkbox"]):not([type="radio"]), select, textarea { font-size: .875rem; padding: 8px 12px; }
+input:hover, select:hover, textarea:hover { border-color: var(--m-brand); }
+.m-nav-backdrop { display: none; }
+@media (min-width: 768px) and (max-width: 1279px) {
+  .m-shell { grid-template-columns: 76px minmax(0, 1fr); }
+  .m-sidebar { padding-inline: 8px; }
+  .m-sidebar.is-open { width: var(--m-sidebar-width); }
+  .m-sidebar:not(.is-open) .m-logo { padding: 8px 4px; }
+  .m-sidebar:not(.is-open) details summary { font-size: 0; }
+  .m-sidebar:not(.is-open) details summary::after { content: "···"; font-size: 20px; }
+}
+@media (max-width: 1279px) {
+  .m-nav-backdrop { display: block; position: fixed; inset: 0; z-index: 29; background: rgb(24 42 58 / 35%); border: 0; border-radius: 0; }
+}
+@media (max-width: 767px) {
+  .m-shell { display: block; }
+  .m-main { padding: var(--m-space-4); }
+  .m-nav-link { min-height: 44px; }
+  .m-logo-copy small { font-size: 11px; }
 }
