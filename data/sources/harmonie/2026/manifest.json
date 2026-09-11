@@ -1,7 +1,526 @@
 {
+  "schemaVersion": 2,
+  "year": 2026,
+  "statusDefinitions": {
+    "indexed_not_transcribed": "Indexé mais pas encore transcrit : aucun contenu métier extrait par ce lot.",
+    "partially_transcribed": "Transcription partielle antérieure conservée ; aucune nouvelle extraction par ce lot."
+  },
+  "pdfCount": 45,
+  "sources": [
+    {
+      "effectiveDate": "2026-01-01",
+      "transcribedPages": [
+        1
+      ],
+      "notesPages": [
+        1,
+        5
+      ],
+      "scope": "Hospitalisation : lignes en pourcentage BR uniquement",
+      "file": "CCN 65 TG-TC 2026 v2.pdf",
+      "family": "CCN",
+      "regime": "Non déterminé par le dossier",
+      "reference": "IDCC 405",
+      "year": 2026,
+      "sizeBytes": 413569,
+      "sha256": "759da1ecc93398b9f95c456709519295325656ed5930590ba2e42691903871d9",
+      "status": "partially_transcribed",
+      "classificationBasis": "folder_and_filename_only"
+    },
+    {
+      "file": "Réflexe eco - Pharmacie et chambre particulière/PSI113.pdf",
+      "family": "Particuliers — Réflexe eco Pharmacie + chambre particulière",
+      "regime": "Non déterminé par le dossier",
+      "reference": "PSI113",
+      "year": 2026,
+      "sizeBytes": 729514,
+      "sha256": "85b554c089242c36a0e9e8e91c0d29f0a933e8ed40de432d5067f40f68879a83",
+      "status": "indexed_not_transcribed",
+      "classificationBasis": "folder_and_filename_only"
+    },
+    {
+      "file": "Réflexe eco - Pharmacie et chambre particulière/PSI123.pdf",
+      "family": "Particuliers — Réflexe eco Pharmacie + chambre particulière",
+      "regime": "Non déterminé par le dossier",
+      "reference": "PSI123",
+      "year": 2026,
+      "sizeBytes": 826734,
+      "sha256": "01df93c3c77bc588bc3533af78f60b7b51e626c97a3eb1147f75b8f637e1f1c2",
+      "status": "indexed_not_transcribed",
+      "classificationBasis": "folder_and_filename_only"
+    },
+    {
+      "file": "Réflexe eco - Pharmacie et chambre particulière/PSI133.pdf",
+      "family": "Particuliers — Réflexe eco Pharmacie + chambre particulière",
+      "regime": "Non déterminé par le dossier",
+      "reference": "PSI133",
+      "year": 2026,
+      "sizeBytes": 825404,
+      "sha256": "bd3930f2eaeb29fecfc3cfe3b7e5e3892ca8a6a1d2c8ba731034c0adf3d8e960",
+      "status": "indexed_not_transcribed",
+      "classificationBasis": "folder_and_filename_only"
+    },
+    {
+      "file": "Réflexe eco - Pharmacie et chambre particulière/PSI213.pdf",
+      "family": "Particuliers — Réflexe eco Pharmacie + chambre particulière",
+      "regime": "Non déterminé par le dossier",
+      "reference": "PSI213",
+      "year": 2026,
+      "sizeBytes": 736788,
+      "sha256": "6e1ff67bdd2c00c31ad23e785867e252e59a4e268f0863057e22e50a1b8187ba",
+      "status": "indexed_not_transcribed",
+      "classificationBasis": "folder_and_filename_only"
+    },
+    {
+      "file": "Réflexe eco - Pharmacie et chambre particulière/PSI223.pdf",
+      "family": "Particuliers — Réflexe eco Pharmacie + chambre particulière",
+      "regime": "Non déterminé par le dossier",
+      "reference": "PSI223",
+      "year": 2026,
+      "sizeBytes": 833098,
+      "sha256": "f8e1c88c273338e4468c2870bc1cf33fc7280d413dc2ef35293a04cbaa86831f",
+      "status": "indexed_not_transcribed",
+      "classificationBasis": "folder_and_filename_only"
+    },
+    {
+      "file": "Réflexe eco - Pharmacie et chambre particulière/PSI233.pdf",
+      "family": "Particuliers — Réflexe eco Pharmacie + chambre particulière",
+      "regime": "Non déterminé par le dossier",
+      "reference": "PSI233",
+      "year": 2026,
+      "sizeBytes": 834348,
+      "sha256": "a9ee157a0f3b56a76fbf0fb1c7875e92fcbf26ddd9bc3200ffb1d47000456400",
+      "status": "indexed_not_transcribed",
+      "classificationBasis": "folder_and_filename_only"
+    },
+    {
+      "file": "Réflexe eco - Pharmacie et chambre particulière/PSI313.pdf",
+      "family": "Particuliers — Réflexe eco Pharmacie + chambre particulière",
+      "regime": "Non déterminé par le dossier",
+      "reference": "PSI313",
+      "year": 2026,
+      "sizeBytes": 736548,
+      "sha256": "6ad812be3e4c4ac8da0099adf920229b9a4aeef6a0ff99a14f0fdfe11e910828",
+      "status": "indexed_not_transcribed",
+      "classificationBasis": "folder_and_filename_only"
+    },
+    {
+      "file": "Réflexe eco - Pharmacie et chambre particulière/PSI323.pdf",
+      "family": "Particuliers — Réflexe eco Pharmacie + chambre particulière",
+      "regime": "Non déterminé par le dossier",
+      "reference": "PSI323",
+      "year": 2026,
+      "sizeBytes": 848676,
+      "sha256": "4a20bfd1a457eb719cd3cc3ac6ecc0371827cecd6edc7c4ad8e7425f53c8620f",
+      "status": "indexed_not_transcribed",
+      "classificationBasis": "folder_and_filename_only"
+    },
+    {
+      "file": "Réflexe eco - Pharmacie et chambre particulière/PSI333.pdf",
+      "family": "Particuliers — Réflexe eco Pharmacie + chambre particulière",
+      "regime": "Non déterminé par le dossier",
+      "reference": "PSI333",
+      "year": 2026,
+      "sizeBytes": 834492,
+      "sha256": "dbbaf77b0a5704d7af9cc5b4bdcd531374cabc33caf8aabbb039990c46280fac",
+      "status": "indexed_not_transcribed",
+      "classificationBasis": "folder_and_filename_only"
+    },
+    {
+      "file": "Réflexe eco - Pharmacie et chambre particulière/PSI423.pdf",
+      "family": "Particuliers — Réflexe eco Pharmacie + chambre particulière",
+      "regime": "Non déterminé par le dossier",
+      "reference": "PSI423",
+      "year": 2026,
+      "sizeBytes": 835882,
+      "sha256": "1053edcd7a1495d93df4b5eb813f92903631fa046ed0712feaf58c1c5ef1a471",
+      "status": "indexed_not_transcribed",
+      "classificationBasis": "folder_and_filename_only"
+    },
+    {
+      "file": "Réflexe eco - Pharmacie et chambre particulière/PSI433.pdf",
+      "family": "Particuliers — Réflexe eco Pharmacie + chambre particulière",
+      "regime": "Non déterminé par le dossier",
+      "reference": "PSI433",
+      "year": 2026,
+      "sizeBytes": 835830,
+      "sha256": "79fac8cb269a020ef412e89c9c2ff1299958ea3e387018c5f3767062ad3b8e7e",
+      "status": "indexed_not_transcribed",
+      "classificationBasis": "folder_and_filename_only"
+    },
+    {
+      "file": "Réflexe eco - Pharmacie/PSI114.pdf",
+      "family": "Particuliers — Réflexe eco Pharmacie",
+      "regime": "Non déterminé par le dossier",
+      "reference": "PSI114",
+      "year": 2026,
+      "sizeBytes": 749822,
+      "sha256": "dbfbc704011783dc45a31e69e8e0705d4ffac50e2811a684eb11b68aae025176",
+      "status": "indexed_not_transcribed",
+      "classificationBasis": "folder_and_filename_only"
+    },
+    {
+      "file": "Réflexe eco - Pharmacie/PSI124.pdf",
+      "family": "Particuliers — Réflexe eco Pharmacie",
+      "regime": "Non déterminé par le dossier",
+      "reference": "PSI124",
+      "year": 2026,
+      "sizeBytes": 845299,
+      "sha256": "4018074060403f58bdd036b3dd25f4661c927a714ed43de3b8afce3175b4ed05",
+      "status": "indexed_not_transcribed",
+      "classificationBasis": "folder_and_filename_only"
+    },
+    {
+      "file": "Réflexe eco - Pharmacie/PSI134.pdf",
+      "family": "Particuliers — Réflexe eco Pharmacie",
+      "regime": "Non déterminé par le dossier",
+      "reference": "PSI134",
+      "year": 2026,
+      "sizeBytes": 846169,
+      "sha256": "56e8d883cc6490e78fa66ce279573765ccdfe26a62f8ff492f34dbb20cc66728",
+      "status": "indexed_not_transcribed",
+      "classificationBasis": "folder_and_filename_only"
+    },
+    {
+      "file": "Réflexe eco - Pharmacie/PSI214.pdf",
+      "family": "Particuliers — Réflexe eco Pharmacie",
+      "regime": "Non déterminé par le dossier",
+      "reference": "PSI214",
+      "year": 2026,
+      "sizeBytes": 740842,
+      "sha256": "d72fe2009944151757c7e395235b0bd0a2bfdb007b7ed562aba2ca7c3240c783",
+      "status": "indexed_not_transcribed",
+      "classificationBasis": "folder_and_filename_only"
+    },
+    {
+      "file": "Réflexe eco - Pharmacie/PSI224.pdf",
+      "family": "Particuliers — Réflexe eco Pharmacie",
+      "regime": "Non déterminé par le dossier",
+      "reference": "PSI224",
+      "year": 2026,
+      "sizeBytes": 837279,
+      "sha256": "0a9f61b35c56bf20968458bce6f15be631d137c5a4c34de97c55b408ba00b455",
+      "status": "indexed_not_transcribed",
+      "classificationBasis": "folder_and_filename_only"
+    },
+    {
+      "file": "Réflexe eco - Pharmacie/PSI234.pdf",
+      "family": "Particuliers — Réflexe eco Pharmacie",
+      "regime": "Non déterminé par le dossier",
+      "reference": "PSI234",
+      "year": 2026,
+      "sizeBytes": 838128,
+      "sha256": "98552ae974baf5c921e35b9e58c58fa399461b4836af57843a3d3219a5cf60df",
+      "status": "indexed_not_transcribed",
+      "classificationBasis": "folder_and_filename_only"
+    },
+    {
+      "file": "Réflexe eco - Pharmacie/PSI314.pdf",
+      "family": "Particuliers — Réflexe eco Pharmacie",
+      "regime": "Non déterminé par le dossier",
+      "reference": "PSI314",
+      "year": 2026,
+      "sizeBytes": 742137,
+      "sha256": "5d1a412d05fb1f779a50666105ee092d68f7979d9c6b0dc0c462be7f82fd41f1",
+      "status": "indexed_not_transcribed",
+      "classificationBasis": "folder_and_filename_only"
+    },
+    {
+      "file": "Réflexe eco - Pharmacie/PSI324.pdf",
+      "family": "Particuliers — Réflexe eco Pharmacie",
+      "regime": "Non déterminé par le dossier",
+      "reference": "PSI324",
+      "year": 2026,
+      "sizeBytes": 852869,
+      "sha256": "32ef795598590c45d1cea5f8bbafcfdc9e52ce35b66c0371af9bbb3d4813504f",
+      "status": "indexed_not_transcribed",
+      "classificationBasis": "folder_and_filename_only"
+    },
+    {
+      "file": "Réflexe eco - Pharmacie/PSI334.pdf",
+      "family": "Particuliers — Réflexe eco Pharmacie",
+      "regime": "Non déterminé par le dossier",
+      "reference": "PSI334",
+      "year": 2026,
+      "sizeBytes": 838864,
+      "sha256": "f358a571dd8ea512a6b16c7cdcda6f6b0dd46cc8cc0f87d53c5ff77e09fa23b2",
+      "status": "indexed_not_transcribed",
+      "classificationBasis": "folder_and_filename_only"
+    },
+    {
+      "file": "Réflexe eco - Pharmacie/PSI424.pdf",
+      "family": "Particuliers — Réflexe eco Pharmacie",
+      "regime": "Non déterminé par le dossier",
+      "reference": "PSI424",
+      "year": 2026,
+      "sizeBytes": 838983,
+      "sha256": "785489018a86f11001523f0aec7d04773d810d4a70f10f2c63a576a8d08727b8",
+      "status": "indexed_not_transcribed",
+      "classificationBasis": "folder_and_filename_only"
+    },
+    {
+      "file": "Réflexe eco - Pharmacie/PSI434.pdf",
+      "family": "Particuliers — Réflexe eco Pharmacie",
+      "regime": "Non déterminé par le dossier",
+      "reference": "PSI434",
+      "year": 2026,
+      "sizeBytes": 836749,
+      "sha256": "38dbf4091210697a7d9ffe486a21b34214a10aca2cd807b7ba51465d1589f8da",
+      "status": "indexed_not_transcribed",
+      "classificationBasis": "folder_and_filename_only"
+    },
+    {
+      "file": "Régime Local/PLI211.pdf",
+      "family": "Particuliers",
+      "regime": "Régime local",
+      "reference": "PLI211",
+      "year": 2026,
+      "sizeBytes": 736095,
+      "sha256": "488dea86c56a6e786a0e287e5a788267bae1acf9498bacd035959b81bc187223",
+      "status": "indexed_not_transcribed",
+      "classificationBasis": "folder_and_filename_only"
+    },
+    {
+      "file": "Régime Local/PLI221.pdf",
+      "family": "Particuliers",
+      "regime": "Régime local",
+      "reference": "PLI221",
+      "year": 2026,
+      "sizeBytes": 833678,
+      "sha256": "e88fab105e00ce5d7e2aec33e255a057617b808d6a1c4f5de95ab168dc9ad48e",
+      "status": "indexed_not_transcribed",
+      "classificationBasis": "folder_and_filename_only"
+    },
+    {
+      "file": "Régime Local/PLI231.pdf",
+      "family": "Particuliers",
+      "regime": "Régime local",
+      "reference": "PLI231",
+      "year": 2026,
+      "sizeBytes": 834317,
+      "sha256": "e34a3691b625656789b5c1993c8aee2d97ecafcaef7622b9696d99085eca5541",
+      "status": "indexed_not_transcribed",
+      "classificationBasis": "folder_and_filename_only"
+    },
+    {
+      "file": "Régime Local/PLI411.pdf",
+      "family": "Particuliers",
+      "regime": "Régime local",
+      "reference": "PLI411",
+      "year": 2026,
+      "sizeBytes": 738152,
+      "sha256": "54dda2ee92744a6f3fd22746e701d75b380f1cc058eba0e8f8681e501b3057df",
+      "status": "indexed_not_transcribed",
+      "classificationBasis": "folder_and_filename_only"
+    },
+    {
+      "file": "Régime Local/PLI421.pdf",
+      "family": "Particuliers",
+      "regime": "Régime local",
+      "reference": "PLI421",
+      "year": 2026,
+      "sizeBytes": 836433,
+      "sha256": "6c64d9c844a20005227e50d6e1a5f09c96a2cdaebd99ca5b6d9daaa2ed2cf782",
+      "status": "indexed_not_transcribed",
+      "classificationBasis": "folder_and_filename_only"
+    },
+    {
+      "file": "Régime Local/PLI431.pdf",
+      "family": "Particuliers",
+      "regime": "Régime local",
+      "reference": "PLI431",
+      "year": 2026,
+      "sizeBytes": 835690,
+      "sha256": "eeaa9e690dc79686b7d8024e29df0bcab7e323dfe7aabc6f827eba059941b659",
+      "status": "indexed_not_transcribed",
+      "classificationBasis": "folder_and_filename_only"
+    },
+    {
+      "file": "Régime Local/PLI511.pdf",
+      "family": "Particuliers",
+      "regime": "Régime local",
+      "reference": "PLI511",
+      "year": 2026,
+      "sizeBytes": 737637,
+      "sha256": "beebe3ffd9f18ab56c46800c6f6edc943e7d18a1240faa6f165fb4921be11e4e",
+      "status": "indexed_not_transcribed",
+      "classificationBasis": "folder_and_filename_only"
+    },
+    {
+      "file": "Régime Local/PLI521.pdf",
+      "family": "Particuliers",
+      "regime": "Régime local",
+      "reference": "PLI521",
+      "year": 2026,
+      "sizeBytes": 835752,
+      "sha256": "755884a72e4e6f43efe3f82ce8ce8f15e01570919b3df5523e0bd110fa0ad4c9",
+      "status": "indexed_not_transcribed",
+      "classificationBasis": "folder_and_filename_only"
+    },
+    {
+      "file": "Régime Local/PLI531.pdf",
+      "family": "Particuliers",
+      "regime": "Régime local",
+      "reference": "PLI531",
+      "year": 2026,
+      "sizeBytes": 580878,
+      "sha256": "0efab5ecba42ae9672116196c35a13b94265163aa9fded8df3b1dafd8e6500e5",
+      "status": "indexed_not_transcribed",
+      "classificationBasis": "folder_and_filename_only"
+    },
+    {
+      "file": "Régime général/PSI111.pdf",
+      "family": "Particuliers",
+      "regime": "Régime général",
+      "reference": "PSI111",
+      "year": 2026,
+      "sizeBytes": 736164,
+      "sha256": "d644d02208783a3785ccaf55d651bce203e3cb85385beda8070fde4ad6fb1d8b",
+      "status": "indexed_not_transcribed",
+      "classificationBasis": "folder_and_filename_only"
+    },
+    {
+      "file": "Régime général/PSI121.pdf",
+      "family": "Particuliers",
+      "regime": "Régime général",
+      "reference": "PSI121",
+      "year": 2026,
+      "sizeBytes": 833771,
+      "sha256": "cd2380f3347f25d3a57362d2cafe85204ce38eb0648d213be132616e723fd1f7",
+      "status": "indexed_not_transcribed",
+      "classificationBasis": "folder_and_filename_only"
+    },
+    {
+      "file": "Régime général/PSI131.pdf",
+      "family": "Particuliers",
+      "regime": "Régime général",
+      "reference": "PSI131",
+      "year": 2026,
+      "sizeBytes": 830826,
+      "sha256": "3958bcf9b07719bcb32d1a52aefcea0363fa7c6a8e2a5ba2249738c59362942f",
+      "status": "indexed_not_transcribed",
+      "classificationBasis": "folder_and_filename_only"
+    },
+    {
+      "file": "Régime général/PSI211.pdf",
+      "family": "Particuliers",
+      "regime": "Régime général",
+      "reference": "PSI211",
+      "year": 2026,
+      "sizeBytes": 743668,
+      "sha256": "26d8bb5dcf5eb8f84e9a2ba2def2b250ebe78d56dcd5e64407253dc2460a5b0f",
+      "status": "indexed_not_transcribed",
+      "classificationBasis": "folder_and_filename_only"
+    },
+    {
+      "file": "Régime général/PSI221.pdf",
+      "family": "Particuliers",
+      "regime": "Régime général",
+      "reference": "PSI221",
+      "year": 2026,
+      "sizeBytes": 839320,
+      "sha256": "33ccf70c1dbfe9854f765f0df6572aa30fdccfee393ed081defed992947fd390",
+      "status": "indexed_not_transcribed",
+      "classificationBasis": "folder_and_filename_only"
+    },
+    {
+      "file": "Régime général/PSI231.pdf",
+      "family": "Particuliers",
+      "regime": "Régime général",
+      "reference": "PSI231",
+      "year": 2026,
+      "sizeBytes": 840677,
+      "sha256": "38d1915e7737bd9a0af84c8faa2224f247f1927c11501e79b2a10cd5130f28a6",
+      "status": "indexed_not_transcribed",
+      "classificationBasis": "folder_and_filename_only"
+    },
+    {
+      "file": "Régime général/PSI311.pdf",
+      "family": "Particuliers",
+      "regime": "Régime général",
+      "reference": "PSI311",
+      "year": 2026,
+      "sizeBytes": 744535,
+      "sha256": "b16898c68b1e42a87344324d40d694ea3f3a74c031b9a740bb18dc8a1ef0d679",
+      "status": "indexed_not_transcribed",
+      "classificationBasis": "folder_and_filename_only"
+    },
+    {
+      "file": "Régime général/PSI321.pdf",
+      "family": "Particuliers",
+      "regime": "Régime général",
+      "reference": "PSI321",
+      "year": 2026,
+      "sizeBytes": 855400,
+      "sha256": "b692a94f75163ebba07de0af3838cce6c766f16d6448cc999fa4cb8f364a3e8d",
+      "status": "indexed_not_transcribed",
+      "classificationBasis": "folder_and_filename_only"
+    },
+    {
+      "file": "Régime général/PSI331.pdf",
+      "family": "Particuliers",
+      "regime": "Régime général",
+      "reference": "PSI331",
+      "year": 2026,
+      "sizeBytes": 841321,
+      "sha256": "464417c1f69a5c2d3ca53a2f091ebac36e638a93f2c0c36d06ca41adbaa3a586",
+      "status": "indexed_not_transcribed",
+      "classificationBasis": "folder_and_filename_only"
+    },
+    {
+      "file": "Régime général/PSI421.pdf",
+      "family": "Particuliers",
+      "regime": "Régime général",
+      "reference": "PSI421",
+      "year": 2026,
+      "sizeBytes": 841682,
+      "sha256": "d61073be0d5552dc225f7004df7987cc3bf4646e969d05650d619a82a523b5ce",
+      "status": "indexed_not_transcribed",
+      "classificationBasis": "folder_and_filename_only"
+    },
+    {
+      "file": "Régime général/PSI431.pdf",
+      "family": "Particuliers",
+      "regime": "Régime général",
+      "reference": "PSI431",
+      "year": 2026,
+      "sizeBytes": 839746,
+      "sha256": "0020be21998179d40029e1921f0716758d18c34b403d4cfc148298b00e2c7a84",
+      "status": "indexed_not_transcribed",
+      "classificationBasis": "folder_and_filename_only"
+    },
+    {
+      "file": "SYNTHESE-GARANTIES-PROTECTION-SANTE-PARTICULIERS-DEC-2026_VF.pdf",
+      "family": "Particuliers — Synthèse garanties 2026",
+      "regime": "Non déterminé par le dossier",
+      "reference": "SYNTHESE-PARTICULIERS-2026",
+      "year": 2026,
+      "sizeBytes": 591602,
+      "sha256": "57ecf2aa433335a22a2d7ea4657216bad33e3676e5949807d702d64254fa3d35",
+      "status": "indexed_not_transcribed",
+      "classificationBasis": "folder_and_filename_only"
+    },
+    {
+      "effectiveDate": "2026-01-01",
+      "transcribedPages": [
+        1
+      ],
+      "notesPages": [
+        3
+      ],
+      "scope": "Hospitalisation : lignes en pourcentage BR uniquement",
+      "file": "Tableau_garantie_CCN_EPI.pdf",
+      "family": "CCN",
+      "regime": "Non déterminé par le dossier",
+      "reference": "IDCC 2691",
+      "year": 2026,
+      "sizeBytes": 359190,
+      "sha256": "496a99b00513fb784e13f753d33057ee8d34d4c435012eb0c4b705fc713fce1e",
+      "status": "partially_transcribed",
+      "classificationBasis": "folder_and_filename_only"
+    }
+  ],
   "405": {
-    "file": "CCN 65 TG-TC 2026 v2.pdf",
-    "sha256": "759da1ecc93398b9f95c456709519295325656ed5930590ba2e42691903871d9",
     "effectiveDate": "2026-01-01",
     "transcribedPages": [
       1
@@ -10,11 +529,18 @@
       1,
       5
     ],
-    "scope": "Hospitalisation : lignes en pourcentage BR uniquement"
+    "scope": "Hospitalisation : lignes en pourcentage BR uniquement",
+    "file": "CCN 65 TG-TC 2026 v2.pdf",
+    "family": "CCN",
+    "regime": "Non déterminé par le dossier",
+    "reference": "IDCC 405",
+    "year": 2026,
+    "sizeBytes": 413569,
+    "sha256": "759da1ecc93398b9f95c456709519295325656ed5930590ba2e42691903871d9",
+    "status": "partially_transcribed",
+    "classificationBasis": "folder_and_filename_only"
   },
   "2691": {
-    "file": "Tableau_garantie_CCN_EPI.pdf",
-    "sha256": "496a99b00513fb784e13f753d33057ee8d34d4c435012eb0c4b705fc713fce1e",
     "effectiveDate": "2026-01-01",
     "transcribedPages": [
       1
@@ -22,6 +548,15 @@
     "notesPages": [
       3
     ],
-    "scope": "Hospitalisation : lignes en pourcentage BR uniquement"
+    "scope": "Hospitalisation : lignes en pourcentage BR uniquement",
+    "file": "Tableau_garantie_CCN_EPI.pdf",
+    "family": "CCN",
+    "regime": "Non déterminé par le dossier",
+    "reference": "IDCC 2691",
+    "year": 2026,
+    "sizeBytes": 359190,
+    "sha256": "496a99b00513fb784e13f753d33057ee8d34d4c435012eb0c4b705fc713fce1e",
+    "status": "partially_transcribed",
+    "classificationBasis": "folder_and_filename_only"
   }
 }

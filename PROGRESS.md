@@ -4,6 +4,7 @@
 - Comptes, sessions et stockage SQLite isolé ; 12 foyers pédagogiques, adhérents manuels et bénéficiaires, fiche 360°, GED et simulateurs existants.
 - Dossiers, prestations, anomalies, PEC/devis, cotisations pédagogiques, contacts et réclamations persistants ; navigation métier actualisée.
 - Simulateur : catalogue 2026 documenté (dont dentaire), identifiants uniques, catégorie/convention/niveau/garantie chargés ensemble ; présentation conservée.
+- Cartographie sources 2026 : 45 PDF indexés (43 particuliers, 2 CCN séparées), SHA256/tailles et classifications par chemin ; 43 nouveaux statuts « indexed_not_transcribed ». Script : `python3 scripts/harmonie_manifest.py --check` ; 4 tests ciblés réussis, aucun TypeScript modifié.
 - Historique détaillé : [étapes 1 à 8](docs/history/PROGRESS-etapes-1-8.md).
 
 ## Limites actuelles
