@@ -6,8 +6,8 @@ import { CONTACT_CHANNELS,COMPLAINT_STATUSES,complaintTransitions,type Contact,t
 import { DOSSIER_PRIORITIES } from "@/lib/domain/dossiers";
 import { createContactAction,createComplaintAction,updateComplaintAction } from "@/lib/domain/relationActions";
 import { formatDateTime } from "@/lib/utils/format";
-export function RelationPanel({households,contacts,complaints,links,today}:{households:{id:string;name:string}[];contacts:Contact[];complaints:Complaint[];links:RelationLink[];today:string}) {
- const [mode,setMode]=useState<"contact"|"complaint"|null>(null),[householdId,setHousehold]=useState(households.length===1 ? households[0].id : ""),[error,setError]=useState("");
+export function RelationPanel({households,contacts,complaints,links,today,initialContact=false}:{initialContact?:boolean;households:{id:string;name:string}[];contacts:Contact[];complaints:Complaint[];links:RelationLink[];today:string}) {
+ const [mode,setMode]=useState<"contact"|"complaint"|null>(initialContact?"contact":null),[householdId,setHousehold]=useState(households.length===1 ? households[0].id : ""),[error,setError]=useState("");
  const [status,setStatus]=useState(""),[priority,setPriority]=useState(""),[type,setType]=useState("");
  const [pending,startTransition]=useTransition();const router=useRouter();
  const name=(id:string,fallback:string)=>households.find(h=>h.id===id)?.name ?? fallback;

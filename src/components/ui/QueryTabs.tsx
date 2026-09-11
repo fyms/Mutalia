@@ -13,12 +13,13 @@ export function QueryTabs({
   paramName?: string;
 }) {
   return (
-    <div className="mb-4 flex flex-wrap gap-1 border-b border-border">
+    <nav aria-label="Rubriques de la fiche" className="mb-4 flex flex-wrap gap-1 border-b border-border">
       {tabs.map((tab) => {
         const active = tab.key === activeKey;
         return (
           <Link
             key={tab.key}
+            aria-current={active ? "page" : undefined}
             href={`${basePath}?${paramName}=${tab.key}`}
             className={cx(
               "-mb-px rounded-t-md border border-b-0 px-3 py-1.5 text-xs font-medium",
@@ -31,6 +32,6 @@ export function QueryTabs({
           </Link>
         );
       })}
-    </div>
+    </nav>
   );
 }

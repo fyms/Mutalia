@@ -6,8 +6,8 @@ import { savePrestationAction } from "@/lib/domain/prestationActions";
 import type { PrestationInput } from "@/lib/domain/prestations";
 import { DATA_TO_VERIFY } from "@/lib/domain/constants";
 export interface PrestationHouseholdChoice {id:string; name:string; lifecycle?:HouseholdLifecycle; members:{id:string; name:string}[];}
-export function PrestationForm({households, initial, onDone, submit, submitLabel, planned=false}: {households:PrestationHouseholdChoice[]; initial?:PrestationInput & {id:string;revision:number}; onDone?:()=>void; submit?:(raw:unknown)=>Promise<{error?:string}>; submitLabel?:string; planned?:boolean}) {
-  const [householdId,setHousehold] = useState(initial?.householdId ?? "");
+export function PrestationForm({households, initial, onDone, submit, submitLabel, planned=false, defaultHouseholdId}: {defaultHouseholdId?:string;households:PrestationHouseholdChoice[]; initial?:PrestationInput & {id:string;revision:number}; onDone?:()=>void; submit?:(raw:unknown)=>Promise<{error?:string}>; submitLabel?:string; planned?:boolean}) {
+  const [householdId,setHousehold] = useState(initial?.householdId ?? defaultHouseholdId ?? "");
   const [memberId,setMember] = useState(initial?.memberId ?? "");
   const [careDate,setCareDate] = useState(initial?.careDate ?? new Date().toISOString().slice(0,10));
   const [mode,setMode] = useState(initial?.guaranteeMode ?? "");

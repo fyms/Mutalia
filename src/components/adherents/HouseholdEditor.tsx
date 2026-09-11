@@ -6,9 +6,9 @@ import { useRouter } from "next/navigation";
 import type { ManualHousehold, ManualBeneficiary } from "@/lib/domain/manualHouseholds";
 import { editHouseholdAction } from "@/lib/domain/householdActions";
 import { NewHouseholdForm } from "./NewHouseholdForm";
-export function HouseholdEditor({record, formulas, lifecycle}: {lifecycle?: HouseholdLifecycle; record: ManualHousehold; formulas: {key: string; label: string}[]}) {
-  const [editing, setEditing] = useState(false);
-  const [beneficiary, setBeneficiary] = useState<ManualBeneficiary | "new" | null>(null);
+export function HouseholdEditor({record, formulas, lifecycle, initialAction, hideLifecycle=false}: {initialAction?: "edit"|"add"; hideLifecycle?:boolean; lifecycle?: HouseholdLifecycle; record: ManualHousehold; formulas: {key: string; label: string}[]}) {
+  const [editing, setEditing] = useState(initialAction === "edit");
+  const [beneficiary, setBeneficiary] = useState<ManualBeneficiary | "new" | null>(initialAction === "add" ? "new" : null);
   const [error, setError] = useState("");
   const [pending, startTransition] = useTransition();
   const router = useRouter();
@@ -40,7 +40,7 @@ export function HouseholdEditor({record, formulas, lifecycle}: {lifecycle?: Hous
       </fieldset>
       <button className="m-button" disabled={pending}>Enregistrer le bénéficiaire</button>{" "}<button className="m-button m-button--secondary" type="button" disabled={pending} onClick={done}>Annuler</button>
     </form>}
-    <LifecycleEditor manual id={record.id} lifecycle={lifecycle} members={(record.beneficiaries ?? []).map(b=>({id:b.id,name:`${b.firstName} ${b.lastName}`}))}/>
+    {!hideLifecycle&&<LifecycleEditor id={record.id} lifecycle={lifecycle} members={(record.beneficiaries ?? []).map(b=>({id:b.id,name:`${b.firstName} ${b.lastName}`}))}/>}
     {error && <p role="alert" className="m-error">{error}</p>}
   </section>;
 }
