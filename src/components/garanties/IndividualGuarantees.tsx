@@ -20,7 +20,7 @@ function Product({ reference, simulator }: {reference:string;simulator:boolean})
   const selected=catalog.getCalculableGuarantee(reference,id);
   return <>
     {simulator&&<Card><CardHeader title="Simulation particuliers vérifiée" subtitle="Une unité de soin : un œil, un implant, une nuit ou un jour ; forfait annuel selon la garantie."/>
-      <form className="space-y-3" onChange={()=>{setResult(null);setError('');}} onSubmit={e=>{e.preventDefault();const f=new FormData(e.currentTarget);try{setResult(simulateIndividual(reference,id,Number(f.get('billed')),Number(f.get('consumed')??0),f.get('eligible')==='on'));}catch(e){setError(e instanceof Error?e.message:'Calcul indisponible');}}}>
+      <form className="space-y-3" onChange={()=>{setResult(null);setError('');}} onSubmit={e=>{e.preventDefault();const f=new FormData(e.currentTarget);try{setResult(simulateIndividual(reference,id,Number(f.get('billed')),f.get('consumed') === null || String(f.get('consumed')).trim() === '' ? undefined : Number(f.get('consumed')),f.get('eligible')==='on'));}catch(e){setError(e instanceof Error?e.message:'Calcul indisponible');}}}>
         <label className="block text-sm">Prestation garantie<select required className={field} value={id} onChange={e=>setId(e.target.value)}><option value="">Choisir une prestation vérifiée</option>{calculable.map(g=><option key={g.id} value={g.id}>{g.category} — {g.benefit} — {g.value} {g.unit}</option>)}</select></label>
         {!calculable.length&&<DataToVerifyBadge/>}
         {selected&&<><p className="text-sm">{selected.condition} {selected.limit}</p><p className="text-xs">{selected.sourceFile} — page {selected.sourcePage}</p></>}

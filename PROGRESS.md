@@ -1,2 +1,2 @@
-Livré : étape 10H, Garanties et Simulateur particuliers raccordés (17 verified, 3 403 candidats consultables), accès calcul strict par référence ; CCN conservées, 24 tests ciblés et typecheck réussis.
-Restant : UX étape 11 ; non vérifiés exclus, conditions/consommations à contrôler ; lint global corrigé pour CommonJS puis contrôle ciblé réussi, aucun push.
+Livré : étape 10I, calcul particuliers bloqué si conditions/limites non déterminées ; absence de consommation jamais convertie en zéro ; 23 tests ciblés, typecheck et lint réussis, CCN inchangées.
+Restant : les 17 forfaits actuels restent consultables mais non calculables tant que leurs conditions textuelles ne sont pas résolues dans le contexte ; aucun changement documentaire ni push.
