@@ -8,6 +8,7 @@ import { formatCurrency } from "@/lib/utils/format";
 import { Badge, DataToVerifyBadge } from "@/components/ui/Badge";
 import { Card, CardHeader } from "@/components/ui/Card";
 
+const CCN_BENEFITS = SIMULATOR_BENEFITS.filter(b => b.family.startsWith("IDCC "));
 const inputClass =
   "w-full rounded-md border border-border bg-surface px-2 py-1.5 text-[13px] outline-none focus:border-brand";
 
@@ -19,7 +20,7 @@ export function ReimbursementSimulator() {
   const [guaranteeMode, setGuaranteeMode] = useState<GuaranteeMode>("percent_brss");
   const [guaranteeValue, setGuaranteeValue] = useState<string>("150");
   const [useVerifiedTable, setUseVerifiedTable] = useState(true);
-  const [benefitId,setBenefitId]=useState(SIMULATOR_BENEFITS[0].id);
+  const [benefitId,setBenefitId]=useState(CCN_BENEFITS[0].id);
   const selectedBenefit=getSimulatorBenefit(benefitId);
   const displayedMode=useVerifiedTable ? selectedBenefit?.mode ?? "percent_brss" : guaranteeMode;
 
@@ -115,7 +116,7 @@ export function ReimbursementSimulator() {
           {useVerifiedTable ? <>
             <Field label="Prestation garantie (barème vérifié)">
               <select value={benefitId} onChange={e=>setBenefitId(e.target.value)} className={inputClass}>
-                {SIMULATOR_BENEFITS.map(b=><option key={b.id} value={b.id}>{b.family} · {b.level} · {b.category} — {b.label} — {b.guarantee}</option>)}
+                {CCN_BENEFITS.map(b=><option key={b.id} value={b.id}>{b.family} · {b.level} · {b.category} — {b.label} — {b.guarantee}</option>)}
               </select>
             </Field>
             {selectedBenefit && <p className="text-[11px] text-foreground-muted">

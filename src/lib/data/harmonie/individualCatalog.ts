@@ -18,6 +18,7 @@ export function createIndividualCatalog(input: unknown) {
     return structuredClone({ ...entry, ...products.get(entry.reference)! });
   }
   return {
+    listProducts() { return structuredClone(data.products); },
     /** Consultation excludes uninterpreted placeholders and never exposes pending numeric guarantees. */
     listForConsultation(productReference: string) {
       return data.entries.filter(e => e.reference === productReference && e.status !== 'not_extracted').map(context);

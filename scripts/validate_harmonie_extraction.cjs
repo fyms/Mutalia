@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-require-imports -- Standalone CommonJS validator executed by Node. */
 // Validate stdin or a supplied JSON path. Ajv is available through the existing npm dependencies.
 const fs = require('node:fs');
 const path = require('node:path');
