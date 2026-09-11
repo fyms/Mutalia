@@ -1,0 +1,35 @@
+{
+  "byCategory": {
+    "accompagnement personnalisé affection longue durée": 6,
+    "aides auditives": 44,
+    "cures thermales": 11,
+    "dentaire": 299,
+    "hospitalisation": 116,
+    "maternité": 74,
+    "médecines complémentaires": 48,
+    "optique": 55,
+    "prévention": 61,
+    "services d'assistance": 56,
+    "soins courants": 222
+  },
+  "byFamily": {
+    "particuliers": 484,
+    "particuliers — réflexe eco pharmacie": 272,
+    "particuliers — réflexe eco pharmacie + chambre particulière": 236
+  },
+  "byStatus": {
+    "repeated_cross_reference": 245,
+    "single_occurrence": 131,
+    "structural_conflict": 616
+  },
+  "conflictMeaning": "Potential structural variants, not proof of error; differences between formula levels are not merged or validated.",
+  "crossReferenceUnits": 695,
+  "initialNeedsReview": 3420,
+  "notExtracted": 560,
+  "reductionPercent": 70.99,
+  "reviewUnits": 992,
+  "singletonUnits": 297,
+  "structuralConflictUnits": 616,
+  "validationScope": "Review units share an identical normalized signature, not a contractual equivalence or shared approval.",
+  "verified": 0
+}
