@@ -1,2 +1,2 @@
-Terminé : 11D — parcours métier harmonisés, statuts et conditions de calcul explicites ; contrôle visuel 1440/820 px, 15 tests ciblés, typecheck et lint validés.
-Restant / prochaine priorité : poursuivre les étapes UX demandées ; règles métier, données et référentiel inchangés.
+Terminé : audit final documenté dans FINAL_AUDIT.md ; aucun P0/P1 applicatif reproduit, 5 P2 conservés, 124 tests + typecheck + lint réussis.
+Restant / priorité : valider le build hors restriction système de port Turbopack ; smoke-tests du prototype exécutés, données fictives audit conservées en historique.
