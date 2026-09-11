@@ -10,12 +10,12 @@ export default async function DossiersPage({searchParams}: {searchParams: Promis
   const status = DOSSIER_STATUSES.find(s => s === filters.status);
   const priority = DOSSIER_PRIORITIES.find(p => p === filters.priority);
   const rows = getDossiers(userId).filter(r => (!status || r.status === status) && (!priority || r.priority === priority));
-  return <div>
-    <PageHeader title="Mes dossiers" description="Corbeille de démonstration : dossiers fictifs liés à vos adhérents. Les changements de statut et de priorité sont propres à votre compte." />
-    <nav aria-label="Filtres rapides par statut" className="mb-3 flex flex-wrap gap-2">
+  return <div className="m-workspace">
+    <PageHeader title="Mes dossiers" description="Votre corbeille · priorités, pièces manquantes et prochaines actions. Données pédagogiques." />
+    <nav aria-label="Filtres rapides par statut" className="m-filterbar mb-3">
       {[undefined, ...DOSSIER_STATUSES].map(s => <Link key={s ?? "all"} aria-current={status === s ? "page" : undefined} className="m-button m-button--secondary" href={`/dossiers?${new URLSearchParams({...s ? {status:s} : {}, ...priority ? {priority} : {}})}`}>{s ?? "Tous les statuts"}</Link>)}
     </nav>
-    <nav aria-label="Filtres rapides par priorité" className="mb-4 flex flex-wrap gap-2">
+    <nav aria-label="Filtres rapides par priorité" className="m-filterbar mb-4">
       {[undefined, ...DOSSIER_PRIORITIES].map(p => <Link key={p ?? "all"} aria-current={priority === p ? "page" : undefined} className="m-button m-button--secondary" href={`/dossiers?${new URLSearchParams({...status ? {status} : {}, ...p ? {priority:p} : {}})}`}>{p ?? "Toutes les priorités"}</Link>)}
       <Link className="m-button m-button--tertiary" href="/dossiers">Réinitialiser</Link>
     </nav>

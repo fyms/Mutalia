@@ -21,7 +21,7 @@ export default async function SimulateurPage({
   const activeTab = tab === "particuliers" ? "particuliers" : tab === "conventions" ? "conventions" : tab === "plafond" ? "plafond" : "remboursement";
 
   return (
-    <div>
+    <div className="m-workspace">
       <PageHeader
         title="Simulateur de remboursement"
         description="Calcul pédagogique du reste à charge à partir de la BRSS, du taux AMO et de la garantie AMC. Toute valeur non vérifiée sur le référentiel 2026 est signalée plutôt qu'inventée."

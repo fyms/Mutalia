@@ -1,4 +1,5 @@
 "use client";
+import { BusinessStatus } from "@/components/ui/StatusPill";
 import Link from "next/link";
 import { useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
@@ -30,7 +31,7 @@ function PrestationRows({p,households}: {p:Prestation;households:PrestationHouse
       <td className="p-2"><Link className="text-brand underline" href={`/adherents/${p.householdId}?tab=prestations`}>{h?.name ?? p.adherentName}</Link><p>{h?.members.find(m => m.id === p.memberId)?.name ?? p.beneficiaryName}</p></td>
       <td className="p-2">{p.act}<p>{formatDate(p.careDate)}</p></td><td className="p-2 whitespace-nowrap">{formatCurrency(p.billed)}</td>
       <td className="p-2">{p.result ? <><p>AMC : {formatCurrency(p.result.amcReimbursement)}</p><p>RAC : {formatCurrency(p.result.remainingCharge)}</p><p>AMO : {formatCurrency(p.result.amoReimbursement)}</p></> : p.anomalies.includes(DATA_TO_VERIFY) ? DATA_TO_VERIFY : "Non calculée"}</td>
-      <td className="p-2">{p.status}{p.status === "Payée" && <p className="m-help">Simulation uniquement</p>}</td>
+      <td className="p-2"><BusinessStatus status={p.status}/>{p.status === "Payée" && <p className="m-help">Simulation uniquement</p>}</td>
       <td className="p-2">{p.anomalies.length ? p.anomalies.join(" · ") : "—"}<p><Link className="text-brand underline" href={`/dossiers#${p.dossierId}`}>Dossier de contrôle {p.dossierId}</Link></p></td>
       <td className="p-2 space-y-2">{next && <button className="m-button m-button--secondary" disabled={pending || editing} onClick={() => {
         setError("");startTransition(async () => {const r=await advancePrestationAction(p.id,p.revision,next);if(r.error)setError(r.error);router.refresh();});

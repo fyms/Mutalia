@@ -14,14 +14,14 @@ export default async function AdherentsPage({searchParams}: {searchParams: Promi
   const households = getAllHouseholds((await getSession()).userId).filter(h=>activeAt(h.lifecycle?.adherent,today) !== archived);
 
   return (
-    <div>
+    <div className="m-workspace">
       <PageHeader
         title="Adhérents"
         description="Les 12 foyers pédagogiques et vos adhérents créés manuellement."
         action={<Link href="/adherents/nouveau" className="m-button">Nouvel adhérent</Link>}
       />
 
-      <nav className="flex gap-3 mb-4" aria-label="Statut des adhérents"><Link className="m-button m-button--secondary" aria-current={!archived?"page":undefined} href="/adherents">Actifs</Link><Link className="m-button m-button--secondary" aria-current={archived?"page":undefined} href="/adherents?status=archived">Archivés / clôturés</Link></nav>
+      <nav className="m-filterbar mb-4" aria-label="Statut des adhérents"><Link className="m-button m-button--secondary" aria-current={!archived?"page":undefined} href="/adherents">Actifs</Link><Link className="m-button m-button--secondary" aria-current={archived?"page":undefined} href="/adherents?status=archived">Archivés / clôturés</Link></nav>
       <Card padded={false} className="overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-left text-sm">
@@ -35,6 +35,7 @@ export default async function AdherentsPage({searchParams}: {searchParams: Promi
               </tr>
             </thead>
             <tbody>
+              {!households.length&&<tr><td colSpan={5} className="m-empty">Aucun adhérent dans cette vue. Choisissez Actifs ou Archivés / clôturés.</td></tr>}
               {households.map((h) => (
                 <tr key={h.householdId} className="border-b border-border last:border-0 hover:bg-surface-muted">
                   <td className="px-4 py-2.5">

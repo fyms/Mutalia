@@ -880,3 +880,27 @@ input:hover, select:hover, textarea:hover { border-color: var(--m-brand); }
   .m-nav-link { min-height: 44px; }
   .m-logo-copy small { font-size: 11px; }
 }
+
+/* 11D: common geometry limited to operational routes. */
+.m-workspace .m-page-header { margin-bottom: var(--m-space-4); }
+.m-workspace .m-actionbar, .m-workspace .m-filterbar { display: flex; flex-wrap: wrap; gap: var(--m-space-2); align-items: end; }
+.m-workspace .m-filterbar { background: var(--m-tint); padding: var(--m-space-3); border-radius: var(--m-radius-control); }
+.m-workspace .m-filterbar label { flex: 1 1 180px; min-width: 0; }
+.m-workspace .m-filterbar > select { width: 100%; }
+.m-workspace .m-button[aria-current="page"], .m-workspace .m-button[aria-pressed="true"] { background: var(--m-brand); color: var(--m-white); border-color: var(--m-brand); }
+.m-workspace table { width: 100%; border-collapse: collapse; font-size: .875rem; }
+.m-workspace th { padding: 10px 12px; background: var(--m-tint); color: var(--m-text); font-size: .75rem; font-weight: 600; text-align: left; }
+.m-workspace td { padding: 10px 12px; vertical-align: top; }
+.m-workspace tbody tr:hover { background: var(--m-bg); }
+.m-workspace td[colspan] { color: var(--m-muted); }
+.m-workspace .m-empty { padding: var(--m-space-4); }
+.m-workspace .m-notice { padding: var(--m-space-3); background: var(--m-tint); border-radius: var(--m-radius-control); }
+.m-workspace [role="alert"] { border-left: 3px solid var(--m-bad); background: var(--m-bg); padding: var(--m-space-3); color: var(--m-bad); }
+.m-workspace [role="status"] { padding: var(--m-space-3); }
+.m-workspace .m-agenda-day { position: sticky; top: 0; z-index: 2; background: var(--m-tint); padding: 8px 4px; font-size: .75rem; }
+.m-workspace .m-agenda-grid { padding: 0; }
+.m-workspace .m-button--danger { background: var(--m-bad); border-color: var(--m-bad); color: var(--m-white); }
+@media (max-width: 1023px) {
+  .m-workspace .m-actionbar > label { flex: 1 1 180px; }
+  .m-workspace .m-filterbar { padding: var(--m-space-2); }
+}

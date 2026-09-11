@@ -1,4 +1,5 @@
 "use client";
+import { BusinessStatus } from "@/components/ui/StatusPill";
 import Link from "next/link";
 import { useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
@@ -11,7 +12,7 @@ const money=(n:number)=>n.toLocaleString("fr-FR",{style:"currency",currency:"EUR
 export function DevisPecList({rows,households,allowCreate}:{rows:DevisPec[];households:PrestationHouseholdChoice[];allowCreate:boolean}) {
   const [kind,setKind]=useState<"devis"|"pec"|null>(null);
   return <div className="space-y-4">
-    {allowCreate && <div className="flex gap-2"><button className="m-button" onClick={()=>setKind("devis")}>Nouveau devis</button><button className="m-button m-button--secondary" onClick={()=>setKind("pec")}>Nouvelle PEC</button></div>}
+    {allowCreate && <div className="m-actionbar"><button className="m-button" onClick={()=>setKind("devis")}>Nouveau devis</button><button className="m-button m-button--secondary" onClick={()=>setKind("pec")}>Nouvelle PEC</button></div>}
     {kind && <section><h2 className="font-semibold mb-2">{kind === "devis" ? "Nouveau devis" : "Nouvelle demande de PEC"}</h2><PrestationForm key={kind} households={households} planned submitLabel="Enregistrer la demande" onDone={()=>setKind(null)} submit={raw=>saveDevisPecAction({...raw as object,kind})}/></section>}
     <div className="m-panel overflow-x-auto"><table className="w-full text-left text-sm"><thead><tr>{["Adhérent / bénéficiaire","Demande / soin","Montant / estimation","Statut / date","Traitement"].map(h=><th key={h} className="p-2">{h}</th>)}</tr></thead><tbody>
       {rows.map(p=><QuoteRow key={`${p.id}-${p.revision}`} p={p} households={households}/>)}
@@ -31,7 +32,7 @@ function QuoteRow({p,households}:{p:DevisPec;households:PrestationHouseholdChoic
     <td className="p-2"><Link className="text-brand underline" href={`/adherents/${p.householdId}?tab=pec`}>{h?.name ?? p.adherentName}</Link><p>{h?.members.find(m=>m.id===p.memberId)?.name ?? p.beneficiaryName}</p></td>
     <td className="p-2"><strong>{p.kind === "devis" ? "Devis" : "PEC"}</strong><p>{p.act}</p><p>Soins prévus : {p.careDate}</p></td>
     <td className="p-2">{money(p.billed)}{p.result ? <p>AMC {money(p.result.amcReimbursement)}<br/>RAC {money(p.result.remainingCharge)}</p> : <p>{DATA_TO_VERIFY}</p>}{p.anomalies.map(a=><p key={a} className="text-danger">{a}</p>)}</td>
-    <td className="p-2"><strong>{p.status}</strong><p>{formatDateTime(p.createdAt)}</p>{p.refusalReason && <p>Motif : {p.refusalReason}</p>}</td>
+    <td className="p-2"><BusinessStatus status={p.status}/><p>{formatDateTime(p.createdAt)}</p>{p.refusalReason && <p>Motif : {p.refusalReason}</p>}</td>
     <td className="p-2 space-y-2"><p><Link className="text-brand underline" href={`/dossiers#${p.dossierId}`}>Dossier lié</Link>{p.anomalies.length>0 && <> · <Link className="text-brand underline" href="/flux-anomalies">Anomalies</Link></>}</p>
       {editable && <button className="m-button m-button--secondary" disabled={pending} onClick={()=>setEditing(!editing)}>Corriger les données</button>}
       {estimate && <button className="m-button" disabled={pending} onClick={()=>process("estimate")}>Estimer AMC / RAC</button>}

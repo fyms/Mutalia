@@ -10,7 +10,7 @@ import { Card, CardHeader } from "@/components/ui/Card";
 
 const CCN_BENEFITS = SIMULATOR_BENEFITS.filter(b => b.family.startsWith("IDCC "));
 const inputClass =
-  "w-full rounded-md border border-border bg-surface px-2 py-1.5 text-[13px] outline-none focus:border-brand";
+  "m-field";
 
 export function ReimbursementSimulator() {
   const [billed, setBilled] = useState("80");
