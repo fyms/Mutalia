@@ -7,6 +7,8 @@
 - Cartographie sources 2026 : 45 PDF indexés (43 particuliers, 2 CCN séparées), SHA256/tailles et classifications par chemin ; 43 nouveaux statuts « indexed_not_transcribed ». Script : `python3 scripts/harmonie_manifest.py --check` ; 4 tests ciblés réussis, aucun TypeScript modifié.
 - Historique détaillé : [étapes 1 à 8](docs/history/PROGRESS-etapes-1-8.md).
 
+- Lot 2A : schéma, extracteur reproductible et échantillon de 5 PDF (4 familles + synthèse), provenance et couverture par page ; 11 tests ciblés réussis, aucune intégration métier.
+
 ## Limites actuelles
 - Aucun paiement, prélèvement, envoi métier ou télétransmission réel. Montants de cotisation saisis à titre pédagogique.
 - Plafonds, consommations, HLF/PLV et unités PLI insuffisamment documentés : AMC/RAC non estimés. Référentiel Harmonie 2026 partiel ; IDCC 405 et 2691 séparés ; garantie inconnue : « Donnée 2026 à vérifier ».
@@ -15,4 +17,4 @@
 ## Prochaine priorité
 - Stabilisation validée : 83 tests, typecheck, lint et build Webpack ; parcours navigateur des huit écrans métier réussi avec la session existante. Écran de login vérifié ; nouvelle authentification par mot de passe non rejouée.
 - Catalogue validé : 24 tests concernés, typecheck et lint. Prothèse fixe 2691 B : 440 €/BRSS 120 €/AMO 60 % → AMO 72 €, AMC 336 €, RAC 32 €.
-- Attendre la prochaine priorité utilisateur ; aucun push.
+- Réviser les candidats 2026 (superpositions, plafonds, synthèse PSI/PLI) avant extension ; aucune garantie auto-vérifiée, aucune extraction complète ni push.

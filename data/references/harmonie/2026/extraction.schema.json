@@ -1,0 +1,323 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Harmonie 2026 — extraction candidate isolée",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "year",
+    "scope",
+    "extractorVersion",
+    "pdfplumberVersion",
+    "documents",
+    "guarantees"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "year": {
+      "const": 2026
+    },
+    "scope": {
+      "const": "particuliers_sample_only"
+    },
+    "extractorVersion": {
+      "type": "string",
+      "minLength": 1
+    },
+    "pdfplumberVersion": {
+      "type": "string",
+      "minLength": 1
+    },
+    "documents": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 5,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "reference",
+          "family",
+          "regime",
+          "sourceFile",
+          "sha256",
+          "pageCount",
+          "pages"
+        ],
+        "properties": {
+          "reference": {
+            "type": "string",
+            "minLength": 1
+          },
+          "family": {
+            "type": "string",
+            "minLength": 1
+          },
+          "regime": {
+            "type": "string",
+            "minLength": 1
+          },
+          "sourceFile": {
+            "type": "string",
+            "minLength": 1
+          },
+          "sha256": {
+            "type": "string",
+            "minLength": 1
+          },
+          "pageCount": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "pages": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "page",
+                "status",
+                "reason",
+                "recordCount"
+              ],
+              "properties": {
+                "page": {
+                  "type": "integer",
+                  "minimum": 1
+                },
+                "status": {
+                  "enum": [
+                    "needs_review",
+                    "not_extracted"
+                  ]
+                },
+                "reason": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "recordCount": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "observedReferences": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                },
+                "sourceContext": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "guarantees": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "reference",
+          "family",
+          "regime",
+          "category",
+          "benefit",
+          "condition",
+          "sourceFile",
+          "subBenefit",
+          "calculationMode",
+          "value",
+          "unit",
+          "limit",
+          "sourcePage",
+          "sourceSha256",
+          "sourceBBox",
+          "confidence",
+          "status",
+          "reviewReasons",
+          "rawLabel",
+          "rawValue",
+          "verifiedBy"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "reference": {
+            "type": "string",
+            "minLength": 1
+          },
+          "family": {
+            "type": "string",
+            "minLength": 1
+          },
+          "regime": {
+            "type": "string",
+            "minLength": 1
+          },
+          "category": {
+            "type": "string",
+            "minLength": 1
+          },
+          "benefit": {
+            "type": "string",
+            "minLength": 1
+          },
+          "condition": {
+            "type": "string",
+            "minLength": 1
+          },
+          "sourceFile": {
+            "type": "string",
+            "minLength": 1
+          },
+          "subBenefit": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "calculationMode": {
+            "enum": [
+              "unknown",
+              "percent_br",
+              "fixed_amount",
+              "actual_cost_conditional",
+              "compound_or_ambiguous",
+              "service_or_text"
+            ]
+          },
+          "value": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "minimum": 0
+          },
+          "unit": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "limit": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "sourcePage": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "sourceSha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "sourceBBox": {
+            "type": [
+              "array",
+              "null"
+            ],
+            "items": {
+              "type": "number"
+            },
+            "minItems": 4,
+            "maxItems": 4
+          },
+          "confidence": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          },
+          "status": {
+            "enum": [
+              "verified",
+              "needs_review",
+              "not_extracted"
+            ]
+          },
+          "reviewReasons": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "rawLabel": {
+            "type": "string"
+          },
+          "rawValue": {
+            "type": "string"
+          },
+          "verifiedBy": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "status": {
+                  "const": "verified"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "verifiedBy": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "confidence": {
+                  "const": 1
+                },
+                "reviewReasons": {
+                  "maxItems": 0
+                },
+                "calculationMode": {
+                  "enum": [
+                    "percent_br",
+                    "fixed_amount",
+                    "actual_cost_conditional"
+                  ]
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "status": {
+                  "const": "not_extracted"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "value": {
+                  "type": "null"
+                },
+                "confidence": {
+                  "const": 0
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}
