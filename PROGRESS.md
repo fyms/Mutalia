@@ -1,3 +1,2 @@
-Socle livré : modules Codex existants conservés ; Lot 2B, 43 PDF particuliers couverts, 3 666 lignes candidates ; fixture Lot 2A préservée, CCN séparées ; 8 tests ciblés réussis, deux exécutions identiques.
-Limites actuelles : 3 115 needs_review, 551 not_extracted, aucun verified ; PSI321/323/324 non segmentables, 367 groupes de doublons potentiels signalés.
-Prochaine priorité : revue documentaire des candidats et gabarits non reconnus avant toute intégration métier ; aucun push.
+Livré : Lot 2C, 305 lignes récupérées (PSI321/323/324), pages non reconnues 30→6 ; 367 groupes initiaux classés (198 légitimes, 169 candidats exacts), aucune suppression ; 8 tests ciblés réussis, reproductibilité vérifiée.
+Restant : 3 420 needs_review, 560 not_extracted (551 avant segmentation), verified=0 ; prochaine priorité : revue documentaire, aucune intégration métier ni push.

@@ -1,0 +1,6322 @@
+{
+  "baselineCommit": "918a6e1",
+  "recoveredRows": {
+    "PSI321": {
+      "before": 0,
+      "after": 104
+    },
+    "PSI323": {
+      "before": 0,
+      "after": 98
+    },
+    "PSI324": {
+      "before": 0,
+      "after": 103
+    }
+  },
+  "notExtractedBefore": 551,
+  "notExtractedAfter": 560,
+  "unrecognizedTargetPagesBefore": 30,
+  "unrecognizedTargetPagesAfter": 6,
+  "notExtractedExplanation": "La segmentation remplace des placeholders de pages par des lignes ; les cellules vides restent not_extracted, ce compteur de lignes ne mesure pas la couverture des pages.",
+  "originalDuplicateGroups": [
+    {
+      "reference": "PSI113",
+      "ids": [
+        "572c3ce47efd232d76d392b1",
+        "94b7ea462a3875b9fa6c60c4",
+        "f06c376d1f91bf940a7023a2",
+        "8c2d8bc012a754960da9443d"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI113",
+      "ids": [
+        "2de653e063a43ab57eb268c0",
+        "18f98e149fc4f4c569111ca2",
+        "7fecbea061dd9f9683023039"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI113",
+      "ids": [
+        "8c0900f13f5b5f3754daa8ec",
+        "762330a95baac24348d806db"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI113",
+      "ids": [
+        "d5227cace497c057b879f856",
+        "721f00bf06858aac2570ecc9"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI113",
+      "ids": [
+        "e2ca6c15bf2a3d10eacd3cd6",
+        "65e0893f856e4375417b08c7"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI113",
+      "ids": [
+        "77c7c31d95b27e4f018904c1",
+        "011ccf6725bb65c802bc6b19"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI113",
+      "ids": [
+        "288ec32130e25311aaeed04c",
+        "11ef28d9098f2fec9dde9eb5"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI113",
+      "ids": [
+        "b1e716964ff0b5633a179e23",
+        "66da64c3243522ddd936fb40"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI113",
+      "ids": [
+        "629b1fc4fd7c7d13c580f621",
+        "bac4dddd8cc692b4e1d31263"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI123",
+      "ids": [
+        "e35c7f0844ba38d3d55d9a97",
+        "c6abd447dbfe2af7a80dcf2d",
+        "0af0d3585d16d52ed348c840",
+        "24b0cb5c3767350c54e6b0a9"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI123",
+      "ids": [
+        "69250f763adbc056b11de295",
+        "6ea8ec9e4b8734712cddbb29",
+        "cbf738dd8560f8eb3b711fec"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI123",
+      "ids": [
+        "3f6e1b9f28167b3ffdba42ea",
+        "87ede9c709993e650b1e3a6c"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI123",
+      "ids": [
+        "ef23a28371031461b8554c19",
+        "653dd1b77a5a0cdc81acc4be"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI123",
+      "ids": [
+        "19c61663eb468169d0dac1c5",
+        "f301fbf8b153e8fc1b780349"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI123",
+      "ids": [
+        "61a8d75beed28beb0ad993b6",
+        "0e6f259f995ae2c6813e8e7b"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI123",
+      "ids": [
+        "a8b610f839cc1cc90196948f",
+        "60d31547cf0b84079ddc0f2c"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI123",
+      "ids": [
+        "85e7e5052286bb5c271881e7",
+        "2a059ad7900bbf5b63e8c6e4"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI123",
+      "ids": [
+        "8aec853799ae8424fb8252d9",
+        "c54560e13dc8d17073498397"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI133",
+      "ids": [
+        "292ec7309f91566c8182c0e9",
+        "b3327a4f4a6a50061588bfbc",
+        "ed12e624f16a606fac9b155c",
+        "1e5b94cc51743ab7ea8c5921"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI133",
+      "ids": [
+        "c890e4abf862bf2d87f19cc1",
+        "f25d43ba32c7e8ee5f045b59",
+        "84414d8c4835c5c759bfa57a"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI133",
+      "ids": [
+        "dd8c77fcb3252e6f19f0200e",
+        "cf7f555f984d2581f560aec7"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI133",
+      "ids": [
+        "a5434d04416f2a0044b7b14e",
+        "c240126c333fcb88ae8a2059"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI133",
+      "ids": [
+        "21f3a4ae15fc64e2b1e6773c",
+        "4ab5c637a764b058be0f23b5"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI133",
+      "ids": [
+        "1eff0475b0629ebb2fe379c0",
+        "5ae1979fbb21926c7e62da8f"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI133",
+      "ids": [
+        "86fc5046453e2123b968a9cc",
+        "6a25b1201051c9c6b7d06e5e"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI133",
+      "ids": [
+        "da74b5af29cb819a0f14f06f",
+        "e7c5181d401b16b68bcb0dc7"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI133",
+      "ids": [
+        "8ca39dc8e8bb96ffda53a49e",
+        "fa8c5870c2d4b2b24bc4b98f"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI213",
+      "ids": [
+        "9c2dbd1822ee25b14b7a5dea",
+        "51a9d3d7ff6db287f15d6f7f"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI213",
+      "ids": [
+        "e8fc2996d83c41ab2459dc22",
+        "044d1fe4f1d6b9902179d4a7"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI213",
+      "ids": [
+        "a2cd05787fba8a755292ef3d",
+        "84e457178355c3a52fcf2839",
+        "dd1c9e8c54b589510b1af1a1"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI213",
+      "ids": [
+        "0f8b993c72ed76d04923e0b7",
+        "fd2bd7805a2f47a280e7b647"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI213",
+      "ids": [
+        "88730e82cac606915cbe70cf",
+        "548df5bca4b089891ba80040"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI213",
+      "ids": [
+        "5e8c4692560f5e8f7da45498",
+        "a5cb7fafd675bf6a26c25df9"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI213",
+      "ids": [
+        "501f0d634cbb2d07f642cd62",
+        "ed9d16859e52cca38b5f34e5"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI213",
+      "ids": [
+        "7d76a12d2f2cfb730453e12f",
+        "32124d0a4b41216e1839be86"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI213",
+      "ids": [
+        "1329b38a204e3cbbe2034715",
+        "98722fe908f74bd8655aa540"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI213",
+      "ids": [
+        "8814dbf7c15716c62cbd3994",
+        "5d9538468f29e1d9d16afa67"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI223",
+      "ids": [
+        "fb10301ee048d04b1b6bd61e",
+        "ca2061ce151aa0383b8a5a86"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI223",
+      "ids": [
+        "655a0d1f9c16dc72af348654",
+        "230bd929af36c8997ab86c0e"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI223",
+      "ids": [
+        "9fe719bf259258e85ccbba6a",
+        "a9cd963805ef0c2a628db703",
+        "a1168297cea75c61c8393721"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI223",
+      "ids": [
+        "7fa077d39cb1a1b5b0e3bc50",
+        "9f0dea785954fbba01caabde"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI223",
+      "ids": [
+        "320d561840b2f6dc5bf587e0",
+        "8e0ff0916e3684552f0c1872"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI223",
+      "ids": [
+        "736170f760fc026f4eab31b0",
+        "8a0061bb49bee6aca5e31670"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI223",
+      "ids": [
+        "743e2e1c4e3237b1cc145f45",
+        "335ee33a7a1954ef08f3370c"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI223",
+      "ids": [
+        "4cc33b457eedc33f5495fd9c",
+        "c2990b606697b5adf8b64108"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI223",
+      "ids": [
+        "ea365429bd53ea619d8c0c6b",
+        "6a8f35d9bddf2869ed23432c"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI223",
+      "ids": [
+        "4c3ab44dca1d32b2b51ce436",
+        "934d1139bc2ff8124f0c8c36"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI233",
+      "ids": [
+        "7b4e44466a6f0dec95635e8c",
+        "2d82ec392ba4a5c5d1689330"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI233",
+      "ids": [
+        "068832d8506fa8473f9dffb3",
+        "a2677ecf60d87e6fe20e6de2"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI233",
+      "ids": [
+        "69669e9a983340f464dc0f61",
+        "5a9b9ad2473039b8346d65d6",
+        "7211fdbf064b6b3d4ad0b380"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI233",
+      "ids": [
+        "c34f030f1ab412579968e3d5",
+        "40c9d1bcf63167e123fd98b6"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI233",
+      "ids": [
+        "31d35eee85f24c6f03d6cca0",
+        "cd0a8cd7f79667c82fe33b4d"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI233",
+      "ids": [
+        "cb45b685589c4f5ef88bcfdd",
+        "41a5e965844206c853da5ee3"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI233",
+      "ids": [
+        "dd4517ab51514350641f0f8d",
+        "dce8954a46c9f3cd1c28a197"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI233",
+      "ids": [
+        "e9ebd0fab88ea0cf122e934b",
+        "0be719d4694284c5ea02609e"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI233",
+      "ids": [
+        "fb3ae9179fabbde260d08db1",
+        "842275ca09dc1d5f937f64e5"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI233",
+      "ids": [
+        "cef477e41b6e3f152a7ca51c",
+        "898d362bf5cde34553d099e9"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI313",
+      "ids": [
+        "c3919e686f9637de49c9a1cf",
+        "f226644b858229a9f2ffe055"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI313",
+      "ids": [
+        "c0745b1bbb0735b3afc856a9",
+        "8de22130d8905c742ef85241"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI313",
+      "ids": [
+        "4712cd6d271010b743db36d8",
+        "5bb38ef78bcdbdbf4166c662",
+        "a63c28720e45dbc841529a9f",
+        "50b74be5c0683e0bab652430"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI313",
+      "ids": [
+        "5c37524e6b4d22a918e80a61",
+        "6a6a53d28bb78a756ea3a094"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI313",
+      "ids": [
+        "3388973f6d55d0b9ec0098ec",
+        "c8a9ca3993cfa06d7870c53c"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI313",
+      "ids": [
+        "a318e7b10bb165dc96b57f75",
+        "699645ca34a1a8877f6fe1e0"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI313",
+      "ids": [
+        "d62e3413a5bc46a82ee48c50",
+        "84d578f3ff3eb4df10d33d1b"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI323",
+      "ids": [
+        "8686a3bf4131ac7c0873e639",
+        "47d145bf6305aac40158a822",
+        "00de06d32bbe1eec51f082a6",
+        "2b37af4963b581a72e488519",
+        "c8b40d5222921e594507b9d6",
+        "3f527615efa60046962eae09",
+        "436d95d7a27e03461d23250b",
+        "d990873896f689f56223f658",
+        "a9d1d297060ea1d85d2c53cf",
+        "b827c20b7e0a9dc50a9ac07b"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI333",
+      "ids": [
+        "8a9a12a6c7d29a1d5b05760b",
+        "b700a84d979114e7899b4595"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI333",
+      "ids": [
+        "e003385ec0d5e3694167851c",
+        "7393194c7d29cd11a66bac95"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI333",
+      "ids": [
+        "e7dfb1d5679282157bb91f6f",
+        "c3e98257eb432f02ac86484a",
+        "d72a41c9890a38cc74905710"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI333",
+      "ids": [
+        "8765293bba8d6fda7c667676",
+        "591cdb59cf72f7bdb740eb3c"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI333",
+      "ids": [
+        "090f13c5dc2ca3685b1b66de",
+        "66f21b1296c7314199b2502b"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI333",
+      "ids": [
+        "916c10f8e247554373b0f515",
+        "af26bd6a55ee5d4cdf66dec9"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI333",
+      "ids": [
+        "f07a02d66342264220f99a9e",
+        "24484dfff38655c514537228"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI333",
+      "ids": [
+        "138152f50544ede8d8ae5ce4",
+        "124596fc060fe5f6894688d7"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI333",
+      "ids": [
+        "572e656d1b2b502830c564d7",
+        "4c405c96dca75c72484212cb"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI333",
+      "ids": [
+        "0cf0574f837035ad90c8ccf4",
+        "545aac4770c678bc2ba23260"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI423",
+      "ids": [
+        "3328a7cb330298e32ae80e16",
+        "db029af8d4938de16cc030d0"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI423",
+      "ids": [
+        "f3e0375d744fd48478436f35",
+        "ff9f6098d5df36c6aead782c"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI423",
+      "ids": [
+        "985a26bf026c2f7769116e72",
+        "38ae1b29977a6fb6586c1ef3",
+        "80b15f94bb5b840b20d95174"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI423",
+      "ids": [
+        "2da65d3b4e29ccae4c652bbb",
+        "8a78bd155a33ddb0c0ab247e"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI423",
+      "ids": [
+        "1584e1c56a3a0d1191947d05",
+        "0fe228974874b6f81e377a98"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI423",
+      "ids": [
+        "f3ba637f4f9a6ba11e1f11fe",
+        "6485585e859af882a21e9e6d"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI423",
+      "ids": [
+        "fd211e261030a0551fdf9336",
+        "8ada0cba82e114d911d59696"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI423",
+      "ids": [
+        "6faed2e169e386789b399fb5",
+        "2577a9211a03055601969548"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI423",
+      "ids": [
+        "3c73d97137ef7ff214c3dac6",
+        "3b7fef6a9b4a3df7a0218a47"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI423",
+      "ids": [
+        "a23b45c6c057e802fbb0246a",
+        "1e6cbd4d6cdaf4b8e14f525d"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI433",
+      "ids": [
+        "b1f3dd989fcca10f222886b3",
+        "494a162b3cfd39404e5f132d"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI433",
+      "ids": [
+        "090bdf047f6b533b29603564",
+        "bb2d00b30406f232b2a41a39"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI433",
+      "ids": [
+        "984662f69f55dfd8c026f27c",
+        "5c1efda24ad268dfcb672649",
+        "3aa6c9ad56c0b522d6b8bb60"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI433",
+      "ids": [
+        "7e80dca94dea3e2ef804388c",
+        "55a26078ea1a8704541b3e15"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI433",
+      "ids": [
+        "9eddcf70a58476a926851233",
+        "212c00497f9af6421bf7cca6"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI433",
+      "ids": [
+        "c519fc9866d07131c372a1af",
+        "9f661f217306f8982f5d3ab7"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI433",
+      "ids": [
+        "f85c4a3e7a45110b01b29d07",
+        "a539893ae77f71bca1953448"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI433",
+      "ids": [
+        "fb51b930c3e152048e0a7231",
+        "a3777ac9c25f00a7f453eccc"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI433",
+      "ids": [
+        "755c3fce4af2a598970660be",
+        "5aa4e563846ea6c8e53104af"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI433",
+      "ids": [
+        "09c1da803c559e8b0445398f",
+        "a39bef8f7f7f8926598aeb1a"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI114",
+      "ids": [
+        "3bc65cff2d58a509cf4e46ce",
+        "93da208354b0419247a409c1",
+        "7736dbd195c591ff83f67219",
+        "eaf45d6a2982e15144936fc2"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI114",
+      "ids": [
+        "ea7cdf9740cd273863cd09d7",
+        "1515b5225199579893ebdeb4",
+        "48a69c4f5cf4c29f5a3b3ffd"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI114",
+      "ids": [
+        "3766d0187ab0569e74940b17",
+        "33acfb15301566859acab1e0"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI114",
+      "ids": [
+        "8e42f28272acd43fe08f3370",
+        "1111777f6f906022653a4f8d"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI114",
+      "ids": [
+        "d65be925f7e421daa7f90d72",
+        "4c02377eeaa9fd4099ed1e5b"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI114",
+      "ids": [
+        "686d9c74591c65c6ce6ea3fb",
+        "f7651d14dc29f8f196436037"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI114",
+      "ids": [
+        "872a0b6ad19fac035de2454b",
+        "5e7545c1023b9775204e384f"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI114",
+      "ids": [
+        "6e2a46ef0187218cfd559943",
+        "938dad11ea29cbac282a977b"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI114",
+      "ids": [
+        "bbfa93c0ce680420b1b47669",
+        "154ea37db42e8bd1c390983e"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI124",
+      "ids": [
+        "9e8e1612ef8ce7775f8a4d38",
+        "cce13d9c18faaeeab50df72a",
+        "dbf8bdf6a202ec0ecdeeb11a",
+        "2c3b5e78595a1d5cfc0b96af"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI124",
+      "ids": [
+        "83cc32019aa6c714967e6a85",
+        "09060fe900648e4104da66b5",
+        "b7c962547555a207af211899"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI124",
+      "ids": [
+        "5e2a278a71a6ff27d53abde6",
+        "bff74ac5f8e84c0c20425e60"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI124",
+      "ids": [
+        "4b8b780c60a023d93a1e84f5",
+        "5042eb5656085458a018e647"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI124",
+      "ids": [
+        "73725e7b1e064a0ec75321f7",
+        "86246d176a6a8df0788a49c5"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI124",
+      "ids": [
+        "0c77ab23eba5180c842c5aac",
+        "2cd6fecda1f28b71b88abb2b"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI124",
+      "ids": [
+        "6db996b895abece49d00633b",
+        "7c4cf9ef73819407cd9d4dda"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI124",
+      "ids": [
+        "11cae1f8330de47a36b726f9",
+        "bb4f8864c44eb654e4853c1c"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI124",
+      "ids": [
+        "0ef37f645ddf68177be4c7ba",
+        "6058ca218e537a98966e3552"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI134",
+      "ids": [
+        "12d4d26ea007c70d9536c401",
+        "8fa1b83abf25c853f7cac28e",
+        "69c4e8b555c82e56c34cfa13",
+        "9feaa4267ed30be056ccb8b1"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI134",
+      "ids": [
+        "5212e2fc8250bebbe260d820",
+        "c628c9c4ad8f71e8f8601f5b",
+        "5a8fe3da9b91e70db8f4bb7e"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI134",
+      "ids": [
+        "bc6b9d7b453ed39c621298dd",
+        "a9bdf88c36e0b43d07608b70"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI134",
+      "ids": [
+        "db8b7d915575ca7991e28b82",
+        "0c62895e8747b4e620f563e5"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI134",
+      "ids": [
+        "15df23380aa2764d99d6dfb5",
+        "1e3b97c0e123763188d6d29b"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI134",
+      "ids": [
+        "b3674ab2aa281e50cfa51ef6",
+        "73350ce7137e2f05bba9e600"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI134",
+      "ids": [
+        "ff2347f1d51f6b39d7ba4dfa",
+        "c1205e4205c663a5f5ccd74e"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI134",
+      "ids": [
+        "f64c78e3c6d65e342c661b5a",
+        "0d061ccf107332ad32129ba3"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI134",
+      "ids": [
+        "e8000450ea70e46d8b505d6d",
+        "0bc530b31cec95c6915a2070"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI214",
+      "ids": [
+        "ad47cf501367d1ac2e0f420a",
+        "f09fbb1d476e51ac1dfc9bb8"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI214",
+      "ids": [
+        "ebf34538a1cd6f0cbd7e7332",
+        "6979f2b511d39a96376ef6b2",
+        "a4377b8a00948c937f73d61f"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI214",
+      "ids": [
+        "8fcf83baa3ad2eed6e5c1de4",
+        "95b7670bbb021224c81f4e54"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI214",
+      "ids": [
+        "80bb2f79412661b39c6ab9ac",
+        "05c658dc153f799fb774366c"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI214",
+      "ids": [
+        "d2e29bef4d4c4afdf4ac91c5",
+        "c371cfea0556379ed46709c1"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI214",
+      "ids": [
+        "a4a4bcb0e0a13139b264c6ae",
+        "169c2a3fc582996e25a213e8"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI214",
+      "ids": [
+        "f24e2467f33756357a09ad59",
+        "d8b6223c6487ce73ef74a5fb"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI214",
+      "ids": [
+        "ba12839667d6a54116b6f7f2",
+        "beb71ea79d6efdb2cc06fe99"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI214",
+      "ids": [
+        "460a9447724be13c04e93e71",
+        "0e23549081aec41167a40299"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI224",
+      "ids": [
+        "6c4b80ee73b6a1fe629e213c",
+        "6afa7b81b957c44d99e38f4b"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI224",
+      "ids": [
+        "ce8a750715349d5c7492238a",
+        "fe66d1d6847be676afd839f5"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI224",
+      "ids": [
+        "644394bc156cbe49164d73d5",
+        "37e04551e6519e2fcb75fb67",
+        "d5be26cd74699019f73d25e8"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI224",
+      "ids": [
+        "a1285e1bb47bf6c5b47b5dc7",
+        "fd376864f05d3e6df2b89be8"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI224",
+      "ids": [
+        "e31a69327b1048317b2ed6d4",
+        "3bc960fce87e9829b53b19e3"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI224",
+      "ids": [
+        "59417c9bc2f5781a3f56ebb5",
+        "ece08a5ce558c24c975815ed"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI224",
+      "ids": [
+        "56180c500fc70c3f2c38ec65",
+        "3683cbaf56f01b86fbac73e3"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI224",
+      "ids": [
+        "e024510ebbcf68735f865ae8",
+        "59fbab32080215d96491dd7c"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI224",
+      "ids": [
+        "a52de6f7227a2a89feb77792",
+        "b1b0e23fadcb83e4efe853f9"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI224",
+      "ids": [
+        "ac52de4a12d30339f37a9d36",
+        "cc1b48db7010eb32af2320e7"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI234",
+      "ids": [
+        "ffd26e683277aa255a3d7e3f",
+        "93d93b4ae9d7123ce97c3162"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI234",
+      "ids": [
+        "953bcd1d7e66cdb2f5fdf3e9",
+        "41ca84b1b3b046c9b2f1e56d"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI234",
+      "ids": [
+        "a69d466502de00f5d89e5380",
+        "e1f346d856a5c24237aa045e",
+        "4d54d5aaaa2f2b533b9c5ddf"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI234",
+      "ids": [
+        "71353af4e1d59f6009c063f3",
+        "155360e836c51ea137670681"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI234",
+      "ids": [
+        "b6d259928ff57632ee099a7b",
+        "061a3ce6e3495c7746a164f7"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI234",
+      "ids": [
+        "f76a7e87384f393353e38b5a",
+        "6d7e0753c5cdee33764582bb"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI234",
+      "ids": [
+        "764579a1d7adf706402b5de4",
+        "8f0969e2b6d2c340f6f1a941"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI234",
+      "ids": [
+        "d01e315b86c31cea47341bda",
+        "9261ef32836114535a08c056"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI234",
+      "ids": [
+        "28f67ab7d5c933e3d1860b8d",
+        "fb825d732ce411e0f9f33b44"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI234",
+      "ids": [
+        "d7596d2be210d10f1ea76a70",
+        "1dd2a316479753252c6e66bc"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI314",
+      "ids": [
+        "4c0056a34b225419a36a668c",
+        "c067427d4d39c26ef36009b8"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI314",
+      "ids": [
+        "ef4a666701c5ddc3e10f6e16",
+        "cb6cbfd4af4babbe2ef03d80"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI314",
+      "ids": [
+        "666b694e9b1e7c650e67c184",
+        "427440c2cf876068bf17e10f",
+        "66bd10f4e00d55fefac548c0"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI314",
+      "ids": [
+        "bdb70908ab13d14f5732671c",
+        "9539e0bbd738c0ffd58acf2a"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI314",
+      "ids": [
+        "4842e53f95f04debda53f552",
+        "5b15cfdc753e6b8acb22930d"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI314",
+      "ids": [
+        "8ef5e3cd0b2720ae8861e842",
+        "1e9d538e1a3d0eaade82db99"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI314",
+      "ids": [
+        "9c329418eaea6dd564043726",
+        "18a8160d4dd183b604848747"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI314",
+      "ids": [
+        "8d789a3597b2034fdd5f884f",
+        "ba7d63fea0d4fba6721b8d02"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI314",
+      "ids": [
+        "384104481b25b0234e3a7809",
+        "7b79d1ce7ff0ffa635ffda72"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI314",
+      "ids": [
+        "96e608644de72eef0652565d",
+        "a8e23fb13d0deb2b4b2b5489"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI324",
+      "ids": [
+        "b5f7515617fcaedf09a0dbd6",
+        "7d57604821ab4dd9919af428",
+        "28c3b091225f0f5fecc7740c",
+        "d840b83f7ce91f2911e1eeb7",
+        "588533669251b59ea4403477",
+        "d9d8e37a91518f00e5a8936c",
+        "0ab0ad9ae219b38d4c4e07db",
+        "88236e000a491a9d9fd34d01",
+        "3d951461d1a859812f33f34c",
+        "38d498814a0a2db39f7d83aa"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI334",
+      "ids": [
+        "7e5edac21e6e18ddf62c2cd3",
+        "abd58cc9fcca9a2ed8e1eaf9"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI334",
+      "ids": [
+        "997e7ca7daad476a61f05079",
+        "26c7b167e309690e98197eb4"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI334",
+      "ids": [
+        "c290899fb6e97aa8a5b2fee2",
+        "fb1a8dde4ab4a3a4e90c9fde",
+        "e399ebea72d4182bb2d3e910"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI334",
+      "ids": [
+        "8b107480ad86c530e3f065a8",
+        "53f7dd7534fa5ff6cd47354c"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI334",
+      "ids": [
+        "0902e7332d6a05edb1c7a3fc",
+        "99b38dfb1e128673adcc9679"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI334",
+      "ids": [
+        "f1b0f98d22a2fd86a9242a93",
+        "4c0f857fbcb5f649808947f4"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI334",
+      "ids": [
+        "ecef5f62e61bb0bf528f3a39",
+        "e161cb9b95e82bfef31a51f8"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI334",
+      "ids": [
+        "874888046f63f925a1dd1157",
+        "e68d8c5b36af49d98fe036e0"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI334",
+      "ids": [
+        "a4dbf55ca02017f4f20f2550",
+        "9b8853119e28e67c148bf9e7"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI334",
+      "ids": [
+        "a1a8ad4c38153f86dda46256",
+        "3f2ad43e96383de89b30ad94"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI424",
+      "ids": [
+        "9933d60d7c6769a982c16e5a",
+        "80b7e76006b56a1ecdc6ada5"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI424",
+      "ids": [
+        "248b4678c3b98ad499d1e8f7",
+        "89ebbdc35ee5cf7ca9a64c6d"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI424",
+      "ids": [
+        "972d3e3a911932ba50e746ec",
+        "5db50a180202e3aa9a1cfa87",
+        "c7d16c1bd477f8fceb52c975"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI424",
+      "ids": [
+        "eb0d60425a345882a41affef",
+        "b8e6dacd5e6fe96a0ed24e86"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI424",
+      "ids": [
+        "7f272e011b13e03e577a1232",
+        "db8084b87a7fa522a02ab62f"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI424",
+      "ids": [
+        "78e1e198e4367e53fa5191f1",
+        "a3b120bc31a4c75bed90082e"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI424",
+      "ids": [
+        "cc8af05166577ab7dd243248",
+        "7f365ac60646cd9bb95f7e92"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI424",
+      "ids": [
+        "5771f1094df7d50dead90ef9",
+        "d746018baee0387b25bcb2b3"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI424",
+      "ids": [
+        "f4109eb230b939b0bb2fe1b4",
+        "c1cd4404ef7a5bcb1a3e6c1c"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI424",
+      "ids": [
+        "eb87e26b22c999692dd7a945",
+        "3655888be4f708d1dc6fe9f7"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI434",
+      "ids": [
+        "92b118d09ddfe5aee50dc016",
+        "a2189ac3bd0fdf42392aa868"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI434",
+      "ids": [
+        "285392d43eebd96c9e89b63d",
+        "b527d6b0f5f7d488bfcc764f"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI434",
+      "ids": [
+        "90894d137d4957a291aedc96",
+        "7a56888790be4ae17affd8c7",
+        "5e215a88530ce1cf07107a4c",
+        "1ac3f1c2f81ed226524656aa"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI434",
+      "ids": [
+        "0967412249def1df02eb8039",
+        "716336c6d056a089716e0509"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI434",
+      "ids": [
+        "6c66a0bcfdae84553335cb85",
+        "f14998be79120bd98b299fcd"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI434",
+      "ids": [
+        "187e0f74a4802d13878976f0",
+        "847713c26dbabc8ed69d7ac7"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI434",
+      "ids": [
+        "649b1278933bd55f34161738",
+        "bddf565d87fe99d543eb4743"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PLI211",
+      "ids": [
+        "1a61e771f443bb7a8f1771da",
+        "565b729984a92e525914758e"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PLI211",
+      "ids": [
+        "871af0060a70b7745334daac",
+        "95ab47b0eb1be15b837cc371"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PLI211",
+      "ids": [
+        "4a736100d8e9fc6a4cf551d6",
+        "76fb4607d17e266fa19ce5b9",
+        "a27a42e4e6b7a469238c2ef6",
+        "7f38fa413befe26881a0d83f"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PLI211",
+      "ids": [
+        "30bbe1e625bdb801122aa6a9",
+        "eb5a875cf177352e9062564c"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PLI211",
+      "ids": [
+        "c4c20b600ac5b536ff255a4a",
+        "760a644b08c57bac168c19bc"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PLI211",
+      "ids": [
+        "a71b81b9cf451723f779ad28",
+        "a9e115d0ca90cbb503db6d68"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PLI221",
+      "ids": [
+        "92efdde155a3b93e7c184eb9",
+        "027b0070b4a59f99cb075d72"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PLI221",
+      "ids": [
+        "3b17ab82bdc1c1b5769a7af0",
+        "ad1a024054bc1e308e5993bb"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PLI221",
+      "ids": [
+        "373b979b0608590e430aa1dd",
+        "3fcb1d9020a2a5c4a1271fbf",
+        "1350b1501745b0ca284f4ffb"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PLI221",
+      "ids": [
+        "45fe76f6008f20a886f29e26",
+        "1e45d32394c0b932c206d374"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PLI221",
+      "ids": [
+        "0bbb9222385d0d57c1b4ee9a",
+        "1ed40771b19b163d22d46fd3"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PLI221",
+      "ids": [
+        "dbbc1f3dbb6dfe51a951bff8",
+        "3105b7232f9606c128690723"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PLI221",
+      "ids": [
+        "b2d769a0c1d5f45c161a206a",
+        "7d8c96e2cff3c1328aa9aacf"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PLI221",
+      "ids": [
+        "03e20e763bc71a59323871bf",
+        "774fdf02fb7975bfe0753226"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PLI221",
+      "ids": [
+        "3ab37b03e5d7a98fa1fb04b3",
+        "d2dca5eb9367d26c00f33688"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PLI221",
+      "ids": [
+        "5f354ae588e0e031065d08bf",
+        "cf6d9f63e5ac64ec03e98d09"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PLI231",
+      "ids": [
+        "e664330c994cf72f0a657f4b",
+        "d60199aab12eb08b38309aab"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PLI231",
+      "ids": [
+        "bedf14d028452b16277c95e8",
+        "9955e203cdebb7386ab0582e"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PLI231",
+      "ids": [
+        "284a48bbbeeecc820f31f7bc",
+        "842066650a21fe2a24a006c6",
+        "bf11f7be4658237f2d5834e7"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PLI231",
+      "ids": [
+        "d63802be69e22309f166c073",
+        "080237e673e6eec4017d77cd"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PLI231",
+      "ids": [
+        "03cc51f7e8dd265d05b9d5d9",
+        "d1ff2b9cef140942e76a9e68"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PLI231",
+      "ids": [
+        "4303f1bd849b5926864e078f",
+        "747b837d3de64f97c53c3bce"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PLI231",
+      "ids": [
+        "f0eb8a4369fc79322437e4dd",
+        "c523b427008d87a2ad659215"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PLI231",
+      "ids": [
+        "8b4891dde5214c20d5446a74",
+        "1b2eb8b1bcb8bffcece1869f"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PLI231",
+      "ids": [
+        "978a3481c97770a03a245614",
+        "e41f471b80477d59217facbc"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PLI231",
+      "ids": [
+        "cc5494360d9f46c629d0c4b4",
+        "6896e4f7699a18c3ab90fbd6"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PLI411",
+      "ids": [
+        "707285080612f1c8c440acfb",
+        "6155096128481db15676df77"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PLI411",
+      "ids": [
+        "283fb211dc271f94b99f1e73",
+        "f06c8dcd7a49f07438aa6033"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PLI411",
+      "ids": [
+        "f79e1ef94377a87ed4d31bca",
+        "d6c3020ec19a6030fccb9883",
+        "4bd6e75ce82dc63bd222886f"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PLI411",
+      "ids": [
+        "e9e9c4703d4183af52daf697",
+        "6ccb985b13144bd38cbbe9c5"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PLI411",
+      "ids": [
+        "98a45b461615e2a216bfab95",
+        "2fc1c2935f1f2c12e7aceb5d"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PLI411",
+      "ids": [
+        "70200353a3d68b33ed892c9e",
+        "3df9a813b04dc9d3a2667c5b"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PLI411",
+      "ids": [
+        "ff67c3e8174579d7615571f1",
+        "8d18eaa0660521efd45db11e"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PLI411",
+      "ids": [
+        "b31bd9c7906f5423d6a40422",
+        "be251897b854aa487fd6f647"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PLI411",
+      "ids": [
+        "db6b9171db456dd93678183d",
+        "02dac845935d15bc5f29ebc4"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PLI411",
+      "ids": [
+        "fb2d93b691c9476e794cdbc4",
+        "34296044400917ddb4db8a8a"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PLI421",
+      "ids": [
+        "daa4be30bfde02df782bfd96",
+        "8270c90cdc4d6a39a7846e48"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PLI421",
+      "ids": [
+        "57f14fcc9870765c9e2fe678",
+        "51c428605de7245cddb3cfbf"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PLI421",
+      "ids": [
+        "8e95f8da81896403f267de37",
+        "efb46b400983fde7a3da2000",
+        "e644e89865a7b5535eb5800b"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PLI421",
+      "ids": [
+        "17fa45bdcf76bf32ebf45f95",
+        "5515aad89c4e313153e1fb00"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PLI421",
+      "ids": [
+        "c399bacd679f9e38b951f22f",
+        "6693704e4acf6bb7e4bfbc16"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PLI421",
+      "ids": [
+        "3983665ac5689c955e43be44",
+        "77d3a8968010dfddb07dfea4"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PLI421",
+      "ids": [
+        "5203958e70884091135af9bd",
+        "7f2e547361588967eca4d5c2"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PLI421",
+      "ids": [
+        "58eb2b6e4403c3a23faacfa4",
+        "f0db008825037f1c6b360a9b"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PLI421",
+      "ids": [
+        "3580cf29537bc1a03dd7ad8e",
+        "27cf898af2c94120756f92ad"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PLI421",
+      "ids": [
+        "19daa41172d6cbf8ad144db4",
+        "6062984694a6b28e77499c24"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PLI431",
+      "ids": [
+        "8a2aa00b87115b4f8cbc0a0b",
+        "d440f3cd085027358ca0b028"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PLI431",
+      "ids": [
+        "faf35c43b85d3832ac7c17bd",
+        "20d5fca8538cbb1081ddcf81"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PLI431",
+      "ids": [
+        "dddff58815dc35c2ee1aa6da",
+        "f95875c7905ccc0cdc6d793a",
+        "9db5e864eb4e46743460fc66"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PLI431",
+      "ids": [
+        "c83d9bbbfcc57fcede5f9860",
+        "4839a5ad70a478ce5df794a0"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PLI431",
+      "ids": [
+        "5e54e4ba2e78f38a7b920a51",
+        "5ab5e57af3c5551ef28ff77b"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PLI431",
+      "ids": [
+        "ec256083cd7c8af0bb3604e4",
+        "6e63d72e532ea86bf9e57256"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PLI431",
+      "ids": [
+        "03bf659211b607d59138f0d3",
+        "8d3787582b432a827b73808e"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PLI431",
+      "ids": [
+        "1e545095ded19e926841f4ae",
+        "45193132a5ed7cce46c3fc33"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PLI431",
+      "ids": [
+        "337e0255038af534940c140b",
+        "706ed88e53b10b908176e93b"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PLI431",
+      "ids": [
+        "9bea78b05d3d5c44a8db198a",
+        "c3cffe1459019b07b613a8f7"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PLI511",
+      "ids": [
+        "396469bccc6ca8ec0834fbee",
+        "0ad8fe8f4c67ef734cf48623"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PLI511",
+      "ids": [
+        "edff476c983f237e73fed6cc",
+        "3a019737c637b2f6014c62b4",
+        "6faf705f31304ff665d6ec8f"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PLI511",
+      "ids": [
+        "5f6bc781b30434b85a0fca0d",
+        "3703dd5d4ed41e00fdca9a0a"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PLI511",
+      "ids": [
+        "1bd5463446434c8879b7cc1a",
+        "f477944594663ac378ce3dbc"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PLI511",
+      "ids": [
+        "d8bbfd78e67ec3aa4e90d604",
+        "77befc1e7a19ff0a2997491a"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PLI511",
+      "ids": [
+        "c2a1d48be4358ae6d82ec38a",
+        "a6677db211c489ed6323722b"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PLI511",
+      "ids": [
+        "0bdc1f5517a29bd190e045eb",
+        "df193538fe4cdec77483f78a"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PLI511",
+      "ids": [
+        "db2d2b222b6ed0132c2cc6be",
+        "a83422788664d2619bf0bf66"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PLI511",
+      "ids": [
+        "7ddf9e98fe77c9420be85c63",
+        "88ef37d8eebd2b9d59c68956"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PLI521",
+      "ids": [
+        "da769c1ca4fa4fbf04a9479a",
+        "112747f3ab8c8227fbd9c05a"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PLI521",
+      "ids": [
+        "5b47dd78b0bd17cd7bab88db",
+        "6937e3543c139569bdcfb074",
+        "f0729d439c86d9d648d9f3c3"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PLI521",
+      "ids": [
+        "0b026c25e59c175e56513bba",
+        "b80526711b2f23bd7891f800"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PLI521",
+      "ids": [
+        "c97787ce0f3a10fd03e242c5",
+        "6066c543fd7e780dab40dce5"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PLI521",
+      "ids": [
+        "febbb706cee8b206b844b402",
+        "2d26e56558f0416daba5ffe4"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PLI521",
+      "ids": [
+        "1531c1e46236119f332ceacd",
+        "05422cfd1c3e4a3ba0cbd7b3"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PLI521",
+      "ids": [
+        "a52b7e81b8de39245cfe6928",
+        "40969383a06360f079622a11"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PLI521",
+      "ids": [
+        "0bf4f36b3d12b59a7606ed98",
+        "fda1292ad9afaf1e9245e00d"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PLI521",
+      "ids": [
+        "210301366e7ad68890b75559",
+        "04668916b1378c7963f9f74b"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PLI531",
+      "ids": [
+        "22465235fd6e25dcec5f2e4b",
+        "504e322a13ca08f6e4d28529",
+        "eeea91094c7281dbe256d43c"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PLI531",
+      "ids": [
+        "8ffe876c354087ffb95259dd",
+        "8a343a35fe4ef8da2e61fb26"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PLI531",
+      "ids": [
+        "5f9ff007356c456dc7bedfda",
+        "e0d48877c34390afa029cf26"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PLI531",
+      "ids": [
+        "7de7089e88ed42721fe8d3ff",
+        "3a5fac1c0d9c7599de8b3ad8"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PLI531",
+      "ids": [
+        "a9c2676fa06db13a3f1845ea",
+        "0ff55acd71763c468dbfac15"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PLI531",
+      "ids": [
+        "f30af7c09ff92ce488e8a101",
+        "50e9afd0ecfe2be64fa1ff84"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PLI531",
+      "ids": [
+        "6bf209590c6fa16eaab63221",
+        "69aec983502ed29e74cc9553"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PLI531",
+      "ids": [
+        "bea6fd5ba6c442b7d14e3d0a",
+        "e0b36139026a09fc6d6fd060"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI111",
+      "ids": [
+        "f53091c6f29c5ccc65e419ad",
+        "53e3798cfe61085c8c20eeba",
+        "51dd369e752fb4ca3cc71a48",
+        "48f038f58dc86cb77bdf2fd8"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI111",
+      "ids": [
+        "420709a7c5242717f8b064ca",
+        "68d8428c3945cdc8b01b27c1",
+        "f381db6a46c637c9705ff9c7"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI111",
+      "ids": [
+        "e0a1218fa077f6df1f698214",
+        "430f8dc76ae8eebbe2d54c18"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI111",
+      "ids": [
+        "fe6923030c5a2da3304f308e",
+        "6d758e1774cbc69c5965c19b"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI111",
+      "ids": [
+        "c208acb788773ba3e26edeb8",
+        "be5216fe81de1a96d4bbf7c3"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI111",
+      "ids": [
+        "842770c8bf0f5e9627303ec6",
+        "e5d3a0bdb8ce76a5febb5314"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI111",
+      "ids": [
+        "366f398ff641603bc9422ed5",
+        "f3ec6cc4cdb850a3c9a13c30"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI111",
+      "ids": [
+        "fb46e7b0bd22245d211aeaa5",
+        "98b6f6bac3a64849d63ab883"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI111",
+      "ids": [
+        "1cc8c3c17e974cd6e42f5423",
+        "1d7573d0096f60850ed1bfee"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI121",
+      "ids": [
+        "422ea6fe6275272d0b274411",
+        "9eb41efb5c3ddc1c6ad713e1",
+        "0d7bec844ffa07726249534c",
+        "3fd24ad1d7b81d1a0d069ccb"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI121",
+      "ids": [
+        "a74053149bd6942de7df1842",
+        "5eb07e6f6ebab02f0bff0d64",
+        "e12766e23eee807dd24e9421"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI121",
+      "ids": [
+        "3e97a605e2ab1fd23e743917",
+        "4d696cb34f67c5d491018933"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI121",
+      "ids": [
+        "8fa1ae4497b4af4cc868f412",
+        "340982ea0541598b45551d86"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI121",
+      "ids": [
+        "414cde39479b4f94608577e8",
+        "784f67f6411c1e8caebb50c4"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI121",
+      "ids": [
+        "1f98b6c34c6f88eb98db5093",
+        "87cc2343e55ee416fc204730"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI121",
+      "ids": [
+        "740b1623711012eeb1671709",
+        "5a9b9f6d643283c9de4613cd"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI121",
+      "ids": [
+        "b33960f631c437dd0794cd10",
+        "49f74ae7adad100c1255cc8d"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI121",
+      "ids": [
+        "56696e02aadc4e1c73b3a988",
+        "854b853fd59d125038582c17"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI131",
+      "ids": [
+        "6c32630b2b2e3ed838a19f49",
+        "24a7f648c1af498b5d883558",
+        "516990b2b4d19565e268830a",
+        "4b6f564317241dd058fd2a0b"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI131",
+      "ids": [
+        "9db191d2601fc5acd4778884",
+        "c3bf9c67c5610021479e96f2",
+        "65be3d6c873d029d10f27919"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI131",
+      "ids": [
+        "6269f92f95b58d94669c73ae",
+        "b6502edb993325f903561b01"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI131",
+      "ids": [
+        "8fa65f8a547ba8cc053c83be",
+        "41e987a992e39218a215473b"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI131",
+      "ids": [
+        "3532a65f66cef1673a53c1b4",
+        "46384f216f63d54d8ed673c5"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI131",
+      "ids": [
+        "6758e3160596616095e093d0",
+        "a925c32665925c561c8e5cae"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI131",
+      "ids": [
+        "f1f8452585c2e4c6286754cb",
+        "674e1d308c4ea89fd1497177"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI131",
+      "ids": [
+        "9fbf45553b581be762d45bf1",
+        "abefbbb9b31938e573e685c8"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI131",
+      "ids": [
+        "329fd0a3aaed639797dcea93",
+        "397c18e068c002b9c568745d"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI211",
+      "ids": [
+        "1b7458aad2d09c47c683f7a8",
+        "ff343c7984aefd834e53f546"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI211",
+      "ids": [
+        "6af14b8891b675d6f7c8dcaa",
+        "ff23a5ba35a5bfc40eb8a14c"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI211",
+      "ids": [
+        "a167afd03ec814ddaff5200d",
+        "7bb9fb7fd038f7c5cce3c25c",
+        "907773286b7fd9bde16b8539"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI211",
+      "ids": [
+        "651ff2bfb09d3394523b2adc",
+        "518188b2e16a657e53800ba8"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI211",
+      "ids": [
+        "102d94c2bd5af381f5bee922",
+        "ecb759ddb3573a1ee2a31b8b"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI211",
+      "ids": [
+        "9ba17b22dad4979228a052fc",
+        "bb0690ee4d040a8221ab57a7"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI211",
+      "ids": [
+        "cb20e9fccc4090aaf9f11af2",
+        "571a3cda1078fb093b9e7f77"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI211",
+      "ids": [
+        "c47366a301e7760fc9920c77",
+        "4116073ad9653e0aa92c9de6"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI211",
+      "ids": [
+        "602dfd950b7a1ae250aa4966",
+        "36bd971ecd2a18f255f10758"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI211",
+      "ids": [
+        "591e89cd8503ef02fc41895c",
+        "f748aa58462ae458c4c7a78a"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI221",
+      "ids": [
+        "257fb56853822617502a83e0",
+        "43a2e224a6bb8d02a90ea851"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI221",
+      "ids": [
+        "26db4c38e0ee14679269e8a7",
+        "924e579ae330fecbae749203"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI221",
+      "ids": [
+        "62347d713e11bc774cb46392",
+        "e2871de9f5a26d4a26d648fe",
+        "129ba6be07f5ce13d3b2a59f"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI221",
+      "ids": [
+        "4db3e23cf8f7a38b50208980",
+        "26108f08cfd16f0ecbc41358"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI221",
+      "ids": [
+        "8113f5bd24e5cfed4956e467",
+        "450c7127de36d0a0b6c980a8"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI221",
+      "ids": [
+        "3bc20878dc86214cc188785c",
+        "b18a280c47f2400b5ab4bae1"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI221",
+      "ids": [
+        "60f0b9198c74448116caa35c",
+        "e4fd7c6a50f80d966e3205e5"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI221",
+      "ids": [
+        "9c2167169afa4ac31378ddc9",
+        "e6a64305340202646448f51c"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI221",
+      "ids": [
+        "c7279e09b781bdafd89005bc",
+        "4fde03bda474a62d447b81db"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI221",
+      "ids": [
+        "9470dffc186b5665edac2836",
+        "87d820dbd3e225cb966b2879"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI231",
+      "ids": [
+        "3cf1a3de558a5c0868db6a77",
+        "9d016137d55f74396cc68a59"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI231",
+      "ids": [
+        "eca2427aa51085ea40311d2b",
+        "7b497a7b3e6a80173807de46"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI231",
+      "ids": [
+        "e31a607be5ec27086143fdd1",
+        "091fdc7be633f96ab6631cb3",
+        "a9e9c488839c07505ad11cba"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI231",
+      "ids": [
+        "f60231cc44f2d5b7b701aa5a",
+        "617bf9fbefbd32c67fa668fd"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI231",
+      "ids": [
+        "5eeb525be34f1e05cd6fa399",
+        "49a452efbca8c3eed1774304"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI231",
+      "ids": [
+        "1a053fadcbc348dce949cd9a",
+        "477d65628211b959b7e72799"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI231",
+      "ids": [
+        "f05003ee84dc1e6ec09581d0",
+        "90b7b42fe1dc47ef3d213ddc"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI231",
+      "ids": [
+        "eb7bd328350d997a2635539d",
+        "3b74cd142182d3bba9e41b54"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI231",
+      "ids": [
+        "ba23dc915dab565dc9910bf0",
+        "2f13d799c1122bdceb872ac6"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI231",
+      "ids": [
+        "4a7edf5b32cbd40417820e30",
+        "d12f8306d3aa1d20de37bbbe"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI311",
+      "ids": [
+        "ff18f6498174906a922567c9",
+        "a2aef68e3745cf97b99dc75f"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI311",
+      "ids": [
+        "e2b4e6623e5cd7f37d2b685d",
+        "9899115396c5fc0b2720ab57"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI311",
+      "ids": [
+        "e298fcdec4ec66b94e9c593e",
+        "b0e82b19ea70b73d4234c6ab",
+        "5daae51315f68a160951336e"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI311",
+      "ids": [
+        "95e86d71e49dde894591883d",
+        "423251fac6dde5a708ec8f33"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI311",
+      "ids": [
+        "54b5f9a35d5666a6816c6466",
+        "8b2428ba68f575c4fafee01a"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI311",
+      "ids": [
+        "0cf2a7d15b8ff47d6853e149",
+        "ca8d25e31a3b0a26946679aa"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI311",
+      "ids": [
+        "14c5f99fe9da6e1044b8e413",
+        "53cd045e1a66a01cc1c8a5d5"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI311",
+      "ids": [
+        "061728b1df3e254a34d74a97",
+        "5bac6ae927937bfd4357377a"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI311",
+      "ids": [
+        "b73138287450302669c94d13",
+        "197fd0fa8d614383a5c16050"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI311",
+      "ids": [
+        "7bfd33ea486afe4dd041f257",
+        "c86e866b64a2a22f15676a05"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI321",
+      "ids": [
+        "34b2fa0f039e4fafc2c24d4e",
+        "eaf4fa1e9cfe96b0d21dd26d",
+        "f6ea4e22b92994eeeb6728c2",
+        "8f93c47690451304711a8875",
+        "5e9531c5d8310de79e166db2",
+        "b1abf0d085e088c5f751ec19",
+        "b7a7eb3a60d60653daeb393a",
+        "f0f5c4a094500235bbfcaeed",
+        "4c2413f8da3292d6e0b1e9b3",
+        "bbc64e699dcc53ed13f7fa71"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI331",
+      "ids": [
+        "3978eb26c691158916e7f12d",
+        "34694e3a3fba48e66eaf2b9e"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI331",
+      "ids": [
+        "22987dd852d5393a76917d0d",
+        "e510b1902b6c23b59fe37a40"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI331",
+      "ids": [
+        "335b7c20b7c30e04e6db7a91",
+        "849711f7265bbc985acb139a",
+        "8be70d80466cf97493afa75d"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI331",
+      "ids": [
+        "4cd4a973bc0303462b8817ef",
+        "281417a4e477d28d2ad259f9"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI331",
+      "ids": [
+        "3d7e58b981ba7abb26cda2c6",
+        "096d99c4b6154f7c8170e915"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI331",
+      "ids": [
+        "7b6e113592aff34f8a83b69c",
+        "c2c81fc83db1cdb6e7c2526f"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI331",
+      "ids": [
+        "98a7ea03048d0dccfa69de08",
+        "396be97785ee2abd9a2b8708"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI331",
+      "ids": [
+        "a5705f5d819873ecb78c7de8",
+        "96082f650920dbf8f1d794a0"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI331",
+      "ids": [
+        "a261d6fc3307f3be7e6386f2",
+        "b59bb5767a339fa5a020f4ed"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI331",
+      "ids": [
+        "73f26f8d40a154837061f206",
+        "da6538b1c7c60e3518f6b321"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI421",
+      "ids": [
+        "77aba7782075db0887e2e3e7",
+        "9a7b12823061fb7622664708"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI421",
+      "ids": [
+        "3dab5dd9195f03bbf16d1ab7",
+        "30a11d4e782b55753413bd49"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI421",
+      "ids": [
+        "d7ce4301200f892037b244b3",
+        "1c2bd6ad90405aa312f221c5",
+        "beb7bb72e21f675fad7c09fa"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI421",
+      "ids": [
+        "1d3931c999fad15568551aa0",
+        "9e84598e038c98fff6309364"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI421",
+      "ids": [
+        "ffad2df2c5e72bff0b39c490",
+        "bb4e86db8f42c661c12a40c3"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI421",
+      "ids": [
+        "1647484547f2269565c86cd3",
+        "e94c7651035fe4dc9f42d31f"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI421",
+      "ids": [
+        "0d9631fffbfb7e145f058e0a",
+        "7cf77d361e2c7a1b84c5c30e"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI421",
+      "ids": [
+        "2535374e9f87c9aa9935b800",
+        "d121a910c0784092672b5954"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI421",
+      "ids": [
+        "781d2458a12623de55d78645",
+        "40844cce897a75987735535a"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI421",
+      "ids": [
+        "b59e382db3aa5909891b16e6",
+        "29bf672c6d1af34efed54aea"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI431",
+      "ids": [
+        "a40ff08926724dc9460b2657",
+        "bcf2db32779a5b84c8e55648"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI431",
+      "ids": [
+        "c537c038958b9f6d1560cd14",
+        "c37a89b59e4119c10a73bf2c"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI431",
+      "ids": [
+        "40943cf82af7f107f0cfa3bf",
+        "e6a100d973a4113760b87913",
+        "5a35a806cf0c6a0a2b2332de",
+        "d6920724badb76b6206bc1fa"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI431",
+      "ids": [
+        "f859b8dc7a7c9fafde38d790",
+        "3e4a24ef60b8be0dada73869"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI431",
+      "ids": [
+        "4eb801e4da680101262a2e1c",
+        "18c943f4846be88c8590f48e"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI431",
+      "ids": [
+        "bdc2780434e5ba78dc7fe0d9",
+        "cb0841d349981535c16ef2f4"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI431",
+      "ids": [
+        "e7055e39a2e8ddb75958ab70",
+        "58bb767ecb1c767b84b53c9f"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "SYNTHESE-PARTICULIERS-2026",
+      "ids": [
+        "87906adbe171959daa43eb4a",
+        "b21039c9570e07bc25baf20f",
+        "a4bfb0aef1c67472c7ca27e1",
+        "05a0dbbc180b54f8ac858469"
+      ],
+      "classification": "legitimate_repeat"
+    }
+  ],
+  "originalDuplicateCounts": {
+    "exact_duplicate_candidate": 169,
+    "legitimate_repeat": 198
+  },
+  "finalDuplicateGroups": [
+    {
+      "reference": "PSI113",
+      "ids": [
+        "572c3ce47efd232d76d392b1",
+        "94b7ea462a3875b9fa6c60c4",
+        "f06c376d1f91bf940a7023a2",
+        "8c2d8bc012a754960da9443d"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI113",
+      "ids": [
+        "2de653e063a43ab57eb268c0",
+        "18f98e149fc4f4c569111ca2",
+        "7fecbea061dd9f9683023039"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI113",
+      "ids": [
+        "8c0900f13f5b5f3754daa8ec",
+        "762330a95baac24348d806db"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI113",
+      "ids": [
+        "d5227cace497c057b879f856",
+        "721f00bf06858aac2570ecc9"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI113",
+      "ids": [
+        "e2ca6c15bf2a3d10eacd3cd6",
+        "65e0893f856e4375417b08c7"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI113",
+      "ids": [
+        "77c7c31d95b27e4f018904c1",
+        "011ccf6725bb65c802bc6b19"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI113",
+      "ids": [
+        "288ec32130e25311aaeed04c",
+        "11ef28d9098f2fec9dde9eb5"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI113",
+      "ids": [
+        "b1e716964ff0b5633a179e23",
+        "66da64c3243522ddd936fb40"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI113",
+      "ids": [
+        "629b1fc4fd7c7d13c580f621",
+        "bac4dddd8cc692b4e1d31263"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI123",
+      "ids": [
+        "e35c7f0844ba38d3d55d9a97",
+        "c6abd447dbfe2af7a80dcf2d",
+        "0af0d3585d16d52ed348c840",
+        "24b0cb5c3767350c54e6b0a9"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI123",
+      "ids": [
+        "69250f763adbc056b11de295",
+        "6ea8ec9e4b8734712cddbb29",
+        "cbf738dd8560f8eb3b711fec"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI123",
+      "ids": [
+        "3f6e1b9f28167b3ffdba42ea",
+        "87ede9c709993e650b1e3a6c"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI123",
+      "ids": [
+        "ef23a28371031461b8554c19",
+        "653dd1b77a5a0cdc81acc4be"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI123",
+      "ids": [
+        "19c61663eb468169d0dac1c5",
+        "f301fbf8b153e8fc1b780349"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI123",
+      "ids": [
+        "61a8d75beed28beb0ad993b6",
+        "0e6f259f995ae2c6813e8e7b"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI123",
+      "ids": [
+        "a8b610f839cc1cc90196948f",
+        "60d31547cf0b84079ddc0f2c"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI123",
+      "ids": [
+        "85e7e5052286bb5c271881e7",
+        "2a059ad7900bbf5b63e8c6e4"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI123",
+      "ids": [
+        "8aec853799ae8424fb8252d9",
+        "c54560e13dc8d17073498397"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI133",
+      "ids": [
+        "292ec7309f91566c8182c0e9",
+        "b3327a4f4a6a50061588bfbc",
+        "ed12e624f16a606fac9b155c",
+        "1e5b94cc51743ab7ea8c5921"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI133",
+      "ids": [
+        "c890e4abf862bf2d87f19cc1",
+        "f25d43ba32c7e8ee5f045b59",
+        "84414d8c4835c5c759bfa57a"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI133",
+      "ids": [
+        "dd8c77fcb3252e6f19f0200e",
+        "cf7f555f984d2581f560aec7"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI133",
+      "ids": [
+        "a5434d04416f2a0044b7b14e",
+        "c240126c333fcb88ae8a2059"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI133",
+      "ids": [
+        "21f3a4ae15fc64e2b1e6773c",
+        "4ab5c637a764b058be0f23b5"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI133",
+      "ids": [
+        "1eff0475b0629ebb2fe379c0",
+        "5ae1979fbb21926c7e62da8f"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI133",
+      "ids": [
+        "86fc5046453e2123b968a9cc",
+        "6a25b1201051c9c6b7d06e5e"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI133",
+      "ids": [
+        "da74b5af29cb819a0f14f06f",
+        "e7c5181d401b16b68bcb0dc7"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI133",
+      "ids": [
+        "8ca39dc8e8bb96ffda53a49e",
+        "fa8c5870c2d4b2b24bc4b98f"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI213",
+      "ids": [
+        "9c2dbd1822ee25b14b7a5dea",
+        "51a9d3d7ff6db287f15d6f7f"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI213",
+      "ids": [
+        "e8fc2996d83c41ab2459dc22",
+        "044d1fe4f1d6b9902179d4a7"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI213",
+      "ids": [
+        "a2cd05787fba8a755292ef3d",
+        "84e457178355c3a52fcf2839",
+        "dd1c9e8c54b589510b1af1a1"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI213",
+      "ids": [
+        "0f8b993c72ed76d04923e0b7",
+        "fd2bd7805a2f47a280e7b647"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI213",
+      "ids": [
+        "88730e82cac606915cbe70cf",
+        "548df5bca4b089891ba80040"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI213",
+      "ids": [
+        "5e8c4692560f5e8f7da45498",
+        "a5cb7fafd675bf6a26c25df9"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI213",
+      "ids": [
+        "501f0d634cbb2d07f642cd62",
+        "ed9d16859e52cca38b5f34e5"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI213",
+      "ids": [
+        "7d76a12d2f2cfb730453e12f",
+        "32124d0a4b41216e1839be86"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI213",
+      "ids": [
+        "1329b38a204e3cbbe2034715",
+        "98722fe908f74bd8655aa540"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI213",
+      "ids": [
+        "8814dbf7c15716c62cbd3994",
+        "5d9538468f29e1d9d16afa67"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI223",
+      "ids": [
+        "fb10301ee048d04b1b6bd61e",
+        "ca2061ce151aa0383b8a5a86"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI223",
+      "ids": [
+        "655a0d1f9c16dc72af348654",
+        "230bd929af36c8997ab86c0e"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI223",
+      "ids": [
+        "9fe719bf259258e85ccbba6a",
+        "a9cd963805ef0c2a628db703",
+        "a1168297cea75c61c8393721"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI223",
+      "ids": [
+        "7fa077d39cb1a1b5b0e3bc50",
+        "9f0dea785954fbba01caabde"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI223",
+      "ids": [
+        "320d561840b2f6dc5bf587e0",
+        "8e0ff0916e3684552f0c1872"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI223",
+      "ids": [
+        "736170f760fc026f4eab31b0",
+        "8a0061bb49bee6aca5e31670"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI223",
+      "ids": [
+        "743e2e1c4e3237b1cc145f45",
+        "335ee33a7a1954ef08f3370c"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI223",
+      "ids": [
+        "4cc33b457eedc33f5495fd9c",
+        "c2990b606697b5adf8b64108"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI223",
+      "ids": [
+        "ea365429bd53ea619d8c0c6b",
+        "6a8f35d9bddf2869ed23432c"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI223",
+      "ids": [
+        "4c3ab44dca1d32b2b51ce436",
+        "934d1139bc2ff8124f0c8c36"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI233",
+      "ids": [
+        "7b4e44466a6f0dec95635e8c",
+        "2d82ec392ba4a5c5d1689330"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI233",
+      "ids": [
+        "068832d8506fa8473f9dffb3",
+        "a2677ecf60d87e6fe20e6de2"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI233",
+      "ids": [
+        "69669e9a983340f464dc0f61",
+        "5a9b9ad2473039b8346d65d6",
+        "7211fdbf064b6b3d4ad0b380"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI233",
+      "ids": [
+        "c34f030f1ab412579968e3d5",
+        "40c9d1bcf63167e123fd98b6"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI233",
+      "ids": [
+        "31d35eee85f24c6f03d6cca0",
+        "cd0a8cd7f79667c82fe33b4d"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI233",
+      "ids": [
+        "cb45b685589c4f5ef88bcfdd",
+        "41a5e965844206c853da5ee3"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI233",
+      "ids": [
+        "dd4517ab51514350641f0f8d",
+        "dce8954a46c9f3cd1c28a197"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI233",
+      "ids": [
+        "e9ebd0fab88ea0cf122e934b",
+        "0be719d4694284c5ea02609e"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI233",
+      "ids": [
+        "fb3ae9179fabbde260d08db1",
+        "842275ca09dc1d5f937f64e5"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI233",
+      "ids": [
+        "cef477e41b6e3f152a7ca51c",
+        "898d362bf5cde34553d099e9"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI313",
+      "ids": [
+        "c3919e686f9637de49c9a1cf",
+        "f226644b858229a9f2ffe055"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI313",
+      "ids": [
+        "c0745b1bbb0735b3afc856a9",
+        "8de22130d8905c742ef85241"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI313",
+      "ids": [
+        "4712cd6d271010b743db36d8",
+        "5bb38ef78bcdbdbf4166c662",
+        "a63c28720e45dbc841529a9f",
+        "50b74be5c0683e0bab652430"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI313",
+      "ids": [
+        "5c37524e6b4d22a918e80a61",
+        "6a6a53d28bb78a756ea3a094"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI313",
+      "ids": [
+        "3388973f6d55d0b9ec0098ec",
+        "c8a9ca3993cfa06d7870c53c"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI313",
+      "ids": [
+        "a318e7b10bb165dc96b57f75",
+        "699645ca34a1a8877f6fe1e0"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI313",
+      "ids": [
+        "d62e3413a5bc46a82ee48c50",
+        "84d578f3ff3eb4df10d33d1b"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI323",
+      "ids": [
+        "8fbfa04c1a0111999245db80",
+        "ed59048e020ba830fc4ea2ef"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI323",
+      "ids": [
+        "13cce4f116f365c6148413bd",
+        "fe069956cb589b90031edb43"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI323",
+      "ids": [
+        "3f527615efa60046962eae09",
+        "b827c20b7e0a9dc50a9ac07b"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI323",
+      "ids": [
+        "20f2de4c6c5ea61289fa33ec",
+        "9f8e920fb4b5a1b1a3c15bd3"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI323",
+      "ids": [
+        "d830cf15c70ef55d6b918c1e",
+        "d31da26ee1dd54f921a65d01"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI323",
+      "ids": [
+        "2717118f9dab37b97ba7f061",
+        "a3fe10e578c1aa618671fa94"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI323",
+      "ids": [
+        "b32ccc4dbe225c2f1e5ee098",
+        "846ebf27a077a97fd41fc2b6"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI323",
+      "ids": [
+        "fc6d6f72961afcf68be73861",
+        "c84430e1b6eb3d62dec12fde"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI323",
+      "ids": [
+        "4f09fe17ac55afaed5f5a8f2",
+        "7924d9f09010b238800ec983"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI323",
+      "ids": [
+        "db352872e1ac3fc4e0ff7067",
+        "3f41635bab287ccbee7b27a4"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI333",
+      "ids": [
+        "8a9a12a6c7d29a1d5b05760b",
+        "b700a84d979114e7899b4595"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI333",
+      "ids": [
+        "e003385ec0d5e3694167851c",
+        "7393194c7d29cd11a66bac95"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI333",
+      "ids": [
+        "e7dfb1d5679282157bb91f6f",
+        "c3e98257eb432f02ac86484a",
+        "d72a41c9890a38cc74905710"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI333",
+      "ids": [
+        "8765293bba8d6fda7c667676",
+        "591cdb59cf72f7bdb740eb3c"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI333",
+      "ids": [
+        "090f13c5dc2ca3685b1b66de",
+        "66f21b1296c7314199b2502b"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI333",
+      "ids": [
+        "916c10f8e247554373b0f515",
+        "af26bd6a55ee5d4cdf66dec9"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI333",
+      "ids": [
+        "f07a02d66342264220f99a9e",
+        "24484dfff38655c514537228"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI333",
+      "ids": [
+        "138152f50544ede8d8ae5ce4",
+        "124596fc060fe5f6894688d7"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI333",
+      "ids": [
+        "572e656d1b2b502830c564d7",
+        "4c405c96dca75c72484212cb"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI333",
+      "ids": [
+        "0cf0574f837035ad90c8ccf4",
+        "545aac4770c678bc2ba23260"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI423",
+      "ids": [
+        "3328a7cb330298e32ae80e16",
+        "db029af8d4938de16cc030d0"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI423",
+      "ids": [
+        "f3e0375d744fd48478436f35",
+        "ff9f6098d5df36c6aead782c"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI423",
+      "ids": [
+        "985a26bf026c2f7769116e72",
+        "38ae1b29977a6fb6586c1ef3",
+        "80b15f94bb5b840b20d95174"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI423",
+      "ids": [
+        "2da65d3b4e29ccae4c652bbb",
+        "8a78bd155a33ddb0c0ab247e"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI423",
+      "ids": [
+        "1584e1c56a3a0d1191947d05",
+        "0fe228974874b6f81e377a98"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI423",
+      "ids": [
+        "f3ba637f4f9a6ba11e1f11fe",
+        "6485585e859af882a21e9e6d"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI423",
+      "ids": [
+        "fd211e261030a0551fdf9336",
+        "8ada0cba82e114d911d59696"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI423",
+      "ids": [
+        "6faed2e169e386789b399fb5",
+        "2577a9211a03055601969548"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI423",
+      "ids": [
+        "3c73d97137ef7ff214c3dac6",
+        "3b7fef6a9b4a3df7a0218a47"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI423",
+      "ids": [
+        "a23b45c6c057e802fbb0246a",
+        "1e6cbd4d6cdaf4b8e14f525d"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI433",
+      "ids": [
+        "b1f3dd989fcca10f222886b3",
+        "494a162b3cfd39404e5f132d"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI433",
+      "ids": [
+        "090bdf047f6b533b29603564",
+        "bb2d00b30406f232b2a41a39"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI433",
+      "ids": [
+        "984662f69f55dfd8c026f27c",
+        "5c1efda24ad268dfcb672649",
+        "3aa6c9ad56c0b522d6b8bb60"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI433",
+      "ids": [
+        "7e80dca94dea3e2ef804388c",
+        "55a26078ea1a8704541b3e15"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI433",
+      "ids": [
+        "9eddcf70a58476a926851233",
+        "212c00497f9af6421bf7cca6"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI433",
+      "ids": [
+        "c519fc9866d07131c372a1af",
+        "9f661f217306f8982f5d3ab7"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI433",
+      "ids": [
+        "f85c4a3e7a45110b01b29d07",
+        "a539893ae77f71bca1953448"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI433",
+      "ids": [
+        "fb51b930c3e152048e0a7231",
+        "a3777ac9c25f00a7f453eccc"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI433",
+      "ids": [
+        "755c3fce4af2a598970660be",
+        "5aa4e563846ea6c8e53104af"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI433",
+      "ids": [
+        "09c1da803c559e8b0445398f",
+        "a39bef8f7f7f8926598aeb1a"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI114",
+      "ids": [
+        "3bc65cff2d58a509cf4e46ce",
+        "93da208354b0419247a409c1",
+        "7736dbd195c591ff83f67219",
+        "eaf45d6a2982e15144936fc2"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI114",
+      "ids": [
+        "ea7cdf9740cd273863cd09d7",
+        "1515b5225199579893ebdeb4",
+        "48a69c4f5cf4c29f5a3b3ffd"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI114",
+      "ids": [
+        "3766d0187ab0569e74940b17",
+        "33acfb15301566859acab1e0"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI114",
+      "ids": [
+        "8e42f28272acd43fe08f3370",
+        "1111777f6f906022653a4f8d"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI114",
+      "ids": [
+        "d65be925f7e421daa7f90d72",
+        "4c02377eeaa9fd4099ed1e5b"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI114",
+      "ids": [
+        "686d9c74591c65c6ce6ea3fb",
+        "f7651d14dc29f8f196436037"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI114",
+      "ids": [
+        "872a0b6ad19fac035de2454b",
+        "5e7545c1023b9775204e384f"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI114",
+      "ids": [
+        "6e2a46ef0187218cfd559943",
+        "938dad11ea29cbac282a977b"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI114",
+      "ids": [
+        "bbfa93c0ce680420b1b47669",
+        "154ea37db42e8bd1c390983e"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI124",
+      "ids": [
+        "9e8e1612ef8ce7775f8a4d38",
+        "cce13d9c18faaeeab50df72a",
+        "dbf8bdf6a202ec0ecdeeb11a",
+        "2c3b5e78595a1d5cfc0b96af"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI124",
+      "ids": [
+        "83cc32019aa6c714967e6a85",
+        "09060fe900648e4104da66b5",
+        "b7c962547555a207af211899"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI124",
+      "ids": [
+        "5e2a278a71a6ff27d53abde6",
+        "bff74ac5f8e84c0c20425e60"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI124",
+      "ids": [
+        "4b8b780c60a023d93a1e84f5",
+        "5042eb5656085458a018e647"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI124",
+      "ids": [
+        "73725e7b1e064a0ec75321f7",
+        "86246d176a6a8df0788a49c5"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI124",
+      "ids": [
+        "0c77ab23eba5180c842c5aac",
+        "2cd6fecda1f28b71b88abb2b"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI124",
+      "ids": [
+        "6db996b895abece49d00633b",
+        "7c4cf9ef73819407cd9d4dda"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI124",
+      "ids": [
+        "11cae1f8330de47a36b726f9",
+        "bb4f8864c44eb654e4853c1c"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI124",
+      "ids": [
+        "0ef37f645ddf68177be4c7ba",
+        "6058ca218e537a98966e3552"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI134",
+      "ids": [
+        "12d4d26ea007c70d9536c401",
+        "8fa1b83abf25c853f7cac28e",
+        "69c4e8b555c82e56c34cfa13",
+        "9feaa4267ed30be056ccb8b1"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI134",
+      "ids": [
+        "5212e2fc8250bebbe260d820",
+        "c628c9c4ad8f71e8f8601f5b",
+        "5a8fe3da9b91e70db8f4bb7e"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI134",
+      "ids": [
+        "bc6b9d7b453ed39c621298dd",
+        "a9bdf88c36e0b43d07608b70"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI134",
+      "ids": [
+        "db8b7d915575ca7991e28b82",
+        "0c62895e8747b4e620f563e5"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI134",
+      "ids": [
+        "15df23380aa2764d99d6dfb5",
+        "1e3b97c0e123763188d6d29b"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI134",
+      "ids": [
+        "b3674ab2aa281e50cfa51ef6",
+        "73350ce7137e2f05bba9e600"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI134",
+      "ids": [
+        "ff2347f1d51f6b39d7ba4dfa",
+        "c1205e4205c663a5f5ccd74e"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI134",
+      "ids": [
+        "f64c78e3c6d65e342c661b5a",
+        "0d061ccf107332ad32129ba3"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI134",
+      "ids": [
+        "e8000450ea70e46d8b505d6d",
+        "0bc530b31cec95c6915a2070"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI214",
+      "ids": [
+        "ad47cf501367d1ac2e0f420a",
+        "f09fbb1d476e51ac1dfc9bb8"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI214",
+      "ids": [
+        "ebf34538a1cd6f0cbd7e7332",
+        "6979f2b511d39a96376ef6b2",
+        "a4377b8a00948c937f73d61f"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI214",
+      "ids": [
+        "8fcf83baa3ad2eed6e5c1de4",
+        "95b7670bbb021224c81f4e54"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI214",
+      "ids": [
+        "80bb2f79412661b39c6ab9ac",
+        "05c658dc153f799fb774366c"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI214",
+      "ids": [
+        "d2e29bef4d4c4afdf4ac91c5",
+        "c371cfea0556379ed46709c1"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI214",
+      "ids": [
+        "a4a4bcb0e0a13139b264c6ae",
+        "169c2a3fc582996e25a213e8"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI214",
+      "ids": [
+        "f24e2467f33756357a09ad59",
+        "d8b6223c6487ce73ef74a5fb"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI214",
+      "ids": [
+        "ba12839667d6a54116b6f7f2",
+        "beb71ea79d6efdb2cc06fe99"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI214",
+      "ids": [
+        "460a9447724be13c04e93e71",
+        "0e23549081aec41167a40299"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI224",
+      "ids": [
+        "6c4b80ee73b6a1fe629e213c",
+        "6afa7b81b957c44d99e38f4b"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI224",
+      "ids": [
+        "ce8a750715349d5c7492238a",
+        "fe66d1d6847be676afd839f5"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI224",
+      "ids": [
+        "644394bc156cbe49164d73d5",
+        "37e04551e6519e2fcb75fb67",
+        "d5be26cd74699019f73d25e8"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI224",
+      "ids": [
+        "a1285e1bb47bf6c5b47b5dc7",
+        "fd376864f05d3e6df2b89be8"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI224",
+      "ids": [
+        "e31a69327b1048317b2ed6d4",
+        "3bc960fce87e9829b53b19e3"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI224",
+      "ids": [
+        "59417c9bc2f5781a3f56ebb5",
+        "ece08a5ce558c24c975815ed"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI224",
+      "ids": [
+        "56180c500fc70c3f2c38ec65",
+        "3683cbaf56f01b86fbac73e3"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI224",
+      "ids": [
+        "e024510ebbcf68735f865ae8",
+        "59fbab32080215d96491dd7c"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI224",
+      "ids": [
+        "a52de6f7227a2a89feb77792",
+        "b1b0e23fadcb83e4efe853f9"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI224",
+      "ids": [
+        "ac52de4a12d30339f37a9d36",
+        "cc1b48db7010eb32af2320e7"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI234",
+      "ids": [
+        "ffd26e683277aa255a3d7e3f",
+        "93d93b4ae9d7123ce97c3162"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI234",
+      "ids": [
+        "953bcd1d7e66cdb2f5fdf3e9",
+        "41ca84b1b3b046c9b2f1e56d"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI234",
+      "ids": [
+        "a69d466502de00f5d89e5380",
+        "e1f346d856a5c24237aa045e",
+        "4d54d5aaaa2f2b533b9c5ddf"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI234",
+      "ids": [
+        "71353af4e1d59f6009c063f3",
+        "155360e836c51ea137670681"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI234",
+      "ids": [
+        "b6d259928ff57632ee099a7b",
+        "061a3ce6e3495c7746a164f7"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI234",
+      "ids": [
+        "f76a7e87384f393353e38b5a",
+        "6d7e0753c5cdee33764582bb"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI234",
+      "ids": [
+        "764579a1d7adf706402b5de4",
+        "8f0969e2b6d2c340f6f1a941"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI234",
+      "ids": [
+        "d01e315b86c31cea47341bda",
+        "9261ef32836114535a08c056"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI234",
+      "ids": [
+        "28f67ab7d5c933e3d1860b8d",
+        "fb825d732ce411e0f9f33b44"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI234",
+      "ids": [
+        "d7596d2be210d10f1ea76a70",
+        "1dd2a316479753252c6e66bc"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI314",
+      "ids": [
+        "4c0056a34b225419a36a668c",
+        "c067427d4d39c26ef36009b8"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI314",
+      "ids": [
+        "ef4a666701c5ddc3e10f6e16",
+        "cb6cbfd4af4babbe2ef03d80"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI314",
+      "ids": [
+        "666b694e9b1e7c650e67c184",
+        "427440c2cf876068bf17e10f",
+        "66bd10f4e00d55fefac548c0"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI314",
+      "ids": [
+        "bdb70908ab13d14f5732671c",
+        "9539e0bbd738c0ffd58acf2a"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI314",
+      "ids": [
+        "4842e53f95f04debda53f552",
+        "5b15cfdc753e6b8acb22930d"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI314",
+      "ids": [
+        "8ef5e3cd0b2720ae8861e842",
+        "1e9d538e1a3d0eaade82db99"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI314",
+      "ids": [
+        "9c329418eaea6dd564043726",
+        "18a8160d4dd183b604848747"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI314",
+      "ids": [
+        "8d789a3597b2034fdd5f884f",
+        "ba7d63fea0d4fba6721b8d02"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI314",
+      "ids": [
+        "384104481b25b0234e3a7809",
+        "7b79d1ce7ff0ffa635ffda72"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI314",
+      "ids": [
+        "96e608644de72eef0652565d",
+        "a8e23fb13d0deb2b4b2b5489"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI324",
+      "ids": [
+        "cf69388be157a639df327f54",
+        "8d0c4016038dd70e623965cc"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI324",
+      "ids": [
+        "c3f2bc01b6b67e5055d5a1df",
+        "b187fda152d5c32dafc39cfc"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI324",
+      "ids": [
+        "d9d8e37a91518f00e5a8936c",
+        "38d498814a0a2db39f7d83aa"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI324",
+      "ids": [
+        "ac9218a6c9870384a4a1ae06",
+        "463519496b255814bd6b394c"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI324",
+      "ids": [
+        "92e428ea44a9c86277e456dd",
+        "6e5a745e8c9cceb3f2dac57f"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI324",
+      "ids": [
+        "97f05cf8a7faae86fd87485b",
+        "be4012080cd6a13ad5248c82"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI324",
+      "ids": [
+        "9b0484f00e6b04f016b4ee4b",
+        "cd56467c80428fe29b3fa481"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI324",
+      "ids": [
+        "bfd1094b7e84c0012c5aadc3",
+        "addac6cc2f9217540a0b8c81"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI324",
+      "ids": [
+        "2dc876b7ab05112d5e2019f2",
+        "968b12c64c2a200937f6ed93"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI324",
+      "ids": [
+        "f4d11cfa4044e57945f43a7b",
+        "d1b78faa5c8724f9a467f746"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI334",
+      "ids": [
+        "7e5edac21e6e18ddf62c2cd3",
+        "abd58cc9fcca9a2ed8e1eaf9"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI334",
+      "ids": [
+        "997e7ca7daad476a61f05079",
+        "26c7b167e309690e98197eb4"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI334",
+      "ids": [
+        "c290899fb6e97aa8a5b2fee2",
+        "fb1a8dde4ab4a3a4e90c9fde",
+        "e399ebea72d4182bb2d3e910"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI334",
+      "ids": [
+        "8b107480ad86c530e3f065a8",
+        "53f7dd7534fa5ff6cd47354c"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI334",
+      "ids": [
+        "0902e7332d6a05edb1c7a3fc",
+        "99b38dfb1e128673adcc9679"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI334",
+      "ids": [
+        "f1b0f98d22a2fd86a9242a93",
+        "4c0f857fbcb5f649808947f4"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI334",
+      "ids": [
+        "ecef5f62e61bb0bf528f3a39",
+        "e161cb9b95e82bfef31a51f8"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI334",
+      "ids": [
+        "874888046f63f925a1dd1157",
+        "e68d8c5b36af49d98fe036e0"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI334",
+      "ids": [
+        "a4dbf55ca02017f4f20f2550",
+        "9b8853119e28e67c148bf9e7"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI334",
+      "ids": [
+        "a1a8ad4c38153f86dda46256",
+        "3f2ad43e96383de89b30ad94"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI424",
+      "ids": [
+        "9933d60d7c6769a982c16e5a",
+        "80b7e76006b56a1ecdc6ada5"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI424",
+      "ids": [
+        "248b4678c3b98ad499d1e8f7",
+        "89ebbdc35ee5cf7ca9a64c6d"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI424",
+      "ids": [
+        "972d3e3a911932ba50e746ec",
+        "5db50a180202e3aa9a1cfa87",
+        "c7d16c1bd477f8fceb52c975"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI424",
+      "ids": [
+        "eb0d60425a345882a41affef",
+        "b8e6dacd5e6fe96a0ed24e86"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI424",
+      "ids": [
+        "7f272e011b13e03e577a1232",
+        "db8084b87a7fa522a02ab62f"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI424",
+      "ids": [
+        "78e1e198e4367e53fa5191f1",
+        "a3b120bc31a4c75bed90082e"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI424",
+      "ids": [
+        "cc8af05166577ab7dd243248",
+        "7f365ac60646cd9bb95f7e92"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI424",
+      "ids": [
+        "5771f1094df7d50dead90ef9",
+        "d746018baee0387b25bcb2b3"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI424",
+      "ids": [
+        "f4109eb230b939b0bb2fe1b4",
+        "c1cd4404ef7a5bcb1a3e6c1c"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI424",
+      "ids": [
+        "eb87e26b22c999692dd7a945",
+        "3655888be4f708d1dc6fe9f7"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI434",
+      "ids": [
+        "92b118d09ddfe5aee50dc016",
+        "a2189ac3bd0fdf42392aa868"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI434",
+      "ids": [
+        "285392d43eebd96c9e89b63d",
+        "b527d6b0f5f7d488bfcc764f"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI434",
+      "ids": [
+        "90894d137d4957a291aedc96",
+        "7a56888790be4ae17affd8c7",
+        "5e215a88530ce1cf07107a4c",
+        "1ac3f1c2f81ed226524656aa"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI434",
+      "ids": [
+        "0967412249def1df02eb8039",
+        "716336c6d056a089716e0509"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI434",
+      "ids": [
+        "6c66a0bcfdae84553335cb85",
+        "f14998be79120bd98b299fcd"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI434",
+      "ids": [
+        "187e0f74a4802d13878976f0",
+        "847713c26dbabc8ed69d7ac7"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI434",
+      "ids": [
+        "649b1278933bd55f34161738",
+        "bddf565d87fe99d543eb4743"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PLI211",
+      "ids": [
+        "1a61e771f443bb7a8f1771da",
+        "565b729984a92e525914758e"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PLI211",
+      "ids": [
+        "871af0060a70b7745334daac",
+        "95ab47b0eb1be15b837cc371"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PLI211",
+      "ids": [
+        "4a736100d8e9fc6a4cf551d6",
+        "76fb4607d17e266fa19ce5b9",
+        "a27a42e4e6b7a469238c2ef6",
+        "7f38fa413befe26881a0d83f"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PLI211",
+      "ids": [
+        "30bbe1e625bdb801122aa6a9",
+        "eb5a875cf177352e9062564c"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PLI211",
+      "ids": [
+        "c4c20b600ac5b536ff255a4a",
+        "760a644b08c57bac168c19bc"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PLI211",
+      "ids": [
+        "a71b81b9cf451723f779ad28",
+        "a9e115d0ca90cbb503db6d68"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PLI221",
+      "ids": [
+        "92efdde155a3b93e7c184eb9",
+        "027b0070b4a59f99cb075d72"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PLI221",
+      "ids": [
+        "3b17ab82bdc1c1b5769a7af0",
+        "ad1a024054bc1e308e5993bb"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PLI221",
+      "ids": [
+        "373b979b0608590e430aa1dd",
+        "3fcb1d9020a2a5c4a1271fbf",
+        "1350b1501745b0ca284f4ffb"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PLI221",
+      "ids": [
+        "45fe76f6008f20a886f29e26",
+        "1e45d32394c0b932c206d374"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PLI221",
+      "ids": [
+        "0bbb9222385d0d57c1b4ee9a",
+        "1ed40771b19b163d22d46fd3"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PLI221",
+      "ids": [
+        "dbbc1f3dbb6dfe51a951bff8",
+        "3105b7232f9606c128690723"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PLI221",
+      "ids": [
+        "b2d769a0c1d5f45c161a206a",
+        "7d8c96e2cff3c1328aa9aacf"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PLI221",
+      "ids": [
+        "03e20e763bc71a59323871bf",
+        "774fdf02fb7975bfe0753226"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PLI221",
+      "ids": [
+        "3ab37b03e5d7a98fa1fb04b3",
+        "d2dca5eb9367d26c00f33688"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PLI221",
+      "ids": [
+        "5f354ae588e0e031065d08bf",
+        "cf6d9f63e5ac64ec03e98d09"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PLI231",
+      "ids": [
+        "e664330c994cf72f0a657f4b",
+        "d60199aab12eb08b38309aab"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PLI231",
+      "ids": [
+        "bedf14d028452b16277c95e8",
+        "9955e203cdebb7386ab0582e"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PLI231",
+      "ids": [
+        "284a48bbbeeecc820f31f7bc",
+        "842066650a21fe2a24a006c6",
+        "bf11f7be4658237f2d5834e7"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PLI231",
+      "ids": [
+        "d63802be69e22309f166c073",
+        "080237e673e6eec4017d77cd"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PLI231",
+      "ids": [
+        "03cc51f7e8dd265d05b9d5d9",
+        "d1ff2b9cef140942e76a9e68"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PLI231",
+      "ids": [
+        "4303f1bd849b5926864e078f",
+        "747b837d3de64f97c53c3bce"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PLI231",
+      "ids": [
+        "f0eb8a4369fc79322437e4dd",
+        "c523b427008d87a2ad659215"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PLI231",
+      "ids": [
+        "8b4891dde5214c20d5446a74",
+        "1b2eb8b1bcb8bffcece1869f"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PLI231",
+      "ids": [
+        "978a3481c97770a03a245614",
+        "e41f471b80477d59217facbc"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PLI231",
+      "ids": [
+        "cc5494360d9f46c629d0c4b4",
+        "6896e4f7699a18c3ab90fbd6"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PLI411",
+      "ids": [
+        "707285080612f1c8c440acfb",
+        "6155096128481db15676df77"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PLI411",
+      "ids": [
+        "283fb211dc271f94b99f1e73",
+        "f06c8dcd7a49f07438aa6033"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PLI411",
+      "ids": [
+        "f79e1ef94377a87ed4d31bca",
+        "d6c3020ec19a6030fccb9883",
+        "4bd6e75ce82dc63bd222886f"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PLI411",
+      "ids": [
+        "e9e9c4703d4183af52daf697",
+        "6ccb985b13144bd38cbbe9c5"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PLI411",
+      "ids": [
+        "98a45b461615e2a216bfab95",
+        "2fc1c2935f1f2c12e7aceb5d"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PLI411",
+      "ids": [
+        "70200353a3d68b33ed892c9e",
+        "3df9a813b04dc9d3a2667c5b"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PLI411",
+      "ids": [
+        "ff67c3e8174579d7615571f1",
+        "8d18eaa0660521efd45db11e"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PLI411",
+      "ids": [
+        "b31bd9c7906f5423d6a40422",
+        "be251897b854aa487fd6f647"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PLI411",
+      "ids": [
+        "db6b9171db456dd93678183d",
+        "02dac845935d15bc5f29ebc4"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PLI411",
+      "ids": [
+        "fb2d93b691c9476e794cdbc4",
+        "34296044400917ddb4db8a8a"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PLI421",
+      "ids": [
+        "daa4be30bfde02df782bfd96",
+        "8270c90cdc4d6a39a7846e48"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PLI421",
+      "ids": [
+        "57f14fcc9870765c9e2fe678",
+        "51c428605de7245cddb3cfbf"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PLI421",
+      "ids": [
+        "8e95f8da81896403f267de37",
+        "efb46b400983fde7a3da2000",
+        "e644e89865a7b5535eb5800b"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PLI421",
+      "ids": [
+        "17fa45bdcf76bf32ebf45f95",
+        "5515aad89c4e313153e1fb00"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PLI421",
+      "ids": [
+        "c399bacd679f9e38b951f22f",
+        "6693704e4acf6bb7e4bfbc16"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PLI421",
+      "ids": [
+        "3983665ac5689c955e43be44",
+        "77d3a8968010dfddb07dfea4"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PLI421",
+      "ids": [
+        "5203958e70884091135af9bd",
+        "7f2e547361588967eca4d5c2"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PLI421",
+      "ids": [
+        "58eb2b6e4403c3a23faacfa4",
+        "f0db008825037f1c6b360a9b"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PLI421",
+      "ids": [
+        "3580cf29537bc1a03dd7ad8e",
+        "27cf898af2c94120756f92ad"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PLI421",
+      "ids": [
+        "19daa41172d6cbf8ad144db4",
+        "6062984694a6b28e77499c24"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PLI431",
+      "ids": [
+        "8a2aa00b87115b4f8cbc0a0b",
+        "d440f3cd085027358ca0b028"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PLI431",
+      "ids": [
+        "faf35c43b85d3832ac7c17bd",
+        "20d5fca8538cbb1081ddcf81"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PLI431",
+      "ids": [
+        "dddff58815dc35c2ee1aa6da",
+        "f95875c7905ccc0cdc6d793a",
+        "9db5e864eb4e46743460fc66"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PLI431",
+      "ids": [
+        "c83d9bbbfcc57fcede5f9860",
+        "4839a5ad70a478ce5df794a0"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PLI431",
+      "ids": [
+        "5e54e4ba2e78f38a7b920a51",
+        "5ab5e57af3c5551ef28ff77b"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PLI431",
+      "ids": [
+        "ec256083cd7c8af0bb3604e4",
+        "6e63d72e532ea86bf9e57256"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PLI431",
+      "ids": [
+        "03bf659211b607d59138f0d3",
+        "8d3787582b432a827b73808e"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PLI431",
+      "ids": [
+        "1e545095ded19e926841f4ae",
+        "45193132a5ed7cce46c3fc33"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PLI431",
+      "ids": [
+        "337e0255038af534940c140b",
+        "706ed88e53b10b908176e93b"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PLI431",
+      "ids": [
+        "9bea78b05d3d5c44a8db198a",
+        "c3cffe1459019b07b613a8f7"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PLI511",
+      "ids": [
+        "396469bccc6ca8ec0834fbee",
+        "0ad8fe8f4c67ef734cf48623"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PLI511",
+      "ids": [
+        "edff476c983f237e73fed6cc",
+        "3a019737c637b2f6014c62b4",
+        "6faf705f31304ff665d6ec8f"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PLI511",
+      "ids": [
+        "5f6bc781b30434b85a0fca0d",
+        "3703dd5d4ed41e00fdca9a0a"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PLI511",
+      "ids": [
+        "1bd5463446434c8879b7cc1a",
+        "f477944594663ac378ce3dbc"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PLI511",
+      "ids": [
+        "d8bbfd78e67ec3aa4e90d604",
+        "77befc1e7a19ff0a2997491a"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PLI511",
+      "ids": [
+        "c2a1d48be4358ae6d82ec38a",
+        "a6677db211c489ed6323722b"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PLI511",
+      "ids": [
+        "0bdc1f5517a29bd190e045eb",
+        "df193538fe4cdec77483f78a"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PLI511",
+      "ids": [
+        "db2d2b222b6ed0132c2cc6be",
+        "a83422788664d2619bf0bf66"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PLI511",
+      "ids": [
+        "7ddf9e98fe77c9420be85c63",
+        "88ef37d8eebd2b9d59c68956"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PLI521",
+      "ids": [
+        "da769c1ca4fa4fbf04a9479a",
+        "112747f3ab8c8227fbd9c05a"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PLI521",
+      "ids": [
+        "5b47dd78b0bd17cd7bab88db",
+        "6937e3543c139569bdcfb074",
+        "f0729d439c86d9d648d9f3c3"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PLI521",
+      "ids": [
+        "0b026c25e59c175e56513bba",
+        "b80526711b2f23bd7891f800"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PLI521",
+      "ids": [
+        "c97787ce0f3a10fd03e242c5",
+        "6066c543fd7e780dab40dce5"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PLI521",
+      "ids": [
+        "febbb706cee8b206b844b402",
+        "2d26e56558f0416daba5ffe4"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PLI521",
+      "ids": [
+        "1531c1e46236119f332ceacd",
+        "05422cfd1c3e4a3ba0cbd7b3"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PLI521",
+      "ids": [
+        "a52b7e81b8de39245cfe6928",
+        "40969383a06360f079622a11"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PLI521",
+      "ids": [
+        "0bf4f36b3d12b59a7606ed98",
+        "fda1292ad9afaf1e9245e00d"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PLI521",
+      "ids": [
+        "210301366e7ad68890b75559",
+        "04668916b1378c7963f9f74b"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PLI531",
+      "ids": [
+        "22465235fd6e25dcec5f2e4b",
+        "504e322a13ca08f6e4d28529",
+        "eeea91094c7281dbe256d43c"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PLI531",
+      "ids": [
+        "8ffe876c354087ffb95259dd",
+        "8a343a35fe4ef8da2e61fb26"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PLI531",
+      "ids": [
+        "5f9ff007356c456dc7bedfda",
+        "e0d48877c34390afa029cf26"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PLI531",
+      "ids": [
+        "7de7089e88ed42721fe8d3ff",
+        "3a5fac1c0d9c7599de8b3ad8"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PLI531",
+      "ids": [
+        "a9c2676fa06db13a3f1845ea",
+        "0ff55acd71763c468dbfac15"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PLI531",
+      "ids": [
+        "f30af7c09ff92ce488e8a101",
+        "50e9afd0ecfe2be64fa1ff84"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PLI531",
+      "ids": [
+        "6bf209590c6fa16eaab63221",
+        "69aec983502ed29e74cc9553"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PLI531",
+      "ids": [
+        "bea6fd5ba6c442b7d14e3d0a",
+        "e0b36139026a09fc6d6fd060"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI111",
+      "ids": [
+        "f53091c6f29c5ccc65e419ad",
+        "53e3798cfe61085c8c20eeba",
+        "51dd369e752fb4ca3cc71a48",
+        "48f038f58dc86cb77bdf2fd8"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI111",
+      "ids": [
+        "420709a7c5242717f8b064ca",
+        "68d8428c3945cdc8b01b27c1",
+        "f381db6a46c637c9705ff9c7"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI111",
+      "ids": [
+        "e0a1218fa077f6df1f698214",
+        "430f8dc76ae8eebbe2d54c18"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI111",
+      "ids": [
+        "fe6923030c5a2da3304f308e",
+        "6d758e1774cbc69c5965c19b"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI111",
+      "ids": [
+        "c208acb788773ba3e26edeb8",
+        "be5216fe81de1a96d4bbf7c3"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI111",
+      "ids": [
+        "842770c8bf0f5e9627303ec6",
+        "e5d3a0bdb8ce76a5febb5314"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI111",
+      "ids": [
+        "366f398ff641603bc9422ed5",
+        "f3ec6cc4cdb850a3c9a13c30"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI111",
+      "ids": [
+        "fb46e7b0bd22245d211aeaa5",
+        "98b6f6bac3a64849d63ab883"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI111",
+      "ids": [
+        "1cc8c3c17e974cd6e42f5423",
+        "1d7573d0096f60850ed1bfee"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI121",
+      "ids": [
+        "422ea6fe6275272d0b274411",
+        "9eb41efb5c3ddc1c6ad713e1",
+        "0d7bec844ffa07726249534c",
+        "3fd24ad1d7b81d1a0d069ccb"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI121",
+      "ids": [
+        "a74053149bd6942de7df1842",
+        "5eb07e6f6ebab02f0bff0d64",
+        "e12766e23eee807dd24e9421"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI121",
+      "ids": [
+        "3e97a605e2ab1fd23e743917",
+        "4d696cb34f67c5d491018933"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI121",
+      "ids": [
+        "8fa1ae4497b4af4cc868f412",
+        "340982ea0541598b45551d86"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI121",
+      "ids": [
+        "414cde39479b4f94608577e8",
+        "784f67f6411c1e8caebb50c4"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI121",
+      "ids": [
+        "1f98b6c34c6f88eb98db5093",
+        "87cc2343e55ee416fc204730"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI121",
+      "ids": [
+        "740b1623711012eeb1671709",
+        "5a9b9f6d643283c9de4613cd"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI121",
+      "ids": [
+        "b33960f631c437dd0794cd10",
+        "49f74ae7adad100c1255cc8d"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI121",
+      "ids": [
+        "56696e02aadc4e1c73b3a988",
+        "854b853fd59d125038582c17"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI131",
+      "ids": [
+        "6c32630b2b2e3ed838a19f49",
+        "24a7f648c1af498b5d883558",
+        "516990b2b4d19565e268830a",
+        "4b6f564317241dd058fd2a0b"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI131",
+      "ids": [
+        "9db191d2601fc5acd4778884",
+        "c3bf9c67c5610021479e96f2",
+        "65be3d6c873d029d10f27919"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI131",
+      "ids": [
+        "6269f92f95b58d94669c73ae",
+        "b6502edb993325f903561b01"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI131",
+      "ids": [
+        "8fa65f8a547ba8cc053c83be",
+        "41e987a992e39218a215473b"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI131",
+      "ids": [
+        "3532a65f66cef1673a53c1b4",
+        "46384f216f63d54d8ed673c5"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI131",
+      "ids": [
+        "6758e3160596616095e093d0",
+        "a925c32665925c561c8e5cae"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI131",
+      "ids": [
+        "f1f8452585c2e4c6286754cb",
+        "674e1d308c4ea89fd1497177"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI131",
+      "ids": [
+        "9fbf45553b581be762d45bf1",
+        "abefbbb9b31938e573e685c8"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI131",
+      "ids": [
+        "329fd0a3aaed639797dcea93",
+        "397c18e068c002b9c568745d"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI211",
+      "ids": [
+        "1b7458aad2d09c47c683f7a8",
+        "ff343c7984aefd834e53f546"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI211",
+      "ids": [
+        "6af14b8891b675d6f7c8dcaa",
+        "ff23a5ba35a5bfc40eb8a14c"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI211",
+      "ids": [
+        "a167afd03ec814ddaff5200d",
+        "7bb9fb7fd038f7c5cce3c25c",
+        "907773286b7fd9bde16b8539"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI211",
+      "ids": [
+        "651ff2bfb09d3394523b2adc",
+        "518188b2e16a657e53800ba8"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI211",
+      "ids": [
+        "102d94c2bd5af381f5bee922",
+        "ecb759ddb3573a1ee2a31b8b"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI211",
+      "ids": [
+        "9ba17b22dad4979228a052fc",
+        "bb0690ee4d040a8221ab57a7"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI211",
+      "ids": [
+        "cb20e9fccc4090aaf9f11af2",
+        "571a3cda1078fb093b9e7f77"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI211",
+      "ids": [
+        "c47366a301e7760fc9920c77",
+        "4116073ad9653e0aa92c9de6"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI211",
+      "ids": [
+        "602dfd950b7a1ae250aa4966",
+        "36bd971ecd2a18f255f10758"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI211",
+      "ids": [
+        "591e89cd8503ef02fc41895c",
+        "f748aa58462ae458c4c7a78a"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI221",
+      "ids": [
+        "257fb56853822617502a83e0",
+        "43a2e224a6bb8d02a90ea851"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI221",
+      "ids": [
+        "26db4c38e0ee14679269e8a7",
+        "924e579ae330fecbae749203"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI221",
+      "ids": [
+        "62347d713e11bc774cb46392",
+        "e2871de9f5a26d4a26d648fe",
+        "129ba6be07f5ce13d3b2a59f"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI221",
+      "ids": [
+        "4db3e23cf8f7a38b50208980",
+        "26108f08cfd16f0ecbc41358"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI221",
+      "ids": [
+        "8113f5bd24e5cfed4956e467",
+        "450c7127de36d0a0b6c980a8"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI221",
+      "ids": [
+        "3bc20878dc86214cc188785c",
+        "b18a280c47f2400b5ab4bae1"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI221",
+      "ids": [
+        "60f0b9198c74448116caa35c",
+        "e4fd7c6a50f80d966e3205e5"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI221",
+      "ids": [
+        "9c2167169afa4ac31378ddc9",
+        "e6a64305340202646448f51c"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI221",
+      "ids": [
+        "c7279e09b781bdafd89005bc",
+        "4fde03bda474a62d447b81db"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI221",
+      "ids": [
+        "9470dffc186b5665edac2836",
+        "87d820dbd3e225cb966b2879"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI231",
+      "ids": [
+        "3cf1a3de558a5c0868db6a77",
+        "9d016137d55f74396cc68a59"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI231",
+      "ids": [
+        "eca2427aa51085ea40311d2b",
+        "7b497a7b3e6a80173807de46"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI231",
+      "ids": [
+        "e31a607be5ec27086143fdd1",
+        "091fdc7be633f96ab6631cb3",
+        "a9e9c488839c07505ad11cba"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI231",
+      "ids": [
+        "f60231cc44f2d5b7b701aa5a",
+        "617bf9fbefbd32c67fa668fd"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI231",
+      "ids": [
+        "5eeb525be34f1e05cd6fa399",
+        "49a452efbca8c3eed1774304"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI231",
+      "ids": [
+        "1a053fadcbc348dce949cd9a",
+        "477d65628211b959b7e72799"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI231",
+      "ids": [
+        "f05003ee84dc1e6ec09581d0",
+        "90b7b42fe1dc47ef3d213ddc"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI231",
+      "ids": [
+        "eb7bd328350d997a2635539d",
+        "3b74cd142182d3bba9e41b54"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI231",
+      "ids": [
+        "ba23dc915dab565dc9910bf0",
+        "2f13d799c1122bdceb872ac6"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI231",
+      "ids": [
+        "4a7edf5b32cbd40417820e30",
+        "d12f8306d3aa1d20de37bbbe"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI311",
+      "ids": [
+        "ff18f6498174906a922567c9",
+        "a2aef68e3745cf97b99dc75f"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI311",
+      "ids": [
+        "e2b4e6623e5cd7f37d2b685d",
+        "9899115396c5fc0b2720ab57"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI311",
+      "ids": [
+        "e298fcdec4ec66b94e9c593e",
+        "b0e82b19ea70b73d4234c6ab",
+        "5daae51315f68a160951336e"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI311",
+      "ids": [
+        "95e86d71e49dde894591883d",
+        "423251fac6dde5a708ec8f33"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI311",
+      "ids": [
+        "54b5f9a35d5666a6816c6466",
+        "8b2428ba68f575c4fafee01a"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI311",
+      "ids": [
+        "0cf2a7d15b8ff47d6853e149",
+        "ca8d25e31a3b0a26946679aa"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI311",
+      "ids": [
+        "14c5f99fe9da6e1044b8e413",
+        "53cd045e1a66a01cc1c8a5d5"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI311",
+      "ids": [
+        "061728b1df3e254a34d74a97",
+        "5bac6ae927937bfd4357377a"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI311",
+      "ids": [
+        "b73138287450302669c94d13",
+        "197fd0fa8d614383a5c16050"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI311",
+      "ids": [
+        "7bfd33ea486afe4dd041f257",
+        "c86e866b64a2a22f15676a05"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI321",
+      "ids": [
+        "a984e090062cb619a8bfe28f",
+        "8cc219a3b1ff58f6a1bef40e"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI321",
+      "ids": [
+        "fe02f7bedd71586a1d4526e1",
+        "3cd50f097238a71e1de6cc27"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI321",
+      "ids": [
+        "b1abf0d085e088c5f751ec19",
+        "bbc64e699dcc53ed13f7fa71"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI321",
+      "ids": [
+        "cf96f10f699cb9c76f53f26e",
+        "2395c7d8089bd3f9dfffeb9a"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI321",
+      "ids": [
+        "d5f437a5e28841f99ae0955c",
+        "d39d45ec82dcffc7a2cde601"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI321",
+      "ids": [
+        "f4384714eddca501b071fa68",
+        "79151cadb44652562e0e8aa4"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI321",
+      "ids": [
+        "840aee7af64684cf78017b4f",
+        "3e4abfa04960afdbc6dfdd1a"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI321",
+      "ids": [
+        "79fbba658c6df4939ecd430c",
+        "5fbda4acb78dcab041dac07e"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI321",
+      "ids": [
+        "052ec52f39e8fe23fdedf5b7",
+        "4dc4bb5922dcef9f7a1293a0"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI321",
+      "ids": [
+        "73bc8859025b056721f50c7b",
+        "8b5e844f6797545d104324e7"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI331",
+      "ids": [
+        "3978eb26c691158916e7f12d",
+        "34694e3a3fba48e66eaf2b9e"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI331",
+      "ids": [
+        "22987dd852d5393a76917d0d",
+        "e510b1902b6c23b59fe37a40"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI331",
+      "ids": [
+        "335b7c20b7c30e04e6db7a91",
+        "849711f7265bbc985acb139a",
+        "8be70d80466cf97493afa75d"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI331",
+      "ids": [
+        "4cd4a973bc0303462b8817ef",
+        "281417a4e477d28d2ad259f9"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI331",
+      "ids": [
+        "3d7e58b981ba7abb26cda2c6",
+        "096d99c4b6154f7c8170e915"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI331",
+      "ids": [
+        "7b6e113592aff34f8a83b69c",
+        "c2c81fc83db1cdb6e7c2526f"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI331",
+      "ids": [
+        "98a7ea03048d0dccfa69de08",
+        "396be97785ee2abd9a2b8708"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI331",
+      "ids": [
+        "a5705f5d819873ecb78c7de8",
+        "96082f650920dbf8f1d794a0"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI331",
+      "ids": [
+        "a261d6fc3307f3be7e6386f2",
+        "b59bb5767a339fa5a020f4ed"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI331",
+      "ids": [
+        "73f26f8d40a154837061f206",
+        "da6538b1c7c60e3518f6b321"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI421",
+      "ids": [
+        "77aba7782075db0887e2e3e7",
+        "9a7b12823061fb7622664708"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI421",
+      "ids": [
+        "3dab5dd9195f03bbf16d1ab7",
+        "30a11d4e782b55753413bd49"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI421",
+      "ids": [
+        "d7ce4301200f892037b244b3",
+        "1c2bd6ad90405aa312f221c5",
+        "beb7bb72e21f675fad7c09fa"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI421",
+      "ids": [
+        "1d3931c999fad15568551aa0",
+        "9e84598e038c98fff6309364"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI421",
+      "ids": [
+        "ffad2df2c5e72bff0b39c490",
+        "bb4e86db8f42c661c12a40c3"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI421",
+      "ids": [
+        "1647484547f2269565c86cd3",
+        "e94c7651035fe4dc9f42d31f"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI421",
+      "ids": [
+        "0d9631fffbfb7e145f058e0a",
+        "7cf77d361e2c7a1b84c5c30e"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI421",
+      "ids": [
+        "2535374e9f87c9aa9935b800",
+        "d121a910c0784092672b5954"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI421",
+      "ids": [
+        "781d2458a12623de55d78645",
+        "40844cce897a75987735535a"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI421",
+      "ids": [
+        "b59e382db3aa5909891b16e6",
+        "29bf672c6d1af34efed54aea"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI431",
+      "ids": [
+        "a40ff08926724dc9460b2657",
+        "bcf2db32779a5b84c8e55648"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI431",
+      "ids": [
+        "c537c038958b9f6d1560cd14",
+        "c37a89b59e4119c10a73bf2c"
+      ],
+      "classification": "exact_duplicate_candidate"
+    },
+    {
+      "reference": "PSI431",
+      "ids": [
+        "40943cf82af7f107f0cfa3bf",
+        "e6a100d973a4113760b87913",
+        "5a35a806cf0c6a0a2b2332de",
+        "d6920724badb76b6206bc1fa"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI431",
+      "ids": [
+        "f859b8dc7a7c9fafde38d790",
+        "3e4a24ef60b8be0dada73869"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI431",
+      "ids": [
+        "4eb801e4da680101262a2e1c",
+        "18c943f4846be88c8590f48e"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI431",
+      "ids": [
+        "bdc2780434e5ba78dc7fe0d9",
+        "cb0841d349981535c16ef2f4"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "PSI431",
+      "ids": [
+        "e7055e39a2e8ddb75958ab70",
+        "58bb767ecb1c767b84b53c9f"
+      ],
+      "classification": "legitimate_repeat"
+    },
+    {
+      "reference": "SYNTHESE-PARTICULIERS-2026",
+      "ids": [
+        "87906adbe171959daa43eb4a",
+        "b21039c9570e07bc25baf20f",
+        "a4bfb0aef1c67472c7ca27e1",
+        "05a0dbbc180b54f8ac858469"
+      ],
+      "classification": "legitimate_repeat"
+    }
+  ],
+  "finalDuplicateCounts": {
+    "exact_duplicate_candidate": 184,
+    "legitimate_repeat": 210
+  },
+  "removedExactRecords": [],
+  "remainingAnomaliesByReference": {
+    "PSI113": 46,
+    "PSI123": 47,
+    "PSI133": 46,
+    "PSI213": 49,
+    "PSI223": 50,
+    "PSI233": 49,
+    "PSI313": 46,
+    "PSI323": 61,
+    "PSI333": 49,
+    "PSI423": 50,
+    "PSI433": 49,
+    "PSI114": 46,
+    "PSI124": 47,
+    "PSI134": 46,
+    "PSI214": 48,
+    "PSI224": 50,
+    "PSI234": 49,
+    "PSI314": 49,
+    "PSI324": 63,
+    "PSI334": 49,
+    "PSI424": 50,
+    "PSI434": 46,
+    "PLI211": 45,
+    "PLI221": 50,
+    "PLI231": 49,
+    "PLI411": 49,
+    "PLI421": 50,
+    "PLI431": 50,
+    "PLI511": 46,
+    "PLI521": 48,
+    "PLI531": 48,
+    "PSI111": 48,
+    "PSI121": 49,
+    "PSI131": 48,
+    "PSI211": 51,
+    "PSI221": 52,
+    "PSI231": 51,
+    "PSI311": 51,
+    "PSI321": 65,
+    "PSI331": 51,
+    "PSI421": 52,
+    "PSI431": 48,
+    "SYNTHESE-PARTICULIERS-2026": 8
+  },
+  "humanReviewRows": 3420,
+  "unresolvedExtractionRows": 560,
+  "reviewDefinition": "Toutes les lignes needs_review conservées ; les placeholders not_extracted sont comptés séparément, sans validation métier.",
+  "verified": 0
+}

@@ -1,8 +1,8 @@
 {
   "pdfCount": 43,
-  "candidateRows": 3666,
-  "needs_review": 3115,
-  "not_extracted": 551,
+  "candidateRows": 3980,
+  "needs_review": 3420,
+  "not_extracted": 560,
   "verified": 0,
   "pdfByFamily": {
     "Particuliers — Réflexe eco Pharmacie + chambre particulière": 11,
@@ -11,9 +11,9 @@
     "Particuliers — Synthèse garanties 2026": 1
   },
   "byFamily": {
-    "Particuliers — Réflexe eco Pharmacie + chambre particulière": 907,
-    "Particuliers — Réflexe eco Pharmacie": 943,
-    "Particuliers": 1812,
+    "Particuliers — Réflexe eco Pharmacie + chambre particulière": 1008,
+    "Particuliers — Réflexe eco Pharmacie": 1049,
+    "Particuliers": 1919,
     "Particuliers — Synthèse garanties 2026": 4
   },
   "byReference": {
@@ -24,7 +24,7 @@
     "PSI223": 95,
     "PSI233": 95,
     "PSI313": 72,
-    "PSI323": 10,
+    "PSI323": 111,
     "PSI333": 95,
     "PSI423": 96,
     "PSI433": 95,
@@ -35,7 +35,7 @@
     "PSI224": 98,
     "PSI234": 98,
     "PSI314": 95,
-    "PSI324": 10,
+    "PSI324": 116,
     "PSI334": 98,
     "PSI424": 98,
     "PSI434": 78,
@@ -55,23 +55,24 @@
     "PSI221": 99,
     "PSI231": 99,
     "PSI311": 96,
-    "PSI321": 10,
+    "PSI321": 117,
     "PSI331": 99,
     "PSI421": 99,
     "PSI431": 79,
     "SYNTHESE-PARTICULIERS-2026": 4
   },
   "byCategory": {
-    "Soins courants": 965,
+    "Soins courants": 1041,
     "Cures thermales": 12,
-    "Hospitalisation": 296,
-    "Maternité": 107,
-    "Médecines complémentaires": 108,
-    "Prévention": 394,
-    "Non déterminée": 151,
-    "Dentaire": 790,
-    "Aides auditives": 104,
-    "Services d'assistance": 696,
+    "Hospitalisation": 318,
+    "Maternité": 115,
+    "Médecines complémentaires": 117,
+    "Prévention": 427,
+    "Non déterminée": 127,
+    "Dentaire": 850,
+    "Aides auditives": 116,
+    "Services d'assistance": 759,
+    "Optique": 55,
     "Accompagnement personnalisé Affection Longue Durée": 39,
     "Architecture": 4
   },
@@ -541,16 +542,71 @@
     {
       "reference": "PSI323",
       "ids": [
-        "8686a3bf4131ac7c0873e639",
-        "47d145bf6305aac40158a822",
-        "00de06d32bbe1eec51f082a6",
-        "2b37af4963b581a72e488519",
-        "c8b40d5222921e594507b9d6",
+        "8fbfa04c1a0111999245db80",
+        "ed59048e020ba830fc4ea2ef"
+      ]
+    },
+    {
+      "reference": "PSI323",
+      "ids": [
+        "13cce4f116f365c6148413bd",
+        "fe069956cb589b90031edb43"
+      ]
+    },
+    {
+      "reference": "PSI323",
+      "ids": [
         "3f527615efa60046962eae09",
-        "436d95d7a27e03461d23250b",
-        "d990873896f689f56223f658",
-        "a9d1d297060ea1d85d2c53cf",
         "b827c20b7e0a9dc50a9ac07b"
+      ]
+    },
+    {
+      "reference": "PSI323",
+      "ids": [
+        "20f2de4c6c5ea61289fa33ec",
+        "9f8e920fb4b5a1b1a3c15bd3"
+      ]
+    },
+    {
+      "reference": "PSI323",
+      "ids": [
+        "d830cf15c70ef55d6b918c1e",
+        "d31da26ee1dd54f921a65d01"
+      ]
+    },
+    {
+      "reference": "PSI323",
+      "ids": [
+        "2717118f9dab37b97ba7f061",
+        "a3fe10e578c1aa618671fa94"
+      ]
+    },
+    {
+      "reference": "PSI323",
+      "ids": [
+        "b32ccc4dbe225c2f1e5ee098",
+        "846ebf27a077a97fd41fc2b6"
+      ]
+    },
+    {
+      "reference": "PSI323",
+      "ids": [
+        "fc6d6f72961afcf68be73861",
+        "c84430e1b6eb3d62dec12fde"
+      ]
+    },
+    {
+      "reference": "PSI323",
+      "ids": [
+        "4f09fe17ac55afaed5f5a8f2",
+        "7924d9f09010b238800ec983"
+      ]
+    },
+    {
+      "reference": "PSI323",
+      "ids": [
+        "db352872e1ac3fc4e0ff7067",
+        "3f41635bab287ccbee7b27a4"
       ]
     },
     {
@@ -1244,16 +1300,71 @@
     {
       "reference": "PSI324",
       "ids": [
-        "b5f7515617fcaedf09a0dbd6",
-        "7d57604821ab4dd9919af428",
-        "28c3b091225f0f5fecc7740c",
-        "d840b83f7ce91f2911e1eeb7",
-        "588533669251b59ea4403477",
+        "cf69388be157a639df327f54",
+        "8d0c4016038dd70e623965cc"
+      ]
+    },
+    {
+      "reference": "PSI324",
+      "ids": [
+        "c3f2bc01b6b67e5055d5a1df",
+        "b187fda152d5c32dafc39cfc"
+      ]
+    },
+    {
+      "reference": "PSI324",
+      "ids": [
         "d9d8e37a91518f00e5a8936c",
-        "0ab0ad9ae219b38d4c4e07db",
-        "88236e000a491a9d9fd34d01",
-        "3d951461d1a859812f33f34c",
         "38d498814a0a2db39f7d83aa"
+      ]
+    },
+    {
+      "reference": "PSI324",
+      "ids": [
+        "ac9218a6c9870384a4a1ae06",
+        "463519496b255814bd6b394c"
+      ]
+    },
+    {
+      "reference": "PSI324",
+      "ids": [
+        "92e428ea44a9c86277e456dd",
+        "6e5a745e8c9cceb3f2dac57f"
+      ]
+    },
+    {
+      "reference": "PSI324",
+      "ids": [
+        "97f05cf8a7faae86fd87485b",
+        "be4012080cd6a13ad5248c82"
+      ]
+    },
+    {
+      "reference": "PSI324",
+      "ids": [
+        "9b0484f00e6b04f016b4ee4b",
+        "cd56467c80428fe29b3fa481"
+      ]
+    },
+    {
+      "reference": "PSI324",
+      "ids": [
+        "bfd1094b7e84c0012c5aadc3",
+        "addac6cc2f9217540a0b8c81"
+      ]
+    },
+    {
+      "reference": "PSI324",
+      "ids": [
+        "2dc876b7ab05112d5e2019f2",
+        "968b12c64c2a200937f6ed93"
+      ]
+    },
+    {
+      "reference": "PSI324",
+      "ids": [
+        "f4d11cfa4044e57945f43a7b",
+        "d1b78faa5c8724f9a467f746"
       ]
     },
     {
@@ -2518,16 +2629,71 @@
     {
       "reference": "PSI321",
       "ids": [
-        "34b2fa0f039e4fafc2c24d4e",
-        "eaf4fa1e9cfe96b0d21dd26d",
-        "f6ea4e22b92994eeeb6728c2",
-        "8f93c47690451304711a8875",
-        "5e9531c5d8310de79e166db2",
+        "a984e090062cb619a8bfe28f",
+        "8cc219a3b1ff58f6a1bef40e"
+      ]
+    },
+    {
+      "reference": "PSI321",
+      "ids": [
+        "fe02f7bedd71586a1d4526e1",
+        "3cd50f097238a71e1de6cc27"
+      ]
+    },
+    {
+      "reference": "PSI321",
+      "ids": [
         "b1abf0d085e088c5f751ec19",
-        "b7a7eb3a60d60653daeb393a",
-        "f0f5c4a094500235bbfcaeed",
-        "4c2413f8da3292d6e0b1e9b3",
         "bbc64e699dcc53ed13f7fa71"
+      ]
+    },
+    {
+      "reference": "PSI321",
+      "ids": [
+        "cf96f10f699cb9c76f53f26e",
+        "2395c7d8089bd3f9dfffeb9a"
+      ]
+    },
+    {
+      "reference": "PSI321",
+      "ids": [
+        "d5f437a5e28841f99ae0955c",
+        "d39d45ec82dcffc7a2cde601"
+      ]
+    },
+    {
+      "reference": "PSI321",
+      "ids": [
+        "f4384714eddca501b071fa68",
+        "79151cadb44652562e0e8aa4"
+      ]
+    },
+    {
+      "reference": "PSI321",
+      "ids": [
+        "840aee7af64684cf78017b4f",
+        "3e4abfa04960afdbc6dfdd1a"
+      ]
+    },
+    {
+      "reference": "PSI321",
+      "ids": [
+        "79fbba658c6df4939ecd430c",
+        "5fbda4acb78dcab041dac07e"
+      ]
+    },
+    {
+      "reference": "PSI321",
+      "ids": [
+        "052ec52f39e8fe23fdedf5b7",
+        "4dc4bb5922dcef9f7a1293a0"
+      ]
+    },
+    {
+      "reference": "PSI321",
+      "ids": [
+        "73bc8859025b056721f50c7b",
+        "8b5e844f6797545d104324e7"
       ]
     },
     {
@@ -2869,60 +3035,7 @@
     {
       "reference": "PSI323",
       "sourceFile": "Réflexe eco - Pharmacie et chambre particulière/PSI323.pdf",
-      "reason": "Aucune ligne interprétable : gabarit à revoir"
-    },
-    {
-      "reference": "PSI323",
-      "sourceFile": "Réflexe eco - Pharmacie et chambre particulière/PSI323.pdf",
-      "sourcePage": 3,
-      "reason": "Page descriptive ou structure non reconnue"
-    },
-    {
-      "reference": "PSI323",
-      "sourceFile": "Réflexe eco - Pharmacie et chambre particulière/PSI323.pdf",
-      "sourcePage": 4,
-      "reason": "Page descriptive ou structure non reconnue"
-    },
-    {
-      "reference": "PSI323",
-      "sourceFile": "Réflexe eco - Pharmacie et chambre particulière/PSI323.pdf",
-      "sourcePage": 5,
-      "reason": "Page descriptive ou structure non reconnue"
-    },
-    {
-      "reference": "PSI323",
-      "sourceFile": "Réflexe eco - Pharmacie et chambre particulière/PSI323.pdf",
-      "sourcePage": 6,
-      "reason": "Page descriptive ou structure non reconnue"
-    },
-    {
-      "reference": "PSI323",
-      "sourceFile": "Réflexe eco - Pharmacie et chambre particulière/PSI323.pdf",
-      "sourcePage": 7,
-      "reason": "Page descriptive ou structure non reconnue"
-    },
-    {
-      "reference": "PSI323",
-      "sourceFile": "Réflexe eco - Pharmacie et chambre particulière/PSI323.pdf",
       "sourcePage": 8,
-      "reason": "Page descriptive ou structure non reconnue"
-    },
-    {
-      "reference": "PSI323",
-      "sourceFile": "Réflexe eco - Pharmacie et chambre particulière/PSI323.pdf",
-      "sourcePage": 9,
-      "reason": "Page descriptive ou structure non reconnue"
-    },
-    {
-      "reference": "PSI323",
-      "sourceFile": "Réflexe eco - Pharmacie et chambre particulière/PSI323.pdf",
-      "sourcePage": 10,
-      "reason": "Page descriptive ou structure non reconnue"
-    },
-    {
-      "reference": "PSI323",
-      "sourceFile": "Réflexe eco - Pharmacie et chambre particulière/PSI323.pdf",
-      "sourcePage": 11,
       "reason": "Page descriptive ou structure non reconnue"
     },
     {
@@ -3114,60 +3227,7 @@
     {
       "reference": "PSI324",
       "sourceFile": "Réflexe eco - Pharmacie/PSI324.pdf",
-      "reason": "Aucune ligne interprétable : gabarit à revoir"
-    },
-    {
-      "reference": "PSI324",
-      "sourceFile": "Réflexe eco - Pharmacie/PSI324.pdf",
-      "sourcePage": 3,
-      "reason": "Page descriptive ou structure non reconnue"
-    },
-    {
-      "reference": "PSI324",
-      "sourceFile": "Réflexe eco - Pharmacie/PSI324.pdf",
-      "sourcePage": 4,
-      "reason": "Page descriptive ou structure non reconnue"
-    },
-    {
-      "reference": "PSI324",
-      "sourceFile": "Réflexe eco - Pharmacie/PSI324.pdf",
-      "sourcePage": 5,
-      "reason": "Page descriptive ou structure non reconnue"
-    },
-    {
-      "reference": "PSI324",
-      "sourceFile": "Réflexe eco - Pharmacie/PSI324.pdf",
-      "sourcePage": 6,
-      "reason": "Page descriptive ou structure non reconnue"
-    },
-    {
-      "reference": "PSI324",
-      "sourceFile": "Réflexe eco - Pharmacie/PSI324.pdf",
-      "sourcePage": 7,
-      "reason": "Page descriptive ou structure non reconnue"
-    },
-    {
-      "reference": "PSI324",
-      "sourceFile": "Réflexe eco - Pharmacie/PSI324.pdf",
       "sourcePage": 8,
-      "reason": "Page descriptive ou structure non reconnue"
-    },
-    {
-      "reference": "PSI324",
-      "sourceFile": "Réflexe eco - Pharmacie/PSI324.pdf",
-      "sourcePage": 9,
-      "reason": "Page descriptive ou structure non reconnue"
-    },
-    {
-      "reference": "PSI324",
-      "sourceFile": "Réflexe eco - Pharmacie/PSI324.pdf",
-      "sourcePage": 10,
-      "reason": "Page descriptive ou structure non reconnue"
-    },
-    {
-      "reference": "PSI324",
-      "sourceFile": "Réflexe eco - Pharmacie/PSI324.pdf",
-      "sourcePage": 11,
       "reason": "Page descriptive ou structure non reconnue"
     },
     {
@@ -3533,60 +3593,7 @@
     {
       "reference": "PSI321",
       "sourceFile": "Régime général/PSI321.pdf",
-      "reason": "Aucune ligne interprétable : gabarit à revoir"
-    },
-    {
-      "reference": "PSI321",
-      "sourceFile": "Régime général/PSI321.pdf",
-      "sourcePage": 3,
-      "reason": "Page descriptive ou structure non reconnue"
-    },
-    {
-      "reference": "PSI321",
-      "sourceFile": "Régime général/PSI321.pdf",
-      "sourcePage": 4,
-      "reason": "Page descriptive ou structure non reconnue"
-    },
-    {
-      "reference": "PSI321",
-      "sourceFile": "Régime général/PSI321.pdf",
-      "sourcePage": 5,
-      "reason": "Page descriptive ou structure non reconnue"
-    },
-    {
-      "reference": "PSI321",
-      "sourceFile": "Régime général/PSI321.pdf",
-      "sourcePage": 6,
-      "reason": "Page descriptive ou structure non reconnue"
-    },
-    {
-      "reference": "PSI321",
-      "sourceFile": "Régime général/PSI321.pdf",
-      "sourcePage": 7,
-      "reason": "Page descriptive ou structure non reconnue"
-    },
-    {
-      "reference": "PSI321",
-      "sourceFile": "Régime général/PSI321.pdf",
       "sourcePage": 8,
-      "reason": "Page descriptive ou structure non reconnue"
-    },
-    {
-      "reference": "PSI321",
-      "sourceFile": "Régime général/PSI321.pdf",
-      "sourcePage": 9,
-      "reason": "Page descriptive ou structure non reconnue"
-    },
-    {
-      "reference": "PSI321",
-      "sourceFile": "Régime général/PSI321.pdf",
-      "sourcePage": 10,
-      "reason": "Page descriptive ou structure non reconnue"
-    },
-    {
-      "reference": "PSI321",
-      "sourceFile": "Régime général/PSI321.pdf",
-      "sourcePage": 11,
       "reason": "Page descriptive ou structure non reconnue"
     },
     {
@@ -6474,6 +6481,537 @@
       "reference": "PSI313",
       "sourceFile": "Réflexe eco - Pharmacie et chambre particulière/PSI313.pdf",
       "sourcePage": 10,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "11a2ac157bb4bdd63bf2a271",
+      "reference": "PSI323",
+      "sourceFile": "Réflexe eco - Pharmacie et chambre particulière/PSI323.pdf",
+      "sourcePage": 3,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "8fbfa04c1a0111999245db80",
+      "reference": "PSI323",
+      "sourceFile": "Réflexe eco - Pharmacie et chambre particulière/PSI323.pdf",
+      "sourcePage": 3,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "d79b148c6f0cb5bec133bc0f",
+      "reference": "PSI323",
+      "sourceFile": "Réflexe eco - Pharmacie et chambre particulière/PSI323.pdf",
+      "sourcePage": 3,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "13cce4f116f365c6148413bd",
+      "reference": "PSI323",
+      "sourceFile": "Réflexe eco - Pharmacie et chambre particulière/PSI323.pdf",
+      "sourcePage": 3,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "8f9515d4a37b26524facc9c4",
+      "reference": "PSI323",
+      "sourceFile": "Réflexe eco - Pharmacie et chambre particulière/PSI323.pdf",
+      "sourcePage": 3,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "afee209bd3b203f10709c2f0",
+      "reference": "PSI323",
+      "sourceFile": "Réflexe eco - Pharmacie et chambre particulière/PSI323.pdf",
+      "sourcePage": 3,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "25fc06bd1935e0b65d150426",
+      "reference": "PSI323",
+      "sourceFile": "Réflexe eco - Pharmacie et chambre particulière/PSI323.pdf",
+      "sourcePage": 3,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "afb28d6bdf10b4446fffe563",
+      "reference": "PSI323",
+      "sourceFile": "Réflexe eco - Pharmacie et chambre particulière/PSI323.pdf",
+      "sourcePage": 3,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "0444a1a0bb113644080ab65e",
+      "reference": "PSI323",
+      "sourceFile": "Réflexe eco - Pharmacie et chambre particulière/PSI323.pdf",
+      "sourcePage": 3,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "ba37c5710ec5664e3e1e6ad7",
+      "reference": "PSI323",
+      "sourceFile": "Réflexe eco - Pharmacie et chambre particulière/PSI323.pdf",
+      "sourcePage": 3,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "fe069956cb589b90031edb43",
+      "reference": "PSI323",
+      "sourceFile": "Réflexe eco - Pharmacie et chambre particulière/PSI323.pdf",
+      "sourcePage": 3,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "ee92e0a16d21f8152b0d4da1",
+      "reference": "PSI323",
+      "sourceFile": "Réflexe eco - Pharmacie et chambre particulière/PSI323.pdf",
+      "sourcePage": 3,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "ed59048e020ba830fc4ea2ef",
+      "reference": "PSI323",
+      "sourceFile": "Réflexe eco - Pharmacie et chambre particulière/PSI323.pdf",
+      "sourcePage": 3,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "4c8668025e6a27ab4b3db966",
+      "reference": "PSI323",
+      "sourceFile": "Réflexe eco - Pharmacie et chambre particulière/PSI323.pdf",
+      "sourcePage": 3,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "c5c3ac6b50ec01846d3280ad",
+      "reference": "PSI323",
+      "sourceFile": "Réflexe eco - Pharmacie et chambre particulière/PSI323.pdf",
+      "sourcePage": 4,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "c0bbd1c81539a17d9ffa91a7",
+      "reference": "PSI323",
+      "sourceFile": "Réflexe eco - Pharmacie et chambre particulière/PSI323.pdf",
+      "sourcePage": 4,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "470539bbe6c08f11d41f10ff",
+      "reference": "PSI323",
+      "sourceFile": "Réflexe eco - Pharmacie et chambre particulière/PSI323.pdf",
+      "sourcePage": 4,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "dea70b3182e4668e91f149f7",
+      "reference": "PSI323",
+      "sourceFile": "Réflexe eco - Pharmacie et chambre particulière/PSI323.pdf",
+      "sourcePage": 5,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "bc4d9054b7e2e22ab66b54d8",
+      "reference": "PSI323",
+      "sourceFile": "Réflexe eco - Pharmacie et chambre particulière/PSI323.pdf",
+      "sourcePage": 5,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "9ebc515df1be1486d6379be1",
+      "reference": "PSI323",
+      "sourceFile": "Réflexe eco - Pharmacie et chambre particulière/PSI323.pdf",
+      "sourcePage": 5,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "75f72a292adb9f64e952d61b",
+      "reference": "PSI323",
+      "sourceFile": "Réflexe eco - Pharmacie et chambre particulière/PSI323.pdf",
+      "sourcePage": 5,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "21d82c2efd672da9d359371c",
+      "reference": "PSI323",
+      "sourceFile": "Réflexe eco - Pharmacie et chambre particulière/PSI323.pdf",
+      "sourcePage": 5,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "b98bc8ce72cc5ce87d59e91c",
+      "reference": "PSI323",
+      "sourceFile": "Réflexe eco - Pharmacie et chambre particulière/PSI323.pdf",
+      "sourcePage": 5,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "778857acc4613a11bb4fdaad",
+      "reference": "PSI323",
+      "sourceFile": "Réflexe eco - Pharmacie et chambre particulière/PSI323.pdf",
+      "sourcePage": 6,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "91060ddb99e77cbb14297999",
+      "reference": "PSI323",
+      "sourceFile": "Réflexe eco - Pharmacie et chambre particulière/PSI323.pdf",
+      "sourcePage": 6,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "c829e08a6494f3d49ae93fda",
+      "reference": "PSI323",
+      "sourceFile": "Réflexe eco - Pharmacie et chambre particulière/PSI323.pdf",
+      "sourcePage": 7,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "347a735feca4e387b9f533ee",
+      "reference": "PSI323",
+      "sourceFile": "Réflexe eco - Pharmacie et chambre particulière/PSI323.pdf",
+      "sourcePage": 7,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "84103dbc62ed817052fdc093",
+      "reference": "PSI323",
+      "sourceFile": "Réflexe eco - Pharmacie et chambre particulière/PSI323.pdf",
+      "sourcePage": 7,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "b431cb17c2a9d4766c1e6292",
+      "reference": "PSI323",
+      "sourceFile": "Réflexe eco - Pharmacie et chambre particulière/PSI323.pdf",
+      "sourcePage": 7,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "0176b36583cda23935def15f",
+      "reference": "PSI323",
+      "sourceFile": "Réflexe eco - Pharmacie et chambre particulière/PSI323.pdf",
+      "sourcePage": 7,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "24f6bd8e5002f0c2da92cf0e",
+      "reference": "PSI323",
+      "sourceFile": "Réflexe eco - Pharmacie et chambre particulière/PSI323.pdf",
+      "sourcePage": 7,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "036cb9a1cb6f6c9e45b71490",
+      "reference": "PSI323",
+      "sourceFile": "Réflexe eco - Pharmacie et chambre particulière/PSI323.pdf",
+      "sourcePage": 7,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "6fe359a45cc34a6fd76ff541",
+      "reference": "PSI323",
+      "sourceFile": "Réflexe eco - Pharmacie et chambre particulière/PSI323.pdf",
+      "sourcePage": 7,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "68c384c2e3cc8691a71f2491",
+      "reference": "PSI323",
+      "sourceFile": "Réflexe eco - Pharmacie et chambre particulière/PSI323.pdf",
+      "sourcePage": 7,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "ff87390eda2c8bf1a696f947",
+      "reference": "PSI323",
+      "sourceFile": "Réflexe eco - Pharmacie et chambre particulière/PSI323.pdf",
+      "sourcePage": 7,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "f4b03abaed68c7e84d5b6445",
+      "reference": "PSI323",
+      "sourceFile": "Réflexe eco - Pharmacie et chambre particulière/PSI323.pdf",
+      "sourcePage": 7,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "f16d4561c62c7b8547fa2483",
+      "reference": "PSI323",
+      "sourceFile": "Réflexe eco - Pharmacie et chambre particulière/PSI323.pdf",
+      "sourcePage": 7,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "e75d64b359122e2717e95018",
+      "reference": "PSI323",
+      "sourceFile": "Réflexe eco - Pharmacie et chambre particulière/PSI323.pdf",
+      "sourcePage": 9,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "1a2b00301f6a6d560f1a648d",
+      "reference": "PSI323",
+      "sourceFile": "Réflexe eco - Pharmacie et chambre particulière/PSI323.pdf",
+      "sourcePage": 9,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "417d33723d44e18694f66078",
+      "reference": "PSI323",
+      "sourceFile": "Réflexe eco - Pharmacie et chambre particulière/PSI323.pdf",
+      "sourcePage": 9,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "20f2de4c6c5ea61289fa33ec",
+      "reference": "PSI323",
+      "sourceFile": "Réflexe eco - Pharmacie et chambre particulière/PSI323.pdf",
+      "sourcePage": 9,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "d830cf15c70ef55d6b918c1e",
+      "reference": "PSI323",
+      "sourceFile": "Réflexe eco - Pharmacie et chambre particulière/PSI323.pdf",
+      "sourcePage": 9,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "2717118f9dab37b97ba7f061",
+      "reference": "PSI323",
+      "sourceFile": "Réflexe eco - Pharmacie et chambre particulière/PSI323.pdf",
+      "sourcePage": 9,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "b32ccc4dbe225c2f1e5ee098",
+      "reference": "PSI323",
+      "sourceFile": "Réflexe eco - Pharmacie et chambre particulière/PSI323.pdf",
+      "sourcePage": 9,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "6d1c8c7b5919a868d60ddc4d",
+      "reference": "PSI323",
+      "sourceFile": "Réflexe eco - Pharmacie et chambre particulière/PSI323.pdf",
+      "sourcePage": 9,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "9f8e920fb4b5a1b1a3c15bd3",
+      "reference": "PSI323",
+      "sourceFile": "Réflexe eco - Pharmacie et chambre particulière/PSI323.pdf",
+      "sourcePage": 9,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "d31da26ee1dd54f921a65d01",
+      "reference": "PSI323",
+      "sourceFile": "Réflexe eco - Pharmacie et chambre particulière/PSI323.pdf",
+      "sourcePage": 9,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "a3fe10e578c1aa618671fa94",
+      "reference": "PSI323",
+      "sourceFile": "Réflexe eco - Pharmacie et chambre particulière/PSI323.pdf",
+      "sourcePage": 9,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "846ebf27a077a97fd41fc2b6",
+      "reference": "PSI323",
+      "sourceFile": "Réflexe eco - Pharmacie et chambre particulière/PSI323.pdf",
+      "sourcePage": 9,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "8cb1f581990c50dba052944a",
+      "reference": "PSI323",
+      "sourceFile": "Réflexe eco - Pharmacie et chambre particulière/PSI323.pdf",
+      "sourcePage": 9,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "6d40a675344e2c6689ea86cc",
+      "reference": "PSI323",
+      "sourceFile": "Réflexe eco - Pharmacie et chambre particulière/PSI323.pdf",
+      "sourcePage": 9,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "976fa59bbb015a2593cbce14",
+      "reference": "PSI323",
+      "sourceFile": "Réflexe eco - Pharmacie et chambre particulière/PSI323.pdf",
+      "sourcePage": 10,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "bf446975040a9815e34f695b",
+      "reference": "PSI323",
+      "sourceFile": "Réflexe eco - Pharmacie et chambre particulière/PSI323.pdf",
+      "sourcePage": 10,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "89327198f826c09b06e85046",
+      "reference": "PSI323",
+      "sourceFile": "Réflexe eco - Pharmacie et chambre particulière/PSI323.pdf",
+      "sourcePage": 10,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "e538ef8641758c86773cb43e",
+      "reference": "PSI323",
+      "sourceFile": "Réflexe eco - Pharmacie et chambre particulière/PSI323.pdf",
+      "sourcePage": 10,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "fc6d6f72961afcf68be73861",
+      "reference": "PSI323",
+      "sourceFile": "Réflexe eco - Pharmacie et chambre particulière/PSI323.pdf",
+      "sourcePage": 11,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "c84430e1b6eb3d62dec12fde",
+      "reference": "PSI323",
+      "sourceFile": "Réflexe eco - Pharmacie et chambre particulière/PSI323.pdf",
+      "sourcePage": 11,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "5fa77a0c4faf076ab800e6ae",
+      "reference": "PSI323",
+      "sourceFile": "Réflexe eco - Pharmacie et chambre particulière/PSI323.pdf",
+      "sourcePage": 11,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "d98e50a5e563af0ad6f89331",
+      "reference": "PSI323",
+      "sourceFile": "Réflexe eco - Pharmacie et chambre particulière/PSI323.pdf",
+      "sourcePage": 11,
       "reasons": [
         "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
       ]
@@ -10550,6 +11088,555 @@
       "id": "784209f177c8c5a5f3bd04ce",
       "reference": "PSI314",
       "sourceFile": "Réflexe eco - Pharmacie/PSI314.pdf",
+      "sourcePage": 11,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "312ce369dce99e7a67f216cf",
+      "reference": "PSI324",
+      "sourceFile": "Réflexe eco - Pharmacie/PSI324.pdf",
+      "sourcePage": 3,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "cf69388be157a639df327f54",
+      "reference": "PSI324",
+      "sourceFile": "Réflexe eco - Pharmacie/PSI324.pdf",
+      "sourcePage": 3,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "e351aec7f89b9960d80d3263",
+      "reference": "PSI324",
+      "sourceFile": "Réflexe eco - Pharmacie/PSI324.pdf",
+      "sourcePage": 3,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "c3f2bc01b6b67e5055d5a1df",
+      "reference": "PSI324",
+      "sourceFile": "Réflexe eco - Pharmacie/PSI324.pdf",
+      "sourcePage": 3,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "f2015a7dbd427834733037ae",
+      "reference": "PSI324",
+      "sourceFile": "Réflexe eco - Pharmacie/PSI324.pdf",
+      "sourcePage": 3,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "41cc702bc7b8c4a43d6b4462",
+      "reference": "PSI324",
+      "sourceFile": "Réflexe eco - Pharmacie/PSI324.pdf",
+      "sourcePage": 3,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "640bc309db9499913e597003",
+      "reference": "PSI324",
+      "sourceFile": "Réflexe eco - Pharmacie/PSI324.pdf",
+      "sourcePage": 3,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "baa9d1b693c6d611795e8dd5",
+      "reference": "PSI324",
+      "sourceFile": "Réflexe eco - Pharmacie/PSI324.pdf",
+      "sourcePage": 3,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "063043ef75f5478e3351b36b",
+      "reference": "PSI324",
+      "sourceFile": "Réflexe eco - Pharmacie/PSI324.pdf",
+      "sourcePage": 3,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "15c80633a5a84963a9466457",
+      "reference": "PSI324",
+      "sourceFile": "Réflexe eco - Pharmacie/PSI324.pdf",
+      "sourcePage": 3,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "b187fda152d5c32dafc39cfc",
+      "reference": "PSI324",
+      "sourceFile": "Réflexe eco - Pharmacie/PSI324.pdf",
+      "sourcePage": 3,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "9c7ec7035ac0777a741391d5",
+      "reference": "PSI324",
+      "sourceFile": "Réflexe eco - Pharmacie/PSI324.pdf",
+      "sourcePage": 3,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "8d0c4016038dd70e623965cc",
+      "reference": "PSI324",
+      "sourceFile": "Réflexe eco - Pharmacie/PSI324.pdf",
+      "sourcePage": 3,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "9e352a4b68d97ac0f5ef2a41",
+      "reference": "PSI324",
+      "sourceFile": "Réflexe eco - Pharmacie/PSI324.pdf",
+      "sourcePage": 3,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "1dd846d13ee66615f84acd11",
+      "reference": "PSI324",
+      "sourceFile": "Réflexe eco - Pharmacie/PSI324.pdf",
+      "sourcePage": 4,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "97578e9f1447c9ab06d454c7",
+      "reference": "PSI324",
+      "sourceFile": "Réflexe eco - Pharmacie/PSI324.pdf",
+      "sourcePage": 4,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "f3cffe2d7d686172fd6ce31e",
+      "reference": "PSI324",
+      "sourceFile": "Réflexe eco - Pharmacie/PSI324.pdf",
+      "sourcePage": 4,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "b2f70d99e4be1dc378077b79",
+      "reference": "PSI324",
+      "sourceFile": "Réflexe eco - Pharmacie/PSI324.pdf",
+      "sourcePage": 5,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "bb6aaa967347a6f9a0646fa6",
+      "reference": "PSI324",
+      "sourceFile": "Réflexe eco - Pharmacie/PSI324.pdf",
+      "sourcePage": 5,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "b389b3a617e03932d7c99317",
+      "reference": "PSI324",
+      "sourceFile": "Réflexe eco - Pharmacie/PSI324.pdf",
+      "sourcePage": 5,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "44b78e712de39c77dadd6cea",
+      "reference": "PSI324",
+      "sourceFile": "Réflexe eco - Pharmacie/PSI324.pdf",
+      "sourcePage": 5,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "930bc9fff046839da7600423",
+      "reference": "PSI324",
+      "sourceFile": "Réflexe eco - Pharmacie/PSI324.pdf",
+      "sourcePage": 5,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "d3465bb2ba5997ccd6394d56",
+      "reference": "PSI324",
+      "sourceFile": "Réflexe eco - Pharmacie/PSI324.pdf",
+      "sourcePage": 5,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "c839470872e2a79c3bc12c4c",
+      "reference": "PSI324",
+      "sourceFile": "Réflexe eco - Pharmacie/PSI324.pdf",
+      "sourcePage": 6,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "62778605f6ea679a2ada31fc",
+      "reference": "PSI324",
+      "sourceFile": "Réflexe eco - Pharmacie/PSI324.pdf",
+      "sourcePage": 6,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "2bffcdcd968f073999ecff7f",
+      "reference": "PSI324",
+      "sourceFile": "Réflexe eco - Pharmacie/PSI324.pdf",
+      "sourcePage": 7,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "18b765ae4b32e23b2113cca1",
+      "reference": "PSI324",
+      "sourceFile": "Réflexe eco - Pharmacie/PSI324.pdf",
+      "sourcePage": 7,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "2e3c4dcbea7503a6b168b684",
+      "reference": "PSI324",
+      "sourceFile": "Réflexe eco - Pharmacie/PSI324.pdf",
+      "sourcePage": 7,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "28bdb3bb300f26d8359b7acd",
+      "reference": "PSI324",
+      "sourceFile": "Réflexe eco - Pharmacie/PSI324.pdf",
+      "sourcePage": 7,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "95405370c17909316f3a71b7",
+      "reference": "PSI324",
+      "sourceFile": "Réflexe eco - Pharmacie/PSI324.pdf",
+      "sourcePage": 7,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "837fc42754e6f640bf3d4a76",
+      "reference": "PSI324",
+      "sourceFile": "Réflexe eco - Pharmacie/PSI324.pdf",
+      "sourcePage": 7,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "7c3c78015740ead37b75a3b2",
+      "reference": "PSI324",
+      "sourceFile": "Réflexe eco - Pharmacie/PSI324.pdf",
+      "sourcePage": 7,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "9458206b80b8a11c8233b6b1",
+      "reference": "PSI324",
+      "sourceFile": "Réflexe eco - Pharmacie/PSI324.pdf",
+      "sourcePage": 7,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "aa81f9321c1e9074be797d3d",
+      "reference": "PSI324",
+      "sourceFile": "Réflexe eco - Pharmacie/PSI324.pdf",
+      "sourcePage": 7,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "fd633a622804ac908b4872df",
+      "reference": "PSI324",
+      "sourceFile": "Réflexe eco - Pharmacie/PSI324.pdf",
+      "sourcePage": 7,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "7bb726e1f5117850ebb98134",
+      "reference": "PSI324",
+      "sourceFile": "Réflexe eco - Pharmacie/PSI324.pdf",
+      "sourcePage": 7,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "deca1949fb45a6be9d5e0561",
+      "reference": "PSI324",
+      "sourceFile": "Réflexe eco - Pharmacie/PSI324.pdf",
+      "sourcePage": 7,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "fea49705042198247372a207",
+      "reference": "PSI324",
+      "sourceFile": "Réflexe eco - Pharmacie/PSI324.pdf",
+      "sourcePage": 7,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "9b0dce2576bb43c15088bec3",
+      "reference": "PSI324",
+      "sourceFile": "Réflexe eco - Pharmacie/PSI324.pdf",
+      "sourcePage": 7,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "056b12efd631b505583b25d1",
+      "reference": "PSI324",
+      "sourceFile": "Réflexe eco - Pharmacie/PSI324.pdf",
+      "sourcePage": 9,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "eca4b12f501493f49b1b48f8",
+      "reference": "PSI324",
+      "sourceFile": "Réflexe eco - Pharmacie/PSI324.pdf",
+      "sourcePage": 9,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "b867b08389bd5ca249e2932f",
+      "reference": "PSI324",
+      "sourceFile": "Réflexe eco - Pharmacie/PSI324.pdf",
+      "sourcePage": 9,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "ac9218a6c9870384a4a1ae06",
+      "reference": "PSI324",
+      "sourceFile": "Réflexe eco - Pharmacie/PSI324.pdf",
+      "sourcePage": 9,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "92e428ea44a9c86277e456dd",
+      "reference": "PSI324",
+      "sourceFile": "Réflexe eco - Pharmacie/PSI324.pdf",
+      "sourcePage": 9,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "97f05cf8a7faae86fd87485b",
+      "reference": "PSI324",
+      "sourceFile": "Réflexe eco - Pharmacie/PSI324.pdf",
+      "sourcePage": 9,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "9b0484f00e6b04f016b4ee4b",
+      "reference": "PSI324",
+      "sourceFile": "Réflexe eco - Pharmacie/PSI324.pdf",
+      "sourcePage": 9,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "bc7f12ac84fdf8e4afd8747d",
+      "reference": "PSI324",
+      "sourceFile": "Réflexe eco - Pharmacie/PSI324.pdf",
+      "sourcePage": 9,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "463519496b255814bd6b394c",
+      "reference": "PSI324",
+      "sourceFile": "Réflexe eco - Pharmacie/PSI324.pdf",
+      "sourcePage": 9,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "6e5a745e8c9cceb3f2dac57f",
+      "reference": "PSI324",
+      "sourceFile": "Réflexe eco - Pharmacie/PSI324.pdf",
+      "sourcePage": 9,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "be4012080cd6a13ad5248c82",
+      "reference": "PSI324",
+      "sourceFile": "Réflexe eco - Pharmacie/PSI324.pdf",
+      "sourcePage": 9,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "cd56467c80428fe29b3fa481",
+      "reference": "PSI324",
+      "sourceFile": "Réflexe eco - Pharmacie/PSI324.pdf",
+      "sourcePage": 9,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "bc6e00fc2cf58df61de5e40b",
+      "reference": "PSI324",
+      "sourceFile": "Réflexe eco - Pharmacie/PSI324.pdf",
+      "sourcePage": 9,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "a6771a5f8710324b65cd4cc2",
+      "reference": "PSI324",
+      "sourceFile": "Réflexe eco - Pharmacie/PSI324.pdf",
+      "sourcePage": 9,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "0ff4ab438584b5e75b3fa1cd",
+      "reference": "PSI324",
+      "sourceFile": "Réflexe eco - Pharmacie/PSI324.pdf",
+      "sourcePage": 10,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "44d22782bfc324bbf12a980f",
+      "reference": "PSI324",
+      "sourceFile": "Réflexe eco - Pharmacie/PSI324.pdf",
+      "sourcePage": 10,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "5d2326cce11b0ec79cfc7b8a",
+      "reference": "PSI324",
+      "sourceFile": "Réflexe eco - Pharmacie/PSI324.pdf",
+      "sourcePage": 10,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "2e68a409adf57326dd931b37",
+      "reference": "PSI324",
+      "sourceFile": "Réflexe eco - Pharmacie/PSI324.pdf",
+      "sourcePage": 10,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "bfd1094b7e84c0012c5aadc3",
+      "reference": "PSI324",
+      "sourceFile": "Réflexe eco - Pharmacie/PSI324.pdf",
+      "sourcePage": 11,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "addac6cc2f9217540a0b8c81",
+      "reference": "PSI324",
+      "sourceFile": "Réflexe eco - Pharmacie/PSI324.pdf",
+      "sourcePage": 11,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "7efd2c9d6ce1d82d94ad685d",
+      "reference": "PSI324",
+      "sourceFile": "Réflexe eco - Pharmacie/PSI324.pdf",
+      "sourcePage": 11,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "bbc4e16f9b92a25b26ece4a5",
+      "reference": "PSI324",
+      "sourceFile": "Réflexe eco - Pharmacie/PSI324.pdf",
       "sourcePage": 11,
       "reasons": [
         "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
@@ -18389,6 +19476,573 @@
       "id": "22b31fe44419427c8daaabbb",
       "reference": "PSI311",
       "sourceFile": "Régime général/PSI311.pdf",
+      "sourcePage": 11,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "8663887cd98e142167483017",
+      "reference": "PSI321",
+      "sourceFile": "Régime général/PSI321.pdf",
+      "sourcePage": 3,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "a984e090062cb619a8bfe28f",
+      "reference": "PSI321",
+      "sourceFile": "Régime général/PSI321.pdf",
+      "sourcePage": 3,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "1a056bdd20eeddd9c6a2f303",
+      "reference": "PSI321",
+      "sourceFile": "Régime général/PSI321.pdf",
+      "sourcePage": 3,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "fe02f7bedd71586a1d4526e1",
+      "reference": "PSI321",
+      "sourceFile": "Régime général/PSI321.pdf",
+      "sourcePage": 3,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "65960a18261bbb5d8640df94",
+      "reference": "PSI321",
+      "sourceFile": "Régime général/PSI321.pdf",
+      "sourcePage": 3,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "30ecca244c06c44b5708a4a8",
+      "reference": "PSI321",
+      "sourceFile": "Régime général/PSI321.pdf",
+      "sourcePage": 3,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "fd25328c12ed8a616024af6c",
+      "reference": "PSI321",
+      "sourceFile": "Régime général/PSI321.pdf",
+      "sourcePage": 3,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "b96076cdcdb624b0aa4862f0",
+      "reference": "PSI321",
+      "sourceFile": "Régime général/PSI321.pdf",
+      "sourcePage": 3,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "7dab7d1423ff6f1afe74c257",
+      "reference": "PSI321",
+      "sourceFile": "Régime général/PSI321.pdf",
+      "sourcePage": 3,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "cee24f935121303840a51ea1",
+      "reference": "PSI321",
+      "sourceFile": "Régime général/PSI321.pdf",
+      "sourcePage": 3,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "87488e51c159e67c1418e687",
+      "reference": "PSI321",
+      "sourceFile": "Régime général/PSI321.pdf",
+      "sourcePage": 3,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "23c7414a578453580fa0c2c5",
+      "reference": "PSI321",
+      "sourceFile": "Régime général/PSI321.pdf",
+      "sourcePage": 3,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "3cd50f097238a71e1de6cc27",
+      "reference": "PSI321",
+      "sourceFile": "Régime général/PSI321.pdf",
+      "sourcePage": 3,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "d65818ef46880006beb5804e",
+      "reference": "PSI321",
+      "sourceFile": "Régime général/PSI321.pdf",
+      "sourcePage": 3,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "8cc219a3b1ff58f6a1bef40e",
+      "reference": "PSI321",
+      "sourceFile": "Régime général/PSI321.pdf",
+      "sourcePage": 3,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "3c99d97ab4ccc61aff65bb03",
+      "reference": "PSI321",
+      "sourceFile": "Régime général/PSI321.pdf",
+      "sourcePage": 3,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "ffbc26cbcc9d75962f9f40cc",
+      "reference": "PSI321",
+      "sourceFile": "Régime général/PSI321.pdf",
+      "sourcePage": 4,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "332bd942c5352a7d6577df76",
+      "reference": "PSI321",
+      "sourceFile": "Régime général/PSI321.pdf",
+      "sourcePage": 4,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "cf8c8f412372a8d95590fb8e",
+      "reference": "PSI321",
+      "sourceFile": "Régime général/PSI321.pdf",
+      "sourcePage": 4,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "84be466fbf72bcd3705013a0",
+      "reference": "PSI321",
+      "sourceFile": "Régime général/PSI321.pdf",
+      "sourcePage": 5,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "bc55c2037204c05335154277",
+      "reference": "PSI321",
+      "sourceFile": "Régime général/PSI321.pdf",
+      "sourcePage": 5,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "a1835a9044ce5a0c34fde417",
+      "reference": "PSI321",
+      "sourceFile": "Régime général/PSI321.pdf",
+      "sourcePage": 5,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "5c91306bb2542b4568b67821",
+      "reference": "PSI321",
+      "sourceFile": "Régime général/PSI321.pdf",
+      "sourcePage": 5,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "84960ac9e08dcb9ff1ab3667",
+      "reference": "PSI321",
+      "sourceFile": "Régime général/PSI321.pdf",
+      "sourcePage": 5,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "becb1a9fa8f1051219cf4c16",
+      "reference": "PSI321",
+      "sourceFile": "Régime général/PSI321.pdf",
+      "sourcePage": 5,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "6d675e27fb7f9923cbf35b34",
+      "reference": "PSI321",
+      "sourceFile": "Régime général/PSI321.pdf",
+      "sourcePage": 6,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "33d5406eeff15242f9c6588c",
+      "reference": "PSI321",
+      "sourceFile": "Régime général/PSI321.pdf",
+      "sourcePage": 6,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "3957e1263706665897719e2c",
+      "reference": "PSI321",
+      "sourceFile": "Régime général/PSI321.pdf",
+      "sourcePage": 7,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "bd75b0fb8e15420e2272b686",
+      "reference": "PSI321",
+      "sourceFile": "Régime général/PSI321.pdf",
+      "sourcePage": 7,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "3b886d445c8a5d87a7715bde",
+      "reference": "PSI321",
+      "sourceFile": "Régime général/PSI321.pdf",
+      "sourcePage": 7,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "908e6343fe9d1bb47c895df3",
+      "reference": "PSI321",
+      "sourceFile": "Régime général/PSI321.pdf",
+      "sourcePage": 7,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "44c1b971791ecb3aa7d9f862",
+      "reference": "PSI321",
+      "sourceFile": "Régime général/PSI321.pdf",
+      "sourcePage": 7,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "06aa6e018242383f71edc607",
+      "reference": "PSI321",
+      "sourceFile": "Régime général/PSI321.pdf",
+      "sourcePage": 7,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "9e6e72f4c88ca7705cd46897",
+      "reference": "PSI321",
+      "sourceFile": "Régime général/PSI321.pdf",
+      "sourcePage": 7,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "5e3cb99e432e07379d5425f1",
+      "reference": "PSI321",
+      "sourceFile": "Régime général/PSI321.pdf",
+      "sourcePage": 7,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "61f03c9f6226e7835fc6dacf",
+      "reference": "PSI321",
+      "sourceFile": "Régime général/PSI321.pdf",
+      "sourcePage": 7,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "dedd427f799d64290f1f6526",
+      "reference": "PSI321",
+      "sourceFile": "Régime général/PSI321.pdf",
+      "sourcePage": 7,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "b43020c93ac5fe8662a952f1",
+      "reference": "PSI321",
+      "sourceFile": "Régime général/PSI321.pdf",
+      "sourcePage": 7,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "e6d029725918d5db84b643a7",
+      "reference": "PSI321",
+      "sourceFile": "Régime général/PSI321.pdf",
+      "sourcePage": 7,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "8dad92a933bd19249de52dae",
+      "reference": "PSI321",
+      "sourceFile": "Régime général/PSI321.pdf",
+      "sourcePage": 7,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "0d82ae7700b96b2e743ab774",
+      "reference": "PSI321",
+      "sourceFile": "Régime général/PSI321.pdf",
+      "sourcePage": 7,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "8f53a8ca50528b7cb33458c5",
+      "reference": "PSI321",
+      "sourceFile": "Régime général/PSI321.pdf",
+      "sourcePage": 9,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "f1c1884325e018cf78ae4f35",
+      "reference": "PSI321",
+      "sourceFile": "Régime général/PSI321.pdf",
+      "sourcePage": 9,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "6ce2d1d9ba2d7f21f7ece2d1",
+      "reference": "PSI321",
+      "sourceFile": "Régime général/PSI321.pdf",
+      "sourcePage": 9,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "cf96f10f699cb9c76f53f26e",
+      "reference": "PSI321",
+      "sourceFile": "Régime général/PSI321.pdf",
+      "sourcePage": 9,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "d5f437a5e28841f99ae0955c",
+      "reference": "PSI321",
+      "sourceFile": "Régime général/PSI321.pdf",
+      "sourcePage": 9,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "f4384714eddca501b071fa68",
+      "reference": "PSI321",
+      "sourceFile": "Régime général/PSI321.pdf",
+      "sourcePage": 9,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "840aee7af64684cf78017b4f",
+      "reference": "PSI321",
+      "sourceFile": "Régime général/PSI321.pdf",
+      "sourcePage": 9,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "88266927ab40553bd5071704",
+      "reference": "PSI321",
+      "sourceFile": "Régime général/PSI321.pdf",
+      "sourcePage": 9,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "2395c7d8089bd3f9dfffeb9a",
+      "reference": "PSI321",
+      "sourceFile": "Régime général/PSI321.pdf",
+      "sourcePage": 9,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "d39d45ec82dcffc7a2cde601",
+      "reference": "PSI321",
+      "sourceFile": "Régime général/PSI321.pdf",
+      "sourcePage": 9,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "79151cadb44652562e0e8aa4",
+      "reference": "PSI321",
+      "sourceFile": "Régime général/PSI321.pdf",
+      "sourcePage": 9,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "3e4abfa04960afdbc6dfdd1a",
+      "reference": "PSI321",
+      "sourceFile": "Régime général/PSI321.pdf",
+      "sourcePage": 9,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "595619423da96a553d198171",
+      "reference": "PSI321",
+      "sourceFile": "Régime général/PSI321.pdf",
+      "sourcePage": 9,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "62ca6af7b7d211ae7857c9f0",
+      "reference": "PSI321",
+      "sourceFile": "Régime général/PSI321.pdf",
+      "sourcePage": 9,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "e2d859890cfbe5eca4ce8c98",
+      "reference": "PSI321",
+      "sourceFile": "Régime général/PSI321.pdf",
+      "sourcePage": 10,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "6cfd3f30ea527fb50639cf14",
+      "reference": "PSI321",
+      "sourceFile": "Régime général/PSI321.pdf",
+      "sourcePage": 10,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "4772036d7b04671521626d40",
+      "reference": "PSI321",
+      "sourceFile": "Régime général/PSI321.pdf",
+      "sourcePage": 10,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "014847e804e4cdc8d715788e",
+      "reference": "PSI321",
+      "sourceFile": "Régime général/PSI321.pdf",
+      "sourcePage": 10,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "79fbba658c6df4939ecd430c",
+      "reference": "PSI321",
+      "sourceFile": "Régime général/PSI321.pdf",
+      "sourcePage": 11,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "5fbda4acb78dcab041dac07e",
+      "reference": "PSI321",
+      "sourceFile": "Régime général/PSI321.pdf",
+      "sourcePage": 11,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "0c750265bbd923789960e05b",
+      "reference": "PSI321",
+      "sourceFile": "Régime général/PSI321.pdf",
+      "sourcePage": 11,
+      "reasons": [
+        "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."
+      ]
+    },
+    {
+      "id": "218a9618847b1c2c83eae3f2",
+      "reference": "PSI321",
+      "sourceFile": "Régime général/PSI321.pdf",
       "sourcePage": 11,
       "reasons": [
         "Texte composé, colonnes fusionnées, alternatives ou superposition ; ne pas convertir en garantie totale."

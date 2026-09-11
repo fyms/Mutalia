@@ -83,6 +83,9 @@ def extract_document(root, source):
             if source['reference'] not in {r.replace(' ', '') for r in observed}:
                 raise ValueError('Code du PDF incompatible avec son nom : ' + source['reference'])
         for page_number, page in enumerate(pdf.pages, 1):
+            # Targeted fallback: duplicate glyphs at the same location hide table headers.
+            if source['reference'] in {'PSI321', 'PSI323', 'PSI324'}:
+                page = page.dedupe_chars(tolerance=0.1)
             text = page.extract_text() or ''
             item = {'page': page_number, 'status': 'not_extracted', 'reason': '', 'recordCount': 0}
             before = len(records)

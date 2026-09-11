@@ -29,3 +29,13 @@ Ambiguïtés connues : chiffres superposés ; composantes AMO/TM non séparées 
 `python3 scripts/extract_harmonie_corpus.py` traite automatiquement les 43 entrées particuliers du manifest, synthèse incluse, sans les deux CCN. Il réutilise intégralement le parseur du Lot 2A et produit `extraction-candidates.json` et `extraction-report.json`. Le schéma accepte le scope `particuliers_full_corpus` ; le scope échantillon conserve sa limite de cinq documents et sa fixture inchangée.
 
 `python3 -m unittest discover -s scripts -p 'test_harmonie_corpus.py'` contrôle la couverture exacte, les références distinctes, la provenance, les statuts, le rapport et une seconde extraction identique. Une exception interrompt le batch avant écriture. Le rapport compte aussi les placeholders `not_extracted` parmi les lignes candidates et détaille les pages non reconnues, valeurs composées et doublons potentiels au sein d'une même référence. Ces doublons sont signalés, jamais fusionnés. Aucun candidat n'est une garantie exploitable sans revue documentaire ultérieure.
+
+## Lot 2C — fiabilisation technique ciblée
+
+`python3 scripts/reliabilize_harmonie.py` reprend les JSON du commit Codex `918a6e1` (historique Git local requis) et ne rouvre que PSI321, PSI323 et PSI324. Le fallback supprime les glyphes dupliqués de même police/taille aux mêmes coordonnées (tolérance 0,1 point), puis réutilise le découpage existant. Aucune valeur n'est copiée d'une référence voisine. La fixture du Lot 2A reste inchangée.
+
+`reliability-report.json` conserve le classement des 367 groupes initiaux et celui des groupes après récupération. Contexte identique (fichier/SHA/page/catégorie/prestation/sous-prestation/condition/limite) : `exact_duplicate_candidate` ; contextes tous distincts : `legitimate_repeat` ; groupe mixte : `ambiguous_duplicate`. La suppression exige en plus l'identité de tous les champs hors identifiant, coordonnées incluses. Aucun enregistrement n'a satisfait ce dernier critère ; tous restent conservés.
+
+Les pages non reconnues des trois références passent de 30 à 6. Le compteur de lignes `not_extracted` passe cependant de 551 à 560, car les tableaux récupérés exposent des cellules vides auparavant masquées par des placeholders de pages. Les 3 420 lignes `needs_review` exigent une revue métier ; les 560 lignes/repères non extraits restent un chantier distinct. Aucun `verified` automatique.
+
+Test ciblé reproductible (réouvre seulement les trois PDF) : `python3 -m unittest discover -s scripts -p 'test_harmonie_reliability.py'`.
