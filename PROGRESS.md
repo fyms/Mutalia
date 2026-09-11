@@ -1,2 +1,2 @@
-Terminé : audit final documenté dans FINAL_AUDIT.md ; aucun P0/P1 applicatif reproduit, 5 P2 conservés, 124 tests + typecheck + lint réussis.
-Restant / priorité : valider le build hors restriction système de port Turbopack ; smoke-tests du prototype exécutés, données fictives audit conservées en historique.
+Terminé : V1.1 code postal → communes via API officielle, cache serveur, conservation en édition et saisie manuelle de secours ; 26 tests ciblés, typecheck et lint validés.
+Restant : réserve de build de l’audit précédent ; tag mutalia-demo-v1 inchangé, aucun changement hors adresse.

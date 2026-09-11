@@ -1,6 +1,7 @@
 "use client";
 import { useState, useTransition } from "react";
 import Link from "next/link";
+import { PostalCityFields } from "./PostalCityFields";
 import type { ManualHousehold } from "@/lib/domain/manualHouseholds";
 import { editHouseholdAction, createHouseholdAction } from "@/lib/domain/householdActions";
 
@@ -8,7 +9,6 @@ const fields = [
   ["firstName", "Prénom", "text", 100], ["lastName", "Nom", "text", 100],
   ["birthDate", "Date de naissance", "date", 10], ["email", "E-mail", "email", 254],
   ["phone", "Téléphone", "tel", 30], ["address", "Adresse", "text", 250],
-  ["postalCode", "Code postal", "text", 5], ["city", "Ville", "text", 100],
   ["effectiveDate", "Date d’effet / adhésion", "date", 10],
 ] as const;
 export function NewHouseholdForm({formulas, record, onDone}: {formulas: {key: string; label: string}[]; record?: ManualHousehold; onDone?: () => void}) {
@@ -30,8 +30,9 @@ export function NewHouseholdForm({formulas, record, onDone}: {formulas: {key: st
       {fields.map(([name, label, type, maxLength]) => <label key={name} className="block">
         <span className="m-label">{label}</span>
         <input className="m-field" name={name} defaultValue={record?.[name]} type={type} required maxLength={maxLength}
-          pattern={name === "postalCode" ? "[0-9]{5}" : undefined} />
+          />
       </label>)}
+      <PostalCityFields key={record?.id ?? "new"} postalCode={record?.postalCode} city={record?.city}/>
       <label className="block"><span className="m-label">Formule Harmonie 2026</span>
         <select name="formulaKey" className="m-field" required defaultValue={record?.formulaKey ?? ""}>
           <option value="" disabled>Choisir une formule</option>
