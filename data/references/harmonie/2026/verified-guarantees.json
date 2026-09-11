@@ -1,0 +1,788 @@
+{
+  "guarantees": [
+    {
+      "benefit": "Chirurgie réfractive ou implants oculaires non AMO",
+      "calculationMode": "fixed_amount",
+      "candidateIds": [
+        "e473c0b6601464a418b5b141"
+      ],
+      "category": "optique",
+      "condition": "Chirurgie ou implants oculaires non pris en charge par la Sécurité sociale, destinés à corriger myopie, astigmatisme, presbytie ou hypermétropie ; pas les maladies des yeux. Remboursement par bénéficiaire limité aux frais réellement dépensés.",
+      "family": "particuliers — réflexe eco pharmacie + chambre particulière",
+      "limit": "300 € par œil",
+      "openDivergences": [],
+      "originalObservedRule": {
+        "calculationMode": "fixed_amount",
+        "condition": "voir le contexte et les renvois conservés pour la page 7 ; aucune composante amo/amc fusionnée.",
+        "limit": "300 €/oeil",
+        "rawValue": "300 €/oeil",
+        "references": [
+          "PSI323"
+        ],
+        "reviewUnitId": "0f688d5ae6f2615350d55f2142836daaa03cccc932da08779fde2a4b07f6b08e",
+        "unit": "eur/oeil",
+        "value": 300.0
+      },
+      "reference": "PSI323",
+      "regime": "non déterminé par le dossier",
+      "reviewUnitId": "0f688d5ae6f2615350d55f2142836daaa03cccc932da08779fde2a4b07f6b08e",
+      "sources": [
+        {
+          "id": "e473c0b6601464a418b5b141",
+          "reference": "PSI323",
+          "sourceBBox": [
+            123,
+            638.014,
+            579,
+            666.5
+          ],
+          "sourceFile": "Réflexe eco - Pharmacie et chambre particulière/PSI323.pdf",
+          "sourcePage": 7,
+          "sourceSha256": "4a20bfd1a457eb719cd3cc3ac6ecc0371827cecd6edc7c4ad8e7425f53c8620f"
+        }
+      ],
+      "status": "verified",
+      "unit": "EUR/œil",
+      "value": 300,
+      "verifiedBy": "document_review_2026"
+    },
+    {
+      "benefit": "Chambre particulière avec nuitée — maternité",
+      "calculationMode": "fixed_amount",
+      "candidateIds": [
+        "e5045204f852e2bfce115084"
+      ],
+      "category": "maternité",
+      "condition": "Maternité : chambre particulière avec nuitée ; en établissement conventionné avec accord tarifaire, prise en charge dans les limites des tarifs de l’accord. Remboursement par bénéficiaire limité aux frais réellement dépensés.",
+      "family": "particuliers — réflexe eco pharmacie",
+      "limit": "40 € par nuit",
+      "openDivergences": [],
+      "originalObservedRule": {
+        "calculationMode": "fixed_amount",
+        "condition": "voir le contexte et les renvois conservés pour la page 5 ; aucune composante amo/amc fusionnée.",
+        "limit": "40 € / nuit",
+        "rawValue": "40 € / nuit",
+        "references": [
+          "PSI114"
+        ],
+        "reviewUnitId": "1760618156d903b06b77c362afce469b68d08ada5a883baf008ee3013003a466",
+        "unit": "eur/nuit",
+        "value": 40.0
+      },
+      "reference": "PSI114",
+      "regime": "non déterminé par le dossier",
+      "reviewUnitId": "1760618156d903b06b77c362afce469b68d08ada5a883baf008ee3013003a466",
+      "sources": [
+        {
+          "id": "e5045204f852e2bfce115084",
+          "reference": "PSI114",
+          "sourceBBox": [
+            123,
+            752.357,
+            579,
+            771.437
+          ],
+          "sourceFile": "Réflexe eco - Pharmacie/PSI114.pdf",
+          "sourcePage": 5,
+          "sourceSha256": "dbfbc704011783dc45a31e69e8e0705d4ffac50e2811a684eb11b68aae025176"
+        }
+      ],
+      "status": "verified",
+      "unit": "EUR/nuit",
+      "value": 40,
+      "verifiedBy": "document_review_2026"
+    },
+    {
+      "benefit": "Bridges fixes définitifs non AMO",
+      "calculationMode": "fixed_amount",
+      "candidateIds": [
+        "c078e71934240af5f2d9c6eb"
+      ],
+      "category": "dentaire",
+      "condition": "Bridges fixes définitifs non remboursables par la Sécurité sociale ; les deuxième et troisième inters du bridge ne sont pas remboursables. Remboursement par bénéficiaire limité aux frais réellement dépensés.",
+      "family": "particuliers",
+      "limit": "400 € par an",
+      "openDivergences": [],
+      "originalObservedRule": {
+        "calculationMode": "fixed_amount",
+        "condition": "voir le contexte et les renvois conservés pour la page 9 ; aucune composante amo/amc fusionnée.",
+        "limit": "400 €/an",
+        "rawValue": "400 €/an",
+        "references": [
+          "PSI131"
+        ],
+        "reviewUnitId": "3811f88dd3e576f57d1aff688e5a894680d4d9028cabdfa06baaf153e7d37550",
+        "unit": "eur/an",
+        "value": 400.0
+      },
+      "reference": "PSI131",
+      "regime": "régime général",
+      "reviewUnitId": "3811f88dd3e576f57d1aff688e5a894680d4d9028cabdfa06baaf153e7d37550",
+      "sources": [
+        {
+          "id": "c078e71934240af5f2d9c6eb",
+          "reference": "PSI131",
+          "sourceBBox": [
+            123,
+            615.028,
+            579,
+            635.028
+          ],
+          "sourceFile": "Régime général/PSI131.pdf",
+          "sourcePage": 9,
+          "sourceSha256": "3958bcf9b07719bcb32d1a52aefcea0363fa7c6a8e2a5ba2249738c59362942f"
+        }
+      ],
+      "status": "verified",
+      "unit": "EUR/an",
+      "value": 400,
+      "verifiedBy": "document_review_2026"
+    },
+    {
+      "benefit": "Chirurgie réfractive ou implants oculaires non AMO",
+      "calculationMode": "fixed_amount",
+      "candidateIds": [
+        "603abee47948e97127e13171"
+      ],
+      "category": "optique",
+      "condition": "Chirurgie ou implants oculaires non pris en charge par la Sécurité sociale, destinés à corriger myopie, astigmatisme, presbytie ou hypermétropie ; pas les maladies des yeux. Remboursement par bénéficiaire limité aux frais réellement dépensés.",
+      "family": "particuliers — réflexe eco pharmacie",
+      "limit": "300 € par œil",
+      "openDivergences": [],
+      "originalObservedRule": {
+        "calculationMode": "fixed_amount",
+        "condition": "voir le contexte et les renvois conservés pour la page 7 ; aucune composante amo/amc fusionnée.",
+        "limit": "300 €/oeil",
+        "rawValue": "300 €/oeil",
+        "references": [
+          "PSI324"
+        ],
+        "reviewUnitId": "3b7447ba6fe45921ba6ca8c6eb9e8335d80b9ca333b01d0b07a4f963641bab44",
+        "unit": "eur/oeil",
+        "value": 300.0
+      },
+      "reference": "PSI324",
+      "regime": "non déterminé par le dossier",
+      "reviewUnitId": "3b7447ba6fe45921ba6ca8c6eb9e8335d80b9ca333b01d0b07a4f963641bab44",
+      "sources": [
+        {
+          "id": "603abee47948e97127e13171",
+          "reference": "PSI324",
+          "sourceBBox": [
+            123,
+            627.453,
+            579,
+            654.453
+          ],
+          "sourceFile": "Réflexe eco - Pharmacie/PSI324.pdf",
+          "sourcePage": 7,
+          "sourceSha256": "32ef795598590c45d1cea5f8bbafcfdc9e52ce35b66c0371af9bbb3d4813504f"
+        }
+      ],
+      "status": "verified",
+      "unit": "EUR/œil",
+      "value": 300,
+      "verifiedBy": "document_review_2026"
+    },
+    {
+      "benefit": "Chambre particulière avec nuitée — hospitalisation",
+      "calculationMode": "fixed_amount",
+      "candidateIds": [
+        "71ce9c42410bb144e39c36ce"
+      ],
+      "category": "hospitalisation",
+      "condition": "Hospitalisation : psychiatrie, délai d’attente de six mois à compter de la date d’effet ; établissement conventionné avec accord tarifaire : limites des tarifs de l’accord. Remboursement par bénéficiaire limité aux frais réellement dépensés.",
+      "family": "particuliers — réflexe eco pharmacie",
+      "limit": "40 € par nuit ; psychiatrie 60 nuits/an",
+      "openDivergences": [],
+      "originalObservedRule": {
+        "calculationMode": "fixed_amount",
+        "condition": "voir le contexte et les renvois conservés pour la page 5 ; aucune composante amo/amc fusionnée.",
+        "limit": "40 € / nuit",
+        "rawValue": "40 € / nuit",
+        "references": [
+          "PSI114"
+        ],
+        "reviewUnitId": "470dd8c03b2c1ddb647f1801f90169f6b92b70ebdbd16875eadf0f99f7c4f95e",
+        "unit": "eur/nuit",
+        "value": 40.0
+      },
+      "reference": "PSI114",
+      "regime": "non déterminé par le dossier",
+      "reviewUnitId": "470dd8c03b2c1ddb647f1801f90169f6b92b70ebdbd16875eadf0f99f7c4f95e",
+      "sources": [
+        {
+          "id": "71ce9c42410bb144e39c36ce",
+          "reference": "PSI114",
+          "sourceBBox": [
+            123,
+            481.5,
+            579,
+            500.5
+          ],
+          "sourceFile": "Réflexe eco - Pharmacie/PSI114.pdf",
+          "sourcePage": 5,
+          "sourceSha256": "dbfbc704011783dc45a31e69e8e0705d4ffac50e2811a684eb11b68aae025176"
+        }
+      ],
+      "status": "verified",
+      "unit": "EUR/nuit",
+      "value": 40,
+      "verifiedBy": "document_review_2026"
+    },
+    {
+      "benefit": "Bridges fixes définitifs non AMO",
+      "calculationMode": "fixed_amount",
+      "candidateIds": [
+        "8beaa947300743b14c71bf95"
+      ],
+      "category": "dentaire",
+      "condition": "Bridges fixes définitifs non remboursables par la Sécurité sociale ; les deuxième et troisième inters du bridge ne sont pas remboursables. Remboursement par bénéficiaire limité aux frais réellement dépensés.",
+      "family": "particuliers — réflexe eco pharmacie + chambre particulière",
+      "limit": "200 € par an",
+      "openDivergences": [],
+      "originalObservedRule": {
+        "calculationMode": "fixed_amount",
+        "condition": "voir le contexte et les renvois conservés pour la page 9 ; aucune composante amo/amc fusionnée.",
+        "limit": "200 €/an",
+        "rawValue": "200 €/an",
+        "references": [
+          "PSI123"
+        ],
+        "reviewUnitId": "6caaa46698898f4cfbe46930570e797f8be3f365459a331b1be9b44c8b1799b2",
+        "unit": "eur/an",
+        "value": 200.0
+      },
+      "reference": "PSI123",
+      "regime": "non déterminé par le dossier",
+      "reviewUnitId": "6caaa46698898f4cfbe46930570e797f8be3f365459a331b1be9b44c8b1799b2",
+      "sources": [
+        {
+          "id": "8beaa947300743b14c71bf95",
+          "reference": "PSI123",
+          "sourceBBox": [
+            123,
+            615.028,
+            579,
+            635.028
+          ],
+          "sourceFile": "Réflexe eco - Pharmacie et chambre particulière/PSI123.pdf",
+          "sourcePage": 9,
+          "sourceSha256": "01df93c3c77bc588bc3533af78f60b7b51e626c97a3eb1147f75b8f637e1f1c2"
+        }
+      ],
+      "status": "verified",
+      "unit": "EUR/an",
+      "value": 200,
+      "verifiedBy": "document_review_2026"
+    },
+    {
+      "benefit": "Lentilles refusées par la Sécurité sociale",
+      "calculationMode": "fixed_amount",
+      "candidateIds": [
+        "c45053142b92ed392a567207"
+      ],
+      "category": "optique",
+      "condition": "Lentilles refusées par la Sécurité sociale. Remboursement par bénéficiaire limité aux frais réellement dépensés.",
+      "family": "particuliers — réflexe eco pharmacie",
+      "limit": "100 € par an",
+      "openDivergences": [],
+      "originalObservedRule": {
+        "calculationMode": "fixed_amount",
+        "condition": "voir le contexte et les renvois conservés pour la page 7 ; aucune composante amo/amc fusionnée.",
+        "limit": "100 €/an",
+        "rawValue": "100 €/an",
+        "references": [
+          "PSI324"
+        ],
+        "reviewUnitId": "7e3f0edeb0edfbf3be9b11ff0419b7cee3cdde4f1fc8e1788c170a2c11bf346f",
+        "unit": "eur/an",
+        "value": 100.0
+      },
+      "reference": "PSI324",
+      "regime": "non déterminé par le dossier",
+      "reviewUnitId": "7e3f0edeb0edfbf3be9b11ff0419b7cee3cdde4f1fc8e1788c170a2c11bf346f",
+      "sources": [
+        {
+          "id": "c45053142b92ed392a567207",
+          "reference": "PSI324",
+          "sourceBBox": [
+            123,
+            608.398,
+            579,
+            627.453
+          ],
+          "sourceFile": "Réflexe eco - Pharmacie/PSI324.pdf",
+          "sourcePage": 7,
+          "sourceSha256": "32ef795598590c45d1cea5f8bbafcfdc9e52ce35b66c0371af9bbb3d4813504f"
+        }
+      ],
+      "status": "verified",
+      "unit": "EUR/an",
+      "value": 100,
+      "verifiedBy": "document_review_2026"
+    },
+    {
+      "benefit": "Bridges fixes définitifs non AMO",
+      "calculationMode": "fixed_amount",
+      "candidateIds": [
+        "69d58d12d4c47a30401e6f12"
+      ],
+      "category": "dentaire",
+      "condition": "Bridges fixes définitifs non remboursables par la Sécurité sociale ; les deuxième et troisième inters du bridge ne sont pas remboursables. Remboursement par bénéficiaire limité aux frais réellement dépensés.",
+      "family": "particuliers — réflexe eco pharmacie + chambre particulière",
+      "limit": "400 € par an",
+      "openDivergences": [],
+      "originalObservedRule": {
+        "calculationMode": "fixed_amount",
+        "condition": "voir le contexte et les renvois conservés pour la page 9 ; aucune composante amo/amc fusionnée.",
+        "limit": "400 €/an",
+        "rawValue": "400 €/an",
+        "references": [
+          "PSI133"
+        ],
+        "reviewUnitId": "9a90191b69b32b019711b54bde2d5bd27d016a4d22e56afa060ddad07667722d",
+        "unit": "eur/an",
+        "value": 400.0
+      },
+      "reference": "PSI133",
+      "regime": "non déterminé par le dossier",
+      "reviewUnitId": "9a90191b69b32b019711b54bde2d5bd27d016a4d22e56afa060ddad07667722d",
+      "sources": [
+        {
+          "id": "69d58d12d4c47a30401e6f12",
+          "reference": "PSI133",
+          "sourceBBox": [
+            123,
+            615.028,
+            579,
+            635.028
+          ],
+          "sourceFile": "Réflexe eco - Pharmacie et chambre particulière/PSI133.pdf",
+          "sourcePage": 9,
+          "sourceSha256": "bd3930f2eaeb29fecfc3cfe3b7e5e3892ca8a6a1d2c8ba731034c0adf3d8e960"
+        }
+      ],
+      "status": "verified",
+      "unit": "EUR/an",
+      "value": 400,
+      "verifiedBy": "document_review_2026"
+    },
+    {
+      "benefit": "Chambre particulière en ambulatoire",
+      "calculationMode": "fixed_amount",
+      "candidateIds": [
+        "a29a3e04b69776c9db9429f4"
+      ],
+      "category": "hospitalisation",
+      "condition": "Chambre ambulatoire : séjour réalisé en hospitalisation avec anesthésie et/ou chirurgie sans nuitée ; établissement conventionné avec accord tarifaire : limites des tarifs de l’accord. Remboursement par bénéficiaire limité aux frais réellement dépensés.",
+      "family": "particuliers — réflexe eco pharmacie",
+      "limit": "15 € par jour",
+      "openDivergences": [],
+      "originalObservedRule": {
+        "calculationMode": "fixed_amount",
+        "condition": "voir le contexte et les renvois conservés pour la page 5 ; aucune composante amo/amc fusionnée.",
+        "limit": "15 € / jour",
+        "rawValue": "15 € / jour",
+        "references": [
+          "PSI114"
+        ],
+        "reviewUnitId": "a0472fc21102a70d6c2ef2cfbc240c11a00a36b33eb58e47e60b494cc40901ad",
+        "unit": "eur/jour",
+        "value": 15.0
+      },
+      "reference": "PSI114",
+      "regime": "non déterminé par le dossier",
+      "reviewUnitId": "a0472fc21102a70d6c2ef2cfbc240c11a00a36b33eb58e47e60b494cc40901ad",
+      "sources": [
+        {
+          "id": "a29a3e04b69776c9db9429f4",
+          "reference": "PSI114",
+          "sourceBBox": [
+            123,
+            500.5,
+            579,
+            522.92
+          ],
+          "sourceFile": "Réflexe eco - Pharmacie/PSI114.pdf",
+          "sourcePage": 5,
+          "sourceSha256": "dbfbc704011783dc45a31e69e8e0705d4ffac50e2811a684eb11b68aae025176"
+        }
+      ],
+      "status": "verified",
+      "unit": "EUR/jour",
+      "value": 15,
+      "verifiedBy": "document_review_2026"
+    },
+    {
+      "benefit": "Lentilles refusées par la Sécurité sociale",
+      "calculationMode": "fixed_amount",
+      "candidateIds": [
+        "7f174f996bc2557d8d8afb96"
+      ],
+      "category": "optique",
+      "condition": "Lentilles refusées par la Sécurité sociale. Remboursement par bénéficiaire limité aux frais réellement dépensés.",
+      "family": "particuliers — réflexe eco pharmacie + chambre particulière",
+      "limit": "100 € par an",
+      "openDivergences": [],
+      "originalObservedRule": {
+        "calculationMode": "fixed_amount",
+        "condition": "voir le contexte et les renvois conservés pour la page 7 ; aucune composante amo/amc fusionnée.",
+        "limit": "100 €/an",
+        "rawValue": "100 €/an",
+        "references": [
+          "PSI323"
+        ],
+        "reviewUnitId": "a4f991f0ff172cb750ea82ec72b8c7ff2303888cbfd60a6e649ab1474302bf9f",
+        "unit": "eur/an",
+        "value": 100.0
+      },
+      "reference": "PSI323",
+      "regime": "non déterminé par le dossier",
+      "reviewUnitId": "a4f991f0ff172cb750ea82ec72b8c7ff2303888cbfd60a6e649ab1474302bf9f",
+      "sources": [
+        {
+          "id": "7f174f996bc2557d8d8afb96",
+          "reference": "PSI323",
+          "sourceBBox": [
+            123,
+            621.5,
+            579,
+            638.014
+          ],
+          "sourceFile": "Réflexe eco - Pharmacie et chambre particulière/PSI323.pdf",
+          "sourcePage": 7,
+          "sourceSha256": "4a20bfd1a457eb719cd3cc3ac6ecc0371827cecd6edc7c4ad8e7425f53c8620f"
+        }
+      ],
+      "status": "verified",
+      "unit": "EUR/an",
+      "value": 100,
+      "verifiedBy": "document_review_2026"
+    },
+    {
+      "benefit": "Lentilles refusées par la Sécurité sociale",
+      "calculationMode": "fixed_amount",
+      "candidateIds": [
+        "7afa956c29a2884980ce0e8c"
+      ],
+      "category": "optique",
+      "condition": "Lentilles refusées par la Sécurité sociale. Remboursement par bénéficiaire limité aux frais réellement dépensés.",
+      "family": "particuliers",
+      "limit": "100 € par an",
+      "openDivergences": [],
+      "originalObservedRule": {
+        "calculationMode": "fixed_amount",
+        "condition": "voir le contexte et les renvois conservés pour la page 7 ; aucune composante amo/amc fusionnée.",
+        "limit": "100 €/an",
+        "rawValue": "100 €/an",
+        "references": [
+          "PSI321"
+        ],
+        "reviewUnitId": "a8a74bf2e5b1a613f52579391bc0543f0cacb9ba5ce81759467d373350db5cfe",
+        "unit": "eur/an",
+        "value": 100.0
+      },
+      "reference": "PSI321",
+      "regime": "régime général",
+      "reviewUnitId": "a8a74bf2e5b1a613f52579391bc0543f0cacb9ba5ce81759467d373350db5cfe",
+      "sources": [
+        {
+          "id": "7afa956c29a2884980ce0e8c",
+          "reference": "PSI321",
+          "sourceBBox": [
+            123,
+            608.398,
+            579,
+            627.453
+          ],
+          "sourceFile": "Régime général/PSI321.pdf",
+          "sourcePage": 7,
+          "sourceSha256": "b692a94f75163ebba07de0af3838cce6c766f16d6448cc999fa4cb8f364a3e8d"
+        }
+      ],
+      "status": "verified",
+      "unit": "EUR/an",
+      "value": 100,
+      "verifiedBy": "document_review_2026"
+    },
+    {
+      "benefit": "Bridges fixes définitifs non AMO",
+      "calculationMode": "fixed_amount",
+      "candidateIds": [
+        "1dece9115c48751257e332d1"
+      ],
+      "category": "dentaire",
+      "condition": "Bridges fixes définitifs non remboursables par la Sécurité sociale ; les deuxième et troisième inters du bridge ne sont pas remboursables. Remboursement par bénéficiaire limité aux frais réellement dépensés.",
+      "family": "particuliers — réflexe eco pharmacie",
+      "limit": "400 € par an",
+      "openDivergences": [],
+      "originalObservedRule": {
+        "calculationMode": "fixed_amount",
+        "condition": "voir le contexte et les renvois conservés pour la page 9 ; aucune composante amo/amc fusionnée.",
+        "limit": "400 €/an",
+        "rawValue": "400 €/an",
+        "references": [
+          "PSI134"
+        ],
+        "reviewUnitId": "b99fcea40d1307e8f19af081306dd6e3a00e125bf81b4f8b5c4d43b60cae2745",
+        "unit": "eur/an",
+        "value": 400.0
+      },
+      "reference": "PSI134",
+      "regime": "non déterminé par le dossier",
+      "reviewUnitId": "b99fcea40d1307e8f19af081306dd6e3a00e125bf81b4f8b5c4d43b60cae2745",
+      "sources": [
+        {
+          "id": "1dece9115c48751257e332d1",
+          "reference": "PSI134",
+          "sourceBBox": [
+            123,
+            615.028,
+            579,
+            635.028
+          ],
+          "sourceFile": "Réflexe eco - Pharmacie/PSI134.pdf",
+          "sourcePage": 9,
+          "sourceSha256": "56e8d883cc6490e78fa66ce279573765ccdfe26a62f8ff492f34dbb20cc66728"
+        }
+      ],
+      "status": "verified",
+      "unit": "EUR/an",
+      "value": 400,
+      "verifiedBy": "document_review_2026"
+    },
+    {
+      "benefit": "Implantologie",
+      "calculationMode": "fixed_amount",
+      "candidateIds": [
+        "2e6601312fe58596ded44b0e"
+      ],
+      "category": "dentaire",
+      "condition": "Prise en charge uniquement de la pose d’un implant intra-osseux. Remboursement par bénéficiaire limité aux frais réellement dépensés.",
+      "family": "particuliers",
+      "limit": "Maximum 3 implants par an",
+      "openDivergences": [],
+      "originalObservedRule": {
+        "calculationMode": "compound_or_ambiguous",
+        "condition": "voir le contexte et les renvois conservés pour la page 9 ; aucune composante amo/amc fusionnée.",
+        "limit": "300 €/implant maximum 3 implants/an",
+        "rawValue": "300 €/implant maximum 3 implants/an",
+        "references": [
+          "PLI231"
+        ],
+        "reviewUnitId": "c34ccff948d1ad1f108ae3aa06054c441c5e271e977cd1fbb64445559e9b539b",
+        "unit": null,
+        "value": null
+      },
+      "reference": "PLI231",
+      "regime": "régime local",
+      "reviewUnitId": "c34ccff948d1ad1f108ae3aa06054c441c5e271e977cd1fbb64445559e9b539b",
+      "sources": [
+        {
+          "id": "2e6601312fe58596ded44b0e",
+          "reference": "PLI231",
+          "sourceBBox": [
+            123,
+            651.21,
+            579,
+            683.083
+          ],
+          "sourceFile": "Régime Local/PLI231.pdf",
+          "sourcePage": 9,
+          "sourceSha256": "e34a3691b625656789b5c1993c8aee2d97ecafcaef7622b9696d99085eca5541"
+        }
+      ],
+      "status": "verified",
+      "unit": "EUR/implant",
+      "value": 300,
+      "verifiedBy": "document_review_2026"
+    },
+    {
+      "benefit": "Bridges fixes définitifs non AMO",
+      "calculationMode": "fixed_amount",
+      "candidateIds": [
+        "153c300b93b9b7b2eaa0778f"
+      ],
+      "category": "dentaire",
+      "condition": "Bridges fixes définitifs non remboursables par la Sécurité sociale ; les deuxième et troisième inters du bridge ne sont pas remboursables. Remboursement par bénéficiaire limité aux frais réellement dépensés.",
+      "family": "particuliers",
+      "limit": "400 € par an",
+      "openDivergences": [],
+      "originalObservedRule": {
+        "calculationMode": "fixed_amount",
+        "condition": "voir le contexte et les renvois conservés pour la page 9 ; aucune composante amo/amc fusionnée.",
+        "limit": "400 €/an",
+        "rawValue": "400 €/an",
+        "references": [
+          "PLI231"
+        ],
+        "reviewUnitId": "c951d9a1b0b7f5ebb6db5bf8177aa4288ec4fcc90eab75df3ad812e258287f6c",
+        "unit": "eur/an",
+        "value": 400.0
+      },
+      "reference": "PLI231",
+      "regime": "régime local",
+      "reviewUnitId": "c951d9a1b0b7f5ebb6db5bf8177aa4288ec4fcc90eab75df3ad812e258287f6c",
+      "sources": [
+        {
+          "id": "153c300b93b9b7b2eaa0778f",
+          "reference": "PLI231",
+          "sourceBBox": [
+            123,
+            615.028,
+            579,
+            635.028
+          ],
+          "sourceFile": "Régime Local/PLI231.pdf",
+          "sourcePage": 9,
+          "sourceSha256": "e34a3691b625656789b5c1993c8aee2d97ecafcaef7622b9696d99085eca5541"
+        }
+      ],
+      "status": "verified",
+      "unit": "EUR/an",
+      "value": 400,
+      "verifiedBy": "document_review_2026"
+    },
+    {
+      "benefit": "Chirurgie réfractive ou implants oculaires non AMO",
+      "calculationMode": "fixed_amount",
+      "candidateIds": [
+        "4dad3501381045fbb6a1f304"
+      ],
+      "category": "optique",
+      "condition": "Chirurgie ou implants oculaires non pris en charge par la Sécurité sociale, destinés à corriger myopie, astigmatisme, presbytie ou hypermétropie ; pas les maladies des yeux. Remboursement par bénéficiaire limité aux frais réellement dépensés.",
+      "family": "particuliers",
+      "limit": "300 € par œil",
+      "openDivergences": [],
+      "originalObservedRule": {
+        "calculationMode": "fixed_amount",
+        "condition": "voir le contexte et les renvois conservés pour la page 7 ; aucune composante amo/amc fusionnée.",
+        "limit": "300 €/oeil",
+        "rawValue": "300 €/oeil",
+        "references": [
+          "PSI321"
+        ],
+        "reviewUnitId": "d2b55ce6671387ea53b1f85ae325668eb94cca7cca17177023e81fa130d41183",
+        "unit": "eur/oeil",
+        "value": 300.0
+      },
+      "reference": "PSI321",
+      "regime": "régime général",
+      "reviewUnitId": "d2b55ce6671387ea53b1f85ae325668eb94cca7cca17177023e81fa130d41183",
+      "sources": [
+        {
+          "id": "4dad3501381045fbb6a1f304",
+          "reference": "PSI321",
+          "sourceBBox": [
+            123,
+            627.453,
+            579,
+            654.453
+          ],
+          "sourceFile": "Régime général/PSI321.pdf",
+          "sourcePage": 7,
+          "sourceSha256": "b692a94f75163ebba07de0af3838cce6c766f16d6448cc999fa4cb8f364a3e8d"
+        }
+      ],
+      "status": "verified",
+      "unit": "EUR/œil",
+      "value": 300,
+      "verifiedBy": "document_review_2026"
+    },
+    {
+      "benefit": "Bridges fixes définitifs non AMO",
+      "calculationMode": "fixed_amount",
+      "candidateIds": [
+        "8106bf6e8695df2fc576a222"
+      ],
+      "category": "dentaire",
+      "condition": "Bridges fixes définitifs non remboursables par la Sécurité sociale ; les deuxième et troisième inters du bridge ne sont pas remboursables. Remboursement par bénéficiaire limité aux frais réellement dépensés.",
+      "family": "particuliers",
+      "limit": "200 € par an",
+      "openDivergences": [],
+      "originalObservedRule": {
+        "calculationMode": "fixed_amount",
+        "condition": "voir le contexte et les renvois conservés pour la page 9 ; aucune composante amo/amc fusionnée.",
+        "limit": "200 €/an",
+        "rawValue": "200 €/an",
+        "references": [
+          "PSI121"
+        ],
+        "reviewUnitId": "df7c93062eb59dfe2d31b1174d75f5cab52d568e7b212ff91e085fa79dfdb749",
+        "unit": "eur/an",
+        "value": 200.0
+      },
+      "reference": "PSI121",
+      "regime": "régime général",
+      "reviewUnitId": "df7c93062eb59dfe2d31b1174d75f5cab52d568e7b212ff91e085fa79dfdb749",
+      "sources": [
+        {
+          "id": "8106bf6e8695df2fc576a222",
+          "reference": "PSI121",
+          "sourceBBox": [
+            123,
+            601.5,
+            579,
+            621.5
+          ],
+          "sourceFile": "Régime général/PSI121.pdf",
+          "sourcePage": 9,
+          "sourceSha256": "cd2380f3347f25d3a57362d2cafe85204ce38eb0648d213be132616e723fd1f7"
+        }
+      ],
+      "status": "verified",
+      "unit": "EUR/an",
+      "value": 200,
+      "verifiedBy": "document_review_2026"
+    },
+    {
+      "benefit": "Bridges fixes définitifs non AMO",
+      "calculationMode": "fixed_amount",
+      "candidateIds": [
+        "661e6497ddd33f16248cfc17"
+      ],
+      "category": "dentaire",
+      "condition": "Bridges fixes définitifs non remboursables par la Sécurité sociale ; les deuxième et troisième inters du bridge ne sont pas remboursables. Remboursement par bénéficiaire limité aux frais réellement dépensés.",
+      "family": "particuliers — réflexe eco pharmacie",
+      "limit": "200 € par an",
+      "openDivergences": [],
+      "originalObservedRule": {
+        "calculationMode": "fixed_amount",
+        "condition": "voir le contexte et les renvois conservés pour la page 9 ; aucune composante amo/amc fusionnée.",
+        "limit": "200 €/an",
+        "rawValue": "200 €/an",
+        "references": [
+          "PSI124"
+        ],
+        "reviewUnitId": "e7ed0fc77ebabc2502f7a20a0306604aac601921590914305203db6d734c55a4",
+        "unit": "eur/an",
+        "value": 200.0
+      },
+      "reference": "PSI124",
+      "regime": "non déterminé par le dossier",
+      "reviewUnitId": "e7ed0fc77ebabc2502f7a20a0306604aac601921590914305203db6d734c55a4",
+      "sources": [
+        {
+          "id": "661e6497ddd33f16248cfc17",
+          "reference": "PSI124",
+          "sourceBBox": [
+            123,
+            615.028,
+            579,
+            635.028
+          ],
+          "sourceFile": "Réflexe eco - Pharmacie/PSI124.pdf",
+          "sourcePage": 9,
+          "sourceSha256": "4018074060403f58bdd036b3dd25f4661c927a714ed43de3b8afce3175b4ed05"
+        }
+      ],
+      "status": "verified",
+      "unit": "EUR/an",
+      "value": 200,
+      "verifiedBy": "document_review_2026"
+    }
+  ],
+  "lot": "2F1",
+  "verified": 17
+}

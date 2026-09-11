@@ -1,0 +1,1012 @@
+{
+  "lot": "2F1",
+  "pages": [
+    {
+      "reviewUnitIds": [
+        "0193906cefcd5a4bcb3ca6fb8d10eb5e7249ee9669cd86ebd4cd7620ffcac9e7",
+        "02590d2848b843db4943658fe19fdab23f7a73b96892114a2cf45ab5c11fcfb1",
+        "04915afb58c5e4f93f17b565865b91bc625485454c4aca6f21767d5d34f8bbc8",
+        "0fef66fb3447f51a7f5d4ff0db263cc9cc009c6b21af1fbdb06166262a955da4",
+        "2838433976a6cfed0707266594f6abb9bb4fc0f282063c7f826d8c27c7d426ac",
+        "3b7447ba6fe45921ba6ca8c6eb9e8335d80b9ca333b01d0b07a4f963641bab44",
+        "3b85f770bbef8672f75ce06c0fb89ec6b35c8c9158ef0ce8e8c9bd8ee8c9d687",
+        "72c2edd2f84c47812915e012016c8075b7fb67d9a11c3f2f8ad4cd47b80c3024",
+        "7842691efbb6f76c2fe7b50d8f2106de55eebe1d91a6b1ced72102a674c54149",
+        "7a95526f1b8416b4b1b96828ba79b3fd0a57952b7ab985778bb1bf16fcb0fbf7",
+        "7e3f0edeb0edfbf3be9b11ff0419b7cee3cdde4f1fc8e1788c170a2c11bf346f",
+        "976e5efaae95e8905482935c63245c94d9af6b8182f725108a9331b6a405c01a",
+        "a106e8af5f33ea8247f1cf1e7e9681e13ebe01d12f9e62af420b2f828f25ef4b",
+        "a7ea7d544f76daa34c2810471a94373146325bc9bc85f0cb27b7f3729900ecfc",
+        "aedca404d50f758e9094ef64a10a941ab805cefc698857e7e12dc2852c2c6040",
+        "c505cba6addb3c96c171aeb98c18c930256e5c48769819c2f791052a4d03fb28",
+        "d137ba84e3db58975b15c0df071b8e903f3bdfef45e73c553580dcd453d610d7",
+        "e447844efc083bd3fa8e186d289149e44eb4ae4cdae6e95a62bd677f0efad2eb",
+        "e4efb63406af402dfa806a65446de2043335c646525a7093cee6958fae4d8c63"
+      ],
+      "sourceFile": "Réflexe eco - Pharmacie/PSI324.pdf",
+      "sourcePage": 7,
+      "sourceSha256": "32ef795598590c45d1cea5f8bbafcfdc9e52ce35b66c0371af9bbb3d4813504f",
+      "rank": 1,
+      "visualReviewNote": "Optique : monture libre 60% AMO + 50 € ; verres réseau 45/110/140 €, hors réseau 25/80/100 €. Lentilles refusées 100 €/An ; chirurgie réfractive non AMO 300 €/œil. Définitions des verres renvoyées page suivante non lue. Renouvellement équipement deux ans avec exceptions indiquées.",
+      "reviewedBy": "document_review_2026"
+    },
+    {
+      "reviewUnitIds": [
+        "156ad019ece1925521ae6f6b4593aebae0e9ee18372af1c453e729c32ff11373",
+        "2a667cf6f98264306a1a7e9a1db108a5636c572c38783e3b8037436ba61bb1c1",
+        "33a1e280f9f66d1da20a900c57b00a87526350ea3757eab3988c3dd274f4520e",
+        "45e667dcf791c2c4e6489fc0cc50c7a62d74163a3953eea048f2cbb390e8989c",
+        "6ca6f1be22ba23f6d7cc4daa9eb12bbc0fe7b595fb1c43fb0c5440e33981567b",
+        "6d1d2f41fb569318a41e18c30bf98f1e4b7e60c8667573041e641befab0551a5",
+        "9312db8398ce4654ca764e68f4aaaaf61003d93f705fe33a15356432ce84e556",
+        "989c8c4a0c407705f8d544205d7e694577d3c7bca21da30a685e98ea5323ed58",
+        "a6a064e147d665c5eada90140ffe0b19aac5ad9a327f99a0b2222fbc1427d1d3",
+        "a8866290049c4ab4eb1df1d97660ba8ddc10a27c5d366228494d1a74c0719cd9",
+        "a898861b20debdf189959dd8e2baa32f11bc3583bade7a2196c93dd15d796d36",
+        "a8a74bf2e5b1a613f52579391bc0543f0cacb9ba5ce81759467d373350db5cfe",
+        "b27def301427128e99e7e2832a4c54dbd59021e50a61178270df59f0f39c9fe6",
+        "d2b55ce6671387ea53b1f85ae325668eb94cca7cca17177023e81fa130d41183",
+        "d8cb64f233d6e2956694b3a5f261a7cf15920e7e1f8c9a9f4010a08faf772927",
+        "df85b855bd04e221c9fb4b67051dcf34cc9099b2e58579efc4d10c99de546c89",
+        "e502acce192a1356e2d7ec1c032051ba726e9554d32aa5b3c2fae63997c64480",
+        "ee422bb1b8d6cd68acd2910824fd7428fb0b873745852690863a16d282ff3861",
+        "fb1c4463a36a445cf41cf975cdee779fb47c6a8810d725186521361eea215886"
+      ],
+      "sourceFile": "Régime général/PSI321.pdf",
+      "sourcePage": 7,
+      "sourceSha256": "b692a94f75163ebba07de0af3838cce6c766f16d6448cc999fa4cb8f364a3e8d",
+      "rank": 2,
+      "visualReviewNote": "Optique PSI321 : monture 50 €, verres réseau 45/110/140 €, hors réseau 25/80/100 €, bonus 20 € après trois ans. Lentilles refusées 100 €/An, chirurgie réfractive 300 €/œil ; renvois 19 et 20. Page de définition des verres non lue.",
+      "reviewedBy": "document_review_2026"
+    },
+    {
+      "reviewUnitIds": [
+        "0f688d5ae6f2615350d55f2142836daaa03cccc932da08779fde2a4b07f6b08e",
+        "2596fc79ba79018c972acbc59a654c0e145fc712f11e56560db844c832d73191",
+        "2b30b9184ff630926084b7977decc9196a2df04db359a9b8a489aad83c3b8b97",
+        "3ac6559af557cbb983a72f135b89c61d2c49e72283267dd003f870f715d77eff",
+        "4eb40d81aba3ddda3c68cdf6e6f68a101b91ede9c79abed841d21d11a35c8518",
+        "51eb4b535cd7ded10dfc931761ec91257743ca5f3f73fecb2cd4222421c3f73b",
+        "7f13aed8f523d174e7cbdcdb377f765be991dfca33e4279ccbab4864ada87b73",
+        "81795c274cb54ceee0e3ae7fe70f41736c475684dce7a5103ffa08e7570349e4",
+        "8590c42a1df75985327279d37de950f42217ae5f01e6cdd480f812c63dcc2c85",
+        "94ecdc09880f5d3a3e4e9012487f11c55d6ee29c2a5de71bbb0057c4aa02f460",
+        "a4f991f0ff172cb750ea82ec72b8c7ff2303888cbfd60a6e649ab1474302bf9f",
+        "b1e1fdc396c0c2a58d8764dcc3f3baca3bc99befff3788101595a455c83b7315",
+        "b2c9e4f53d05976ff24d3d6056c69adafff88d0979bcf863926523ee5ed49b9a",
+        "c02987bf734a38b923440bf5c6cb0d698d134d5e15df1473ac822a2df44b6c5a",
+        "d2df51407802813cd3cafb18c747aa4d54b910eca14ae5f9968915b514a86cd3",
+        "e7d372f42a53b2f704970e3268652579477f1edc4031d9134fc8a55147f5f55a",
+        "f6cf87dbd7bf5eee669c68c9a5d050e6863ee25c165a54fcb7d12000dd7387cf"
+      ],
+      "sourceFile": "Réflexe eco - Pharmacie et chambre particulière/PSI323.pdf",
+      "sourcePage": 7,
+      "sourceSha256": "4a20bfd1a457eb719cd3cc3ac6ecc0371827cecd6edc7c4ad8e7425f53c8620f",
+      "rank": 3,
+      "visualReviewNote": "Optique PSI323 : mêmes montants explicitement lus sur cette page propre : monture 50 €, verres 45/110/140 € réseau et 25/80/100 € hors réseau ; lentilles refusées 100 €/An, chirurgie 300 €/œil. Renvoi définition des verres hors périmètre.",
+      "reviewedBy": "document_review_2026"
+    },
+    {
+      "reviewUnitIds": [
+        "077384a11fbb5fac15024c32921ee2b5ae35c1ad5504e30948299fdf916660cb",
+        "151f01ee6ee1cf56ea6f619160db660a9fad980bd7ed9fad8241939ec8347b1f",
+        "3057f21dc07068ef5f46d28a438a007582889bbf0a041a6ab63ff62b1ab01d2e",
+        "32444e5e567d113f625d72a92ee336e0f2ddeeb5d88ac92619cfcf56d96f4f8e",
+        "3c9b3546436e5e5ff75c0c61642af585fce063ff9db7a0525c2469cb1636b319",
+        "4520499c9f86859f9936f42603f36f8ca80582df45b9818da66700d51af83ba0",
+        "4db631470daf153f5ec4ca269fa07ea11428b489ea2520a8ba56c8ce8b80ccee",
+        "6554d219255ed1a32580f06511985a274f2595873992bc03c65c2145b8643e3e",
+        "6caaa46698898f4cfbe46930570e797f8be3f365459a331b1be9b44c8b1799b2",
+        "774a531f9a694d2d1c6d14d7784a0952a57fa2031732d18138d5bfb7eff39865",
+        "776532e4dbd7fc8903ee8f7fbb349a49ab34fcdcc7f4f1627caeef2c9c6c9f65",
+        "97ab78eb0bce2f65672ba59b8bd8ca93a9900988a4e5a0922f91418118e178a6",
+        "ca5a09e4e181519ccbeb8f07cc77ac13d264e1fa276e139fa5ab8ce7f611734d",
+        "cb511e7a94487e192c97cbccd605a9c982fc38e859b67b9335e1debbfc549e8d",
+        "db0f698e9be0dccc0e9e026e96cb75f888e2b9c21251317c04abe05929eccb6d",
+        "ff8b8ad88e827b7cf0e1a266448cf7ab4e38c02ba0c473921738214ce82f528a"
+      ],
+      "sourceFile": "Réflexe eco - Pharmacie et chambre particulière/PSI123.pdf",
+      "sourcePage": 9,
+      "sourceSha256": "01df93c3c77bc588bc3533af78f60b7b51e626c97a3eb1147f75b8f637e1f1c2",
+      "rank": 4,
+      "visualReviewNote": "Dentaire PSI123 : soins 60% AMO + 40% TM ; prothèses 60%+40%+100%. Plafonds dépassements 800/1000/1200 €/année civile selon ancienneté. Bridges exclus AMO 200 €/An, implant 300 €/implant maximum trois/an, parodontologie 400 €/An avec liste CCAM externe.",
+      "reviewedBy": "document_review_2026"
+    },
+    {
+      "reviewUnitIds": [
+        "0057dab9cd2be1606b3564480a024ba1cfb965a804b1ca9ad867dd634159791d",
+        "1b92a0606302e8d9f2cc98ed4595e7839a921716149ded600848bf9080cb3286",
+        "26204b8d27c9afe42959d83ea9d5811af1c80f0e92b66fdbfc34584f0edcde65",
+        "2965d44bdaf788b6ada23716877e07aa834f35882f687aa51ce2559ddd19d769",
+        "6c9d92903218fffe18e84eab167964b333d96399ac179587674de9b3ce39a4d6",
+        "6cfe20a76fad23211d21eac2a3b19cc3ffe288d4af0218dff9427e8fdf8e1a96",
+        "737d35a79ffaacc2344b72602e97f22b56f177ea75b620fd0ec50d881204f998",
+        "7d989950a713e264cb9066f629f3f369a97143c29ecaff2450d62deba29e951f",
+        "7ea6167a01266e259f2969838b844d282ca56d266f6604a6c749784e4eaad93a",
+        "968d604154fcaa5390b07cc95299f8898fcfbf322ce2179e0ba156563db73f9a",
+        "d851c40606d01f20112d7f1a3ea83641b28fb14309607f75d24dbf3b215cd371",
+        "e651c24d9d251ea65518d6a5136600177136a28f359744280c2cbe6058b6100f",
+        "e78980a6b1e46947abfc3d228944d2750d92092f222323738232e4ba7883a4fd",
+        "e7ed0fc77ebabc2502f7a20a0306604aac601921590914305203db6d734c55a4",
+        "e90fa10ea2e1dc867896b4dbca05516d8d01c8481be84ec4180fd3356452adb6",
+        "f22089cc4585209a30929fe9c9368de855b6d857b799a825bc11ed4823d87ec6"
+      ],
+      "sourceFile": "Réflexe eco - Pharmacie/PSI124.pdf",
+      "sourcePage": 9,
+      "sourceSha256": "4018074060403f58bdd036b3dd25f4661c927a714ed43de3b8afce3175b4ed05",
+      "rank": 5,
+      "visualReviewNote": "Dentaire PSI124 : soins 60%+40%, prothèses 60%+40%+100%, plafonds 800/1000/1200 €/année civile ; bridges 200 €/An, implant 300 € maximum trois/an, parodontologie 400 €/An ; renvoi CCAM externe.",
+      "reviewedBy": "document_review_2026"
+    },
+    {
+      "reviewUnitIds": [
+        "0e6bebf436335d40e63e172a0608d3574cd8c60dc947263da1ffa5d0a3d920b7",
+        "1dfa8a7b982edc08561101f48ce3b4b6600e027c9bb53eec50c1f71c85bdb68c",
+        "21367bfb287f7913fd0a7886d49ba04cd177b9bdee131f15bdabcff4f0d17200",
+        "6102d635e6f4759f12a75b16c49d7a243d1355ea6518e10624cecc37a15812e8",
+        "6b2d319bc10fe57e94e60e6f41e1072d9ef3a56f2f1d062b558953abb920ac15",
+        "87a528f35c6cbfc006d26b40673242235ba4e5ee8c6af66fedaa9fcb51e01d17",
+        "98ad6dfd30a0e52b6c8ae79c1054dae4a10a55bf265e0bdb05167d2db9404db1",
+        "a41958588a293d7f2001caf0f3d4c25aecf397294f9837fdf4e25db25a8076e3",
+        "bf1bd0312919c466d3c1a99fbab8a559619132f414690c50d42bc642fb7f5122",
+        "c34ccff948d1ad1f108ae3aa06054c441c5e271e977cd1fbb64445559e9b539b",
+        "c951d9a1b0b7f5ebb6db5bf8177aa4288ec4fcc90eab75df3ad812e258287f6c",
+        "cae03a7272afbdf79a0007c016b7042ee175b199ce6ba900b987553e85c79726",
+        "ce8e30810d70e541ca2046bccb45a5794b0ffe71372d1c5cfba59e0f6e82b863",
+        "dae05b442d5a47a679e20ac900166275d1b8c38aa420d886bce3ec7a1ab9f90e",
+        "f2909b8106224fda9b050f0fc644fe84567b0e3e31688a575bbc776c19adb645",
+        "ff8b4162dfa36786ef97054aa1cf7e7a2e362784f740aa9bb18b2f0a2d4a8edf"
+      ],
+      "sourceFile": "Régime Local/PLI231.pdf",
+      "sourcePage": 9,
+      "sourceSha256": "e34a3691b625656789b5c1993c8aee2d97ecafcaef7622b9696d99085eca5541",
+      "rank": 6,
+      "visualReviewNote": "Dentaire PLI231 : soins 90%+10%, prothèses 90%+10%+150%, plafonds 1200/1400/1600 €/année civile. Bridges 400 €/An, orthodontie AMO 100% plus 600 €/An ; implant 300 €/implant maximum trois/an, pose intra-osseuse seulement ; parodontologie 600 €/An avec renvoi CCAM.",
+      "reviewedBy": "document_review_2026"
+    },
+    {
+      "reviewUnitIds": [
+        "050591c40af270ba18c1fb637a74da35126885c0bc0fecd507ace47c2e1f5fad",
+        "252878225d961b26e1f939518e83195e2371a2f3f40309fb414586d1fbeae7b8",
+        "2ec91a6608cfa27e13c3c7aaf136f49f1c8de3606acd2bd37cbfe1cbf293d9db",
+        "4663fb38b9f6eb49ff5335ee6bf706ab7ed1836d626e0d5a6ceddd4c3c8b838a",
+        "6117604d6840d8297cc2864acb3ad155c255a4724efdd6485ff88242b215b6de",
+        "65a645dd2547a0172262adde4f359d420c27903c06bb10cec2c632e3beb1339b",
+        "721ab569990cbb37a030b7ff501667099f966765607e37107df1dc0aacf5c69d",
+        "8caf60230a6548a73e8cecfa34ac35880f10358b7c86461e57473bdc216187f5",
+        "9fa8c48744a707965470d5a3cc8faaa4d7ab67548c34df41f983e7c96cc2b86e",
+        "c15650971e9b2f98e52d02eea22208836ebd86dfbd305cb80358fb3800434fb4",
+        "c970f1e2d7550efe77ec7c85aec78eb013225e0a28e05f826e864a5096e062f6",
+        "d74e639d5cf875fed10a8d9a3869a79686c4f3789efd1251276a563dbc8bf500",
+        "df7c93062eb59dfe2d31b1174d75f5cab52d568e7b212ff91e085fa79dfdb749",
+        "e8a9a5f37c882fb2fdadac5a2638bae9d647ccd9d21c7c61c2e05fb3cf8a1318",
+        "eea69abc63c367e519b5ef26ba97c11ad8c18dd394c60e42922bf03780c7e373",
+        "f61efbd6b7e5a41a51e0d5f6bb0bde4344fdc650f0ff56f45efc2a5ab33225d4"
+      ],
+      "sourceFile": "Régime général/PSI121.pdf",
+      "sourcePage": 9,
+      "sourceSha256": "cd2380f3347f25d3a57362d2cafe85204ce38eb0648d213be132616e723fd1f7",
+      "rank": 7,
+      "visualReviewNote": "Dentaire PSI121 : soins 60%+40%, prothèses 60%+40%+100%, plafonds 800/1000/1200 €/année civile. Bridges 200 €/An, orthodontie 300 €/An complémentaire, implant 300 € maximum trois/an, parodontologie 400 €/An avec renvoi CCAM.",
+      "reviewedBy": "document_review_2026"
+    },
+    {
+      "reviewUnitIds": [
+        "156643877aa0fe3cb28ed7230044b3ad1a4401e414d88182223db1a48763cc08",
+        "22c7d52921d62204d9fbf3d63c18b69f8284c48a891c1172d7baa7a2cb1a5c79",
+        "23a769a692e25869857f247937d1a76fb4d40187ef195f22a8acbc97ee2c0d80",
+        "25bcd003a6b7a441b59f06246497705d934f9bf12ddc7fa86006fad481099b5a",
+        "2ce432ccaabbb1fdcc8d0924dee1f883cf74fbd1f5d36c748312ce4e48c5fb6c",
+        "37ea17a08f0be9c63ac539d3db82cef564959072c9821c760b0dec4fe44f8e85",
+        "5c9681e29af9b2bfcdb42d72b92b3e39ee33664afdc67653998e23118c0bbc97",
+        "7560e325e3bc387ac86d4b1758257a0e29a91922265731897f8e25be906360cd",
+        "9b85e35e26e847dbdc4d52c86732d67c841a87a220bb505df185bd954f1f385d",
+        "b0a5f0bd95e134d3f95d89f7a5219815d36b11bf4f7e450fe3e5fadd8ba78083",
+        "c0ea526a6733147dd579fa3da2674425ee635cacad9f511d88f900da55c33894",
+        "d8b8056f84e524476145663dee5645c8b6119334716781afdfb1d944414007b5",
+        "d9bb96092ca42d2c0594f11650ba4698f8f0b4f9678f5b55a5927ebe9adcfe43",
+        "daf38df4da1c1231edb932bf4acb0ba7e4b9b1a080ded469da6ecc5f277030e1",
+        "f6d64967fd94cacbbb651d46ca0d953b94392176e81dca11a1e1c68d9442873c"
+      ],
+      "sourceFile": "Réflexe eco - Pharmacie et chambre particulière/PSI113.pdf",
+      "sourcePage": 9,
+      "sourceSha256": "85b554c089242c36a0e9e8e91c0d29f0a933e8ed40de432d5067f40f68879a83",
+      "rank": 8,
+      "visualReviewNote": "Dentaire PSI113 : prothèses 60%+40%+50%, plafonds 450/600/800 €/année civile. Orthodontie 60%+40% ou AMO100%. Parodontologie 200 €/An conditionnée à certains codes CCAM externes.",
+      "reviewedBy": "document_review_2026"
+    },
+    {
+      "reviewUnitIds": [
+        "25ed70239c5b7dd16baeb40ff25da9e263c4ac6f4a20e76d18842e1e2f773e24",
+        "58c27d2a5f8ec895b5595fba5543e3acdc6a4ab1207056532931a3b62b501f1e",
+        "5974cbc080facad421bb967b02f271621ea53d33cf1d77c41bbd20ed82977340",
+        "74c5c5e80dd42b7964ce622192225041d8dde7ebeef7fe620aecdb32440e7129",
+        "7b53d460c4bd5b98ebf8dacfeb606e20c478c7272a1ca5696b8bc848a57399fb",
+        "7dbc47e48913053f87bfe94e1940229c0d6dcd9ebcd260d9a7134accabdd3825",
+        "8bdcca07d36ea17572284a3245fd73729622af22edbbb7f51bd3a0e5d0b2fb68",
+        "aead5c3fa2cedf15f9852af20c7d3e7cbad88bde7a015334593dbf6fc66e4717",
+        "c6cc9d73d72e18d5d75337f8a0c5945029d02d03881e7c153765698f8b0f5090",
+        "c9bb23cdaebf755beb8613b0b8456e4af12807ad65e2e8d11d88b81bd44ea2e2",
+        "ce2441818ebc6331fc6c67def570eeba277f8804e3672cf59258ce483ad6ad22",
+        "d40a1a43120e94c0b06431df81ecdf43e26b7a69947b248843c46d25144ee376",
+        "dbca6f1b556ec50bf4d3f842e288518c28c4a351de21c6a39ed7bdbc5f36ecd7",
+        "dc6ae356fb77001d2b26786b80e3cd8a6fc3906d3c719b58c78b30625b9c8f9f",
+        "f87cc7101f0887c7a44cde017ad655af6ccce89d628e761342b842a46dad5274"
+      ],
+      "sourceFile": "Réflexe eco - Pharmacie/PSI114.pdf",
+      "sourcePage": 9,
+      "sourceSha256": "dbfbc704011783dc45a31e69e8e0705d4ffac50e2811a684eb11b68aae025176",
+      "rank": 9,
+      "visualReviewNote": "Dentaire PSI114 : prothèses 60%+40%+50%, plafonds 450/600/800 €/année civile ; parodontologie 200 €/An avec renvoi CCAM. Les doubles chiffres du candidat ne sont pas imprimés comme un taux unique.",
+      "reviewedBy": "document_review_2026"
+    },
+    {
+      "reviewUnitIds": [
+        "22977698d74866018c049b219f9f519226a9e7ff53eb3fef2d045abc3ef7d0d4",
+        "26fdda1fadee401c192bf0fce4b15962aecf08738c8be215a8d8d636f2f501a5",
+        "31afd79fd20c20ae99e2af49532690a24146790aa906ac29ab725aa2ee2e4009",
+        "3bbe9b3735f947628a0ebe766991b8e7d769a918db98ccd281a1105ebb9b42ed",
+        "475059b9606c6796bbfee2d1b967b992789a3cc705ea1c3a912a605e576b5b4a",
+        "4f0b8ebf9b21ba8c8695dc1c34ee3607ef0bce6de9f8266d802b160fa2679358",
+        "623b86c8a31a3dfade00374314710ec7c10f53f68085484e2bf690f973143f44",
+        "693993f3e913c8c552a1a5f55d1c79a73b177005626c0432c68082ad24a1a4b8",
+        "9b8ce43bc93afb58efde1b345ca687665061c8562a0d2d451f186d87efefc4c3",
+        "9d2c8cac6adb19151f9ad6ba8715e60d12dee413173187ce512f9048d29f7e7c",
+        "a28d23ee36c5607eb936876f0f23ef6fb0e98f9fb78b0b93c773b3098816ccdc",
+        "a2accd6c0a8c4786f3af2bb0702db6b925412cb2567c340ca6a16ca862d9c7a8",
+        "af26d21a2570178792ed0c006a1cf6ea5875ff697f6d9f934dabcbdf4a074ce1",
+        "b37b46918b3375151e467b0d5bad8e044043965773d18709fe9cc300a3ed1c0e",
+        "ba9d12a369701d079dc942be8da24fbddb6cc4033d64235e34dcaaa8b20ade80",
+        "cd5f18018b39c00908ca01468490629c2ded6cc2f39adde18f992558f5bad227",
+        "dfbe08f89f4eebafe5ed2af8ef8c5da11f5773760c482b7fa8ff01fe6009253b",
+        "eede1c438f1c36eb31d1e80f99c09c8aa6c9e7688ec7e09ec8c0d142d33addd9",
+        "f77c6b696404aa0f5d3f23ff0cf4a1fb94184a712e787af6fb1dd6fac7953dd2",
+        "f7df817f792c19e200e7ee5b9a667b3b9e0787dd0403a2b147124f178fe381c8",
+        "fe9223ac708ece2780b5ac576f5f9a3df5e0f4aab37975908f0b959c1cfe78ca"
+      ],
+      "sourceFile": "Régime Local/PLI211.pdf",
+      "sourcePage": 3,
+      "sourceSha256": "488dea86c56a6e786a0e287e5a788267bae1acf9498bacd035959b81bc187223",
+      "rank": 10,
+      "visualReviewNote": "Soins courants PLI211 : généralistes 90% AMO +10% TM ; spécialistes OPTAM +50%, non OPTAM +30%. Psychologues 40 €/séance, cinq/an. Médicaments SMR important 90%+10%, modéré 80%+20%, faible 15%+85%. Pharmacie non AMO 20 €/An sous prescription/facture et achat pharmacie. Laboratoire 90%+10%.",
+      "reviewedBy": "document_review_2026"
+    },
+    {
+      "reviewUnitIds": [
+        "09896117a82d9789bf4f1adc3549bcc841fe24e4cce5518dd473d8bd1457af01",
+        "0fdeab7d20b4872a162f8073302a6f5cb9ae93a8d27f6f1a76e5c91d80914386",
+        "20bb0811d4802ce9b79eb43f7c8fab1a4c45cced88fcfb17a6988a498650327c",
+        "257f1009108a7f78d67e76362404b42b3448ae0a3e30e217690fbe24894c7a3f",
+        "41ab6911f242cdcc7f820a5fa2e526dbdb8990eaca47e24d7a471e980d140509",
+        "4f1d3353e531075afb74d186ac1a453c0c0bf05e241359a296ebddca347f8048",
+        "59231e1999c6e63e62f621afcd35b99005e4b954e92c5ce24b198c76879eef3c",
+        "5a2fd8b0f03e649b2d09a4387526314f95668bc51746c9fced25550867245719",
+        "5dcd48c613d43f45823060fb8bc9d48a952efd078438827dbf25bcba6975f4de",
+        "5e9611912f775f865ae7eeabc0a9176b709676ff61f0c6a0ed9e05ed8c7b2389",
+        "830d4fada29f953fe03a4c716f6330c113791fdbf3acc2330c6ee99961356b63",
+        "a1fc4added6bbb8f267192fd83217bda48a726749a79897ab6ce03351c355bc5",
+        "a226ca2d56d7167ab919400565526e61fed58f5252b52ab2d86789ef40c22407",
+        "a946f259995f7d57e8f11cfbc24ce38f3c877ea6fa88a0617dc37dfeb4f8c873",
+        "ad16b2766af60c3dbca65fa8b83642f96d2fc06dfa1cf517f8d2740b5bda8a0e",
+        "c480e9c66c304cedfa7c2417ba71771cdd40030cbf526371ac479eef55d07ee2",
+        "c95977b7a0862d733e22464899155dadb1ebdd6adf69e13f1c820afd1efa3378",
+        "dc1bfa80bec359c85a83b03777016fe1f568f0231eecb3a968b96b12ca60f0e0",
+        "eb3dacf269db7c00f9dec5c29a707955a09483e4642495b1af1ef430d22b4a8e",
+        "f54ef887f011e77bafaab85d4e7e5f39bb938579c833e40e677a7b52d1286801"
+      ],
+      "sourceFile": "Régime Local/PLI221.pdf",
+      "sourcePage": 9,
+      "sourceSha256": "e88fab105e00ce5d7e2aec33e255a057617b808d6a1c4f5de95ab168dc9ad48e",
+      "rank": 11,
+      "visualReviewNote": "Dentaire PLI221 : 90%+10%+100% prothèses ; plafonds 800/1000/1200 €/année civile ; bridges 200 €/An, orthodontie AMO100% +300 €/An ; implant 300 € maximum trois/an ; parodontologie 400 €/An avec renvoi CCAM.",
+      "reviewedBy": "document_review_2026"
+    },
+    {
+      "reviewUnitIds": [
+        "26128aec207f2772f4ab61f9d911ab6cec1b23c7e364d48ebfc67e99609f8d86",
+        "30fa0b6e1cb576224d0c50e5b0231a17db7ddfa632d0d732b407d4c9a1cd61e5",
+        "494902a45b4e3a34c2e6be23ad6f6f0fd90f43940ff8cdb39d277b96a6b2a898",
+        "50b8a53dbd42dcbc079cb74cf3feb6fbe0705f8c8350a33002a3f1ca27b39869",
+        "5ed2c0aa84dc182ed3fc7e2e9588b5ea7f17713b1898b02308b29bbfa289225b",
+        "68123ff8ba81fb2c61a7f889f7e3981a9c877a53c601938d049c109cdac4abc1",
+        "72106813b5114a2fb0a73d905158d54d7a6dd9348816afa9549b619a8f396d24",
+        "9904c9399d41e4d3c6669691d7ef2d44faf3be64ea0cd303ea30ea4a87b6a626",
+        "a4be9b0d6532ad56fc6af259feedbc836ab7ebf007ec377c554f22d5f9054148",
+        "ac8b7ca51df2ecc6114c837783bdd56244994f76a32f8a3d52b0175c41248d59",
+        "bd7a1740cf10d63a82d4c0985aec5c6dd7f35e8be468405adf8698d30bf60667",
+        "cdb1e74d8369984029e4271668bd296fabb004cb48a9632864be092bc0922429",
+        "e09e85def79755f7f689a425bfab39131ae5131a90c86c390d309feb5a96bc93",
+        "e821d64d24a4a4a3fd97c99f29595420aab4d6188b554e737b90a1e0e7f7e7f7",
+        "ff8b86499fe70a5b633b033c770fced7dc33b3974997dadca945ec02a7067114"
+      ],
+      "sourceFile": "Régime général/PSI111.pdf",
+      "sourcePage": 9,
+      "sourceSha256": "d644d02208783a3785ccaf55d651bce203e3cb85385beda8070fde4ad6fb1d8b",
+      "rank": 12,
+      "visualReviewNote": "Dentaire PSI111 : soins 60%+40%, prothèses 60%+40%+50%, plafonds 450/600/800 €/année civile. Parodontologie 200 €/An avec renvoi CCAM ; orthodontie 60%+40% ou AMO100%.",
+      "reviewedBy": "document_review_2026"
+    },
+    {
+      "reviewUnitIds": [
+        "018e9611be42c7ae819a149180a6dec72551e6cf819a699ec372e695a7c96cb9",
+        "04cda34bbe6fde0fb0a52b148adffe3435ebb198e029a2137837c4da75bdbe69",
+        "08870b1cd6d5e46666269f863e129f7f84befb72dc7e448998c1a1ca142709cc",
+        "69e3a840ee0f5f2b0b41281378ce28a30c0724870c0d9705abe95cda57579b23",
+        "7e8e45ac471174fadd058830dfd62bea829d1772b0a84d512f1b3fedc3b2ba59",
+        "905bbf0be6d58eb04b63654362c51331143e0d162154f095a2ff50bd82f89216",
+        "9a90191b69b32b019711b54bde2d5bd27d016a4d22e56afa060ddad07667722d",
+        "b6e98ffe846dbf6206017ea59a2802781868154e919fd7267f7da8e6ea5cbcd6",
+        "cc0cb72145bc947f86d3c3718d5bae9c184cc328bcd742d78cbb26cd9d972f74",
+        "db8274db9d5e979297248f196b754483f2114d26fa47edfcbe6a6eaca28e3d43",
+        "e7a9bdbc32cb7dc7c4b62fc7a7bee74eeef9cc2f0443165bd9c0cb61baefb647",
+        "eaa262f28f7661545db0b21eb9c4fc09537b7ae7245f5b9a8c0a246b85c10548",
+        "fa88dde6460137f23ed8e6618c60759054c99932d76b30d535fcc8bb8ebb1fb4",
+        "fe6020456de4d4776ac3f2f1463314b8ac137edffd5c62f23cd606be7b295b62"
+      ],
+      "sourceFile": "Réflexe eco - Pharmacie et chambre particulière/PSI133.pdf",
+      "sourcePage": 9,
+      "sourceSha256": "bd3930f2eaeb29fecfc3cfe3b7e5e3892ca8a6a1d2c8ba731034c0adf3d8e960",
+      "rank": 13,
+      "visualReviewNote": "Dentaire PSI133 : soins 60%+40%, prothèses 60%+40%+150%, plafonds 1200/1400/1600 €/année civile ; bridges 400 €/An, implant 300 € maximum trois/an, parodontologie 600 €/An avec renvoi CCAM.",
+      "reviewedBy": "document_review_2026"
+    },
+    {
+      "reviewUnitIds": [
+        "13db0719f9425e8f676a5453a551cb3fdb1bcc1fa23b0d44f103f8c934220dde",
+        "3ce97a3c1d399c0f0653318acf95f39f7c9fee0ab82b019c2ebb7f7ef183a8e3",
+        "3e2b28b21b8b02f21bb04957f5d2bf230a7002143658f4fda20a5f6864fb77de",
+        "55a4ed5a015bcae97f263c4fc402b59954677f0ebd6b4addbdfa65f235829232",
+        "6fe8196071f1a782ac124dd2bb32cb2f68fe29b425bb5169892a5366dc65534a",
+        "8a8c86e4004c2a12b027cfdef726856886914e265e04562aeb783e144b888315",
+        "973a86d41ec5701d0daf0da4bd1e739528a371e598e10d9690294dd022d513ec",
+        "a7af3aba59a428e99fde3ca1e5854f5fa9775c3f326d476c7cf72a3679222754",
+        "a85d432c17efeff611c6d6d152ace144d59c3bdf7474c52a5d05ad466903ab2e",
+        "ace0dabc651e2d696628bd462c3376b166a369e0bf057719e42af25a3bb58b86",
+        "b7ff7cbf49696e62fd3ac337ab2d8b371aa1d046cea44466be7a6c34af024add",
+        "b99fcea40d1307e8f19af081306dd6e3a00e125bf81b4f8b5c4d43b60cae2745",
+        "c6792f3fdd6670fe36e0978c682d65cbac88bbe24d3baef3ce046a36652ef8a4",
+        "d5e819ebb31d3552c372e28033c96bcc514c89d6ddaa0f4539ffe8f936655451"
+      ],
+      "sourceFile": "Réflexe eco - Pharmacie/PSI134.pdf",
+      "sourcePage": 9,
+      "sourceSha256": "56e8d883cc6490e78fa66ce279573765ccdfe26a62f8ff492f34dbb20cc66728",
+      "rank": 14,
+      "visualReviewNote": "Dentaire PSI134 : soins 60%+40%, prothèses 60%+40%+150%, plafonds 1200/1400/1600 €/année civile ; bridges 400 €/An, implant 300 € maximum trois/an, parodontologie 600 €/An avec renvoi CCAM.",
+      "reviewedBy": "document_review_2026"
+    },
+    {
+      "reviewUnitIds": [
+        "0999d05c94bc5c5b25b98f524b41dff005a91e8b83fdf6ba24d6e45a98063c4f",
+        "257f1009108a7f78d67e76362404b42b3448ae0a3e30e217690fbe24894c7a3f",
+        "2a55e11321bc84df322913ceadac0d3b4ab5c29d78d6d4fb9c1305f51e6f7773",
+        "2f0b0b1c88d90db1eb745007f3ecbba5ee428a8f587b18bcc24eccfbacc453d2",
+        "31330cc5b7712e49d04e538948ad746d63f77470c9bdd08b93dfe4db8527a757",
+        "3d3604786323eb8b3c5459f66ef51c080144bf540138b54fd2f9c42036f907be",
+        "5f575c492c40cd44fc5f1f864b13e4452b4bfc8ad77e17e6871d0ca849a0443b",
+        "717f1b804b7ad964ca4d34e90411ba80cb9288464931cda827ddbe49314dcf11",
+        "78953bd73be10074584befc83a2a2a0410954df1b24fc159e647969b0dbc098a",
+        "8df44e984048bc1ce31f16230eb16e224c6055bad46e8994781ed9ad1d51081b",
+        "af851d9a3f2f77984eccf36b53c69179f6aa2d7d5d6c06472105f2a7f652d52f",
+        "b3c0e04a77ce05a715b41cdea73aa665f01e58e73485b28a54db6b4ddaca8b2f",
+        "d3ed82b39ea4d7cab2601667d0ffc0dffdef3127328b402c1e2cf590f1ef9594",
+        "f669985540db771f46bf83fff551b44f5004889f56b0dfdaaf2b5726002ecaae",
+        "f7d3c1565f1b3c6a3e4beccacc5d3d7c71a74551acf91b6607ad61c4fc20d99e"
+      ],
+      "sourceFile": "Régime Local/PLI211.pdf",
+      "sourcePage": 9,
+      "sourceSha256": "488dea86c56a6e786a0e287e5a788267bae1acf9498bacd035959b81bc187223",
+      "rank": 15,
+      "visualReviewNote": "Dentaire PLI211 : soins 90%+10%, prothèses 90%+10%+50%, plafonds 450/600/800 €/année civile. Orthodontie AMO100% seule ; parodontologie 200 €/An, liste CCAM externe.",
+      "reviewedBy": "document_review_2026"
+    },
+    {
+      "reviewUnitIds": [
+        "07543cabb5253cf11442baf0a1b80af5f657d9fd518ac1218060f8ba3e208c11",
+        "13129e78f735b889048be3a5391b8d235855572b7571f45859600ad399a13cec",
+        "1e056ff5559c90454adf97678601be3a978a0f1f785b4974e09f2d260af49e3b",
+        "2b52265cd87bb150a3c423f3dec8149632bdea79c7cce998292fef1c0cbcb475",
+        "3811f88dd3e576f57d1aff688e5a894680d4d9028cabdfa06baaf153e7d37550",
+        "386c7a1c08ec930d93639724eab44f79d1512381e29cb3b04a2fea8253c8772b",
+        "3e17def988101baaf4ec277707f404df05ca5ed02cc44d0bcc88ae346e9c4e68",
+        "64392aac01710daa39e44b801c74609fd10fa444c32f8f398ef9e704dfc887f4",
+        "8df967773203124354d38499056471f75bcd89973daa49e91e7d4dd452aaed0b",
+        "95299711039450f68bf1b181f8c564d6c05d1f2b7255c9544f734b6a326832e9",
+        "9adf293a40babb3d2eabc3aa3a5227d10630063870da13c0fea55631c0983344",
+        "cd09171be4e6b8347d357a8b4f97d2af8b49f4a6c067f5098d7087f6a9fe6da6",
+        "f0aebba1f9c23afd1b3c59f40e5fe561de09b2b801fbf59f7dce49fa939a8c7c",
+        "f80376a1c7b2bbce1f3d45b20317462250c7112b34bf540c67c4f842cd57e7c9"
+      ],
+      "sourceFile": "Régime général/PSI131.pdf",
+      "sourcePage": 9,
+      "sourceSha256": "3958bcf9b07719bcb32d1a52aefcea0363fa7c6a8e2a5ba2249738c59362942f",
+      "rank": 16,
+      "visualReviewNote": "Dentaire PSI131 : soins 60%+40%, prothèses 60%+40%+150%, plafonds 1200/1400/1600 €/année civile ; bridges 400 €/An, implant 300 € maximum trois/an, parodontologie 600 €/An avec renvoi CCAM.",
+      "reviewedBy": "document_review_2026"
+    },
+    {
+      "reviewUnitIds": [
+        "0f1f8627225c84d07b9e7e4ce977334cd1ad751dd54a771b9de230f59124207a",
+        "223604dd775108d60ed853d216fc328ce4816c7b564d7ce87d5136c69ca36157",
+        "52126835b7754667f0d8691474002fb3f6cc496655d01c6ec89625780338e8fb",
+        "62707ae6a12b56c89921ad3aae07d90333d926d05e3748f45442fdcea19760f9",
+        "63f0772c56b32c87fe23e9907baab1eaebef4a61064f5591c0ac7246cc7e7d86",
+        "6890909ebf33f4c612c17b3dd65ff35686de3a8d102ef483ec458a5d9646478a",
+        "8141cc285ec3b8683d1bfa84f342b11f4a085bb2fabaa7a142afb34d423699f0",
+        "96b313f3b2b7e596e19e39f291d9ddd5de096d566f987c83423f0becc3637a80",
+        "9cd0cd0c66479926b5692d3516a0e27d21c149577162a488591f1861cd5404f5",
+        "b6849043f9d5dcde33d44495aaf0bd9b59fe2c5018f02213300ef445c5164c3c",
+        "dfce6e1402f49c54078c01dce5460c7221c791a6bbc1de559ed45df32702f033",
+        "e7cdeb5e9361f0f565a897d11c0e83a30af0a00bc1c15cfb55d9579f3d443440"
+      ],
+      "sourceFile": "Réflexe eco - Pharmacie/PSI114.pdf",
+      "sourcePage": 11,
+      "sourceSha256": "dbfbc704011783dc45a31e69e8e0705d4ffac50e2811a684eb11b68aae025176",
+      "rank": 17,
+      "visualReviewNote": "Assistance PSI114 : prestations soumises à la notice Harmonie Santé Services. ALD : justificatif ALD exonérante valide et deux ans ancienneté ; programmes une fois/ALD ; 200 €/programme sur facture dans frais dépensés ; assistance renforcée plafonds partagés et notice externe. Ne pas interpréter les cellules fusionnées comme des forfaits individuels.",
+      "reviewedBy": "document_review_2026"
+    },
+    {
+      "reviewUnitIds": [
+        "20ba12e172e064dd176e580715cb6b2c329d89aa25af5c8e898b8162f2be9a84",
+        "2c4d3ef189fb03d8da0a3cb2ed4423afe5bcd9522186d7e97a3dafdeaca7db8a",
+        "2d991175d3221f7bfaff91589ca78456dde72b6ced9df71b92b4dc1d68cb2082",
+        "83ddaa1f91c26312418137b61c45b98985ddc72bc6e36f49926a6756268fa360",
+        "89507e8afee08690b6ed758f70d001faf19b5f05d0349a84821c85dbc2f45b8c",
+        "8a2fa39c9f44f0c55121b159c2c3dc3bf0df9f258bd070b8cabbefa3b13a8224",
+        "90c87a14687d14dd0ff023b4ff5799e16703b98c365e41a06a58b081d467cb44",
+        "a6a8271448cd779c240cdacc681d093779ee52f67e5b60fa17f2b8f4c6d59dd2",
+        "d6340500e214d774ec2fe50bce53dd60dcb50f8c54057c613c12c3c6998f2c60",
+        "e5b63b0a80bacfc1f29cf1e515f92188e387946da8ab4cd2a5ddcb629a349d36",
+        "f1cbb1a6b7130788fda90fb2c0ab046bbb7823526988c44dc0252e4bc7d65df7",
+        "f7176c58180457e18ea595bea6006b3a9ef03e1f613b8c43254ccc1e677ce8af"
+      ],
+      "sourceFile": "Régime Local/PLI221.pdf",
+      "sourcePage": 11,
+      "sourceSha256": "e88fab105e00ce5d7e2aec33e255a057617b808d6a1c4f5de95ab168dc9ad48e",
+      "rank": 18,
+      "visualReviewNote": "Assistance PLI221 : notice externe ; ALD exonérante et ancienneté deux ans, programme une fois/ALD, 200 €/programme sur facture ; prestations renforcées conditionnées au programme, une par programme ; plafonds partagés et renvois externes empêchent validation isolée.",
+      "reviewedBy": "document_review_2026"
+    },
+    {
+      "reviewUnitIds": [
+        "1760618156d903b06b77c362afce469b68d08ada5a883baf008ee3013003a466",
+        "19e0e40af915d753a63a20b064bf9d295dd5c985e3492e350403686e87bc6518",
+        "24d897cec08a6334feb773da8e4983ae183553f09fe491bdc6b9eaf028ba3841",
+        "300ad301f13c05237b64a1400658086f145ccfef1b6db0c67c4e243294c4bf57",
+        "470dd8c03b2c1ddb647f1801f90169f6b92b70ebdbd16875eadf0f99f7c4f95e",
+        "88b9ea8f1e9b7ff03b9a0a5017279306f69690bd713fac4457a35cad302e3d36",
+        "9b7d0a7fc966be7cb958892e072627098bf02ed147f7a67ba992abd0fb7180a0",
+        "a0472fc21102a70d6c2ef2cfbc240c11a00a36b33eb58e47e60b494cc40901ad",
+        "b4e83a43a608437fd1bf047d47db1d35fea3e070dfeca8a6f18e971602004fe0",
+        "ba775a0fb749db28edf539c7627452d1145c2fc724a375a3b21aa18259196ef3",
+        "f1ccc5e94802814c21a65e5f59dd73860e3ac69a59abdc7dc179c2b3c8d21f25"
+      ],
+      "sourceFile": "Réflexe eco - Pharmacie/PSI114.pdf",
+      "sourcePage": 5,
+      "sourceSha256": "dbfbc704011783dc45a31e69e8e0705d4ffac50e2811a684eb11b68aae025176",
+      "rank": 19,
+      "visualReviewNote": "Hospitalisation PSI114 : frais séjour et honoraires 80%+20% ou AMO100% ; forfait journalier intégral. Chambre nuitée 40 €/nuit ; psychiatrie attente six mois et limite 60 nuits/an ; accord tarifaire conventionné à respecter. Ambulatoire 15 €/jour pour anesthésie/chirurgie sans nuitée. Maternité chambre 40 €/nuit avec condition accord tarifaire, sans renvoi psychiatrie.",
+      "reviewedBy": "document_review_2026"
+    },
+    {
+      "reviewUnitIds": [
+        "09896117a82d9789bf4f1adc3549bcc841fe24e4cce5518dd473d8bd1457af01",
+        "206d86622cd72f3422fda7eaca5fb7b786ba6853f655407cdbe7be49ef6338d6",
+        "3cf21d1f0367361d7b5d2bb5d1e0cda1524b9ac138134dade5f1ab1cd5a97822",
+        "41ab6911f242cdcc7f820a5fa2e526dbdb8990eaca47e24d7a471e980d140509",
+        "49b9bcede00d3a336b80aaea390b43a830d9a0b0adc3c394ad4b64d31f5b1309",
+        "4c0e299c67de6486e6d2322e973dfda6c433215be9bb9a76e65977a49f85b098",
+        "57622baf3199207d322de9f37d8913e08cbd0c32cd4d477b61da2f5b60011824",
+        "5861569b7f28ace2b79653379a9dbd321bc3dda03c05074961b2251cc3565c7d",
+        "58b9ca963b7524e15c78a9ccb6ad1e1668bff05b0024e81757dfbf692fd45fdf",
+        "a946f259995f7d57e8f11cfbc24ce38f3c877ea6fa88a0617dc37dfeb4f8c873",
+        "b9e696af3a5abe77473f9989cfec5f31a7c96f1fb79f94325635e9c59668dcbb",
+        "c17e46883ebca3f8093d8dbbc8587258d35b9bb844891a0541f956bb324101a8",
+        "dc1bfa80bec359c85a83b03777016fe1f568f0231eecb3a968b96b12ca60f0e0",
+        "e1a0eca07d187e5a76f120fbee72804af4ec126ba6caded961250c136552fec0",
+        "ecb35c3db8ba28ce7a4511af559c575dbeeb2b1aa3a9fd96905ce5b167ad984a"
+      ],
+      "sourceFile": "Régime Local/PLI531.pdf",
+      "sourcePage": 9,
+      "sourceSha256": "0efab5ecba42ae9672116196c35a13b94265163aa9fded8df3b1dafd8e6500e5",
+      "rank": 20,
+      "visualReviewNote": "Dentaire PLI531 : soins 90%+10%, prothèses 90%+10%+150%, plafonds 1200/1400/1600 €/année civile ; bridges 400 €/An, orthodontie AMO100% +600 €/An ; implant 300 € maximum trois/an ; parodontologie 600 €/An, CCAM externe.",
+      "reviewedBy": "document_review_2026"
+    }
+  ],
+  "accepted": [
+    {
+      "reviewUnitId": "7e3f0edeb0edfbf3be9b11ff0419b7cee3cdde4f1fc8e1788c170a2c11bf346f",
+      "reference": "PSI324",
+      "category": "optique",
+      "benefit": "Lentilles refusées par la Sécurité sociale",
+      "calculationMode": "fixed_amount",
+      "value": 100,
+      "unit": "EUR/an",
+      "limit": "100 € par an",
+      "condition": "Lentilles refusées par la Sécurité sociale. Remboursement par bénéficiaire limité aux frais réellement dépensés.",
+      "verifiedBy": "document_review_2026",
+      "status": "verified",
+      "openDivergences": [],
+      "sources": [
+        {
+          "id": "c45053142b92ed392a567207",
+          "reference": "PSI324",
+          "sourceBBox": [
+            123,
+            608.398,
+            579,
+            627.453
+          ],
+          "sourceFile": "Réflexe eco - Pharmacie/PSI324.pdf",
+          "sourcePage": 7,
+          "sourceSha256": "32ef795598590c45d1cea5f8bbafcfdc9e52ce35b66c0371af9bbb3d4813504f"
+        }
+      ]
+    },
+    {
+      "reviewUnitId": "a4f991f0ff172cb750ea82ec72b8c7ff2303888cbfd60a6e649ab1474302bf9f",
+      "reference": "PSI323",
+      "category": "optique",
+      "benefit": "Lentilles refusées par la Sécurité sociale",
+      "calculationMode": "fixed_amount",
+      "value": 100,
+      "unit": "EUR/an",
+      "limit": "100 € par an",
+      "condition": "Lentilles refusées par la Sécurité sociale. Remboursement par bénéficiaire limité aux frais réellement dépensés.",
+      "verifiedBy": "document_review_2026",
+      "status": "verified",
+      "openDivergences": [],
+      "sources": [
+        {
+          "id": "7f174f996bc2557d8d8afb96",
+          "reference": "PSI323",
+          "sourceBBox": [
+            123,
+            621.5,
+            579,
+            638.014
+          ],
+          "sourceFile": "Réflexe eco - Pharmacie et chambre particulière/PSI323.pdf",
+          "sourcePage": 7,
+          "sourceSha256": "4a20bfd1a457eb719cd3cc3ac6ecc0371827cecd6edc7c4ad8e7425f53c8620f"
+        }
+      ]
+    },
+    {
+      "reviewUnitId": "a8a74bf2e5b1a613f52579391bc0543f0cacb9ba5ce81759467d373350db5cfe",
+      "reference": "PSI321",
+      "category": "optique",
+      "benefit": "Lentilles refusées par la Sécurité sociale",
+      "calculationMode": "fixed_amount",
+      "value": 100,
+      "unit": "EUR/an",
+      "limit": "100 € par an",
+      "condition": "Lentilles refusées par la Sécurité sociale. Remboursement par bénéficiaire limité aux frais réellement dépensés.",
+      "verifiedBy": "document_review_2026",
+      "status": "verified",
+      "openDivergences": [],
+      "sources": [
+        {
+          "id": "7afa956c29a2884980ce0e8c",
+          "reference": "PSI321",
+          "sourceBBox": [
+            123,
+            608.398,
+            579,
+            627.453
+          ],
+          "sourceFile": "Régime général/PSI321.pdf",
+          "sourcePage": 7,
+          "sourceSha256": "b692a94f75163ebba07de0af3838cce6c766f16d6448cc999fa4cb8f364a3e8d"
+        }
+      ]
+    },
+    {
+      "reviewUnitId": "0f688d5ae6f2615350d55f2142836daaa03cccc932da08779fde2a4b07f6b08e",
+      "reference": "PSI323",
+      "category": "optique",
+      "benefit": "Chirurgie réfractive ou implants oculaires non AMO",
+      "calculationMode": "fixed_amount",
+      "value": 300,
+      "unit": "EUR/œil",
+      "limit": "300 € par œil",
+      "condition": "Chirurgie ou implants oculaires non pris en charge par la Sécurité sociale, destinés à corriger myopie, astigmatisme, presbytie ou hypermétropie ; pas les maladies des yeux. Remboursement par bénéficiaire limité aux frais réellement dépensés.",
+      "verifiedBy": "document_review_2026",
+      "status": "verified",
+      "openDivergences": [],
+      "sources": [
+        {
+          "id": "e473c0b6601464a418b5b141",
+          "reference": "PSI323",
+          "sourceBBox": [
+            123,
+            638.014,
+            579,
+            666.5
+          ],
+          "sourceFile": "Réflexe eco - Pharmacie et chambre particulière/PSI323.pdf",
+          "sourcePage": 7,
+          "sourceSha256": "4a20bfd1a457eb719cd3cc3ac6ecc0371827cecd6edc7c4ad8e7425f53c8620f"
+        }
+      ]
+    },
+    {
+      "reviewUnitId": "3b7447ba6fe45921ba6ca8c6eb9e8335d80b9ca333b01d0b07a4f963641bab44",
+      "reference": "PSI324",
+      "category": "optique",
+      "benefit": "Chirurgie réfractive ou implants oculaires non AMO",
+      "calculationMode": "fixed_amount",
+      "value": 300,
+      "unit": "EUR/œil",
+      "limit": "300 € par œil",
+      "condition": "Chirurgie ou implants oculaires non pris en charge par la Sécurité sociale, destinés à corriger myopie, astigmatisme, presbytie ou hypermétropie ; pas les maladies des yeux. Remboursement par bénéficiaire limité aux frais réellement dépensés.",
+      "verifiedBy": "document_review_2026",
+      "status": "verified",
+      "openDivergences": [],
+      "sources": [
+        {
+          "id": "603abee47948e97127e13171",
+          "reference": "PSI324",
+          "sourceBBox": [
+            123,
+            627.453,
+            579,
+            654.453
+          ],
+          "sourceFile": "Réflexe eco - Pharmacie/PSI324.pdf",
+          "sourcePage": 7,
+          "sourceSha256": "32ef795598590c45d1cea5f8bbafcfdc9e52ce35b66c0371af9bbb3d4813504f"
+        }
+      ]
+    },
+    {
+      "reviewUnitId": "d2b55ce6671387ea53b1f85ae325668eb94cca7cca17177023e81fa130d41183",
+      "reference": "PSI321",
+      "category": "optique",
+      "benefit": "Chirurgie réfractive ou implants oculaires non AMO",
+      "calculationMode": "fixed_amount",
+      "value": 300,
+      "unit": "EUR/œil",
+      "limit": "300 € par œil",
+      "condition": "Chirurgie ou implants oculaires non pris en charge par la Sécurité sociale, destinés à corriger myopie, astigmatisme, presbytie ou hypermétropie ; pas les maladies des yeux. Remboursement par bénéficiaire limité aux frais réellement dépensés.",
+      "verifiedBy": "document_review_2026",
+      "status": "verified",
+      "openDivergences": [],
+      "sources": [
+        {
+          "id": "4dad3501381045fbb6a1f304",
+          "reference": "PSI321",
+          "sourceBBox": [
+            123,
+            627.453,
+            579,
+            654.453
+          ],
+          "sourceFile": "Régime général/PSI321.pdf",
+          "sourcePage": 7,
+          "sourceSha256": "b692a94f75163ebba07de0af3838cce6c766f16d6448cc999fa4cb8f364a3e8d"
+        }
+      ]
+    },
+    {
+      "reviewUnitId": "6caaa46698898f4cfbe46930570e797f8be3f365459a331b1be9b44c8b1799b2",
+      "reference": "PSI123",
+      "category": "dentaire",
+      "benefit": "Bridges fixes définitifs non AMO",
+      "calculationMode": "fixed_amount",
+      "value": 200,
+      "unit": "EUR/an",
+      "limit": "200 € par an",
+      "condition": "Bridges fixes définitifs non remboursables par la Sécurité sociale ; les deuxième et troisième inters du bridge ne sont pas remboursables. Remboursement par bénéficiaire limité aux frais réellement dépensés.",
+      "verifiedBy": "document_review_2026",
+      "status": "verified",
+      "openDivergences": [],
+      "sources": [
+        {
+          "id": "8beaa947300743b14c71bf95",
+          "reference": "PSI123",
+          "sourceBBox": [
+            123,
+            615.028,
+            579,
+            635.028
+          ],
+          "sourceFile": "Réflexe eco - Pharmacie et chambre particulière/PSI123.pdf",
+          "sourcePage": 9,
+          "sourceSha256": "01df93c3c77bc588bc3533af78f60b7b51e626c97a3eb1147f75b8f637e1f1c2"
+        }
+      ]
+    },
+    {
+      "reviewUnitId": "e7ed0fc77ebabc2502f7a20a0306604aac601921590914305203db6d734c55a4",
+      "reference": "PSI124",
+      "category": "dentaire",
+      "benefit": "Bridges fixes définitifs non AMO",
+      "calculationMode": "fixed_amount",
+      "value": 200,
+      "unit": "EUR/an",
+      "limit": "200 € par an",
+      "condition": "Bridges fixes définitifs non remboursables par la Sécurité sociale ; les deuxième et troisième inters du bridge ne sont pas remboursables. Remboursement par bénéficiaire limité aux frais réellement dépensés.",
+      "verifiedBy": "document_review_2026",
+      "status": "verified",
+      "openDivergences": [],
+      "sources": [
+        {
+          "id": "661e6497ddd33f16248cfc17",
+          "reference": "PSI124",
+          "sourceBBox": [
+            123,
+            615.028,
+            579,
+            635.028
+          ],
+          "sourceFile": "Réflexe eco - Pharmacie/PSI124.pdf",
+          "sourcePage": 9,
+          "sourceSha256": "4018074060403f58bdd036b3dd25f4661c927a714ed43de3b8afce3175b4ed05"
+        }
+      ]
+    },
+    {
+      "reviewUnitId": "df7c93062eb59dfe2d31b1174d75f5cab52d568e7b212ff91e085fa79dfdb749",
+      "reference": "PSI121",
+      "category": "dentaire",
+      "benefit": "Bridges fixes définitifs non AMO",
+      "calculationMode": "fixed_amount",
+      "value": 200,
+      "unit": "EUR/an",
+      "limit": "200 € par an",
+      "condition": "Bridges fixes définitifs non remboursables par la Sécurité sociale ; les deuxième et troisième inters du bridge ne sont pas remboursables. Remboursement par bénéficiaire limité aux frais réellement dépensés.",
+      "verifiedBy": "document_review_2026",
+      "status": "verified",
+      "openDivergences": [],
+      "sources": [
+        {
+          "id": "8106bf6e8695df2fc576a222",
+          "reference": "PSI121",
+          "sourceBBox": [
+            123,
+            601.5,
+            579,
+            621.5
+          ],
+          "sourceFile": "Régime général/PSI121.pdf",
+          "sourcePage": 9,
+          "sourceSha256": "cd2380f3347f25d3a57362d2cafe85204ce38eb0648d213be132616e723fd1f7"
+        }
+      ]
+    },
+    {
+      "reviewUnitId": "9a90191b69b32b019711b54bde2d5bd27d016a4d22e56afa060ddad07667722d",
+      "reference": "PSI133",
+      "category": "dentaire",
+      "benefit": "Bridges fixes définitifs non AMO",
+      "calculationMode": "fixed_amount",
+      "value": 400,
+      "unit": "EUR/an",
+      "limit": "400 € par an",
+      "condition": "Bridges fixes définitifs non remboursables par la Sécurité sociale ; les deuxième et troisième inters du bridge ne sont pas remboursables. Remboursement par bénéficiaire limité aux frais réellement dépensés.",
+      "verifiedBy": "document_review_2026",
+      "status": "verified",
+      "openDivergences": [],
+      "sources": [
+        {
+          "id": "69d58d12d4c47a30401e6f12",
+          "reference": "PSI133",
+          "sourceBBox": [
+            123,
+            615.028,
+            579,
+            635.028
+          ],
+          "sourceFile": "Réflexe eco - Pharmacie et chambre particulière/PSI133.pdf",
+          "sourcePage": 9,
+          "sourceSha256": "bd3930f2eaeb29fecfc3cfe3b7e5e3892ca8a6a1d2c8ba731034c0adf3d8e960"
+        }
+      ]
+    },
+    {
+      "reviewUnitId": "b99fcea40d1307e8f19af081306dd6e3a00e125bf81b4f8b5c4d43b60cae2745",
+      "reference": "PSI134",
+      "category": "dentaire",
+      "benefit": "Bridges fixes définitifs non AMO",
+      "calculationMode": "fixed_amount",
+      "value": 400,
+      "unit": "EUR/an",
+      "limit": "400 € par an",
+      "condition": "Bridges fixes définitifs non remboursables par la Sécurité sociale ; les deuxième et troisième inters du bridge ne sont pas remboursables. Remboursement par bénéficiaire limité aux frais réellement dépensés.",
+      "verifiedBy": "document_review_2026",
+      "status": "verified",
+      "openDivergences": [],
+      "sources": [
+        {
+          "id": "1dece9115c48751257e332d1",
+          "reference": "PSI134",
+          "sourceBBox": [
+            123,
+            615.028,
+            579,
+            635.028
+          ],
+          "sourceFile": "Réflexe eco - Pharmacie/PSI134.pdf",
+          "sourcePage": 9,
+          "sourceSha256": "56e8d883cc6490e78fa66ce279573765ccdfe26a62f8ff492f34dbb20cc66728"
+        }
+      ]
+    },
+    {
+      "reviewUnitId": "3811f88dd3e576f57d1aff688e5a894680d4d9028cabdfa06baaf153e7d37550",
+      "reference": "PSI131",
+      "category": "dentaire",
+      "benefit": "Bridges fixes définitifs non AMO",
+      "calculationMode": "fixed_amount",
+      "value": 400,
+      "unit": "EUR/an",
+      "limit": "400 € par an",
+      "condition": "Bridges fixes définitifs non remboursables par la Sécurité sociale ; les deuxième et troisième inters du bridge ne sont pas remboursables. Remboursement par bénéficiaire limité aux frais réellement dépensés.",
+      "verifiedBy": "document_review_2026",
+      "status": "verified",
+      "openDivergences": [],
+      "sources": [
+        {
+          "id": "c078e71934240af5f2d9c6eb",
+          "reference": "PSI131",
+          "sourceBBox": [
+            123,
+            615.028,
+            579,
+            635.028
+          ],
+          "sourceFile": "Régime général/PSI131.pdf",
+          "sourcePage": 9,
+          "sourceSha256": "3958bcf9b07719bcb32d1a52aefcea0363fa7c6a8e2a5ba2249738c59362942f"
+        }
+      ]
+    },
+    {
+      "reviewUnitId": "c951d9a1b0b7f5ebb6db5bf8177aa4288ec4fcc90eab75df3ad812e258287f6c",
+      "reference": "PLI231",
+      "category": "dentaire",
+      "benefit": "Bridges fixes définitifs non AMO",
+      "calculationMode": "fixed_amount",
+      "value": 400,
+      "unit": "EUR/an",
+      "limit": "400 € par an",
+      "condition": "Bridges fixes définitifs non remboursables par la Sécurité sociale ; les deuxième et troisième inters du bridge ne sont pas remboursables. Remboursement par bénéficiaire limité aux frais réellement dépensés.",
+      "verifiedBy": "document_review_2026",
+      "status": "verified",
+      "openDivergences": [],
+      "sources": [
+        {
+          "id": "153c300b93b9b7b2eaa0778f",
+          "reference": "PLI231",
+          "sourceBBox": [
+            123,
+            615.028,
+            579,
+            635.028
+          ],
+          "sourceFile": "Régime Local/PLI231.pdf",
+          "sourcePage": 9,
+          "sourceSha256": "e34a3691b625656789b5c1993c8aee2d97ecafcaef7622b9696d99085eca5541"
+        }
+      ]
+    },
+    {
+      "reviewUnitId": "c34ccff948d1ad1f108ae3aa06054c441c5e271e977cd1fbb64445559e9b539b",
+      "reference": "PLI231",
+      "category": "dentaire",
+      "benefit": "Implantologie",
+      "calculationMode": "fixed_amount",
+      "value": 300,
+      "unit": "EUR/implant",
+      "limit": "Maximum 3 implants par an",
+      "condition": "Prise en charge uniquement de la pose d’un implant intra-osseux. Remboursement par bénéficiaire limité aux frais réellement dépensés.",
+      "verifiedBy": "document_review_2026",
+      "status": "verified",
+      "openDivergences": [],
+      "sources": [
+        {
+          "id": "2e6601312fe58596ded44b0e",
+          "reference": "PLI231",
+          "sourceBBox": [
+            123,
+            651.21,
+            579,
+            683.083
+          ],
+          "sourceFile": "Régime Local/PLI231.pdf",
+          "sourcePage": 9,
+          "sourceSha256": "e34a3691b625656789b5c1993c8aee2d97ecafcaef7622b9696d99085eca5541"
+        }
+      ]
+    },
+    {
+      "reviewUnitId": "1760618156d903b06b77c362afce469b68d08ada5a883baf008ee3013003a466",
+      "reference": "PSI114",
+      "category": "maternité",
+      "benefit": "Chambre particulière avec nuitée — maternité",
+      "calculationMode": "fixed_amount",
+      "value": 40,
+      "unit": "EUR/nuit",
+      "limit": "40 € par nuit",
+      "condition": "Maternité : chambre particulière avec nuitée ; en établissement conventionné avec accord tarifaire, prise en charge dans les limites des tarifs de l’accord. Remboursement par bénéficiaire limité aux frais réellement dépensés.",
+      "verifiedBy": "document_review_2026",
+      "status": "verified",
+      "openDivergences": [],
+      "sources": [
+        {
+          "id": "e5045204f852e2bfce115084",
+          "reference": "PSI114",
+          "sourceBBox": [
+            123,
+            752.357,
+            579,
+            771.437
+          ],
+          "sourceFile": "Réflexe eco - Pharmacie/PSI114.pdf",
+          "sourcePage": 5,
+          "sourceSha256": "dbfbc704011783dc45a31e69e8e0705d4ffac50e2811a684eb11b68aae025176"
+        }
+      ]
+    },
+    {
+      "reviewUnitId": "470dd8c03b2c1ddb647f1801f90169f6b92b70ebdbd16875eadf0f99f7c4f95e",
+      "reference": "PSI114",
+      "category": "hospitalisation",
+      "benefit": "Chambre particulière avec nuitée — hospitalisation",
+      "calculationMode": "fixed_amount",
+      "value": 40,
+      "unit": "EUR/nuit",
+      "limit": "40 € par nuit ; psychiatrie 60 nuits/an",
+      "condition": "Hospitalisation : psychiatrie, délai d’attente de six mois à compter de la date d’effet ; établissement conventionné avec accord tarifaire : limites des tarifs de l’accord. Remboursement par bénéficiaire limité aux frais réellement dépensés.",
+      "verifiedBy": "document_review_2026",
+      "status": "verified",
+      "openDivergences": [],
+      "sources": [
+        {
+          "id": "71ce9c42410bb144e39c36ce",
+          "reference": "PSI114",
+          "sourceBBox": [
+            123,
+            481.5,
+            579,
+            500.5
+          ],
+          "sourceFile": "Réflexe eco - Pharmacie/PSI114.pdf",
+          "sourcePage": 5,
+          "sourceSha256": "dbfbc704011783dc45a31e69e8e0705d4ffac50e2811a684eb11b68aae025176"
+        }
+      ]
+    },
+    {
+      "reviewUnitId": "a0472fc21102a70d6c2ef2cfbc240c11a00a36b33eb58e47e60b494cc40901ad",
+      "reference": "PSI114",
+      "category": "hospitalisation",
+      "benefit": "Chambre particulière en ambulatoire",
+      "calculationMode": "fixed_amount",
+      "value": 15,
+      "unit": "EUR/jour",
+      "limit": "15 € par jour",
+      "condition": "Chambre ambulatoire : séjour réalisé en hospitalisation avec anesthésie et/ou chirurgie sans nuitée ; établissement conventionné avec accord tarifaire : limites des tarifs de l’accord. Remboursement par bénéficiaire limité aux frais réellement dépensés.",
+      "verifiedBy": "document_review_2026",
+      "status": "verified",
+      "openDivergences": [],
+      "sources": [
+        {
+          "id": "a29a3e04b69776c9db9429f4",
+          "reference": "PSI114",
+          "sourceBBox": [
+            123,
+            500.5,
+            579,
+            522.92
+          ],
+          "sourceFile": "Réflexe eco - Pharmacie/PSI114.pdf",
+          "sourcePage": 5,
+          "sourceSha256": "dbfbc704011783dc45a31e69e8e0705d4ffac50e2811a684eb11b68aae025176"
+        }
+      ]
+    }
+  ]
+}
