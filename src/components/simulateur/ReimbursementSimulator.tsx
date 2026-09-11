@@ -2,23 +2,14 @@
 
 import { useMemo, useState } from "react";
 import { AMO_RATE_PRESETS, computeReimbursement, type GuaranteeMode } from "@/lib/domain/reimbursement";
+import { SIMULATOR_BENEFITS, getSimulatorBenefit } from "@/lib/data/harmonie/simulatorBenefits";
+import { computeVerifiedSimulation } from "@/lib/domain/verifiedSimulation";
 import { formatCurrency } from "@/lib/utils/format";
 import { Badge, DataToVerifyBadge } from "@/components/ui/Badge";
 import { Card, CardHeader } from "@/components/ui/Card";
 
 const inputClass =
   "w-full rounded-md border border-border bg-surface px-2 py-1.5 text-[13px] outline-none focus:border-brand";
-
-const PLI_BENEFITS_PERCENT: { label: string; value: number }[] = [
-  { label: "Consultation généraliste — PLI 411/421", value: 150 },
-  { label: "Consultation généraliste — PLI 521", value: 200 },
-  { label: "Consultation spécialiste — PLI 411/421", value: 180 },
-  { label: "Consultation spécialiste — PLI 521", value: 200 },
-  { label: "Radio / IRM / scanner — PLI 411/421", value: 150 },
-  { label: "Radio / IRM / scanner — PLI 521", value: 180 },
-  { label: "Frais de séjour hospitalier — toutes formules", value: 200 },
-  { label: "Honoraires de chirurgie — toutes formules", value: 220 },
-];
 
 export function ReimbursementSimulator() {
   const [billed, setBilled] = useState("80");
@@ -28,6 +19,9 @@ export function ReimbursementSimulator() {
   const [guaranteeMode, setGuaranteeMode] = useState<GuaranteeMode>("percent_brss");
   const [guaranteeValue, setGuaranteeValue] = useState<string>("150");
   const [useVerifiedTable, setUseVerifiedTable] = useState(true);
+  const [benefitId,setBenefitId]=useState(SIMULATOR_BENEFITS[0].id);
+  const selectedBenefit=getSimulatorBenefit(benefitId);
+  const displayedMode=useVerifiedTable ? selectedBenefit?.mode ?? "percent_brss" : guaranteeMode;
 
   const amoRate = useMemo(() => {
     const preset = AMO_RATE_PRESETS.find((p) => p.id === amoPresetId);
@@ -39,9 +33,11 @@ export function ReimbursementSimulator() {
   const result = useMemo(() => {
     const billedNum = Number(billed.replace(",", "."));
     const brssNum = Number(brss.replace(",", "."));
-    if (!Number.isFinite(billedNum) || !Number.isFinite(brssNum)) return null;
+    if (!billed.trim() || !brss.trim() || ![billedNum,brssNum,amoRate].every(Number.isFinite) || billedNum<0 || brssNum<0 || amoRate<0 || amoRate>1 || brssNum*amoRate>billedNum) return null;
     const guaranteeValueNum = guaranteeValue ? Number(guaranteeValue.replace(",", ".")) : undefined;
     try {
+      if(useVerifiedTable)return computeVerifiedSimulation(benefitId,{billed:billedNum,brss:brssNum,amoRate});
+      if(guaranteeValueNum!==undefined && (!Number.isFinite(guaranteeValueNum)||guaranteeValueNum<0))return null;
       return computeReimbursement({
         billed: billedNum,
         brss: brssNum,
@@ -52,11 +48,11 @@ export function ReimbursementSimulator() {
     } catch {
       return null;
     }
-  }, [billed, brss, amoRate, guaranteeMode, guaranteeValue]);
+  }, [billed, brss, amoRate, guaranteeMode, guaranteeValue, useVerifiedTable, benefitId]);
 
   return (
     <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
-      <Card>
+      <Card className="min-w-0">
         <CardHeader title="Paramètres du calcul" subtitle="BRSS, taux AMO et garantie AMC" />
         <div className="space-y-3 text-sm">
           <Field label="Montant facturé (€)">
@@ -102,7 +98,8 @@ export function ReimbursementSimulator() {
 
           <Field label="Type de garantie AMC">
             <select
-              value={guaranteeMode}
+              value={displayedMode}
+              disabled={useVerifiedTable}
               onChange={(e) => setGuaranteeMode(e.target.value as GuaranteeMode)}
               className={inputClass}
             >
@@ -112,58 +109,27 @@ export function ReimbursementSimulator() {
             </select>
           </Field>
 
-          {guaranteeMode === "percent_brss" && (
-            <>
-              <Field label="Utiliser le barème comparateur vérifié (PLI)">
-                <input
-                  type="checkbox"
-                  checked={useVerifiedTable}
-                  onChange={(e) => setUseVerifiedTable(e.target.checked)}
-                  className="h-4 w-4"
-                />
-              </Field>
-              {useVerifiedTable ? (
-                <Field label="Prestation garantie (barème vérifié)">
-                  <select
-                    value={guaranteeValue}
-                    onChange={(e) => setGuaranteeValue(e.target.value)}
-                    className={inputClass}
-                  >
-                    {PLI_BENEFITS_PERCENT.map((b) => (
-                      <option key={b.label} value={b.value}>
-                        {b.label} — {b.value}% BRSS
-                      </option>
-                    ))}
-                  </select>
-                </Field>
-              ) : (
-                <Field label="Pourcentage BRSS garanti (%)">
-                  <input
-                    value={guaranteeValue}
-                    onChange={(e) => setGuaranteeValue(e.target.value)}
-                    className={inputClass}
-                    inputMode="decimal"
-                    placeholder="Laisser vide si non vérifié"
-                  />
-                </Field>
-              )}
-            </>
-          )}
-
-          {guaranteeMode === "forfait_euros" && (
-            <Field label="Forfait garanti (€)">
-              <input
-                value={guaranteeValue}
-                onChange={(e) => setGuaranteeValue(e.target.value)}
-                className={inputClass}
-                inputMode="decimal"
-              />
+          <Field label="Utiliser le barème 2026 documenté">
+            <input type="checkbox" checked={useVerifiedTable} onChange={e=>setUseVerifiedTable(e.target.checked)} className="h-4 w-4" />
+          </Field>
+          {useVerifiedTable ? <>
+            <Field label="Prestation garantie (barème vérifié)">
+              <select value={benefitId} onChange={e=>setBenefitId(e.target.value)} className={inputClass}>
+                {SIMULATOR_BENEFITS.map(b=><option key={b.id} value={b.id}>{b.family} · {b.level} · {b.category} — {b.label} — {b.guarantee}</option>)}
+              </select>
             </Field>
-          )}
+            {selectedBenefit && <p className="text-[11px] text-foreground-muted">
+              {selectedBenefit.category} · {selectedBenefit.family} · {selectedBenefit.level} · {selectedBenefit.guarantee}. Source : {selectedBenefit.source}{selectedBenefit.page ? `, page ${selectedBenefit.page}` : ""}.
+              {selectedBenefit.restriction && <> Donnée 2026 à vérifier : {selectedBenefit.restriction}</>}
+              {selectedBenefit.family.startsWith("IDCC") && <> Sous réserve des droits, du parcours de soins et des conditions du tableau. Les options 405 incluent la Base.</>}
+            </p>}
+          </> : guaranteeMode !== "frais_reels" && <Field label={guaranteeMode === "percent_brss" ? "Pourcentage BRSS garanti (%)" : "Forfait garanti (€)"}>
+            <input value={guaranteeValue} onChange={e=>setGuaranteeValue(e.target.value)} className={inputClass} inputMode="decimal" placeholder="Laisser vide si non vérifié" />
+          </Field>}
         </div>
       </Card>
 
-      <Card>
+      <Card className="min-w-0">
         <CardHeader title="Résultat" subtitle="BRSS → AMO → AMC → reste à charge" />
         {!result ? (
           <p className="text-xs text-foreground-muted">Saisissez des montants valides pour lancer le calcul.</p>
@@ -178,18 +144,17 @@ export function ReimbursementSimulator() {
               highlight
             />
             {result.dataToVerify ? (
-              <div className="pt-1"><DataToVerifyBadge label="Garantie AMC non renseignée : donnée 2026 à vérifier avant tout calcul réel" /></div>
+              <div className="pt-1"><DataToVerifyBadge label="Donnée 2026 à vérifier" /></div>
             ) : (
               <ResultRow label="Remboursement AMC" value={formatCurrency(result.amcReimbursement)} highlight />
             )}
-            <ResultRow
+            {!result.dataToVerify && <ResultRow
               label="Reste à charge estimé"
               value={formatCurrency(result.remainingCharge)}
               tone={result.remainingCharge > 0 ? "warning" : "success"}
-            />
+            />}
             <p className="pt-2 text-[11px] text-foreground-muted">
-              Méthode pédagogique générique (BRSS/AMO/AMC/RAC). Les pourcentages hors barème vérifié
-              affichent « Donnée 2026 à vérifier » plutôt que d&apos;être estimés.
+              Méthode pédagogique générique (BRSS/AMO/AMC/RAC). Les saisies libres ne constituent pas un barème vérifié. Une garantie ou condition manquante affiche « Donnée 2026 à vérifier » sans estimation AMC/RAC.
             </p>
           </div>
         )}
