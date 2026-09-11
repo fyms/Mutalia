@@ -1,3 +1,4 @@
+import { AppointmentSummary } from "@/components/agenda/AppointmentSummary";
 import { getHouseholdLifecycles } from "@/lib/store/runtimeStore";
 import { STATUS_LABELS } from "@/lib/domain/householdLifecycle";
 import { RelationHistory } from "@/components/relation/RelationHistory";
@@ -37,6 +38,8 @@ export function ManualHouseholdDetails({owner, record, activeTab, tabs}: {
     <PageHeader title={`${record.firstName} ${record.lastName}`} description="Fiche adhérent 360° · Création manuelle"
       action={<Link href="/adherents" className="m-button m-button--secondary">Retour aux adhérents</Link>} />
     <HouseholdEditor lifecycle={lifecycle} record={record} formulas={getHouseholdFormulas()} />
+    <AppointmentSummary owner={owner} householdId={record.id}/>
+    {(activeTab === "historique" || activeTab === "contacts") && <AppointmentSummary owner={owner} householdId={record.id} history/>}
     <QueryTabs basePath={`/adherents/${record.id}`} activeKey={activeTab} tabs={tabs} />
     {activeTab === "vue-generale" && <div className="grid gap-4 lg:grid-cols-2">
       <section className="m-panel"><h2>Identité</h2>{identity}</section>

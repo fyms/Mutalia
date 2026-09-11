@@ -1,3 +1,4 @@
+import { AppointmentInputSchema, overlaps, sortAppointments, type Appointment, type AppointmentInput } from "@/lib/domain/appointments";
 import { getAllCases } from "@/lib/data/loaders";
 import { LifecycleChangeSchema, emptyLifecycle, activeLifecycle, type HouseholdLifecycle } from "@/lib/domain/householdLifecycle";
 import { complaintTransitions, type Contact, type Complaint } from "@/lib/domain/relationAdherent";
@@ -7,7 +8,7 @@ import { describeControl, AnomalyUpdateSchema, type OperationalAnomaly } from "@
 import type { Prestation } from "@/lib/domain/prestations";
 import { DossierStateSchema, type DossierState } from "@/lib/domain/dossiers";
 import "server-only";
-import { randomUUID } from "node:crypto";
+import { createHash, randomUUID } from "node:crypto";
 import { BeneficiaryInputSchema, ManualHouseholdInputSchema, type ManualHousehold } from "@/lib/domain/manualHouseholds";
 import { getHouseholdFormulas } from "@/lib/domain/householdFormulas";
 import { db } from "@/lib/db";
@@ -29,6 +30,7 @@ export interface DocumentState {
 
 export interface RuntimeStoreShape {
   version: 1;
+  appointments?: Record<string, Appointment>;
   householdLifecycles?: Record<string, HouseholdLifecycle>;
   contacts?: Record<string, Contact>;
   complaints?: Record<string, Complaint>;
@@ -491,7 +493,7 @@ export function deleteErroneousHousehold(owner:string,id:string,confirmation:str
   if(!h || h.deletedAt || h.source!=="manual")throw new HouseholdEditError("Création manuelle introuvable.");
   if(confirmation!==`SUPPRIMER ${id}`)throw new HouseholdEditError("Confirmation renforcée incorrecte.");
   if(store.householdLifecycles?.[id]?.adherent.endReason!=="error")throw new HouseholdEditError("Clôturez d’abord l’adhérent avec le motif Création par erreur.");
-  const related=[store.prestations,store.devisPec,store.cotisations,store.contacts,store.complaints,store.dossiers,store.operationalAnomalies];
+  const related=[store.appointments,store.prestations,store.devisPec,store.cotisations,store.contacts,store.complaints,store.dossiers,store.operationalAnomalies];
   // Inspect all identifiers in the existing records, including nested links.
   const identifiers=new Set([id,h.memberId,...(h.beneficiaries??[]).map(b=>b.id)]);
   const contains=(value:unknown):boolean=>typeof value==="string" ? identifiers.has(value) : value!==null && typeof value==="object" && Object.values(value).some(contains);
@@ -499,4 +501,25 @@ export function deleteErroneousHousehold(owner:string,id:string,confirmation:str
   delete store.manualHouseholds![id];
   if(store.householdLifecycles)delete store.householdLifecycles[id];
  });
+}
+
+export function getAppointments(owner:string):Appointment[]{return sortAppointments(Object.values(readStore(owner).appointments??{}));}
+export class AppointmentOverlapError extends HouseholdEditError {
+ constructor(public confirmation:string, public conflicts:Appointment[]){super("Chevauchement détecté. Confirmez le maintien de ces rendez-vous.");}
+}
+export function saveStoredAppointment(owner:string,raw:AppointmentInput & {adherentName:string},id?:string,revision?:number,confirmation?:string){
+ const input={...AppointmentInputSchema.parse(raw),adherentName:raw.adherentName};
+ return withStore(owner,store=>{
+  store.appointments??={};const existing=id?store.appointments[id]:undefined;
+  if(id&&(!existing||existing.revision!==revision))throw new HouseholdEditError("Rendez-vous introuvable ou modifié. Rechargez la page.");
+  if(existing&&existing.householdId!==input.householdId)throw new HouseholdEditError("Le rattachement du rendez-vous ne peut pas être remplacé.");
+  const conflicts=Object.values(store.appointments).filter(p=>p.id!==id&&overlaps(input,p));
+  const token=createHash("sha256").update(JSON.stringify({input,id,revision,conflicts:conflicts.map(p=>[p.id,p.revision]).sort()})).digest("hex");
+  if(conflicts.length&&confirmation!==token)throw new AppointmentOverlapError(token,conflicts);
+  const now=new Date().toISOString();const appointment:Appointment={...existing,...input,id:existing?.id??`RDV-${randomUUID()}`,createdAt:existing?.createdAt??now,updatedAt:now,revision:(existing?.revision??0)+1};
+  store.appointments[appointment.id]=appointment;return appointment;
+ });
+}
+export function linkAppointmentContact(owner:string,id:string,revision:number,contactId:string){
+ return withStore(owner,store=>{const p=store.appointments?.[id];if(!p||p.revision!==revision||p.contactId)throw new HouseholdEditError("Rendez-vous déjà converti ou modifié.");p.contactId=contactId;p.revision++;p.updatedAt=new Date().toISOString();return p;});
 }

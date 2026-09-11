@@ -2,10 +2,10 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useRef, useState } from 'react';
-import { LayoutDashboard, Search, Users, ShieldCheck, Wallet, MessagesSquare, Inbox, Receipt, ClipboardCheck, TriangleAlert, FolderOpen, Calculator, GraduationCap, BookOpen, CircleHelp, Settings, FileSignature, ListChecks, ChartNoAxesCombined } from 'lucide-react';
+import { CalendarDays, LayoutDashboard, Search, Users, ShieldCheck, Wallet, MessagesSquare, Inbox, Receipt, ClipboardCheck, TriangleAlert, FolderOpen, Calculator, GraduationCap, BookOpen, CircleHelp, Settings, FileSignature, ListChecks, ChartNoAxesCombined } from 'lucide-react';
 import { Logo } from './Logo';
 const groups = [
-  { title: 'Pilotage', items: [['Cockpit','/cockpit',LayoutDashboard],['Recherche','#recherche',Search]] },
+  { title: 'Pilotage', items: [['Cockpit','/cockpit',LayoutDashboard],['Agenda','/agenda',CalendarDays],['Recherche','#recherche',Search]] },
   { title: 'Adhérents & contrats', items: [['Adhérents','/adherents',Users],['Garanties','/garanties',ShieldCheck],['Cotisations','/cotisations',Wallet],['Relation adhérent','/relation-adherent',MessagesSquare]] },
   { title: 'Gestion des prestations', items: [['Mes dossiers','/dossiers',Inbox],['Prestations','/prestations',Receipt],['PEC / Devis','/pec-devis',ClipboardCheck],['Anomalies','/flux-anomalies',TriangleAlert]] },
   { title: 'Documents & outils', items: [['GED','/documents',FolderOpen],['Simulateur','/simulateur',Calculator]] },

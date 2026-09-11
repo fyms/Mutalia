@@ -1,3 +1,4 @@
+import { AppointmentSummary } from "@/components/agenda/AppointmentSummary";
 import { LifecycleEditor } from "@/components/adherents/LifecycleEditor";
 import { RelationHistory } from "@/components/relation/RelationHistory";
 import { CotisationHistory } from "@/components/cotisations/CotisationHistory";
@@ -67,6 +68,8 @@ export default async function Fiche360Page({
       />
 
       <LifecycleEditor id={householdId} lifecycle={household.lifecycle} members={household.beneficiaries.map(b=>({id:b.member_id,name:`${b.first_name} ${b.last_name}`}))}/>
+    <AppointmentSummary owner={owner} householdId={householdId}/>
+    {(activeTab === "historique" || activeTab === "contacts") && <AppointmentSummary owner={owner} householdId={householdId} history/>}
       <QueryTabs basePath={basePath} activeKey={activeTab} tabs={TABS} />
 
       {activeTab === "vue-generale" && (

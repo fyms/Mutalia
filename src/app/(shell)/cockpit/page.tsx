@@ -1,3 +1,4 @@
+import { AppointmentSummary } from "@/components/agenda/AppointmentSummary";
 import { getDossiers } from "@/lib/domain/dossierService";
 import { dossierSummary } from "@/lib/domain/dossiers";
 import { getSession } from "@/lib/store/session";
@@ -55,6 +56,7 @@ export default async function Page() {
           <Link href="/dossiers?status=En attente">En attente : <strong>{summary.waiting}</strong></Link>
         </div>
       </section>
+      <AppointmentSummary owner={s.userId}/>
       <div className="m-stats">
         {stats.map(([label, value]) => (
           <div className="m-panel" key={label}>
