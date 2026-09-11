@@ -12,7 +12,7 @@ const fields = [
   ["phone", "Téléphone", "tel", 30], ["address", "Adresse", "text", 250],
   ["effectiveDate", "Date d’effet / adhésion", "date", 10],
 ] as const;
-export function NewHouseholdForm({formulas, record, onDone}: {formulas: {key: string; label: string}[]; record?: ManualHousehold; onDone?: () => void}) {
+export function NewHouseholdForm({formulas, record, onDone, prefill, prospectId}: {formulas: {key: string; label: string}[]; prefill?: Partial<Record<string,string>>; prospectId?:string; record?: ManualHousehold; onDone?: () => void}) {
   const [error, setError] = useState("");
   const [pending, startTransition] = useTransition();
   return <form className="m-panel space-y-4" onSubmit={event => {
@@ -25,12 +25,13 @@ export function NewHouseholdForm({formulas, record, onDone}: {formulas: {key: st
       if (!result.error) onDone?.();
     });
   }}>
+    {prospectId&&<input type="hidden" name="prospectId" value={prospectId}/> }
     <p className="m-help">Tous les champs sont requis. Pour la démonstration, utilisez des coordonnées fictives.</p>
     <fieldset disabled={pending} className="grid gap-4 sm:grid-cols-2">
       <legend className="sr-only">Identité et adhésion</legend>
       {fields.map(([name, label, type, maxLength]) => <label key={name} className="block">
         <span className="m-label">{label}</span>
-        <input className="m-field" name={name} defaultValue={record?.[name]} type={type} required maxLength={maxLength}
+        <input className="m-field" name={name} defaultValue={record?.[name]??prefill?.[name]} type={type} required maxLength={maxLength}
           />
       </label>)}
       <PostalCityFields key={record?.id ?? "new"} postalCode={record?.postalCode} city={record?.city}/>

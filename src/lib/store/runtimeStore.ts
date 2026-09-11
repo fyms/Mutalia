@@ -1,3 +1,4 @@
+import { ProspectInputSchema, type Prospect } from "@/lib/domain/prospects";
 import { AppointmentInputSchema, overlaps, sortAppointments, type Appointment, type AppointmentInput } from "@/lib/domain/appointments";
 import { getAllCases } from "@/lib/data/loaders";
 import { LifecycleChangeSchema, emptyLifecycle, activeLifecycle, type HouseholdLifecycle } from "@/lib/domain/householdLifecycle";
@@ -30,6 +31,7 @@ export interface DocumentState {
 
 export interface RuntimeStoreShape {
   version: 1;
+  prospects?: Record<string, Prospect>;
   appointments?: Record<string, Appointment>;
   householdLifecycles?: Record<string, HouseholdLifecycle>;
   contacts?: Record<string, Contact>;
@@ -515,11 +517,11 @@ export class AppointmentOverlapError extends HouseholdEditError {
  constructor(public confirmation:string, public conflicts:Appointment[]){super("Chevauchement détecté. Confirmez le maintien de ces rendez-vous.");}
 }
 export function saveStoredAppointment(owner:string,raw:AppointmentInput & {adherentName:string},id?:string,revision?:number,confirmation?:string){
- const input={...AppointmentInputSchema.parse(raw),adherentName:raw.adherentName};
+ const input={...AppointmentInputSchema.parse(raw),contactType:raw.contactType??"adherent" as const,adherentName:raw.adherentName};
  return withStore(owner,store=>{
   store.appointments??={};const existing=id?store.appointments[id]:undefined;
   if(id&&(!existing||existing.revision!==revision))throw new HouseholdEditError("Rendez-vous introuvable ou modifié. Rechargez la page.");
-  if(existing&&existing.householdId!==input.householdId)throw new HouseholdEditError("Le rattachement du rendez-vous ne peut pas être remplacé.");
+  if(existing&&(existing.householdId!==input.householdId || existing.prospectId!==input.prospectId || (existing.contactType??"adherent")!==(input.contactType??"adherent")))throw new HouseholdEditError("Le rattachement du rendez-vous ne peut pas être remplacé.");
   const conflicts=Object.values(store.appointments).filter(p=>p.id!==id&&overlaps(input,p));
   const token=createHash("sha256").update(JSON.stringify({input,id,revision,conflicts:conflicts.map(p=>[p.id,p.revision]).sort()})).digest("hex");
   if(conflicts.length&&confirmation!==token)throw new AppointmentOverlapError(token,conflicts);
@@ -529,4 +531,29 @@ export function saveStoredAppointment(owner:string,raw:AppointmentInput & {adher
 }
 export function linkAppointmentContact(owner:string,id:string,revision:number,contactId:string){
  return withStore(owner,store=>{const p=store.appointments?.[id];if(!p||p.revision!==revision||p.contactId)throw new HouseholdEditError("Rendez-vous déjà converti ou modifié.");p.contactId=contactId;p.revision++;p.updatedAt=new Date().toISOString();return p;});
+}
+
+export function getProspects(owner:string):Prospect[]{return Object.values(readStore(owner).prospects??{});}
+export function saveProspect(owner:string,raw:unknown,id?:string,revision?:number,status?:"actif"|"abandonné") {
+ if(status!==undefined&&status!=="actif"&&status!=="abandonné")throw new HouseholdEditError("Statut prospect invalide.");
+ const input=ProspectInputSchema.parse(raw);
+ return withStore(owner,store=>{
+  store.prospects??={};const previous=id?store.prospects[id]:undefined;
+  if(id&&(!previous||previous.revision!==revision||previous.status==="converti"))throw new HouseholdEditError("Prospect introuvable, converti ou modifié.");
+  const now=new Date().toISOString();const p:Prospect={...previous,...input,id:previous?.id??`PRO-${randomUUID()}`,createdAt:previous?.createdAt??now,updatedAt:now,status:status??previous?.status??"actif",revision:(previous?.revision??0)+1};
+  store.prospects[p.id]=p;
+  for(const rdv of Object.values(store.appointments??{}))if(rdv.prospectId===p.id)rdv.adherentName=`${p.firstName} ${p.lastName}`;
+  return p;
+ });
+}
+export function convertProspect(owner:string,id:string,raw:unknown) {
+ return db.transaction(()=>{
+  const p=getProspects(owner).find(p=>p.id===id);
+  if(!p)throw new HouseholdEditError("Prospect introuvable.");
+  if(p.status==="converti"&&p.householdId)return p.householdId;
+  if(p.status!=="actif")throw new HouseholdEditError("Prospect abandonné.");
+  const h=createManualHousehold(owner,raw);
+  withStore(owner,store=>{const current=store.prospects![id];current.status="converti";current.householdId=h.id;current.updatedAt=new Date().toISOString();current.revision++;});
+  return h.id;
+ })();
 }

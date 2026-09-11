@@ -41,3 +41,7 @@ it("loads every cockpit source within the authenticated account",async()=>{
  const Page=(await import("@/app/(shell)/cockpit/page")).default;await Page();
  const store=await import("@/lib/store/runtimeStore");for(const method of [store.getAppointments,store.getOperationalAnomalies,store.getPrestations,store.getComplaints,store.getDevisPec,store.getCotisations,store.getContacts])expect(method).toHaveBeenCalledWith("account-cockpit");
 });
+it("links an upcoming prospect to its own record",()=>{
+ render(<Cockpit now={now} data={{...empty,appointments:[{id:"p-rdv",contactType:"prospect",prospectId:"p",householdId:"",adherentName:"Alice Prospect",date:"2026-09-11",startTime:"10:00",durationMinutes:30,type:"Visio",reason:"Relance",status:"Planifié",notes:"",createdAt:"",updatedAt:"",revision:1}]}}/>);
+ const panel=within(screen.getByRole("region",{name:"Mes prochains rendez-vous"}));expect(panel.getByText("Prospect")).toBeTruthy();expect(panel.getByRole("link",{name:"Alice Prospect"}).getAttribute("href")).toBe("/prospects#p");
+});

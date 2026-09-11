@@ -5,10 +5,11 @@ export const DURATIONS=[15,30,45,60,90] as const;
 export const minutes=(time:string)=>Number(time.slice(0,2))*60+Number(time.slice(3));
 export function endTime(start:string,duration:number){const end=minutes(start)+duration;return `${String(Math.floor(end/60)).padStart(2,"0")}:${String(end%60).padStart(2,"0")}`;}
 export const AppointmentInputSchema=z.object({
- householdId:z.string().min(1),date:z.iso.date(),startTime:z.string().regex(/^([01]\d|2[0-3]):[0-5]\d$/,"Heure requise au format HH:mm."),
+ contactType:z.enum(["adherent","prospect"]).optional(),prospectId:z.string().optional(),
+ householdId:z.string().default(""),date:z.iso.date(),startTime:z.string().regex(/^([01]\d|2[0-3]):[0-5]\d$/,"Heure requise au format HH:mm."),
  durationMinutes:z.number().refine(n=>DURATIONS.includes(n as typeof DURATIONS[number]),"Durée invalide."),
  type:z.enum(APPOINTMENT_TYPES),reason:z.string().trim().min(3).max(200),status:z.enum(APPOINTMENT_STATUSES),notes:z.string().trim().max(3000).default(""),
-}).refine(p=>minutes(p.startTime)+p.durationMinutes<1440,{message:"Le rendez-vous doit se terminer avant minuit.",path:["durationMinutes"]});
+}).refine(p=>p.contactType==="prospect"?!!p.prospectId&&!p.householdId:!!p.householdId&&!p.prospectId,{message:"Contact requis."}).refine(p=>minutes(p.startTime)+p.durationMinutes<1440,{message:"Le rendez-vous doit se terminer avant minuit.",path:["durationMinutes"]});
 export type AppointmentInput=z.infer<typeof AppointmentInputSchema>;
 export interface Appointment extends AppointmentInput {id:string;adherentName:string;createdAt:string;updatedAt:string;revision:number;contactId?:string;}
 export const activeAppointment=(p:Pick<Appointment,"status">)=>p.status==="Planifié"||p.status==="Confirmé";

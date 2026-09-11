@@ -3,10 +3,18 @@ import { db } from "@/lib/db";
 import { getHouseholdById } from "./households";
 import { activeAt } from "./householdLifecycle";
 import { AppointmentInputSchema, activeAppointment, localToday } from "./appointments";
-import { getAppointments, saveStoredAppointment, linkAppointmentContact, HouseholdEditError } from "@/lib/store/runtimeStore";
+import { getProspects, getAppointments, saveStoredAppointment, linkAppointmentContact, HouseholdEditError } from "@/lib/store/runtimeStore";
 import { createContact } from "./relationService";
 export function saveAppointment(owner:string,raw:unknown,id?:string,revision?:number,confirmation?:string){
- const input=AppointmentInputSchema.parse(raw);const h=getHouseholdById(input.householdId,owner);
+ const input=AppointmentInputSchema.parse(raw);
+ if(input.contactType==="prospect"){
+  const p=getProspects(owner).find(p=>p.id===input.prospectId);
+  if(!p)throw new HouseholdEditError("Prospect introuvable.");
+  if(activeAppointment(input)&&p.status!=="actif")throw new HouseholdEditError("Prospect converti ou abandonné : rendez-vous actif impossible.");
+  if(["Réalisé","Absent"].includes(input.status)&&input.date>localToday())throw new HouseholdEditError("Un rendez-vous futur ne peut pas être réalisé ou absent.");
+  return saveStoredAppointment(owner,{...input,adherentName:`${p.firstName} ${p.lastName}`},id,revision,confirmation);
+ }
+ const h=getHouseholdById(input.householdId,owner);
  if(!h)throw new HouseholdEditError("Adhérent introuvable.");
  if(activeAppointment(input)&&!activeAt(h.lifecycle?.adherent,input.date))throw new HouseholdEditError("Adhérent clôturé ou décédé à la date du rendez-vous.");
  if(["Réalisé","Absent"].includes(input.status)&&input.date>localToday())throw new HouseholdEditError("Un rendez-vous futur ne peut pas être réalisé ou absent.");
@@ -16,6 +24,7 @@ export function appointmentToContact(owner:string,id:string,revision:number){
  return db.transaction(()=>{
   const p=getAppointments(owner).find(p=>p.id===id);
   if(!p||p.revision!==revision)throw new HouseholdEditError("Rendez-vous introuvable ou modifié.");
+  if(p.contactType==="prospect")throw new HouseholdEditError("Le rendez-vous prospect reste dans son historique.");
   if(p.status!=="Réalisé"||p.contactId)throw new HouseholdEditError("Rendez-vous non réalisé ou déjà converti en contact.");
   const contact=createContact(owner,{householdId:p.householdId,date:p.date,channel:p.type==="Téléphone"?"Appel":"Note interne",reason:p.reason,summary:`Rendez-vous ${p.type} du ${p.date} à ${p.startTime} (${p.durationMinutes} min). ${p.notes}`.slice(0,3000),nextAction:""});
   linkAppointmentContact(owner,id,revision,contact.id);return contact;

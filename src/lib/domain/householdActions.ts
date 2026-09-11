@@ -2,7 +2,7 @@
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import { getSession } from "@/lib/store/session";
-import { deleteErroneousHousehold, changeHouseholdLifecycle, HouseholdEditError, updateManualHousehold, saveManualBeneficiary, removeManualBeneficiary, createManualHousehold } from "@/lib/store/runtimeStore";
+import { convertProspect, deleteErroneousHousehold, changeHouseholdLifecycle, HouseholdEditError, updateManualHousehold, saveManualBeneficiary, removeManualBeneficiary, createManualHousehold } from "@/lib/store/runtimeStore";
 import { BeneficiaryInputSchema, ManualHouseholdInputSchema } from "./manualHouseholds";
 import { getHouseholdFormulas } from "./householdFormulas";
 
@@ -13,9 +13,10 @@ export async function createHouseholdAction(formData: FormData): Promise<{error:
   if (!getHouseholdFormulas().some(f => f.key === parsed.data.formulaKey))
     return {error: "Choisissez une formule du référentiel Harmonie 2026."};
   let id: string;
-  try { id = createManualHousehold(session.userId, parsed.data).id; }
+  try { id = formData.get("prospectId") ? convertProspect(session.userId, String(formData.get("prospectId")), parsed.data) : createManualHousehold(session.userId, parsed.data).id; }
   catch { return {error: "Enregistrement impossible. Vos saisies sont conservées ; réessayez."}; }
   revalidatePath("/adherents");
+  revalidatePath("/prospects");
   revalidatePath("/contrats");
   revalidatePath("/api/search-index");
   redirect(`/adherents/${id}`);
@@ -38,6 +39,7 @@ export async function editHouseholdAction(id: string, revision: number, operatio
   }
   revalidatePath(`/adherents/${id}`);
   revalidatePath("/adherents");
+  revalidatePath("/prospects");
   revalidatePath("/contrats");
   revalidatePath("/api/search-index");
   return {};

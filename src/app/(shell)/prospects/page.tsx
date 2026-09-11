@@ -1,11 +1,5 @@
-import { StubPage } from "@/components/ui/EmptyState";
-
-export default function ProspectsPage() {
-  return (
-    <StubPage
-      title="Prospects"
-      phase="P3"
-      description="Le pack pédagogique se concentre sur les adhérents particuliers déjà affiliés. Un module de prospection (devis prospect, suivi commercial) pourra être ajouté en P3 (produit de démonstration client)."
-    />
-  );
-}
+import { getSession } from "@/lib/store/session";
+import { getProspects,getAppointments } from "@/lib/store/runtimeStore";
+import { PageHeader } from "@/components/ui/PageHeader";
+import { ProspectsPanel } from "@/components/prospects/ProspectsPanel";
+export default async function ProspectsPage(){const s=await getSession();return <div><PageHeader title="Prospects" description="Contacts et rendez-vous avant adhésion."/><ProspectsPanel prospects={getProspects(s.userId)} appointments={getAppointments(s.userId)}/></div>;}

@@ -55,3 +55,17 @@ it("exposes next appointments in 360 and cockpit and past entries in the history
  }finally{vi.useRealTimers();}
 });
 it("generates Monday-to-Sunday weeks and full calendar months",()=>{expect(agendaDates("2026-01-07","week")).toEqual(["2026-01-05","2026-01-06","2026-01-07","2026-01-08","2026-01-09","2026-01-10","2026-01-11"]);expect(agendaDates("2026-02-14","month")).toHaveLength(28);});
+it("isolates prospects, preserves appointments and converts atomically only once",async()=>{
+ const p=store.saveProspect("prospect",{firstName:"Alice",lastName:"Test",phone:"0100000000",email:"a@example.invalid"});
+ expect(store.getProspects("other")).toEqual([]);expect(households.getAllHouseholds("prospect")).toHaveLength(12);
+ const raw={...input,householdId:"",contactType:"prospect",prospectId:p.id,reason:"Découverte des besoins"};
+ const a=service.saveAppointment("prospect",raw);expect(()=>service.saveAppointment("other",raw)).toThrow();
+ const moved=service.saveAppointment("prospect",{...raw,startTime:"11:00"},a.id,a.revision);
+ const cancelled=service.saveAppointment("prospect",{...moved,status:"Annulé"},a.id,moved.revision);expect(cancelled.status).toBe("Annulé");
+ expect(()=>store.convertProspect("prospect",p.id,{})).toThrow();expect(store.getProspects("prospect")[0].status).toBe("actif");
+ const formulas=await import("./householdFormulas");
+ const h={firstName:p.firstName,lastName:p.lastName,phone:p.phone,email:p.email,birthDate:"1990-01-01",address:"1 rue Exemple",postalCode:"75001",city:"Paris",effectiveDate:"2026-01-01",formulaKey:formulas.getHouseholdFormulas()[0].key};
+ const id=store.convertProspect("prospect",p.id,h);expect(store.convertProspect("prospect",p.id,h)).toBe(id);
+ expect(households.getAllHouseholds("prospect")).toHaveLength(13);expect(store.getProspects("prospect")[0]).toMatchObject({status:"converti",householdId:id});
+ expect(store.getAppointments("prospect")).toEqual([cancelled]);expect(()=>service.saveAppointment("prospect",raw)).toThrow();
+});

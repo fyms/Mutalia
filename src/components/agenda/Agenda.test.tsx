@@ -3,6 +3,7 @@ import { afterEach,expect,it,vi } from "vitest";
 import { cleanup,fireEvent,render,screen,waitFor } from "@testing-library/react";
 import { Agenda } from "./Agenda";
 import { saveAppointmentAction } from "@/lib/domain/appointmentActions";
+vi.mock("@/lib/domain/prospectActions",()=>({saveProspectAction:vi.fn()}));
 vi.mock("next/navigation",()=>({useRouter:()=>({refresh:vi.fn()})}));
 vi.mock("@/lib/domain/appointmentActions",()=>({saveAppointmentAction:vi.fn(),appointmentContactAction:vi.fn()}));
 afterEach(()=>{cleanup();vi.clearAllMocks();});
@@ -24,4 +25,16 @@ it("recalculates end time on duration changes",()=>{
  fireEvent.change(screen.getByLabelText("Heure de début"),{target:{value:"10:15"}});
  fireEvent.change(screen.getByLabelText("Durée"),{target:{value:"90"}});
  expect(screen.getByText("Heure de fin : 11:45")).toBeTruthy();
+});
+
+it("creates a quick prospect and uses its id for the appointment",async()=>{
+ const {saveProspectAction}=await import("@/lib/domain/prospectActions");
+ vi.mocked(saveProspectAction).mockResolvedValue({prospect:{id:"p",firstName:"Alice",lastName:"Test",phone:"0100000000",email:"a@example.invalid",createdAt:"",updatedAt:"",revision:1,status:"actif"}});
+ vi.mocked(saveAppointmentAction).mockResolvedValue({});
+ render(<Agenda rows={[]} households={[]}/>);fireEvent.click(screen.getByText("Planifier un rendez-vous"));
+ fireEvent.change(screen.getByLabelText("Type de contact"),{target:{value:"prospect"}});fireEvent.click(screen.getByText("Créer un prospect"));
+ fireEvent.click(screen.getByText("Enregistrer le prospect"));
+ await waitFor(()=>expect(screen.getByRole("option",{name:"Alice Test"})).toBeTruthy());
+ fireEvent.submit(screen.getByRole("form",{name:"Rendez-vous"}));
+ await waitFor(()=>expect(saveAppointmentAction).toHaveBeenCalledWith(expect.objectContaining({contactType:"prospect",prospectId:"p",householdId:"",reason:"Découverte des besoins"}),undefined,undefined,undefined));
 });
