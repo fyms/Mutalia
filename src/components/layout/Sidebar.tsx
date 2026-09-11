@@ -22,7 +22,7 @@ export function Sidebar() {
   return <><button ref={toggle} className="m-menu-button m-button m-button--secondary" aria-expanded={open} aria-controls="navigation-metier" onClick={()=>setOpen(!open)}>Menu</button>
     {open&&<button className="m-nav-backdrop" aria-label="Fermer la navigation" onClick={close}/>}
     <aside id="navigation-metier" className={`m-sidebar ${open?'is-open':''}`} onKeyDown={e=>{if(e.key==='Escape')close();}}>
-      <Logo/><button className="m-menu-button m-button m-button--secondary" onClick={close}>Fermer le menu</button>
+      <Logo/>{open&&<button className="m-menu-button m-button m-button--secondary" onClick={close}>Fermer le menu</button>}
       <nav aria-label="Navigation principale">{groups.map(g=><section key={g.title}><p className="m-nav-group">{g.title}</p>{g.items.map(link)}</section>)}
         <details><summary className="m-nav-link">Autres rubriques</summary>{other.map(link)}</details>
       </nav><footer>Environnement pédagogique<br/>Aucun flux métier réel</footer>
