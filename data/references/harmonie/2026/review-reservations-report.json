@@ -1,0 +1,220 @@
+{
+  "byCategory": {
+    "accompagnement personnalisé affection longue durée": 6,
+    "dentaire": 188,
+    "hospitalisation": 6,
+    "maternité": 2,
+    "optique": 49,
+    "services d'assistance": 18,
+    "soins courants": 18
+  },
+  "byCause": {
+    "compound_value": 67,
+    "condition_or_limit_ambiguous": 12,
+    "extraction_mismatch": 105,
+    "genuine_contractual_ambiguity": 0,
+    "insufficient_source_context": 44,
+    "label_mapping_issue": 39,
+    "multiple_values_on_same_line": 20,
+    "other": 0
+  },
+  "documentaryMeaning": "Besoin de preuve supplémentaire : page propre d’une référence non contrôlée, définition, liste CCAM ou notice ; pas nécessairement relecture des mêmes pages.",
+  "minimalTechnicalCorrections": [
+    "Pour les seuls glyphes superposés documentés : conserver le brut et créer des composantes explicites à partir des observations déjà enregistrées ; ne jamais corriger les chiffres par simple suppression de caractères.",
+    "Séparer AMO, TM et dépassement/forfait ; représenter explicitement les alternatives au lieu de les additionner ; conserver unités, plafonds et conditions.",
+    "Limiter la reprise aux occurrences dont toutes les pages ont été contrôlées ; bloquer tout transfert PSI/PLI ou entre références.",
+    "Ne pas tenter de résoudre par normalisation les libellés sans parent, les définitions optiques, notices et listes CCAM absentes."
+  ],
+  "newDocumentaryEvidenceRequired": 239,
+  "newVerified": 0,
+  "potentialMeaning": "Plafond de candidats techniques à réévaluer, pas une promesse de validation. Une note de page ne remplace pas une preuve absente.",
+  "potentiallyNewVerifiedUnits": 48,
+  "potentiallyResolvableWithoutPdf": 48,
+  "problematicBenefits": [
+    {
+      "benefit": "soins et prothèses dentaires à tarif maîtrisé : • inlay onlay",
+      "reservations": 13
+    },
+    {
+      "benefit": "soins et prothèses dentaires à tarif libre : • inlay-core",
+      "reservations": 13
+    },
+    {
+      "benefit": "soins et prothèses dentaires à tarif maîtrisé : • prothèses amovibles",
+      "reservations": 13
+    },
+    {
+      "benefit": "soins et prothèses dentaires à tarif libre : • prothèses transitoires",
+      "reservations": 13
+    },
+    {
+      "benefit": "soins et prothèses dentaires à tarif maîtrisé : • prothèses transitoires",
+      "reservations": 13
+    },
+    {
+      "benefit": "soins et prothèses dentaires à tarif maîtrisé : • inlay-core",
+      "reservations": 13
+    },
+    {
+      "benefit": "soins et prothèses dentaires à tarif libre : • inlay onlay",
+      "reservations": 13
+    },
+    {
+      "benefit": "soins et prothèses dentaires à tarif libre : • prothèses amovibles",
+      "reservations": 13
+    },
+    {
+      "benefit": "orthodontie acceptée par la sécurité sociale",
+      "reservations": 12
+    },
+    {
+      "benefit": "plafond commun de remboursement, uniquement sur les dépassements d'honoraires, pour les soins et prothèses à tarif maîtrisé et libre (par année civile) : • jusqu'à 3 ans d'adhésion : • après 3 ans d'adhésion : • après 5 ans d'adhésion :",
+      "reservations": 12
+    },
+    {
+      "benefit": "soins",
+      "reservations": 7
+    },
+    {
+      "benefit": "(18) soins et prothèses dentaires à tarif libre : • prothèses fixes",
+      "reservations": 4
+    },
+    {
+      "benefit": "(24) parodontologie",
+      "reservations": 4
+    },
+    {
+      "benefit": "(20) soins et prothèses dentaires à tarif maîtrisé : • prothèses fixes",
+      "reservations": 4
+    },
+    {
+      "benefit": "(17) soins et prothèses dentaires à tarif maîtrisé : • prothèses fixes",
+      "reservations": 4
+    }
+  ],
+  "problematicPages": [
+    {
+      "reservations": 18,
+      "sourceFile": "Régime Local/PLI211.pdf",
+      "sourcePage": 3,
+      "sourceSha256": "488dea86c56a6e786a0e287e5a788267bae1acf9498bacd035959b81bc187223"
+    },
+    {
+      "reservations": 17,
+      "sourceFile": "Réflexe eco - Pharmacie/PSI324.pdf",
+      "sourcePage": 7,
+      "sourceSha256": "32ef795598590c45d1cea5f8bbafcfdc9e52ce35b66c0371af9bbb3d4813504f"
+    },
+    {
+      "reservations": 17,
+      "sourceFile": "Régime Local/PLI221.pdf",
+      "sourcePage": 9,
+      "sourceSha256": "e88fab105e00ce5d7e2aec33e255a057617b808d6a1c4f5de95ab168dc9ad48e"
+    },
+    {
+      "reservations": 17,
+      "sourceFile": "Régime Local/PLI531.pdf",
+      "sourcePage": 9,
+      "sourceSha256": "0efab5ecba42ae9672116196c35a13b94265163aa9fded8df3b1dafd8e6500e5"
+    },
+    {
+      "reservations": 17,
+      "sourceFile": "Régime général/PSI321.pdf",
+      "sourcePage": 7,
+      "sourceSha256": "b692a94f75163ebba07de0af3838cce6c766f16d6448cc999fa4cb8f364a3e8d"
+    },
+    {
+      "reservations": 16,
+      "sourceFile": "Réflexe eco - Pharmacie et chambre particulière/PSI123.pdf",
+      "sourcePage": 9,
+      "sourceSha256": "01df93c3c77bc588bc3533af78f60b7b51e626c97a3eb1147f75b8f637e1f1c2"
+    },
+    {
+      "reservations": 16,
+      "sourceFile": "Réflexe eco - Pharmacie et chambre particulière/PSI133.pdf",
+      "sourcePage": 9,
+      "sourceSha256": "bd3930f2eaeb29fecfc3cfe3b7e5e3892ca8a6a1d2c8ba731034c0adf3d8e960"
+    },
+    {
+      "reservations": 16,
+      "sourceFile": "Réflexe eco - Pharmacie/PSI124.pdf",
+      "sourcePage": 9,
+      "sourceSha256": "4018074060403f58bdd036b3dd25f4661c927a714ed43de3b8afce3175b4ed05"
+    },
+    {
+      "reservations": 16,
+      "sourceFile": "Réflexe eco - Pharmacie/PSI134.pdf",
+      "sourcePage": 9,
+      "sourceSha256": "56e8d883cc6490e78fa66ce279573765ccdfe26a62f8ff492f34dbb20cc66728"
+    },
+    {
+      "reservations": 16,
+      "sourceFile": "Régime général/PSI121.pdf",
+      "sourcePage": 9,
+      "sourceSha256": "cd2380f3347f25d3a57362d2cafe85204ce38eb0648d213be132616e723fd1f7"
+    },
+    {
+      "reservations": 16,
+      "sourceFile": "Régime général/PSI131.pdf",
+      "sourcePage": 9,
+      "sourceSha256": "3958bcf9b07719bcb32d1a52aefcea0363fa7c6a8e2a5ba2249738c59362942f"
+    },
+    {
+      "reservations": 15,
+      "sourceFile": "Réflexe eco - Pharmacie et chambre particulière/PSI113.pdf",
+      "sourcePage": 9,
+      "sourceSha256": "85b554c089242c36a0e9e8e91c0d29f0a933e8ed40de432d5067f40f68879a83"
+    },
+    {
+      "reservations": 15,
+      "sourceFile": "Réflexe eco - Pharmacie et chambre particulière/PSI323.pdf",
+      "sourcePage": 7,
+      "sourceSha256": "4a20bfd1a457eb719cd3cc3ac6ecc0371827cecd6edc7c4ad8e7425f53c8620f"
+    },
+    {
+      "reservations": 15,
+      "sourceFile": "Réflexe eco - Pharmacie/PSI114.pdf",
+      "sourcePage": 9,
+      "sourceSha256": "dbfbc704011783dc45a31e69e8e0705d4ffac50e2811a684eb11b68aae025176"
+    },
+    {
+      "reservations": 15,
+      "sourceFile": "Régime Local/PLI211.pdf",
+      "sourcePage": 9,
+      "sourceSha256": "488dea86c56a6e786a0e287e5a788267bae1acf9498bacd035959b81bc187223"
+    },
+    {
+      "reservations": 15,
+      "sourceFile": "Régime Local/PLI231.pdf",
+      "sourcePage": 9,
+      "sourceSha256": "e34a3691b625656789b5c1993c8aee2d97ecafcaef7622b9696d99085eca5541"
+    },
+    {
+      "reservations": 15,
+      "sourceFile": "Régime général/PSI111.pdf",
+      "sourcePage": 9,
+      "sourceSha256": "d644d02208783a3785ccaf55d651bce203e3cb85385beda8070fde4ad6fb1d8b"
+    },
+    {
+      "reservations": 12,
+      "sourceFile": "Réflexe eco - Pharmacie/PSI114.pdf",
+      "sourcePage": 11,
+      "sourceSha256": "dbfbc704011783dc45a31e69e8e0705d4ffac50e2811a684eb11b68aae025176"
+    },
+    {
+      "reservations": 12,
+      "sourceFile": "Régime Local/PLI221.pdf",
+      "sourcePage": 11,
+      "sourceSha256": "e88fab105e00ce5d7e2aec33e255a057617b808d6a1c4f5de95ab168dc9ad48e"
+    },
+    {
+      "reservations": 8,
+      "sourceFile": "Réflexe eco - Pharmacie/PSI114.pdf",
+      "sourcePage": 5,
+      "sourceSha256": "dbfbc704011783dc45a31e69e8e0705d4ffac50e2811a684eb11b68aae025176"
+    }
+  ],
+  "technicalCorrectionCandidates": 192,
+  "total": 287,
+  "verifiedUnchanged": 17
+}

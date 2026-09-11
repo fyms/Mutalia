@@ -1,2 +1,2 @@
-Livré : Lot 2F1, 20 pages sélectionnées par rendement et lues ; 304 unités confrontées à leur propre source, 17 verified (document_review_2026), sans propagation ; 4 tests ciblés et déterminisme validés.
-Restant : 975 unités non validées, dont 287 contrôlées avec réserves ; 560 not_extracted exclus ; aucun branchement métier ni push.
+Livré : Lot 2F1.5, 287 réserves classées exactement une fois ; 48 unités potentiellement résolubles techniquement, 239 nécessitant une preuve documentaire supplémentaire ; 2 tests ciblés réussis.
+Restant : corriger uniquement les composantes déjà documentées puis réévaluer ; potentiel ≠ validation, 17 verified et toutes les sources inchangés, aucun push.
