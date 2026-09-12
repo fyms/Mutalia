@@ -12,7 +12,7 @@ export function PageHeader({
   return (
     <div className="m-page-header mb-5 flex flex-wrap items-start justify-between gap-3">
       <div>
-        <h1 className="text-xl font-semibold text-foreground">{title}</h1>
+        <h1 className="font-bold text-foreground">{title}</h1>
         {description ? <p className="mt-1 max-w-3xl text-sm text-foreground-muted">{description}</p> : null}
       </div>
       {action}

@@ -1,2 +1,2 @@
-Terminé : rendez-vous adhérents/prospects, prospects isolés par compte, création rapide, suivi et conversion idempotente avec historique conservé ; Cockpit raccordé.
-Validation : 30 tests ciblés, typecheck et lint réussis ; aucun push, tags de démonstration inchangés.
+Terminé : conformité visuelle V3 (Arial 400/700, logo temporaire sans carré, sidebar 224/200 px, palette, contrôles, badges et table Prospects) ; logique métier inchangée.
+Validation : 18 tests ciblés, typecheck/lint ; 7 écrans contrôlés à 1440/820/390 px et focus clavier. SVG V3 absent du dépôt ; tags de démonstration inchangés, aucun push.

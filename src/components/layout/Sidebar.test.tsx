@@ -9,7 +9,8 @@ it('keeps grouped navigation and nested active state without hidden modules',()=
  expect(screen.getByRole('link',{name:'Adhérents'}).getAttribute('aria-current')).toBe('page');
  for(const name of ['Pilotage','Adhérents & contrats','Gestion des prestations','Documents & outils','Ressources'])expect(screen.getByText(name)).toBeTruthy();
  for(const name of ['Prospects','Quiz','Pilotage formateur'])expect(screen.queryByText(name)).toBeNull();
- expect(screen.getByText('Gestion Santé & Prévoyance')).toBeTruthy();
+ expect(screen.queryByText('Gestion Santé & Prévoyance')).toBeNull();
+ expect(screen.getByRole('link',{name:'Mutalia, cockpit'})).toBeTruthy();
 });
 it('opens search through the existing shortcut and closes navigation with Escape',()=>{
  render(<Sidebar/>);const listener=vi.fn();window.addEventListener('keydown',listener);

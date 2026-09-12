@@ -2,11 +2,11 @@ import { cx } from "@/lib/utils/format";
 import type { ReactNode } from "react";
 
 const TONES = {
-  neutral: "bg-surface-muted text-foreground-muted border-border",
-  brand: "bg-brand-soft text-brand-strong border-transparent",
-  success: "bg-success-soft text-success border-transparent",
-  warning: "bg-warning-soft text-warning border-transparent",
-  danger: "bg-danger-soft text-danger border-transparent",
+  neutral: "",
+  brand: "m-badge--info",
+  success: "m-badge--good",
+  warning: "m-badge--warn",
+  danger: "m-badge--bad",
 } as const;
 
 export function Badge({
@@ -21,7 +21,7 @@ export function Badge({
   return (
     <span
       className={cx(
-        "inline-flex items-center gap-1 rounded-full border px-2 py-0.5 text-[11px] font-medium leading-4",
+        "m-badge inline-flex items-center gap-1",
         TONES[tone],
         className,
       )}
