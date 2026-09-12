@@ -36,9 +36,9 @@ it("retains old tab links and existing history modules",()=>{
  expect(householdTab("contrat")).toBe("vue-generale");expect(householdTab("pec")).toBe("prestations");
  render(<Household360 owner="a" household={manual} data={data} tab="pec"/>);expect(screen.getByText("Prestations existantes")).toBeTruthy();expect(screen.getByText("PEC existantes")).toBeTruthy();
 });
-it("keeps pedagogical missing fields explicit and does not expose manual mutations",()=>{
+it("keeps missing source fields explicit and labels simulation editing",()=>{
  const seed:HouseholdView={...manual,case:{case_id:"case",difficulty:"debutant",scenario_type:"test",household:manual.household,target_beneficiary_id:"b",contract:{provider:"Harmonie Mutuelle",year:2026,exercise_formula:"PSI 111",status:"Actif"},documents:[],objectives:[],visible_in_learner_mode:true}};
- render(<Household360 owner="a" household={seed} data={data}/>);expect(screen.getByText("Non renseignée")).toBeTruthy();expect(screen.queryByRole("link",{name:"Modifier"})).toBeNull();expect(screen.queryByRole("link",{name:"Ajouter un bénéficiaire"})).toBeNull();
+ render(<Household360 owner="a" household={seed} data={data}/>);expect(screen.getByText("Non renseignée")).toBeTruthy();expect(screen.queryByRole("link",{name:"Modifier"})).toBeNull();expect(screen.getByRole("link",{name:"Ajouter un bénéficiaire"})).toBeTruthy();expect(screen.getByRole("link",{name:"Modifier le dossier de simulation"})).toBeTruthy();
 });
 it("merges chronologically, preserves date-only events and removes exact repetitions and other households",()=>{
  const at="2026-09-10T10:00:00Z";const lifecycle=emptyLifecycle();lifecycle.beneficiaries.b={status:"inactive",endDate:"2026-09-10",endReason:"detached",history:[{status:"inactive",endDate:"2026-09-10",endReason:"detached",at}]};

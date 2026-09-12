@@ -91,7 +91,7 @@ describe("manual households on the Codex store", () => {
     expect(buildSearchIndex("editor").find(i => i.url === `/adherents/${h.id}`)?.title).toBe("Lucie Démonstration");
     expect(() => store.updateManualHousehold("editor", h.id, 1, input)).toThrow("autre onglet");
     expect(() => store.updateManualHousehold("other", h.id, 2, input)).toThrow("introuvable");
-    expect(() => store.updateManualHousehold("editor", "FOY-001", 1, input)).toThrow("introuvable");
+    expect(() => store.updateManualHousehold("editor", "FOY-001", 1, input)).toThrow("autre onglet");
     expect(households.getAllHouseholds()).toEqual(seeds);
   });
   it("persists beneficiary add/edit/removal and refuses invalid or foreign mutations", async () => {
@@ -205,4 +205,43 @@ it("persists demo banking per owner and records only generic updates",async()=>{
  const events=householdTimeline({dossiers:[],anomalies:[],appointments:[],prestations:[],complaints:[],quotes:[],cotisations:[],contacts:[]},h.id,undefined,{},h.createdAt,saved.bankingHistory);
  expect(events.some(e=>e.summary==="Coordonnées bancaires mises à jour")).toBe(true);
  expect(JSON.stringify(events)).not.toContain(next.paymentAccount.iban);
+});
+
+it("edits pedagogical overlays per account, preserves source and resets only the dossier", async () => {
+ const {getAllCases} = await import("../data/loaders");
+ const {pedagogicalHouseholdRecord} = await import("./pedagogicalHouseholdRecord");
+ const owner="overlay-a", other="overlay-b";
+ const seed=households.getAllHouseholds()[0], id=seed.householdId;
+ const source=JSON.stringify(getAllCases());
+ const payload={version:1,documents:{demo:{viewedAt:["2026-01-01"],annotations:[]}},submissions:{exercise:[{score:12}]},progress:{saved:true},drafts:{keep:true}};
+ db.prepare("INSERT INTO codex_learner_work(owner,payload) VALUES(?,?)").run(owner,JSON.stringify(payload));
+ const original=pedagogicalHouseholdRecord(id)!;
+ expect(households.getHouseholdById(id,owner)?.household).toEqual(seed.household);
+ const changed=store.updateManualHousehold(owner,id,0,{...original,firstName:"Simulation",address:"1 rue Fictive",postalCode:"45130",city:"Meung-sur-Loire",formulaKey:formulas.getHouseholdFormulas()[2].key});
+ expect(changed.source).toBe("pedagogical");
+ const child={firstName:"Enfant",lastName:"Fictif",birthDate:"2014-01-01",role:"enfant"};
+ const added=store.saveManualBeneficiary(owner,id,1,null,child);
+ const childId=added.beneficiaries!.at(-1)!.id;
+ store.saveManualBeneficiary(owner,id,2,childId,{...child,firstName:"Modifié"});
+ store.changeHouseholdLifecycle(owner,id,0,childId,{status:"inactive",endDate:"2026-09-12",endReason:"detached"});
+ const view=households.getHouseholdById(id,owner)!;
+ expect(view.adherent.first_name).toBe("Simulation");
+ expect(view.simulation).toMatchObject({postalCode:"45130",city:"Meung-sur-Loire",address:"1 rue Fictive"});
+ expect(view.assignedFormula).toBe(formulas.getHouseholdFormulas()[2].formula);
+ expect(view.beneficiaries.at(-1)?.first_name).toBe("Modifié");
+ expect(view.lifecycle?.beneficiaries[childId].status).toBe("inactive");
+ expect(households.getHouseholdById(id,other)?.household).toEqual(seed.household);
+ expect(JSON.stringify(getAllCases())).toBe(source);
+ const persisted=JSON.parse((db.prepare("SELECT payload FROM codex_learner_work WHERE owner=?").get(owner) as {payload:string}).payload);
+ expect(persisted.pedagogicalHouseholds[id].firstName).toBe("Simulation");
+ expect(() => store.resetPedagogicalHousehold(owner,id,4,false)).toThrow();
+ expect(() => store.resetPedagogicalHousehold(owner,id,0,true)).toThrow();
+ store.resetPedagogicalHousehold(owner,id,4,true);
+ expect(households.getHouseholdById(id,owner)?.household).toEqual(seed.household);
+ expect(households.getHouseholdById(id,owner)?.simulation).toBeUndefined();
+ const after=JSON.parse((db.prepare("SELECT payload FROM codex_learner_work WHERE owner=?").get(owner) as {payload:string}).payload);
+ for(const key of ["documents","submissions","progress","drafts"] as const) expect(after[key]).toEqual(payload[key]);
+ expect(after.pedagogicalHistory[id].map((e:{event:string})=>e.event)).toContain("Données de simulation réinitialisées");
+ expect(() => store.updateManualHousehold(owner,id,0,original)).toThrow();
+ expect(JSON.stringify(getAllCases())).toBe(source);
 });

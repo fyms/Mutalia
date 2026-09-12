@@ -1,3 +1,4 @@
+import { pedagogicalHouseholdRecord } from "@/lib/domain/pedagogicalHouseholdRecord";
 import { ProspectInputSchema, type Prospect } from "@/lib/domain/prospects";
 import { AppointmentInputSchema, overlaps, sortAppointments, type Appointment, type AppointmentInput } from "@/lib/domain/appointments";
 import { getAllCases } from "@/lib/data/loaders";
@@ -10,7 +11,7 @@ import type { Prestation } from "@/lib/domain/prestations";
 import { DossierStateSchema, type DossierState } from "@/lib/domain/dossiers";
 import "server-only";
 import { createHash, randomUUID } from "node:crypto";
-import { BeneficiaryInputSchema, ManualHouseholdInputSchema, type ManualHousehold } from "@/lib/domain/manualHouseholds";
+import { BeneficiaryInputSchema, PedagogicalHouseholdInputSchema, ManualHouseholdInputSchema, type ManualHousehold } from "@/lib/domain/manualHouseholds";
 import { getHouseholdFormulas } from "@/lib/domain/householdFormulas";
 import { db } from "@/lib/db";
 import type { DocumentStatus } from "@/lib/domain/constants";
@@ -41,6 +42,9 @@ export interface RuntimeStoreShape {
   devisPec?: Record<string, DevisPec>;
   prestations?: Record<string, Prestation>;
   dossiers?: Record<string, DossierState>;
+  pedagogicalHouseholds?: Record<string, ManualHousehold>;
+  pedagogicalHistory?: Record<string, {at:string;event:string}[]>;
+  pedagogicalRevisions?: Record<string, number>;
   manualHouseholds?: Record<string, ManualHousehold>;
   documents: Record<string, DocumentState>;
   submissions: Record<string, CaseSubmissionResult[]>;
@@ -151,6 +155,7 @@ export async function resetRuntimeStore(owner: string): Promise<void> {
   await withStore(owner, (store) => {
     const seedIds = new Set(getAllCases().map(c => c.household.household_id));
     for (const id of Object.keys(store.householdLifecycles ?? {})) if (seedIds.has(id)) delete store.householdLifecycles![id];
+    store.pedagogicalHouseholds = {};
     store.documents = {};
     store.submissions = {};
   });
@@ -180,6 +185,32 @@ export function recordSubmissionOnce(
   })();
 }
 
+export function getPedagogicalOverlays(owner: string) {
+ const store = readStore(owner);
+ return {records:store.pedagogicalHouseholds ?? {}, history:store.pedagogicalHistory ?? {}, revisions:store.pedagogicalRevisions ?? {}};
+}
+function pedagogicalEvent(store:RuntimeStoreShape,id:string,event:string) {
+ store.pedagogicalHistory ??= {};
+ (store.pedagogicalHistory[id] ??= []).push({at:new Date().toISOString(),event});
+}
+export function resetPedagogicalHousehold(owner:string,id:string,revision:number,confirmation:boolean) {
+ return withStore(owner,store=>{
+  if (!confirmation || !pedagogicalHouseholdRecord(id)) throw new HouseholdEditError("Confirmation du dossier pédagogique requise.");
+  if (revision !== (store.pedagogicalRevisions?.[id] ?? 0)) throw new HouseholdEditError("Le dossier a changé. Rechargez la fiche.");
+  delete store.pedagogicalHouseholds?.[id];
+  const previous = store.householdLifecycles?.[id];
+  if (previous) for (const state of [previous.adherent,...Object.values(previous.beneficiaries)]) for (const entry of state.history) {
+    store.pedagogicalHistory ??= {};
+    const history = store.pedagogicalHistory[id] ??= [];
+    if (!history.some(e=>e.at===entry.at)) history.push({at:entry.at,event:"Situation du bénéficiaire modifiée"});
+  }
+  delete store.householdLifecycles?.[id];
+  store.pedagogicalRevisions ??= {};
+  store.pedagogicalRevisions[id] = revision + 1;
+  pedagogicalEvent(store,id,"Données de simulation réinitialisées");
+ });
+}
+
 export function getManualHouseholds(owner: string): ManualHousehold[] {
   return Object.values(readStore(owner).manualHouseholds ?? {}).filter(h => !h.deletedAt);
 }
@@ -202,20 +233,28 @@ export function createManualHousehold(owner: string, raw: unknown): ManualHouseh
 }
 
 export class HouseholdEditError extends Error {}
-function editManualHousehold(owner: string, id: string, revision: number, edit: (h: ManualHousehold) => void) {
+function editManualHousehold(owner: string, id: string, revision: number, edit: (h: ManualHousehold) => void, event = "Dossier pédagogique modifié") {
   return withStore(owner, store => {
-    const h = store.manualHouseholds?.[id];
-    if (!h || h.deletedAt || h.source !== "manual") throw new HouseholdEditError("Foyer introuvable.");
+    const h = store.manualHouseholds?.[id] ?? store.pedagogicalHouseholds?.[id] ?? pedagogicalHouseholdRecord(id);
+    if (h?.source === "pedagogical") h.revision = store.pedagogicalRevisions?.[id] ?? 0;
+    if (!h || h.deletedAt) throw new HouseholdEditError("Foyer introuvable.");
     if (!Number.isInteger(revision) || h.revision !== revision)
       throw new HouseholdEditError("Le foyer a changé dans un autre onglet. Rechargez la fiche avant de reprendre.");
     edit(h);
     h.revision++;
+    if (h.source === "pedagogical") {
+      store.pedagogicalHouseholds ??= {};
+      store.pedagogicalHouseholds[id] = h;
+      store.pedagogicalRevisions ??= {};
+      store.pedagogicalRevisions[id] = h.revision;
+      pedagogicalEvent(store,id,event);
+    }
     h.updatedAt = new Date().toISOString();
     return h;
   });
 }
 export function updateManualHousehold(owner: string, id: string, revision: number, raw: unknown) {
-  const input = ManualHouseholdInputSchema.parse(raw);
+  const input = (pedagogicalHouseholdRecord(id) ? PedagogicalHouseholdInputSchema : ManualHouseholdInputSchema).parse(raw);
   if (!getHouseholdFormulas().some(f => f.key === input.formulaKey))
     throw new HouseholdEditError("Choisissez une formule du référentiel Harmonie 2026.");
   return editManualHousehold(owner, id, revision, h => {
@@ -236,7 +275,7 @@ export function saveManualBeneficiary(owner: string, id: string, revision: numbe
       if (!b) throw new HouseholdEditError("Bénéficiaire introuvable.");
       Object.assign(b, input);
     } else h.beneficiaries.push({...input, id: `MEM-M-${randomUUID()}`});
-  });
+  }, beneficiaryId ? "Situation du bénéficiaire modifiée" : "Bénéficiaire ajouté");
 }
 export function removeManualBeneficiary(owner: string, id: string, revision: number, beneficiaryId: string) {
   return editManualHousehold(owner, id, revision, h => {
@@ -476,7 +515,7 @@ export function changeHouseholdLifecycle(owner: string, id: string, revision: nu
       (input.status === "deceased") !== (input.endReason === (beneficiary ? "deceased" : "death")))
     throw new HouseholdEditError("Statut et motif incompatibles.");
   return withStore(owner, store => {
-    const manual = store.manualHouseholds?.[id];
+    const manual = store.manualHouseholds?.[id] ?? store.pedagogicalHouseholds?.[id];
     const seed = getAllCases().find(c => c.household.household_id === id)?.household;
     if ((!manual || manual.deletedAt) && !seed) throw new HouseholdEditError("Foyer introuvable.");
     const birthDate = memberId ? manual?.beneficiaries?.find(b=>b.id===memberId)?.birthDate ?? seed?.members.find(m=>m.member_id===memberId && m.role!=="adherent")?.birth_date : manual?.birthDate ?? seed?.members.find(m=>m.role==="adherent")?.birth_date;
@@ -491,6 +530,12 @@ export function changeHouseholdLifecycle(owner: string, id: string, revision: nu
     if (memberId) lifecycle.beneficiaries[memberId]=next; else lifecycle.adherent=next;
     lifecycle.revision++;
     store.householdLifecycles[id]=lifecycle;
+    if (seed) {
+      pedagogicalEvent(store,id,memberId ? "Situation du bénéficiaire modifiée" : "Dossier pédagogique modifié");
+      store.pedagogicalRevisions ??= {};
+      store.pedagogicalRevisions[id] = (store.pedagogicalRevisions[id] ?? 0) + 1;
+      if (store.pedagogicalHouseholds?.[id]) store.pedagogicalHouseholds[id].revision=store.pedagogicalRevisions[id];
+    }
     return lifecycle;
   });
 }

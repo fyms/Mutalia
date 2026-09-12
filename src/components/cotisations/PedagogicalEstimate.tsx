@@ -5,13 +5,13 @@ import { formatCurrency } from "@/lib/utils/format";
 import { localToday } from "@/lib/domain/appointments";
 const roles = {adherent:"Titulaire", conjoint:"Conjoint", enfant:"Enfant"};
 export function PedagogicalEstimate({household:h}: {household: HouseholdView}) {
-  const formulaKey = h.case ? `regime_general:${h.assignedFormula}` : h.manual.formulaKey;
+  const formulaKey = h.case ? h.simulation?.formulaKey ?? `regime_general:${h.assignedFormula}` : h.manual.formulaKey;
   const config = createPedagogicalGrid(getHouseholdFormulas()).find(c => c.formulaKey === formulaKey);
   let result;
   let error = "Formule absente du barème pédagogique.";
   if (config) try {
     result = estimatePedagogicalPricing(config, {date: localToday(), lifecycle:h.lifecycle,
-      postalCode:h.case ? undefined : h.manual.postalCode,
+      postalCode:h.case ? h.simulation?.postalCode : h.manual.postalCode,
       members:h.household.members.map(m=>({id:m.member_id,name:`${m.first_name} ${m.last_name}`,birthDate:m.birth_date,role:m.role})),
     });
   } catch(e) {error = e instanceof Error ? e.message : "Estimation indisponible.";}

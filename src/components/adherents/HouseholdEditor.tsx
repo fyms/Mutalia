@@ -4,11 +4,12 @@ import type { HouseholdLifecycle } from "@/lib/domain/householdLifecycle";
 import { useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
 import type { ManualHousehold, ManualBeneficiary } from "@/lib/domain/manualHouseholds";
-import { editHouseholdAction } from "@/lib/domain/householdActions";
+import { editHouseholdAction, resetPedagogicalHouseholdAction } from "@/lib/domain/householdActions";
 import { NewHouseholdForm } from "./NewHouseholdForm";
 export function HouseholdEditor({record, formulas, lifecycle, initialAction, hideLifecycle=false}: {initialAction?: "edit"|"add"; hideLifecycle?:boolean; lifecycle?: HouseholdLifecycle; record: ManualHousehold; formulas: {key: string; label: string}[]}) {
   const [editing, setEditing] = useState(initialAction === "edit");
   const [beneficiary, setBeneficiary] = useState<ManualBeneficiary | "new" | null>(initialAction === "add" ? "new" : null);
+  const [confirmReset, setConfirmReset] = useState(false);
   const [error, setError] = useState("");
   const [pending, startTransition] = useTransition();
   const router = useRouter();
@@ -22,9 +23,10 @@ export function HouseholdEditor({record, formulas, lifecycle, initialAction, hid
   };
   return <section className="m-panel mb-4 space-y-4" aria-label="Gestion du foyer">
     <div className="flex flex-wrap gap-3">
-      <button className="m-button" disabled={pending || editing || beneficiary !== null} onClick={() => {setEditing(true); setError("");}}>Modifier l’adhérent</button>
+      <button className="m-button" disabled={pending || editing || beneficiary !== null} onClick={() => {setEditing(true); setError("");}}>{record.source === "pedagogical" ? "Modifier le dossier de simulation" : "Modifier l’adhérent"}</button>
       <button className="m-button m-button--secondary" disabled={pending || editing || beneficiary !== null} onClick={() => {setBeneficiary("new"); setError("");}}>Ajouter un bénéficiaire</button>
     </div>
+    {record.source === "pedagogical" && <div><p className="m-help">Modification pédagogique — le cas source reste inchangé</p><label><input type="checkbox" checked={confirmReset} onChange={e=>setConfirmReset(e.target.checked)}/> Je confirme le retour aux informations du cas source, sans supprimer la progression ni l’historique.</label><button className="m-button m-button--danger" disabled={!confirmReset || pending} onClick={()=>startTransition(async()=>{const result=await resetPedagogicalHouseholdAction(record.id,record.revision,confirmReset);if(result.error)setError(result.error);else {setConfirmReset(false);done();}})}>Réinitialiser les modifications du dossier</button></div>}
     {editing && <NewHouseholdForm formulas={formulas} record={record} onDone={done} />}
     <h2>Bénéficiaires</h2>
     {(record.beneficiaries ?? []).length === 0 && <p>Aucun bénéficiaire supplémentaire.</p>}

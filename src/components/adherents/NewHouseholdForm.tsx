@@ -26,15 +26,15 @@ export function NewHouseholdForm({formulas, record, onDone, prefill, prospectId}
     });
   }}>
     {prospectId&&<input type="hidden" name="prospectId" value={prospectId}/> }
-    <p className="m-help">Tous les champs sont requis. Pour la démonstration, utilisez des coordonnées fictives.</p>
+    <p className="m-help">{record?.source === "pedagogical" ? "Modification pédagogique — le cas source reste inchangé. Les coordonnées absentes peuvent rester vides." : "Tous les champs sont requis. Pour la démonstration, utilisez des coordonnées fictives."}</p>
     <fieldset disabled={pending} className="grid gap-4 sm:grid-cols-2">
       <legend className="sr-only">Identité et adhésion</legend>
       {fields.map(([name, label, type, maxLength]) => <label key={name} className="block">
         <span className="m-label">{label}</span>
-        <input className="m-field" name={name} defaultValue={record?.[name]??prefill?.[name]} type={type} required maxLength={maxLength}
+        <input className="m-field" name={name} defaultValue={record?.[name]??prefill?.[name]} type={type} required={record?.source !== "pedagogical" || ["firstName","lastName","birthDate"].includes(name)} maxLength={maxLength}
           />
       </label>)}
-      <PostalCityFields key={record?.id ?? "new"} postalCode={record?.postalCode} city={record?.city}/>
+      <PostalCityFields required={record?.source !== "pedagogical"} key={record?.id ?? "new"} postalCode={record?.postalCode} city={record?.city}/>
       <label className="block"><span className="m-label">Formule Harmonie 2026</span>
         <select name="formulaKey" className="m-field" required defaultValue={record?.formulaKey ?? ""}>
           <option value="" disabled>Choisir une formule</option>

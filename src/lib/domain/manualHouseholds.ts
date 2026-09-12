@@ -15,12 +15,12 @@ export const ManualHouseholdInputSchema = z.object({
   city: required("Ville"),
   effectiveDate: date,
   formulaKey: required("Formule", 150),
-}).refine(value => value.effectiveDate >= value.birthDate, {path: ["effectiveDate"], message: "L’adhésion ne peut pas précéder la naissance."});
+}).refine(value => (!value.effectiveDate || value.effectiveDate >= value.birthDate), {path: ["effectiveDate"], message: "L’adhésion ne peut pas précéder la naissance."});
 export type ManualHouseholdInput = z.infer<typeof ManualHouseholdInputSchema>;
 export interface ManualHousehold extends ManualHouseholdInput {
   id: string;
   memberId: string;
-  source: "manual";
+  source: "manual" | "pedagogical";
   referenceYear: 2026;
   createdAt: string;
   updatedAt: string;
@@ -37,3 +37,13 @@ export const BeneficiaryInputSchema = z.object({
 });
 export type BeneficiaryInput = z.infer<typeof BeneficiaryInputSchema>;
 export interface ManualBeneficiary extends BeneficiaryInput { id: string; }
+
+// Missing source coordinates remain optional for a pedagogical dossier only.
+export const PedagogicalHouseholdInputSchema = ManualHouseholdInputSchema.safeExtend({
+ email: ManualHouseholdInputSchema.shape.email.or(z.literal("")),
+ phone: ManualHouseholdInputSchema.shape.phone.or(z.literal("")),
+ address: ManualHouseholdInputSchema.shape.address.or(z.literal("")),
+ postalCode: ManualHouseholdInputSchema.shape.postalCode.or(z.literal("")),
+ city: ManualHouseholdInputSchema.shape.city.or(z.literal("")),
+ effectiveDate: date.or(z.literal("")),
+});

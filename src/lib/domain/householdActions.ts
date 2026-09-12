@@ -1,9 +1,10 @@
 "use server";
+import { pedagogicalHouseholdRecord } from "./pedagogicalHouseholdRecord";
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import { getSession } from "@/lib/store/session";
-import { convertProspect, deleteErroneousHousehold, changeHouseholdLifecycle, HouseholdEditError, updateManualHousehold, saveManualBeneficiary, removeManualBeneficiary, createManualHousehold } from "@/lib/store/runtimeStore";
-import { BeneficiaryInputSchema, ManualHouseholdInputSchema } from "./manualHouseholds";
+import { resetPedagogicalHousehold, convertProspect, deleteErroneousHousehold, changeHouseholdLifecycle, HouseholdEditError, updateManualHousehold, saveManualBeneficiary, removeManualBeneficiary, createManualHousehold } from "@/lib/store/runtimeStore";
+import { BeneficiaryInputSchema, PedagogicalHouseholdInputSchema, ManualHouseholdInputSchema } from "./manualHouseholds";
 import { getHouseholdFormulas } from "./householdFormulas";
 
 export async function createHouseholdAction(formData: FormData): Promise<{error: string}> {
@@ -25,7 +26,7 @@ export async function createHouseholdAction(formData: FormData): Promise<{error:
 export async function editHouseholdAction(id: string, revision: number, operation: "adherent" | "beneficiary" | "remove", beneficiaryId: string | null, data: FormData): Promise<{error?: string}> {
   const session = await getSession();
   if (!["adherent", "beneficiary", "remove"].includes(operation)) return {error: "Action invalide."};
-  const parsed = (operation === "adherent" ? ManualHouseholdInputSchema : BeneficiaryInputSchema).safeParse(Object.fromEntries(data));
+  const parsed = (operation === "adherent" ? (pedagogicalHouseholdRecord(id) ? PedagogicalHouseholdInputSchema : ManualHouseholdInputSchema) : BeneficiaryInputSchema).safeParse({city:"", ...Object.fromEntries(data)});
   if (operation !== "remove" && !parsed.success) return {error: parsed.error.issues[0].message};
   try {
     if (operation === "adherent") updateManualHousehold(session.userId, id, revision, parsed.data);
@@ -37,6 +38,7 @@ export async function editHouseholdAction(id: string, revision: number, operatio
   } catch (error) {
     return {error: error instanceof HouseholdEditError ? error.message : "Enregistrement impossible. Réessayez."};
   }
+  revalidatePath("/", "layout");
   revalidatePath(`/adherents/${id}`);
   revalidatePath("/adherents");
   revalidatePath("/prospects");
@@ -59,4 +61,12 @@ export async function deleteErroneousHouseholdAction(id:string,confirmation:stri
  catch(e){return {error:e instanceof HouseholdEditError?e.message:"Suppression impossible."};}
  for(const path of ["/adherents","/contrats","/api/search-index"])revalidatePath(path);
  redirect("/adherents");
+}
+
+export async function resetPedagogicalHouseholdAction(id:string,revision:number,confirmed:boolean):Promise<{error?:string}> {
+ const {userId} = await getSession();
+ try { resetPedagogicalHousehold(userId,id,revision,confirmed); }
+ catch(e) { return {error:e instanceof HouseholdEditError ? e.message : "Réinitialisation impossible."}; }
+ revalidatePath("/", "layout");
+ return {};
 }

@@ -1,14 +1,18 @@
+import { pedagogicalFormula } from "./pedagogicalHouseholdRecord";
 import type { HouseholdLifecycle } from "./householdLifecycle";
-import { getManualHouseholds, getHouseholdLifecycles } from "@/lib/store/runtimeStore";
+import { getManualHouseholds, getHouseholdLifecycles, getPedagogicalOverlays } from "@/lib/store/runtimeStore";
 import { getHouseholdFormulas } from "./householdFormulas";
 import type { ManualHousehold } from "./manualHouseholds";
 import "server-only";
-import { getAllCases, getHarmonieReferential } from "@/lib/data/loaders";
+import { getAllCases } from "@/lib/data/loaders";
 import type { Household, Member, TrainingCase } from "@/lib/domain/types";
 import { DATA_TO_VERIFY } from "@/lib/domain/constants";
 
 export interface PedagogicalHouseholdView {
   householdId: string;
+  simulation?: ManualHousehold;
+  simulationHistory?: {at:string;event:string}[];
+  simulationRevision?: number;
   lifecycle?: HouseholdLifecycle;
   case: TrainingCase;
   household: Household;
@@ -26,14 +30,6 @@ export interface PedagogicalHouseholdView {
   starsEquipements: number | typeof DATA_TO_VERIFY;
 }
 
-function hashString(input: string): number {
-  let hash = 0;
-  for (let i = 0; i < input.length; i++) {
-    hash = (hash * 31 + input.charCodeAt(i)) >>> 0;
-  }
-  return hash;
-}
-
 export type HouseholdView = PedagogicalHouseholdView | (Omit<PedagogicalHouseholdView, "case"> & {case: null; manual: ManualHousehold});
 
 let cache: PedagogicalHouseholdView[] | null = null;
@@ -41,8 +37,6 @@ let cache: PedagogicalHouseholdView[] | null = null;
 function getPedagogicalHouseholds(): PedagogicalHouseholdView[] {
   if (cache) return cache;
   const cases = getAllCases();
-  const referential = getHarmonieReferential();
-  const formulas = referential.canonical_2026_architecture.regime_general;
 
   cache = cases.map((trainingCase) => {
     const adherent = trainingCase.household.members.find((m) => m.role === "adherent");
@@ -50,8 +44,7 @@ function getPedagogicalHouseholds(): PedagogicalHouseholdView[] {
       throw new Error(`Foyer ${trainingCase.household.household_id} sans adhérent principal`);
     }
     const beneficiaries = trainingCase.household.members.filter((m) => m.role !== "adherent");
-    const idx = hashString(trainingCase.household.household_id) % formulas.length;
-    const formula = formulas[idx];
+    const formula = pedagogicalFormula(trainingCase.household.household_id);
 
     return {
       householdId: trainingCase.household.household_id,
@@ -87,8 +80,18 @@ export function getAllHouseholds(owner?: string): HouseholdView[] {
       starsSoins: DATA_TO_VERIFY, starsEquipements: DATA_TO_VERIFY,
     };
   });
+  const overlays = getPedagogicalOverlays(owner);
+  const simulated = seeds.map(h => {
+    const record = overlays.records[h.householdId];
+    const metadata = {simulationHistory:overlays.history[h.householdId],simulationRevision:overlays.revisions[h.householdId] ?? 0};
+    if (!record) return {...h,...metadata};
+    const members:Member[] = [{...h.adherent,first_name:record.firstName,last_name:record.lastName,birth_date:record.birthDate},
+      ...(record.beneficiaries ?? []).map(b=>({member_id:b.id,household_id:h.householdId,role:b.role,first_name:b.firstName,last_name:b.lastName,birth_date:b.birthDate}))];
+    return {...h,...metadata,simulation:record,household:{...h.household,members},adherent:members[0],beneficiaries:members.slice(1),
+      assignedFormula:formulas.find(f=>f.key===record.formulaKey)?.formula ?? DATA_TO_VERIFY,starsSoins:DATA_TO_VERIFY,starsEquipements:DATA_TO_VERIFY};
+  });
   const lifecycles = getHouseholdLifecycles(owner);
-  return [...seeds, ...manual].map(h => lifecycles[h.householdId] ? {...h,lifecycle:lifecycles[h.householdId]} : h);
+  return [...simulated, ...manual].map(h => lifecycles[h.householdId] ? {...h,lifecycle:lifecycles[h.householdId]} : h);
 }
 
 export function getHouseholdById(householdId: string, owner?: string): HouseholdView | undefined {
