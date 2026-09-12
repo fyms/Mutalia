@@ -1,35 +1,51 @@
-# Audit final du prototype — 11 septembre 2026
+# Audit de stabilisation — 12 septembre 2026
 
-Base : Codex `41f9d67`. Audit applicatif ciblé, sans PDF, extraction ni modification du référentiel.
+Branche : **Codex**. Commit audité : **a33351a**, puis correction ciblée incluse dans le commit de ce rapport. Aucun push, tag, référentiel ou cas source modifié.
 
-| Niveau | Trouvés | Corrigés | Restants |
+## Verdict
+
+**GO — prêt pour tests utilisateurs** dans le périmètre pédagogique. Aucun P0/P1 restant identifié dans les contrôles ci-dessous ; ce verdict ne constitue pas une certification de production ou de sécurité exhaustive.
+
+| Niveau | Trouvés pendant cet audit | Corrigés | Restants |
 |---|---:|---:|---:|
-| P0 reproductibles | 0 | 0 | 0 identifié |
-| P1 applicatifs reproductibles | 0 | 0 | 0 identifié |
-| P2 | 5 | 0 | 5 |
+| P0 | 0 | 0 | 0 identifié |
+| P1 | 1 | 1 | 0 identifié |
+| P2 | 3 | 0 | 3 + 5 réserves historiques |
 
-Aucune correction fonctionnelle ni refactoring : aucun défaut P0/P1 établi dans les scénarios contrôlés. Ce constat ne constitue pas une certification exhaustive.
+## Correction P1 : documents orphelins
 
-## P2 conservés
+Reproduction dans une base temporaire : créer un adhérent manuel, importer un PDF, clôturer avec le motif « Création par erreur », puis demander sa suppression renforcée. La suppression réussissait malgré le document associé et rompait son rattachement métier.
+`deleteErroneousHousehold` vérifie désormais aussi les tables GED, par compte et foyer. Un document ou un événement documentaire interdit la suppression ; la fiche clôturée et son historique restent conservés. Le test échoue avant correction, puis réussit avec conservation des octets et maintien du blocage après suppression explicite du document importé. La suppression exceptionnelle d’un foyer réellement sans historique reste testée.
 
-- À 820 px, les identifiants longs et boutons de Prestations se replient excessivement ; ils restent accessibles. Dossiers et Agenda défilent dans leur conteneur, sans débordement de page (820/820 px mesurés).
-- La recherche des archives n’indique pas le statut clôturé ; les actions rapides restent proposées sur leur fiche, avant contrôle métier à l’enregistrement.
-- Un rechargement d’une URL `action=add` rouvre le formulaire bénéficiaire déjà utilisé ; Annuler ou les actions rapides permettent de poursuivre.
-- Sémantique visuelle encore hétérogène entre certains badges du Cockpit, de la fiche, des Anomalies et de l’Agenda ; textes conservés. Liens « Fiche adhérent » / « Contact créé » trop rapprochés.
-- Le taux AMO 60 % porte le libellé « Auxiliaires médicaux » dans le simulateur générique, peu adapté au cas dentaire ; calcul exact et taux personnalisé disponible.
+## Validation automatisée
 
-## Vérifications
+- `npm test` : **37 fichiers, 180 tests réussis**, une passe complète avant correction.
+- Après reproduction et correction : tests GED + adhérents **17/17 réussis**, dont un nouveau test de régression (181 tests distincts au total).
+- `npm run typecheck` et `npm run lint` : réussis, également après correction ; aucun avertissement ESLint. Avertissement Vite sur le chargement futur de sa configuration, sans échec.
+- `npm run build -- --webpack` : **réussi**, compilation, TypeScript et 36 pages générées. Revalidé après correction ; l’ancienne limitation Turbopack ne bloque pas ce build webpack. Navigation contrôlée sur le serveur de développement, sans prétendre à un smoke-test du serveur de production.
 
-- Suite applicative complète exécutée une fois : **23 fichiers, 124 tests réussis**. Tests existants de domaine, composants, isolation de comptes, sessions HTTP, déconnexion/reconnexion, récupération, cycles de vie et conservation des seeds inclus. `typecheck` et `lint` réussis. Avertissement Vite de configuration non bloquant.
-- Build **non validé** : Turbopack échoue sur la création d’un processus/port interne (`Operation not permitted`, globals.css). Une relance avec permission étendue reproduit le blocage système. Aucun changement de configuration pour le masquer ; à terminer dans un environnement autorisant ce port. Aucun smoke-test du bundle de production possible.
-- Navigateur, serveur de développement : création de Camille AuditFinal ; ajout Alex (conjoint) et Lou (enfant), modification ville, détachement enfant, divorce conjoint, clôture, retrait des actifs, récupération par archives et recherche, historique conservé après rechargement.
-- Agenda : date/heure, changement de durée et d’heure au clavier (18:01–18:46 persisté), alerte de chevauchement, annulation conservée, statut Réalisé, présence préalable dans 360°/Cockpit, conversion manuelle en contact. Confirmation conservant deux créneaux chevauchants et interdiction après clôture également couvertes par les tests existants. La saisie automatisée `fill` des heures a nécessité une vérification au clavier ; elle n’est pas retenue comme défaut applicatif.
-- Prestation fictive 440 €/BRSS 120/AMO 60 % sans garantie : calcul bloqué, dossier de contrôle et anomalie liés, historique accessible après clôture.
-- Simulateur navigateur : prothèse fixe 2691 B à 340 % BR → **AMO 72 €, AMC 336 €, RAC 32 €**. PSI123 documenté mais condition/consommation inconnue : champs et calcul désactivés, provenance visible. PLI211 candidat non proposé au calcul. Tests : verified simple autorisé, needs_review bloqué, not_extracted absent, références isolées.
-- UX 1440/820 : navigation et écrans métier, états vides, champs, focus visible, confirmations et tableaux inspectés. Fiche/archives, Dossiers, Cockpit, Agenda, Garanties/Simulateur, Prestations, PEC/Devis, Cotisations, Anomalies, Relation et GED consultés. Boutons de création PEC/devis, échéance et réclamation ouverts puis abandonnés ; workflows détaillés couverts par tests, pas tous rejoués de bout en bout au navigateur.
-- Connexion : formulaire existant inspecté, session authentifiée utilisée ; authentification valide/invalide et sécurité contrôlées par tests HTTP, sans ressaisir le mot de passe utilisateur. GED : liste/filtres inspectés ; ni import ni ouverture PDF, conformément au périmètre.
+| Périmètre | Preuves réutilisées / rejouées |
+|---|---|
+| Adhérent | Création/modification, validation des champs/formules, recherche nom/identifiant, bénéficiaires, clôture, persistance SQLite et isolation ; banque Démo et historique générique ; génération/masquage/recherche exacte du NIR synthétique. |
+| Commune | Tests commune unique/multiple/absente, changement postal, édition, cache et panne avec secours manuel. Navigateur : 45130 charge une liste alphabétique de dix communes ; ville initialement désactivée. |
+| Pédagogie | Overlay par compte, source inchangée, bénéficiaires/formule/NIR, réinitialisation préservant progression, brouillons, scores/soumissions, états documentaires et uploads. |
+| Prospects / Agenda | Création rapide, réutilisation, modification, conversion atomique unique avec coordonnées, historique ; date/heure/durée, déplacement, chevauchement confirmé, annulation, Réalisé/contact, clôture, isolation, 360° et Cockpit. Tests des trois vues et du mois dense. |
+| GED | PDF/PNG/JPEG, extension/MIME/signature, taille 10 Mo, propriétaire/foyer/bénéficiaire, stockage séparé, relecture, états, suppression confirmée des imports uniquement, migration des générés ; composants des trois sources et raccourci 360°. |
+| AMO | Copie A4, empreintes PDF/PNG sources inchangées, bon bénéficiaire et période, AMO 72 €, NIR synthétique, accès isolé, présence GED et conservation après reset. Résolution CPAM par commune INSEE, adresse officielle, ambiguïtés, cache/panne testés avec réponses contrôlées, sans nouvelle interrogation documentaire. |
+| Métier | Prestations, dossiers, PEC/devis, anomalies, cotisations et relation : suites existantes de calculs, transitions, liens et persistance. |
+| Garanties | Verified simple calculable, needs_review bloqué, not_extracted absent, conditions/consommation inconnues bloquées, PSI/PLI séparés et CCN conservées. Estimation de cotisation explicitement non contractuelle. |
+| Sécurité | Tests sessions HTTP, droits, origine, déconnexion/reconnexion, récupération et séparation des comptes ; pas de NIR complet dans les résultats de recherche ni d’ancien IBAN dans la timeline. Inspection ciblée des routes GED et clés de fichiers : accès authentifié, owner/foyer/id, aucune entrée de chemin arbitraire. |
 
-## Limites et données de l’audit
+## Contrôles navigateur de cette passe
 
-Prototype pédagogique : aucun paiement, prélèvement, email/SMS ni télétransmission réel. Référentiel particuliers incomplet et calcul volontairement bloqué quand ses conditions ne sont pas déterminées. Audit UX ponctuel, pas une certification d’accessibilité ou de sécurité.
-Le foyer fictif **Camille AuditFinal** reste clôturé dans le compte utilisé, avec ses deux anciens bénéficiaires, deux rendez-vous (Annulé/Réalisé), un contact, une prestation bloquée et ses liens de contrôle ; aucune suppression ni modification des foyers pédagogiques. Le build reste la réserve à lever avant une validation de production.
+Session authentifiée existante réutilisée. GED source : aperçu PDF visible, aucune suppression de pièce source proposée. Fiche Marc Garnier : actions, estimation non contractuelle, coordonnées et événements documentaires génériques. Liste adhérents et formulaire de création consultés sans nouvel enregistrement.
+Agenda : Semaine, Mois et Aujourd’hui ; rendez-vous Annulé/Réalisé historiques conservés. Mois contrôlé visuellement à **1440, 820 et 390 px**, navigation mobile ouverte ; monogramme SVG et état actif conservés. Arial et graisses 400/700 confirmés dans les tokens, tracé SVG vérifié dans le composant partagé.
+Prestations → dossier de contrôle, Anomalies → liens prestation/dossier/fiche, PEC/devis (état vide), Cockpit et Prospects consultés. Les mutations détaillées sont couvertes par les tests automatisés, pas toutes recréées au navigateur. La liste Prospects affiche son rendez-vous futur existant.
+Simulateur : prothèse fixe **2691 B, 340 % BR**, facturé 440 €, BRSS 120 €, AMO 60 % → **AMO 72 €, AMC 336 €, RAC 32 €**. Consultation des candidats particuliers signalée « Donnée 2026 à vérifier », sans calcul disponible tant que la sélection et les contrôles nécessaires ne sont pas établis.
+
+## P2 et limites conservées
+
+Trois constats de cette passe : topbar mobile occupant environ 275 px avant le contenu ; texte « Tous les champs sont requis » malgré NIR/banque optionnels ; libellés candidats issus de l’extraction parfois fragmentés, toujours explicitement non vérifiés. Aucun blocage constaté.
+Cinq réserves héritées du précédent audit, non corrigées et non toutes rejouées : repli des identifiants/boutons Prestations à 820 px ; recherche des archives sans badge de clôture ; réouverture de `action=add` après rechargement ; hétérogénéité de certains badges/espacement de liens ; libellé « Auxiliaires médicaux » du taux AMO 60 % peu adapté au dentaire (reconstaté, résultat exact).
+La vue Mois mobile nécessite du défilement ; contrôle responsive ponctuel, pas audit exhaustif d’accessibilité. GED : contrôle de format/signature, sans antivirus ni validation exhaustive du contenu des fichiers. CPAM ambiguë ou indisponible conserve le fallback, sans caisse inventée. Aucun paiement, flux bancaire, télétransmission ou envoi réel. Référentiel particuliers encore partiellement validé.
+Les imports ne sont pas versionnés : `git ls-files .data` vide et `git check-ignore .data/uploads/a.pdf` positif. Seuls le garde-fou, son test et ce rapport sont inclus dans le commit ; les scénarios destructifs de reproduction utilisent des bases temporaires, sans suppression des données utilisateur.

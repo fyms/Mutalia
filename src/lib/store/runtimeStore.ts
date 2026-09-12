@@ -551,7 +551,11 @@ export function deleteErroneousHousehold(owner:string,id:string,confirmation:str
   // Inspect all identifiers in the existing records, including nested links.
   const identifiers=new Set([id,h.memberId,...(h.beneficiaries??[]).map(b=>b.id)]);
   const contains=(value:unknown):boolean=>typeof value==="string" ? identifiers.has(value) : value!==null && typeof value==="object" && Object.values(value).some(contains);
-  if(store.dossiers?.[`DOS-${id}`] || related.some(records=>contains(records)))throw new HouseholdEditError("Suppression interdite : historique métier associé. Conservez la clôture.");
+  // GED lives outside the household JSON; retain its parent and generic history too.
+  const hasDocuments=["runtime_documents","runtime_document_events"].some(table=>
+   db.prepare("SELECT 1 FROM sqlite_master WHERE type='table' AND name=?").get(table) &&
+   db.prepare(`SELECT 1 FROM ${table} WHERE owner_id=? AND household_id=? LIMIT 1`).get(owner,id));
+  if(hasDocuments || store.dossiers?.[`DOS-${id}`] || related.some(records=>contains(records)))throw new HouseholdEditError("Suppression interdite : historique métier associé. Conservez la clôture.");
   delete store.manualHouseholds![id];
   if(store.householdLifecycles)delete store.householdLifecycles[id];
  });

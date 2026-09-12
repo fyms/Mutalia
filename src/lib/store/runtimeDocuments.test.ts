@@ -32,6 +32,17 @@ it("accepts JPEG and PNG but refuses forbidden/mismatched/oversize files and for
  for(const file of [{name:"virus.exe",type:"application/pdf",size:pdf.length},{name:"fake.png",type:"image/png",size:pdf.length},{name:"fake.pdf",type:"image/jpeg",size:pdf.length},{name:"big.pdf",type:"application/pdf",size:MAX_UPLOAD_SIZE+1},{name:"180017512345642.pdf",type:"application/pdf",size:pdf.length},{name:"FR7630006000011234567890189.pdf",type:"application/pdf",size:pdf.length}])expect(()=>store.uploadDocument("invalid",input,file,pdf)).toThrow();
  expect(()=>store.uploadDocument("invalid",{...input,beneficiaryId:"foreign"},{name:"demo.pdf",type:"application/pdf",size:pdf.length},pdf)).toThrow();
 });
+it("prevents household deletion from orphaning uploaded documents or their history",async()=>{
+ const owner="document-closure",formulaKey=(await import("@/lib/domain/householdFormulas")).getHouseholdFormulas()[0].key;
+ const h=runtime.createManualHousehold(owner,{firstName:"Audit",lastName:"Documents",birthDate:"1990-01-01",email:"audit@example.invalid",phone:"0100000000",address:"1 rue Exemple",postalCode:"75001",city:"Paris",effectiveDate:"2026-09-10",formulaKey});
+ const doc=store.uploadDocument(owner,{householdId:h.id,beneficiaryId:h.memberId,documentType:"justificatif",documentDate:"2026-09-12",note:""},{name:"audit.pdf",type:"application/pdf",size:pdf.length},pdf);
+ runtime.changeHouseholdLifecycle(owner,h.id,0,null,{status:"archived",endDate:"2026-09-12",endReason:"error"});
+ expect(()=>runtime.deleteErroneousHousehold(owner,h.id,`SUPPRIMER ${h.id}`)).toThrow("historique métier");
+ expect(households.getHouseholdById(h.id,owner)).toBeDefined();
+ expect(store.readRuntimeDocument(owner,h.id,doc.id)?.bytes).toEqual(Buffer.from(pdf));
+ store.deleteUploadedDocument(owner,h.id,doc.id,true);
+ expect(()=>runtime.deleteErroneousHousehold(owner,h.id,`SUPPRIMER ${h.id}`)).toThrow("historique métier");
+});
 it("migrates old generated AMO into the shared file adapter without permitting deletion",()=>{
  const h=households.getAllHouseholds()[0];db.exec("CREATE TABLE IF NOT EXISTS pedagogical_amo_documents(id TEXT PRIMARY KEY,owner TEXT,case_id TEXT,created_at TEXT,filename TEXT,snapshot TEXT,pdf BLOB)");
  db.prepare("INSERT INTO pedagogical_amo_documents VALUES(?,?,?,?,?,?,?)").run("AMO-DEMO-legacy","legacy",h.case!.case_id,"2026-09-12","decompte-demo.pdf",JSON.stringify({householdId:h.householdId,memberId:h.adherent.member_id,careDate:"2026-09-10"}),Buffer.from(pdf));
