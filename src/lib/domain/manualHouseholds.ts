@@ -1,3 +1,4 @@
+import { DemoSocialSecuritySchema } from "./demoSocialSecurity";
 import { z } from "zod";
 import { BankingInputSchema } from "./demoBanking";
 
@@ -5,6 +6,7 @@ const required = (label: string, max = 100) => z.string().trim().min(1, `${label
 const date = z.iso.date("Date invalide.");
 export const ManualHouseholdInputSchema = z.object({
   banking: BankingInputSchema,
+  socialSecurityNumber: DemoSocialSecuritySchema,
   firstName: required("Prénom"),
   lastName: required("Nom"),
   birthDate: date.refine(value => value <= new Date().toISOString().slice(0, 10), "La naissance ne peut pas être dans le futur."),

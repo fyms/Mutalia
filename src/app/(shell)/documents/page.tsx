@@ -1,3 +1,4 @@
+import { AmoDocuments } from "@/components/ged/AmoDocuments";
 import { getSession } from "@/lib/store/session";
 import Link from "next/link";
 import { PageHeader } from "@/components/ui/PageHeader";
@@ -50,6 +51,7 @@ export default async function DocumentsPage({
       />
 
       <RealDocumentWarningBanner />
+      <AmoDocuments owner={owner}/>
 
       <Card className="mb-4">
         <form className="flex flex-wrap items-end gap-3 text-xs">

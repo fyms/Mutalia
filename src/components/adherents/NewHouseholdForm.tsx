@@ -1,6 +1,7 @@
 "use client";
 import { useState, useTransition } from "react";
 import Link from "next/link";
+import { DemoSocialSecurityFields } from "./DemoSocialSecurityFields";
 import { DemoBankingFields } from "./DemoBankingFields";
 import { PostalCityFields } from "./PostalCityFields";
 import type { ManualHousehold } from "@/lib/domain/manualHouseholds";
@@ -42,6 +43,7 @@ export function NewHouseholdForm({formulas, record, onDone, prefill, prospectId}
         </select>
       </label>
     </fieldset>
+    <DemoSocialSecurityFields initial={record?.socialSecurityNumber} disabled={pending}/>
     <DemoBankingFields initial={record?.banking} disabled={pending}/>
     {error && <p role="alert" className="m-error">{error}</p>}
     <div className="flex flex-wrap gap-3">

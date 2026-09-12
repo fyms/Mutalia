@@ -263,7 +263,7 @@ export function updateManualHousehold(owner: string, id: string, revision: numbe
       h.bankingHistory.push({at: new Date().toISOString(), event: "Coordonnées bancaires mises à jour"});
     }
     // Older forms omitting banking preserve the current account.
-    Object.assign(h, {...input, banking: input.banking ?? h.banking});
+    Object.assign(h, {...input, socialSecurityNumber:input.socialSecurityNumber ?? h.socialSecurityNumber, banking: input.banking ?? h.banking});
   });
 }
 export function saveManualBeneficiary(owner: string, id: string, revision: number, beneficiaryId: string | null, raw: unknown) {

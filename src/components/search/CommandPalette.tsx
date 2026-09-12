@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import Fuse from "fuse.js";
+import { normalizeDemoNir } from "@/lib/domain/demoSocialSecurity";
 import type { SearchItem } from "@/lib/domain/search";
 
 const TYPE_LABELS: Record<SearchItem["type"], string> = {
@@ -20,6 +21,16 @@ export function CommandPalette() {
   const [query, setQuery] = useState("");
   const [items, setItems] = useState<SearchItem[] | null>(null);
   const [activeIndex, setActiveIndex] = useState(0);
+  const [nirMatches,setNirMatches]=useState<{query:string;items:SearchItem[]}>({query:"",items:[]});
+  const nirQuery=normalizeDemoNir(query);
+  const isNir=/^(DEMO)?[0-9]{15}$/.test(nirQuery);
+  useEffect(()=>{
+    if (!open || !isNir) return;
+    const controller=new AbortController();
+    fetch("/api/search-index",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({query:nirQuery}),signal:controller.signal,cache:"no-store"})
+     .then(r=>r.ok?r.json():[]).then(items=>{if(!controller.signal.aborted)setNirMatches({query:nirQuery,items});}).catch(()=>{});
+    return ()=>controller.abort();
+  },[open,isNir,nirQuery]);
   const inputRef = useRef<HTMLInputElement>(null);
   const router = useRouter();
 
@@ -68,10 +79,11 @@ export function CommandPalette() {
   }, [items]);
 
   const results = useMemo(() => {
+    if (isNir) return nirMatches.query===nirQuery?nirMatches.items:[];
     if (!items) return [];
     if (!query.trim()) return items.slice(0, 8);
     return fuse?.search(query, { limit: 20 }).map((r) => r.item) ?? [];
-  }, [fuse, items, query]);
+  }, [fuse, items, query,isNir,nirMatches,nirQuery]);
 
   const go = useCallback(
     (item: SearchItem) => {

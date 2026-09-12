@@ -1,3 +1,4 @@
+import { AmoDocuments } from "@/components/ged/AmoDocuments";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getSession } from "@/lib/store/session";
@@ -49,6 +50,7 @@ export default async function Page({
       <p className="mb-4">
         1 Qualifier · 2 Contrôler · 3 Justifier · 4 Soumettre
       </p>
+      <AmoDocuments owner={s.userId} caseId={caseId}/>
       <GedWorkspace
         trainingCase={c}
         states={Object.fromEntries(

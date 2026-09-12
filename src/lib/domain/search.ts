@@ -1,3 +1,4 @@
+import { normalizeDemoNir, maskDemoSocialSecurityNumber } from "./demoSocialSecurity";
 import "server-only";
 import { getAcademyCurriculum, getAllCases, getFaq, getLexicon } from "@/lib/data/loaders";
 import { getAllHouseholds } from "@/lib/domain/households";
@@ -67,7 +68,7 @@ export function buildSearchIndex(owner?: string): SearchItem[] {
       id: `adh-${household.householdId}`,
       type: "adherent",
       title: `${household.adherent.first_name} ${household.adherent.last_name}`,
-      subtitle: `Foyer ${household.householdId} · ${household.assignedFormula}${!household.case && household.beneficiaries.length ? " · " + household.beneficiaries.map(b => `${b.first_name} ${b.last_name}`).join(", ") : ""}`,
+      subtitle: `Foyer ${household.householdId} · ${household.adherent.member_id} · ${household.assignedFormula}${!household.case && household.beneficiaries.length ? " · " + household.beneficiaries.map(b => `${b.first_name} ${b.last_name}`).join(", ") : ""}`,
       category: "Adhérents",
       url: `/adherents/${household.householdId}`,
     });
@@ -96,4 +97,17 @@ export function buildSearchIndex(owner?: string): SearchItem[] {
   }
 
   return items;
+}
+
+/** Exact server-only lookup: the full synthetic number never enters the client index. */
+export function searchByDemoNir(owner:string,query:string):SearchItem[] {
+ const normalized=normalizeDemoNir(query);
+ if (!/^(DEMO)?[0-9]{15}$/.test(normalized)) return [];
+ const target=normalized.startsWith("DEMO")?normalized:`DEMO${normalized}`;
+ return getAllHouseholds(owner).flatMap(h=>{
+  const number=(h.case?h.simulation:h.manual)?.socialSecurityNumber;
+  if (!number || normalizeDemoNir(number)!==target) return [];
+  return [{id:`adh-${h.householdId}`,type:"adherent" as const,title:`${h.adherent.first_name} ${h.adherent.last_name}`,
+   subtitle:`${h.householdId} · ${maskDemoSocialSecurityNumber(number)}`,category:"Adhérents",url:`/adherents/${h.householdId}`}];
+ });
 }
