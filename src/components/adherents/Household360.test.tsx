@@ -6,6 +6,7 @@ import { householdTimeline } from "./householdTimeline";
 import type { HouseholdView } from "@/lib/domain/households";
 import type { CockpitData } from "@/components/cockpit/Cockpit";
 import { emptyLifecycle } from "@/lib/domain/householdLifecycle";
+vi.mock("@/lib/store/runtimeDocuments",()=>({documentEvents:()=>[],listRuntimeDocuments:()=>[]}));
 vi.mock("server-only",()=>({}));
 vi.mock("next/navigation",()=>({useRouter:()=>({refresh:vi.fn()})}));
 vi.mock("@/lib/domain/householdActions",()=>({lifecycleAction:vi.fn(),editHouseholdAction:vi.fn(),createHouseholdAction:vi.fn()}));
@@ -59,4 +60,9 @@ it("includes all available operational histories and skips only duplicate source
  expect(events.map(e=>e.type)).toEqual(expect.arrayContaining(["Prestation","PEC / Devis","Cotisation","Réclamation","Dossier"]));
  expect(events.filter(e=>e.href==="/dossiers#dp")).toHaveLength(0);expect(events.filter(e=>e.type==="Prestation")).toHaveLength(2);
  expect(events.filter(e=>e.type==="Cotisation")).toHaveLength(2);
+});
+
+it("links document upload to the existing GED with the correct household",()=>{
+ render(<Household360 owner="a" household={manual} data={data} tab="documents"/>);
+ expect(screen.getByRole("link",{name:"Ajouter un document"}).getAttribute("href")).toBe("/documents?householdId=h&import=1");
 });

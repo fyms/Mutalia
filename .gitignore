@@ -44,3 +44,5 @@ next-env.d.ts
 .data/
 
 !.env.example
+# Private document binary storage (never version runtime imports)
+/.data/uploads/

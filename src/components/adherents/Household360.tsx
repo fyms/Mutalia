@@ -1,3 +1,5 @@
+import { HouseholdDocuments } from "./HouseholdDocuments";
+import { documentEvents } from "@/lib/store/runtimeDocuments";
 import { maskDemoSocialSecurityNumber } from "@/lib/domain/demoSocialSecurity";
 import { pedagogicalHouseholdRecord } from "@/lib/domain/pedagogicalHouseholdRecord";
 import Link from "next/link";
@@ -7,7 +9,6 @@ import type { ReactNode } from "react";
 import { Card } from "@/components/ui/Card";
 import { Badge,DataToVerifyBadge } from "@/components/ui/Badge";
 import { QueryTabs } from "@/components/ui/QueryTabs";
-import { DocumentStatusPill } from "@/components/ui/StatusPill";
 import { HouseholdEditor } from "./HouseholdEditor";
 import { LifecycleEditor } from "./LifecycleEditor";
 import { householdTimeline,type HouseholdEvent } from "./householdTimeline";
@@ -20,10 +21,10 @@ import type { HouseholdView } from "@/lib/domain/households";
 import type { CockpitData } from "@/components/cockpit/Cockpit";
 import { activeAt,STATUS_LABELS } from "@/lib/domain/householdLifecycle";
 import { getHouseholdFormulas } from "@/lib/domain/householdFormulas";
-import { getDocumentState,getSubmissions } from "@/lib/store/runtimeStore";
+import { getSubmissions } from "@/lib/store/runtimeStore";
 import { individualCatalog2026 } from "@/lib/data/harmonie/individualCatalog";
 import { upcomingAppointments,endTime,localToday } from "@/lib/domain/appointments";
-import { DOCUMENT_TYPE_LABELS,MEMBER_ROLE_LABELS,type DocumentStatus } from "@/lib/domain/constants";
+import { MEMBER_ROLE_LABELS } from "@/lib/domain/constants";
 import { formatDate,formatDateTime } from "@/lib/utils/format";
 export const HOUSEHOLD_TABS=[{key:"vue-generale",label:"Synthèse"},{key:"beneficiaires",label:"Foyer"},{key:"garanties",label:"Garanties"},{key:"prestations",label:"Dossiers & prestations"},{key:"cotisations",label:"Cotisations"},{key:"contacts",label:"Relation"},{key:"documents",label:"Documents"},{key:"historique",label:"Timeline"}];
 export function householdTab(tab?:string){return tab==="contrat"?"vue-generale":tab==="pec"?"prestations":HOUSEHOLD_TABS.some(t=>t.key===tab)?tab!:"vue-generale";}
@@ -37,7 +38,7 @@ export function Household360({owner,household:h,data,tab,action}:{owner:string;h
  const dossiers=data.dossiers.filter(p=>p.householdId===id);const open=dossiers.filter(p=>p.status!=="Terminé");
  const anomalies=data.anomalies.filter(p=>p.householdId===id);const alerts=anomalies.filter(p=>p.status!=="Résolue");
  const appointments=upcomingAppointments(data.appointments.filter(p=>p.householdId===id));
- const events=householdTimeline(data,id,h.lifecycle,Object.fromEntries(members.map(m=>[m.id,m.name])),h.case?undefined:manual?.createdAt,manual?.bankingHistory,h.simulationHistory);
+ const events=householdTimeline(data,id,h.lifecycle,Object.fromEntries(members.map(m=>[m.id,m.name])),h.case?undefined:manual?.createdAt,manual?.bankingHistory,h.simulationHistory,documentEvents(owner,id));
  const reference=h.assignedFormula.replace(/\s/g,"");const product=individualCatalog2026.listProducts().find(p=>p.reference===reference);const coverage=individualCatalog2026.getCoverage(reference);
  const formula=manual?getHouseholdFormulas().find(f=>f.key===manual.formulaKey)?.label:h.assignedFormula;
  const operations=data.prestations.filter(p=>p.householdId===id);const quotes=data.quotes.filter(p=>p.householdId===id);
@@ -57,7 +58,7 @@ export function Household360({owner,household:h,data,tab,action}:{owner:string;h
  {activeTab==="prestations"&&<div className="space-y-4"><Card>{queue}</Card>{action==="prestation"&&<section><h2 className="font-semibold mb-2">Nouvelle prestation</h2><PrestationForm defaultHouseholdId={id} households={[{id,name:`${h.adherent.first_name} ${h.adherent.last_name}`,lifecycle:h.lifecycle,members:h.household.members.map(m=>({id:m.member_id,name:`${m.first_name} ${m.last_name}`}))}]}/></section>}<section id="prestations"><h2 className="font-semibold mb-2">Prestations · {operations.length}</h2><PrestationHistory owner={owner} householdId={id}/></section><section id="pec"><h2 className="font-semibold mb-2">PEC / Devis · {quotes.length}</h2><DevisPecHistory owner={owner} householdId={id}/></section><Card><h2 className="font-semibold">Anomalies liées</h2>{anomalies.map(p=><p className="text-sm py-2" key={p.id}><Badge>{p.status}</Badge> <Link className="underline text-brand" href={`/flux-anomalies#${p.id}`}>{p.type} →</Link></p>)}{!anomalies.length&&<Empty>Aucune anomalie liée.</Empty>}</Card></div>}
  {activeTab==="cotisations"&&<div className="space-y-4"><PedagogicalEstimate household={h}/><CotisationHistory owner={owner} householdId={id}/></div>}
  {activeTab==="contacts"&&<div className="space-y-4"><RelationHistory key={action??"relation"} owner={owner} householdId={id} initialContact={action==="contact"}/><Card>{plans}</Card><Card><h2 className="font-semibold">Historique des rendez-vous</h2><Timeline events={events.filter(e=>e.type==="Rendez-vous")}/></Card></div>}
- {activeTab==="documents"&&<Card><h2 className="font-semibold mb-2">Documents liés</h2>{h.case&&<p className="m-help">Les documents appartiennent au cas pédagogique source et ne sont pas modifiés par les changements du dossier de simulation.</p>}{h.case?<div className="overflow-x-auto"><table className="w-full text-left text-sm"><thead><tr><th className="py-2">Document</th><th>Bénéficiaire</th><th>Date</th><th>Statut</th></tr></thead><tbody>{h.case.documents.map(doc=><tr key={doc.document_id} className="border-t border-border"><td className="py-2"><Link className="underline text-brand" href={`/cas-pratiques/${h.case!.case_id}`}>{DOCUMENT_TYPE_LABELS[doc.document_type]??doc.document_type}</Link></td><td>{h.case!.household.members.find(m=>m.member_id===doc.beneficiary_id)?.first_name??doc.beneficiary_id??"—"}</td><td>{doc.document_date?formatDate(doc.document_date):"—"}</td><td><DocumentStatusPill status={(getDocumentState(owner,doc.document_id).status??doc.status) as DocumentStatus}/></td></tr>)}</tbody></table></div>:<Empty>Aucun document lié disponible.</Empty>}</Card>}
+ {activeTab==="documents"&&<Card><HouseholdDocuments owner={owner} household={h}/></Card>}
  {activeTab==="historique"&&<Card><h2 className="font-semibold mb-2">Timeline 360°</h2><Timeline events={events}/>{h.case&&<details className="mt-3"><summary>Historique pédagogique</summary><ul>{getSubmissions(owner,h.case.case_id).map((s,i)=><li key={i}><Link className="underline" href={`/cas-pratiques/${h.case!.case_id}`}>{formatDateTime(s.submittedAt)} · Soumission {s.score}/{s.maxScore}</Link></li>)}</ul></details>}</Card>}
  </div>;
 }

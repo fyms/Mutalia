@@ -2,10 +2,11 @@ import type { CockpitData } from "@/components/cockpit/Cockpit";
 import type { HouseholdLifecycle } from "@/lib/domain/householdLifecycle";
 import { STATUS_LABELS,REASON_LABELS } from "@/lib/domain/householdLifecycle";
 export interface HouseholdEvent {id:string;at:string;type:string;summary:string;href:string;}
-export function householdTimeline(data:CockpitData,householdId:string,lifecycle?:HouseholdLifecycle,names:Record<string,string>={},createdAt?:string,bankingHistory:{at:string;event:string}[]=[],simulationHistory:{at:string;event:string}[]=[]) {
+export function householdTimeline(data:CockpitData,householdId:string,lifecycle?:HouseholdLifecycle,names:Record<string,string>={},createdAt?:string,bankingHistory:{at:string;event:string}[]=[],simulationHistory:{at:string;event:string}[]=[],documents:{id:string;at:string;event:string}[]=[]) {
  const events:HouseholdEvent[]=[];
  const add=(source:string,id:string,at:string,type:string,summary:string,href:string)=>{if(at)events.push({id:`${source}:${id}:${at}:${summary}`,at,type,summary,href});};
  const href=`/adherents/${householdId}`;
+ documents.forEach(e=>add("document-runtime",e.id,e.at,"Document",e.event,`${href}?tab=documents`));
  simulationHistory.forEach((e,i)=>add("simulation",String(i),e.at,"Simulation",e.event,`${href}?tab=beneficiaires`));
  bankingHistory.forEach((e,i)=>add("banking",String(i),e.at,"Coordonnées bancaires","Coordonnées bancaires mises à jour",`${href}?tab=vue-generale`));
  if(createdAt)add("creation",householdId,createdAt,"Adhésion","Création du foyer",`${href}?tab=vue-generale`);

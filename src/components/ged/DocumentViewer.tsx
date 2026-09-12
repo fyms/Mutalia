@@ -1,5 +1,7 @@
 "use client";
 
+import { RuntimeDocumentViewer } from "./RuntimeDocumentViewer";
+import type { RuntimeDocumentView } from "@/lib/domain/runtimeDocuments";
 import { useState, useTransition } from "react";
 import {
   markDocumentViewedAction,
@@ -15,7 +17,7 @@ import { formatDateTime } from "@/lib/utils/format";
 import type { CaseDocument } from "@/lib/domain/types";
 import type { DocumentAnnotation } from "@/lib/store/runtimeStore";
 
-export function DocumentViewer({
+function SourceDocumentViewer({
   document,
   status,
   viewedCount,
@@ -213,4 +215,8 @@ export function DocumentViewer({
       )}
     </div>
   );
+}
+
+export function DocumentViewer(props:Parameters<typeof SourceDocumentViewer>[0]|{runtimeDocument:RuntimeDocumentView}) {
+ return "runtimeDocument" in props?<RuntimeDocumentViewer document={props.runtimeDocument}/>:<SourceDocumentViewer {...props}/>;
 }

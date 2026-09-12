@@ -1,3 +1,4 @@
+import { storeGeneratedDocument,listRuntimeDocuments,readRuntimeDocument } from "@/lib/store/runtimeDocuments";
 import { DemoSocialSecuritySchema } from "@/lib/domain/demoSocialSecurity";
 import "server-only";
 import { randomUUID } from "node:crypto";
@@ -34,12 +35,17 @@ export async function generateAmoStatement(owner:string,raw:unknown) {
   beneficiary:`${member.first_name} ${member.last_name}`,birthDate:member.birth_date,socialSecurityNumber:record.socialSecurityNumber,
   domicile:[record.address,record.postalCode,record.city].filter(Boolean).join(" "),fund,reimbursed:result.amoReimbursement,createdAt,filename};
  const pdf=await renderAmoStatementPdf(snapshot);
- db.prepare("INSERT INTO pedagogical_amo_documents(id,owner,case_id,created_at,filename,snapshot,pdf) VALUES(?,?,?,?,?,?,?)").run(id,owner,input.caseId,createdAt,filename,JSON.stringify(snapshot),Buffer.from(pdf));
+ storeGeneratedDocument({id,ownerId:owner,createdBy:owner,householdId:h.householdId,beneficiaryId:input.memberId,documentType:"decompte_amo",originalFileName:filename,mimeType:"application/pdf",documentDate:input.careDate,note:"",source:"generated",status:"a_qualifier",createdAt,caseId:input.caseId},pdf,()=>{
+  db.prepare("INSERT INTO pedagogical_amo_documents(id,owner,case_id,created_at,filename,snapshot,pdf) VALUES(?,?,?,?,?,?,?)").run(id,owner,input.caseId,createdAt,filename,JSON.stringify(snapshot),Buffer.alloc(0));
+ });
  return {id,filename};
 }
 export function listAmoStatements(owner:string,caseId?:string) {
- return db.prepare(`SELECT id,case_id AS caseId,created_at AS createdAt,filename FROM pedagogical_amo_documents WHERE owner=?${caseId?" AND case_id=?":""} ORDER BY created_at DESC`).all(...(caseId?[owner,caseId]:[owner])) as {id:string;caseId:string;createdAt:string;filename:string}[];
+ return listRuntimeDocuments(owner).filter(d=>d.source==="generated"&&(!caseId||d.caseId===caseId)).map(d=>({id:d.id,caseId:d.caseId!,createdAt:d.createdAt,filename:d.originalFileName}));
 }
 export function readAmoStatement(owner:string,id:string) {
- return db.prepare("SELECT filename,pdf FROM pedagogical_amo_documents WHERE owner=? AND id=?").get(owner,id) as {filename:string;pdf:Buffer}|undefined;
+ const document=listRuntimeDocuments(owner).find(d=>d.id===id&&d.source==="generated");
+ if(!document)return;
+ const result=readRuntimeDocument(owner,document.householdId,id);
+ return result?{filename:result.record.originalFileName,pdf:result.bytes}:undefined;
 }
