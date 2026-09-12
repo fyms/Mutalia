@@ -1,2 +1,2 @@
-Terminé : conformité visuelle V3 (Arial 400/700, logo temporaire sans carré, sidebar 224/200 px, palette, contrôles, badges et table Prospects) ; logique métier inchangée.
-Validation : 18 tests ciblés, typecheck/lint ; 7 écrans contrôlés à 1440/820/390 px et focus clavier. SVG V3 absent du dépôt ; tags de démonstration inchangés, aucun push.
+Terminé : monogramme SVG V3 extrait du tracé de la charte page 2, partagé par Logo ; bleu sur fond clair, blanc dans la sidebar, mot Mutalia séparé.
+Validation : comparaison aux deux captures, rendus 24/32 px, desktop/rail tablette/menu mobile ; typecheck et lint réussis, aucun push.

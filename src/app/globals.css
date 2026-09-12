@@ -512,7 +512,7 @@ td {
   gap: 8px;
   min-height: 64px;
   padding: 8px;
-  color: inherit;
+  color: var(--m-brand);
   text-decoration: none;
   font: 700 24px/32px var(--m-font);
 }
@@ -522,8 +522,9 @@ td {
   flex-shrink: 0;
 }
 .m-logo:hover {
-  color: inherit;
+  color: var(--m-brand);
 }
+.m-sidebar .m-logo { color: var(--m-white); }
 .m-sidebar {
   position: sticky;
   top: 0;
@@ -841,7 +842,6 @@ a.bg-brand:hover {
 }
 
 /* Shared shell presentation, aligned with V3 tokens above. */
-.m-monogram { display: grid; place-items: center; width: 32px; height: 32px; flex-shrink: 0; font: 700 32px/32px var(--m-font); }
 .m-logo-copy { font: 700 24px/32px var(--m-logo-font); }
 .m-nav-group { margin: var(--m-space-4) var(--m-space-3) var(--m-space-1); color: var(--m-nav-muted); line-height: 18px; }
 .m-nav-link svg { width: 20px; height: 20px; stroke-width: 1.7; }
