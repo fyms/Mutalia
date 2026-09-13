@@ -1,14 +1,15 @@
 // @vitest-environment jsdom
-import { render, screen, fireEvent, cleanup } from '@testing-library/react';
+import { render, screen, fireEvent, cleanup, within } from '@testing-library/react';
 import { afterEach, expect, it, vi } from 'vitest';
 import { Sidebar } from './Sidebar';
-vi.mock('next/navigation',()=>({usePathname:()=>'/adherents/nouveau'}));
+const route=vi.hoisted(()=>({pathname:'/adherents/nouveau'}));
+vi.mock('next/navigation',()=>({usePathname:()=>route.pathname}));
 afterEach(cleanup);
 it('keeps grouped navigation and nested active state without hidden modules',()=>{
  render(<Sidebar/>);
  expect(screen.getByRole('link',{name:'Adhérents'}).getAttribute('aria-current')).toBe('page');
- for(const name of ['Pilotage','Adhérents & contrats','Gestion des prestations','Documents & outils','Ressources'])expect(screen.getByText(name)).toBeTruthy();
- for(const name of ['Prospects','Quiz','Pilotage formateur'])expect(screen.queryByText(name)).toBeNull();
+ for(const name of ['Pilotage','Commercial','Adhérents & contrats','Gestion des prestations','Documents & outils','Ressources'])expect(screen.getByText(name)).toBeTruthy();
+ for(const name of ['Quiz','Pilotage formateur'])expect(screen.queryByText(name)).toBeNull();
  expect(screen.queryByText('Gestion Santé & Prévoyance')).toBeNull();
  expect(screen.getByRole('link',{name:'Mutalia, cockpit'})).toBeTruthy();
 });
@@ -17,4 +18,18 @@ it('opens search through the existing shortcut and closes navigation with Escape
  fireEvent.click(screen.getByRole('button',{name:'Recherche'}));expect(listener).toHaveBeenCalled();window.removeEventListener('keydown',listener);
  const menu=screen.getByRole('button',{name:/^Menu$/});fireEvent.click(menu);expect(menu.getAttribute('aria-expanded')).toBe('true');
  fireEvent.keyDown(screen.getByRole('navigation').parentElement!,{key:'Escape'});expect(menu.getAttribute('aria-expanded')).toBe('false');expect(document.activeElement).toBe(menu);
+});
+
+it('exposes commercial routes once and marks Prospects active',()=>{
+ route.pathname='/prospects';render(<Sidebar/>);
+ const commercial=screen.getByText('Commercial').parentElement!;
+ expect(within(commercial).getByRole('link',{name:'Prospects'}).getAttribute('href')).toBe('/prospects');
+ expect(within(commercial).getByRole('link',{name:'Prospects'}).getAttribute('aria-current')).toBe('page');
+ expect(within(commercial).getByRole('link',{name:'Simulateur'}).getAttribute('href')).toBe('/simulateur');
+ expect(screen.getAllByRole('link',{name:'Simulateur'})).toHaveLength(1);
+ expect(within(screen.getByText('Documents & outils').parentElement!).getAllByRole('link').map(link=>link.textContent)).toEqual(['GED']);
+ fireEvent.click(screen.getByRole('button',{name:'Menu'}));
+ fireEvent.click(screen.getByRole('link',{name:'Prospects'}));
+ expect(screen.getByRole('button',{name:'Menu'}).getAttribute('aria-expanded')).toBe('false');
+ route.pathname='/adherents/nouveau';
 });
