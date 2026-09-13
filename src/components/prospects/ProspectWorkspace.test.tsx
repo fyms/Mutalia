@@ -43,3 +43,30 @@ it('uses contextual role labels and displays legacy coverage without changing pe
  cleanup();render(<ProspectWorkspace prospect={{...prospect,status:'converti',sales:{...emptySales(),needs}}} appointments={[]} documents={[]} options={options} formulas={[]} initialTab="Besoins"/>);
  expect(screen.getByRole('option',{name:'Adhérent'}).getAttribute('value')).toBe('adherent');expect(screen.queryByText('Prospect principal')).toBeNull();
 });
+
+it('blocks unavailable quote selections, keeps comparison and handles a stale selected tariff',async()=>{
+ const {createPedagogicalGrid}=await import('@/lib/domain/pedagogicalPricing');
+ const priced={...options[0],config:createPedagogicalGrid([{key:'regime_general:PSI111'}])[0]};
+ const unavailable={reference:'PLI411',family:'Particuliers',regime:'Régime local'};
+ const props={prospect,appointments:[],documents:[],options:[priced,unavailable],formulas:[]};
+ const view=render(<ProspectWorkspace {...props}/>);
+ fireEvent.click(screen.getByRole('button',{name:'Créer un devis'}));
+ expect((screen.getByRole('option',{name:/PLI411 — tarif pédagogique indisponible/}) as HTMLOptionElement).disabled).toBe(true);
+ expect((screen.getByRole('option',{name:/PSI111/}) as HTMLOptionElement).disabled).toBe(false);
+ const generate=screen.getByRole('button',{name:'Générer le PDF'}) as HTMLButtonElement;
+ expect(generate.disabled).toBe(true);
+ expect(screen.getByText('Seules les références disposant d’une tarification pédagogique explicite peuvent générer un devis.')).toBeTruthy();
+ fireEvent.change(screen.getByLabelText('Référence'),{target:{value:'PSI111'}});expect(generate.disabled).toBe(false);
+ // A previously selected reference may lose its configuration on a refreshed page.
+ view.rerender(<ProspectWorkspace {...props} options={[options[0],unavailable]}/>);
+ expect(generate.disabled).toBe(true);expect(screen.getByText(/Tarif pédagogique indisponible — sélectionnez/)).toBeTruthy();
+ fireEvent.submit(generate.closest('form')!);expect(action).not.toHaveBeenCalled();
+ view.rerender(<ProspectWorkspace {...props}/>);
+ fireEvent.submit(generate.closest('form')!);
+ await waitFor(()=>expect(action).toHaveBeenCalledWith('p',1,'quote',expect.objectContaining({reference:'PSI111'}),''));
+ fireEvent.click(screen.getByRole('button',{name:'Comparatif'}));
+ for(const reference of ['PSI111','PLI411'])fireEvent.change(screen.getByLabelText('Ajouter une référence'),{target:{value:reference}});
+ expect(screen.getByText('Garanties PLI411')).toBeTruthy();expect(screen.getByText('Tarif pédagogique indisponible')).toBeTruthy();
+ expect(screen.getByText('Devis indisponible — tarif pédagogique non défini')).toBeTruthy();
+ expect(screen.getAllByRole('button',{name:'Choisir pour un devis'})).toHaveLength(1);
+});

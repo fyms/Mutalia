@@ -50,3 +50,12 @@ it('rejects unpriced, foreign or stale quote inputs and does not derive reimburs
  await expect(service.createSalesQuote('c',p.id,old,{reference:option.reference,date:'2026-09-13',frequency:'Mensuelle'})).rejects.toThrow();
  expect(()=>service.estimateProspect(option.reference,{...needs,members:needs.members.map(m=>({...m,birthDate:''}))},'2026-09-13')).toThrow();
 });
+
+it('keeps the exact PLI411 pricing guard while its guarantees remain consultable',async()=>{
+ expect(service.salesPricingOptions().find(o=>o.reference==='PLI411')?.config).toBeUndefined();
+ expect(catalog.listForConsultation('PLI411').length).toBeGreaterThan(0);
+ expect(()=>service.estimateProspect('PLI411',needs,'2026-09-13')).toThrow('Référence sans correspondance tarifaire pédagogique explicite.');
+ let p=store.saveProspect('unpriced',person);p=service.saveSalesNeeds('unpriced',p.id,p.revision,needs);
+ await expect(service.createSalesQuote('unpriced',p.id,p.revision,{reference:'PLI411',date:'2026-09-13',frequency:'Mensuelle'})).rejects.toThrow('Référence sans correspondance tarifaire pédagogique explicite.');
+ expect(store.getProspects('unpriced')[0].sales?.quotes).toHaveLength(0);
+});
