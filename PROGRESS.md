@@ -1,2 +1,2 @@
-Terminé : monogramme SVG V3 extrait du tracé de la charte page 2, partagé par Logo ; bleu sur fond clair, blanc dans la sidebar, mot Mutalia séparé.
-Validation : comparaison aux deux captures, rendus 24/32 px, desktop/rail tablette/menu mobile ; typecheck et lint réussis, aucun push.
+Terminé : fiche 360° contextuelle — import/aperçu GED, garanties de la référence et rendez-vous via composants/actions existants ; tests ciblés, typecheck et lint OK, contrôles 1440/820/390 px.
+Restant / prochain : retours utilisateurs ; deux fichiers fictifs mutalia-ux-context (PDF/PNG) et un RDV de contrôle le 14/09/2026 à 09:00 conservés sur FOY-001.

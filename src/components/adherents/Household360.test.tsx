@@ -1,14 +1,17 @@
 // @vitest-environment jsdom
 import { afterEach,expect,it,vi } from "vitest";
-import { cleanup,render,screen,within } from "@testing-library/react";
+import { cleanup,render,screen,within,fireEvent } from "@testing-library/react";
 import { Household360,householdTab } from "./Household360";
 import { householdTimeline } from "./householdTimeline";
 import type { HouseholdView } from "@/lib/domain/households";
 import type { CockpitData } from "@/components/cockpit/Cockpit";
 import { emptyLifecycle } from "@/lib/domain/householdLifecycle";
 vi.mock("@/lib/store/runtimeDocuments",()=>({documentEvents:()=>[],listRuntimeDocuments:()=>[]}));
+vi.mock("@/components/ged/DocumentViewer",()=>({DocumentViewer:()=> <p>Aperçu</p>}));
 vi.mock("server-only",()=>({}));
 vi.mock("next/navigation",()=>({useRouter:()=>({refresh:vi.fn()})}));
+vi.mock("@/lib/domain/appointmentActions",()=>({saveAppointmentAction:vi.fn()}));
+vi.mock("@/lib/domain/prospectActions",()=>({saveProspectAction:vi.fn()}));
 vi.mock("@/lib/domain/householdActions",()=>({lifecycleAction:vi.fn(),editHouseholdAction:vi.fn(),createHouseholdAction:vi.fn()}));
 vi.mock("@/lib/store/runtimeStore",()=>({getDocumentState:()=>({}),getSubmissions:()=>[]}));
 vi.mock("@/lib/domain/householdFormulas",()=>({getHouseholdFormulas:()=>[{key:"regime_general:PSI 111",formula:"PSI 111",label:"Régime général — PSI 111"}]}));
@@ -62,7 +65,21 @@ it("includes all available operational histories and skips only duplicate source
  expect(events.filter(e=>e.type==="Cotisation")).toHaveLength(2);
 });
 
-it("links document upload to the existing GED with the correct household",()=>{
+it("opens document upload inside the current household",()=>{
  render(<Household360 owner="a" household={manual} data={data} tab="documents"/>);
- expect(screen.getByRole("link",{name:"Ajouter un document"}).getAttribute("href")).toBe("/documents?householdId=h&import=1");
+ fireEvent.click(screen.getByRole("button",{name:"+ Ajouter un document"}));
+ expect(screen.getByRole("form",{name:"Importer un document fictif"})).toBeTruthy();
+});
+it("shows only the household reference with category filtering and keeps the global catalogue secondary",()=>{
+ render(<Household360 owner="a" household={manual} data={data} tab="garanties"/>);
+ expect(screen.getByRole('heading',{name:'Garanties particuliers — PSI111'})).toBeTruthy();
+ expect(screen.getByLabelText('Catégorie')).toBeTruthy();
+ expect(screen.queryByLabelText('Famille · Régime · Référence/Formule')).toBeNull();
+ expect(screen.getByRole('link',{name:'Ouvrir le catalogue complet des garanties'}).getAttribute('href')).toBe('/garanties');
+ expect(screen.queryByRole('button',{name:'Calculer'})).toBeNull();
+});
+it("does not borrow a general-regime guarantee for a local formula with the same PSI code",()=>{
+ render(<Household360 owner="a" household={{...manual,manual:{...manual.manual!,formulaKey:'regime_local:PSI 111'}}} data={data} tab="garanties"/>);
+ expect(screen.queryByRole('heading',{name:'Garanties particuliers — PSI111'})).toBeNull();
+ expect(screen.getByText(/Référence non rapprochée/)).toBeTruthy();
 });

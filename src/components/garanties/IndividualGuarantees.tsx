@@ -11,8 +11,10 @@ export function IndividualGuarantees({ simulator = false }: { simulator?: boolea
   const [reference,setReference]=useState(products[0].reference);
   return <div className="space-y-4"><label className="m-filterbar block text-sm">Famille · Régime · Référence/Formule<select className={field} value={reference} onChange={e=>setReference(e.target.value)}>{products.map(p=><option key={p.reference} value={p.reference}>{p.family} · {p.regime} · {p.reference}</option>)}</select></label><Product key={reference} reference={reference} simulator={simulator}/></div>;
 }
-function Product({ reference, simulator }: {reference:string;simulator:boolean}) {
+export function Product({ reference, simulator=false, categoryFilter=false }: {reference:string;simulator?:boolean;categoryFilter?:boolean}) {
   const rows=catalog.listForConsultation(reference);
+  const [category,setCategory]=useState('');
+  const categories=[...new Set(rows.map(g=>g.category))].sort((a,b)=>a.localeCompare(b,'fr'));
   const calculable=catalog.listCalculableGuarantees(reference);
   const [id,setId]=useState('');
   const [result,setResult]=useState<ReturnType<typeof simulateIndividual>|null>(null);
@@ -33,7 +35,9 @@ function Product({ reference, simulator }: {reference:string;simulator:boolean})
         {error&&<p className="m-error" role="alert">{error}</p>}{result&&<p role="status">AMC : {formatCurrency(result.amcReimbursement)} · RAC : {formatCurrency(result.remainingCharge)}</p>}
       </form></Card>}
     <Card><CardHeader title={`Garanties particuliers — ${reference}`} subtitle="Les candidats sont consultables uniquement ; leurs valeurs ne sont pas proposées au calcul."/>
-      <div className="overflow-x-auto"><table className="w-full text-left text-xs"><thead><tr><th>Catégorie / prestation</th><th>Valeur / mode</th><th>Statut</th><th>Provenance</th></tr></thead><tbody>{rows.map(g=><tr key={g.id} className="border-t border-border"><td className="p-2">{g.category}<br/>{g.benefit}</td><td className="p-2">{g.status==='verified'?<>{g.value} {g.unit} · Forfait<br/>{g.limit}<br/>{g.condition}</>:'Donnée 2026 à vérifier'}</td><td>{g.status==='verified'?<div className="space-y-1"><Badge tone="success">Vérifié</Badge>{!hasDeterminedApplication(g)&&<DataToVerifyBadge label={CONDITION_TO_VERIFY}/>}</div>:<DataToVerifyBadge/>}</td><td className="p-2">{g.sourceFile}<br/>Page {g.sourcePage}</td></tr>)}</tbody></table></div>
+      {categoryFilter&&<label className="block mb-3">Catégorie<select className={field} value={category} onChange={e=>setCategory(e.target.value)}><option value="">Toutes les catégories</option>{categories.map(c=><option key={c}>{c}</option>)}</select></label>}
+      {!rows.length&&<p className="m-notice">Donnée 2026 à vérifier — aucune garantie consultable pour cette référence.</p>}
+      <div className="overflow-x-auto"><table className="w-full text-left text-xs"><thead><tr><th>Catégorie / prestation</th><th>Valeur / mode</th><th>Statut</th><th>Provenance</th></tr></thead><tbody>{rows.filter(g=>!category||g.category===category).map(g=><tr key={g.id} className="border-t border-border"><td className="p-2">{g.category}<br/>{g.benefit}</td><td className="p-2">{g.status==='verified'?<>{g.value} {g.unit} · Forfait<br/>{g.limit}<br/>{g.condition}</>:'Donnée 2026 à vérifier'}</td><td>{g.status==='verified'?<div className="space-y-1"><Badge tone="success">Vérifié</Badge>{!hasDeterminedApplication(g)&&<DataToVerifyBadge label={CONDITION_TO_VERIFY}/>}</div>:<DataToVerifyBadge/>}</td><td className="p-2">{g.sourceFile}<br/>Page {g.sourcePage}</td></tr>)}</tbody></table></div>
     </Card>
   </>;
 }
