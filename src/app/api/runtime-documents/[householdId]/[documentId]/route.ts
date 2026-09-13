@@ -7,7 +7,7 @@ export async function GET(_request:Request,{params}:Context){
  const session=await getAuthSession();if(!session)return new NextResponse(null,{status:401});
  const {householdId,documentId}=await params;
  try{const document=readRuntimeDocument(session.userId,householdId,documentId);if(!document)return new NextResponse(null,{status:404});
-  return new Response(new Uint8Array(document.bytes),{headers:{"Content-Type":document.record.mimeType,"Content-Disposition":`inline; filename="document.${document.record.mimeType==="application/pdf"?"pdf":document.record.mimeType==="image/png"?"png":"jpg"}"`,"Cache-Control":"private, no-store","X-Content-Type-Options":"nosniff","Content-Security-Policy":"sandbox"}});
+  return new Response(new Uint8Array(document.bytes),{headers:{"Content-Type":document.record.mimeType,"Content-Disposition":`inline; filename="document.${document.record.mimeType==="application/pdf"?"pdf":document.record.mimeType==="image/png"?"png":"jpg"}"`,...(document.record.prospectId?{"Content-Disposition":`inline; filename*=UTF-8''${encodeURIComponent(document.record.originalFileName)}`}:{ }),"Cache-Control":"private, no-store","X-Content-Type-Options":"nosniff","Content-Security-Policy":"sandbox"}});
  }catch{return new NextResponse(null,{status:404});}
 }
 export async function DELETE(request:Request,{params}:Context){

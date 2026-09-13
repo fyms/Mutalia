@@ -38,7 +38,7 @@ export default async function DocumentsPage({
     })),
   );
 
-  const rows=[...sourceRows,...listRuntimeDocuments(owner).map(d=>({caseId:d.caseId??"—",source:d.source,url:`/documents?householdId=${encodeURIComponent(d.householdId)}`,doc:{document_id:d.id,document_type:d.documentType,file_name:d.originalFileName,document_date:d.documentDate,status:d.status},state:{status:d.status,viewedAt:[],annotations:[]}}))];
+  const rows=[...sourceRows,...listRuntimeDocuments(owner).map(d=>({caseId:d.caseId??"—",source:d.source,url:d.prospectId?`/prospects?prospectId=${encodeURIComponent(d.prospectId)}&tab=Documents`:`/documents?householdId=${encodeURIComponent(d.householdId)}`,doc:{document_id:d.id,document_type:d.documentType,file_name:d.originalFileName,document_date:d.documentDate,status:d.status},state:{status:d.status,viewedAt:[],annotations:[]}}))];
   const types = [...new Set(rows.map((r) => r.doc.document_type))].sort();
 
   const filtered = rows.filter((r) => {

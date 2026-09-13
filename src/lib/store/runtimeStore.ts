@@ -1,3 +1,4 @@
+import { emptySales, type ProspectSales } from "@/lib/domain/prospectSales";
 import { paymentFrequency } from "@/lib/domain/demoBanking";
 import { pedagogicalHouseholdRecord } from "@/lib/domain/pedagogicalHouseholdRecord";
 import { ProspectInputSchema, type Prospect } from "@/lib/domain/prospects";
@@ -578,7 +579,11 @@ export function saveStoredAppointment(owner:string,raw:AppointmentInput & {adher
   const token=createHash("sha256").update(JSON.stringify({input,id,revision,conflicts:conflicts.map(p=>[p.id,p.revision]).sort()})).digest("hex");
   if(conflicts.length&&confirmation!==token)throw new AppointmentOverlapError(token,conflicts);
   const now=new Date().toISOString();const appointment:Appointment={...existing,...input,id:existing?.id??`RDV-${randomUUID()}`,createdAt:existing?.createdAt??now,updatedAt:now,revision:(existing?.revision??0)+1};
-  store.appointments[appointment.id]=appointment;return appointment;
+  store.appointments[appointment.id]=appointment;
+  const prospect=input.prospectId?store.prospects?.[input.prospectId]:undefined;
+  if(prospect){prospect.sales??=emptySales();prospect.sales.history.push({id:randomUUID(),at:now,appointmentId:appointment.id,summary:`Rendez-vous ${existing?'modifié':'créé'} : ${appointment.date} ${appointment.startTime} — ${appointment.reason} — ${appointment.status}`});
+   if(!existing&&prospect.status==='actif'&&['Planifié','Confirmé'].includes(appointment.status)){if(appointment.reason.startsWith('Relance devis '))prospect.sales.status='À relancer';else if(['Nouveau','À contacter'].includes(prospect.sales.status))prospect.sales.status='RDV planifié';}prospect.updatedAt=now;prospect.revision++;}
+  return appointment;
  });
 }
 export function linkAppointmentContact(owner:string,id:string,revision:number,contactId:string){
@@ -593,6 +598,9 @@ export function saveProspect(owner:string,raw:unknown,id?:string,revision?:numbe
   store.prospects??={};const previous=id?store.prospects[id]:undefined;
   if(id&&(!previous||previous.revision!==revision||previous.status==="converti"))throw new HouseholdEditError("Prospect introuvable, converti ou modifié.");
   const now=new Date().toISOString();const p:Prospect={...previous,...input,id:previous?.id??`PRO-${randomUUID()}`,createdAt:previous?.createdAt??now,updatedAt:now,status:status??previous?.status??"actif",revision:(previous?.revision??0)+1};
+  p.sales??=emptySales();
+  p.sales.history.push({id:randomUUID(),at:now,summary:previous?'Coordonnées prospect mises à jour':'Prospect créé'});
+  if(status==='abandonné'){p.sales.status='Perdu';p.sales.lostReason='Autre';p.sales.history.push({id:randomUUID(),at:now,summary:'Perdu — Autre (abandon)'});}
   store.prospects[p.id]=p;
   for(const rdv of Object.values(store.appointments??{}))if(rdv.prospectId===p.id)rdv.adherentName=`${p.firstName} ${p.lastName}`;
   return p;
@@ -605,7 +613,13 @@ export function convertProspect(owner:string,id:string,raw:unknown) {
   if(p.status==="converti"&&p.householdId)return p.householdId;
   if(p.status!=="actif")throw new HouseholdEditError("Prospect abandonné.");
   const h=createManualHousehold(owner,raw);
-  withStore(owner,store=>{const current=store.prospects![id];current.status="converti";current.householdId=h.id;current.updatedAt=new Date().toISOString();current.revision++;});
+  withStore(owner,store=>{const current=store.prospects![id];current.sales??=emptySales();current.sales.status='Gagné';current.sales.history.push({id:randomUUID(),at:new Date().toISOString(),summary:'Conversion en adhérent'});current.status="converti";current.householdId=h.id;current.updatedAt=new Date().toISOString();current.revision++;});
   return h.id;
  })();
+}
+
+/** Account-scoped, revision-checked commercial changes in the existing runtime transaction. */
+export function updateProspectSales(owner:string,id:string,revision:number,change:(sales:ProspectSales,p:Prospect)=>void) {
+ return withStore(owner,store=>{const p=store.prospects?.[id];if(!p||p.revision!==revision||p.status==='converti')throw new HouseholdEditError('Prospect introuvable, converti ou modifié. Rechargez la fiche.');
+ const sales=p.sales??emptySales();change(sales,p);p.sales=sales;p.revision++;p.updatedAt=new Date().toISOString();return p;});
 }

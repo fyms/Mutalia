@@ -10,7 +10,7 @@ CREATE TABLE IF NOT EXISTS runtime_document_events(id TEXT PRIMARY KEY,owner_id 
 function event(owner:string,household:string,message:string){db.prepare("INSERT INTO runtime_document_events VALUES(?,?,?,?,?)").run(randomUUID(),owner,household,new Date().toISOString(),message);}
 export function documentEvents(owner:string,household:string){return db.prepare("SELECT id,created_at AS at,event FROM runtime_document_events WHERE owner_id=? AND household_id=? ORDER BY created_at").all(owner,household) as {id:string;at:string;event:string}[];}
 function assertHousehold(owner:string,id:string){if(!owner||!getHouseholdById(id,owner))throw new Error("Dossier introuvable.");}
-function insert(record:RuntimeDocument){db.prepare("INSERT INTO runtime_documents VALUES(?,?,?,?)").run(record.id,record.ownerId,record.householdId,JSON.stringify(record));}
+function insert(record:RuntimeDocument){db.prepare("INSERT INTO runtime_documents VALUES(?,?,?,?)").run(record.id,record.ownerId,record.prospectId??record.householdId,JSON.stringify(record));}
 function safeFileName(name:string) {
  const file=name.split(/[\\/]/).at(-1)!.replace(/[\x00-\x1f\x7f]/g,"").trim();
  const compact=file.replace(/[\s_.-]/g,"").toUpperCase();
