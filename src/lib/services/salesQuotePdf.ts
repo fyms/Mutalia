@@ -1,4 +1,5 @@
 import 'server-only';
+import {prospectRoleLabel} from '@/lib/domain/prospectLabels';
 import {PDFDocument,StandardFonts,rgb} from 'pdf-lib';
 import {DEMO_DOCUMENT_NOTICE,type SalesQuote} from '@/lib/domain/prospectSales';
 import {PRICING_NOTICE} from '@/lib/domain/pedagogicalPricing';
@@ -19,7 +20,7 @@ export async function renderSalesQuotePdf(q:SalesQuote){
  line(`Périodicité : ${q.frequency} · montant estimé par échéance : ${estimatedDueAmount(q.estimate.monthly,q.frequency).toFixed(2)} €`);
  line(`Total mensuel : ${q.estimate.monthly.toFixed(2)} € · annuel : ${q.estimate.annual.toFixed(2)} €`,12,true);
  line('Personnes couvertes et détail pédagogique',12,true);
- for(const m of q.estimate.lines)line(`${m.name} · ${m.role} · ${m.birthDate} · ${m.age} ans : ${m.monthly.toFixed(2)} €/mois (âge ×${m.ageCoefficient}, rôle ×${m.roleCoefficient})`);
+ for(const m of q.estimate.lines)line(`${m.name} · ${prospectRoleLabel(m.role)} · ${m.birthDate} · ${m.age} ans : ${m.monthly.toFixed(2)} €/mois (âge ×${m.ageCoefficient}, rôle ×${m.roleCoefficient})`);
  line(`Hypothèses internes ${q.estimate.config.version} · base ${q.estimate.config.baseMonthlyRate} € · régime ×${q.estimate.config.regimeCoefficient} · zone ×${q.estimate.config.zoneCoefficient}. Source : pedagogical_estimator.`,9);
  line('Garanties consultables — sélection documentaire non exhaustive',12,true);
  for(const g of q.guarantees){const block:[string,number,boolean][]=[

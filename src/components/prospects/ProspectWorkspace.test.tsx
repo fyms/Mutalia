@@ -30,3 +30,16 @@ it('saves needs and explicit lost reason in the contextual workspace',async()=>{
  fireEvent.change(screen.getByLabelText('Motif de perte'),{target:{value:'Prix'}});fireEvent.click(screen.getByRole('button',{name:'Mettre à jour le statut'}));
  await waitFor(()=>expect(action).toHaveBeenCalledWith('p',1,'pipeline',{status:'Perdu',lostReason:'Prix'},''));
 });
+
+it('uses contextual role labels and displays legacy coverage without changing persisted roles',()=>{
+ const needs={familySituation:'',currentCoverage:'Mutuelle obligatoire',budget:null,hospitalisation:'Normale' as const,dental:'Normale' as const,optical:'Normale' as const,routine:'Normale' as const,other:'',protection:false,savings:false,comment:'',nextAction:'',members:[{id:'holder',name:'Camille',birthDate:'1990-01-01',role:'adherent' as const},{id:'spouse',name:'Alex',birthDate:'1991-01-01',role:'conjoint' as const},{id:'child',name:'Lou',birthDate:'2015-01-01',role:'enfant' as const}]};
+ render(<ProspectWorkspace prospect={{...prospect,sales:{...emptySales(),needs}}} appointments={[]} documents={[]} options={options} formulas={[]} initialTab="Besoins"/>);
+ expect(screen.getByRole('option',{name:'Prospect principal'}).getAttribute('value')).toBe('adherent');
+ expect(screen.getAllByRole('option',{name:'Conjoint / Conjointe'}).length).toBeGreaterThan(0);
+ expect(screen.getAllByRole('option',{name:'Enfant'}).length).toBeGreaterThan(0);
+ expect(screen.queryByText('adherent',{exact:true})).toBeNull();
+ expect((screen.getByLabelText('Couverture actuelle') as HTMLTextAreaElement).value).toBe('Complémentaire santé collective obligatoire via employeur');
+ expect(needs.currentCoverage).toBe('Mutuelle obligatoire');expect(needs.members[0].role).toBe('adherent');
+ cleanup();render(<ProspectWorkspace prospect={{...prospect,status:'converti',sales:{...emptySales(),needs}}} appointments={[]} documents={[]} options={options} formulas={[]} initialTab="Besoins"/>);
+ expect(screen.getByRole('option',{name:'Adhérent'}).getAttribute('value')).toBe('adherent');expect(screen.queryByText('Prospect principal')).toBeNull();
+});
