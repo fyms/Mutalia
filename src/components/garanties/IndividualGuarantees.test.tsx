@@ -26,3 +26,14 @@ it('keeps calculation available for an explicitly unconditional verified guarant
   fireEvent.change(screen.getByLabelText('Prestation garantie'), {target:{value:guarantee.id}});
   expect(screen.getByRole('button', {name:'Calculer'}).hasAttribute('disabled')).toBe(false);
 });
+it('shows documentary text and warning in the shared 360/global table but not in the calculator options',()=>{
+ const product=catalog.listProducts().find(p=>catalog.listForConsultation(p.reference).some(e=>e.documentValue))!;
+ const entry=catalog.listForConsultation(product.reference).find(e=>e.documentValue)!;
+ render(<IndividualGuarantees simulator/>);
+ fireEvent.change(screen.getByLabelText('Famille · Régime · Référence/Formule'),{target:{value:product.reference}});
+ expect(screen.getByRole('columnheader',{name:'Valeur / mode du document'})).toBeTruthy();
+ expect(screen.getAllByText(entry.documentValue!).length).toBeGreaterThan(0);
+ expect(screen.getAllByText('Source PDF — non validée pour calcul').length).toBeGreaterThan(0);
+ expect(screen.getAllByText(/Donnée 2026 à vérifier/).length).toBeGreaterThan(0);
+ expect([...screen.getByLabelText('Prestation garantie').querySelectorAll('option')].some(o=>o.value===entry.id)).toBe(false);
+});

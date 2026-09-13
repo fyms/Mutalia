@@ -43,3 +43,25 @@ describe('individual catalogue calculation boundary', () => {
     expect(() => createIndividualCatalog(invalid)).toThrow();
   });
 });
+
+it('exposes documentary text only with exact provenance and never changes calculation eligibility', async()=>{
+ const values=(await import('./individual-consultation-values.json')).default;
+ const base=createIndividualCatalog(data);
+ for(const row of values){
+  const entry=catalog.listForConsultation(row.reference).find(e=>e.id===row.id)!;
+  expect(entry).toMatchObject({status:'needs_review',documentValue:row.documentValue,sourceFile:row.sourceFile,sourcePage:row.sourcePage});
+  expect(entry).not.toHaveProperty('value');
+  expect(catalog.getCalculableGuarantee(row.reference,row.id)).toBeUndefined();
+  expect(catalog.listCalculableGuarantees(row.reference).some(e=>e.id===row.id)).toBe(false);
+ }
+ for(const p of data.products)expect(catalog.listCalculableGuarantees(p.reference)).toEqual(base.listCalculableGuarantees(p.reference));
+ const row=values[0];
+ for(const change of [{reference:'PLI321'},{reference:'PLI221'},{reference:'PSI999'},{sourceFile:'other.pdf'},{sourcePage:999},{sourceSha256:'0'.repeat(64)}]){
+  if(change.reference===row.reference)continue;
+  const unsafe=createIndividualCatalog(data,[{...row,...change}]);
+  expect(unsafe.listForConsultation(row.reference).find(e=>e.id===row.id)?.documentValue).toBeUndefined();
+ }
+ const conflict=createIndividualCatalog(data,[row,{...row,documentValue:'999 €/An'}]);
+ expect(conflict.listForConsultation(row.reference).find(e=>e.id===row.id)?.documentValue).toBeUndefined();
+ expect(base.listForConsultation(row.reference).find(e=>e.id===row.id)?.documentValue).toBeUndefined();
+});
