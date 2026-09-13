@@ -29,7 +29,7 @@ export interface ManualHousehold extends ManualHouseholdInput {
   revision: number;
   deletedAt: string | null;
   beneficiaries?: ManualBeneficiary[];
-  bankingHistory?: {at: string; event: "Coordonnées bancaires mises à jour"}[];
+  bankingHistory?: {at: string; event: "Coordonnées bancaires mises à jour" | "Modalités de règlement modifiées"}[];
 }
 
 export const BeneficiaryInputSchema = z.object({

@@ -1,10 +1,12 @@
+import { paymentFrequency,estimatedDueAmount } from "@/lib/domain/demoBanking";
 import type { HouseholdView } from "@/lib/domain/households";
 import { getHouseholdFormulas } from "@/lib/domain/householdFormulas";
 import { createPedagogicalGrid, estimatePedagogicalPricing, PRICING_NOTICE } from "@/lib/domain/pedagogicalPricing";
 import { formatCurrency } from "@/lib/utils/format";
 import { localToday } from "@/lib/domain/appointments";
 const roles = {adherent:"Titulaire", conjoint:"Conjoint", enfant:"Enfant"};
-export function PedagogicalEstimate({household:h}: {household: HouseholdView}) {
+export function PedagogicalEstimate({household:h,showPayment=false}: {household: HouseholdView;showPayment?:boolean}) {
+  const frequency=paymentFrequency((h.case?h.simulation:h.manual)?.banking?.paymentAccount.paymentFrequency);
   const formulaKey = h.case ? h.simulation?.formulaKey ?? `regime_general:${h.assignedFormula}` : h.manual.formulaKey;
   const config = createPedagogicalGrid(getHouseholdFormulas()).find(c => c.formulaKey === formulaKey);
   let result;
@@ -20,6 +22,7 @@ export function PedagogicalEstimate({household:h}: {household: HouseholdView}) {
     {!result ? <p className="m-help mt-2">{error}</p> : <>
       <ul className="text-sm my-2">{result.lines.map(line=><li className="flex justify-between gap-3 py-1" key={line.id}><span>{roles[line.role]} · {line.name} · {line.age} ans</span><strong>{formatCurrency(line.monthly)}/mois</strong></li>)}</ul>
       <p className="font-semibold">Foyer : {formatCurrency(result.monthly)}/mois · {formatCurrency(result.annual)}/an</p>
+      {showPayment&&<dl className="text-sm mt-3 space-y-1"><div><dt>Cotisation mensuelle de référence</dt><dd>{formatCurrency(result.monthly)}</dd></div><div><dt>Périodicité</dt><dd>{frequency}</dd></div><div><dt>Montant estimé à chaque échéance</dt><dd>{formatCurrency(estimatedDueAmount(result.monthly,frequency))}</dd></div></dl>}
       <details className="text-sm mt-3"><summary className="cursor-pointer text-brand">Voir le détail du calcul</summary>
         <p>Hypothèses internes fictives · {result.config.version} · calcul au {result.date} · {formulaKey}.</p>
         <p>Base formule : {formatCurrency(result.config.baseMonthlyRate)}. Coefficient régime : {result.config.regimeCoefficient}. Zone : {result.config.zoneCoefficient} (neutre, aucune modulation géographique ; code postal {result.postalCode ?? "non renseigné"}).</p>

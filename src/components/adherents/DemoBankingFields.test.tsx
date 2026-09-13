@@ -28,3 +28,16 @@ it("rejects non-demo coordinates and malformed BIC on the server schema",()=>{
  expect(DemoBankingSchema.safeParse({...raw,paymentAccount:{...raw.paymentAccount,iban:account.iban.replace("FR00","FR12")}}).success).toBe(false);
  expect(DemoBankingSchema.safeParse({...raw,paymentAccount:{...raw.paymentAccount,bic:"INVALID"}}).success).toBe(false);
 });
+it("defaults to monthly, separates frequency and hides SEPA fields for other methods",()=>{
+ const {container}=render(<form><DemoBankingFields/></form>);
+ fireEvent.click(screen.getByLabelText('Renseigner des comptes de démonstration'));
+ expect((screen.getByLabelText('Périodicité de paiement') as HTMLSelectElement).value).toBe('Mensuelle');
+ for(const frequency of ['Trimestrielle','Semestrielle','Annuelle']){fireEvent.change(screen.getByLabelText('Périodicité de paiement'),{target:{value:frequency}});expect(JSON.parse((container.querySelector('[name="banking"]') as HTMLInputElement).value).paymentAccount.paymentFrequency).toBe(frequency);}
+ expect(screen.getByLabelText('Jour de prélèvement')).toBeTruthy();
+ fireEvent.click(screen.getByRole('button',{name:'Générer une RUM démo'}));expect((screen.getByLabelText('RUM démo') as HTMLInputElement).value).toMatch(/^MUTALIA-DEMO-[A-Z0-9]{12}$/);
+ for(const method of ['Virement pédagogique','Chèque pédagogique']){fireEvent.change(screen.getByLabelText('Mode de règlement'),{target:{value:method}});expect(screen.queryByLabelText('Jour de prélèvement')).toBeNull();expect(screen.queryByLabelText('Date de signature du mandat')).toBeNull();expect(screen.queryByLabelText('Statut du mandat')).toBeNull();expect(screen.queryByLabelText('RUM démo')).toBeNull();}
+});
+it("keeps legacy monthly defaults and never displays a saved active SEPA mandate for transfers",()=>{
+ const banking=DemoBankingSchema.parse({paymentAccount:{...generateDemoAccount(),paymentMethod:'Virement pédagogique',mandateDate:'2026-09-11',mandateStatus:'Actif'},refundAccount:{sameAsPayment:true}});
+ render(<BankingSummary banking={banking} details/>);expect(screen.getByText('Mensuelle')).toBeTruthy();expect(screen.getByText('Virement démo')).toBeTruthy();expect(screen.queryByText('Actif')).toBeNull();expect(screen.queryByText('Mandat')).toBeNull();
+});

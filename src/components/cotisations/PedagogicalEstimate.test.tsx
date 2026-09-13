@@ -10,8 +10,10 @@ afterEach(cleanup);
 it("labels estimates and reference bases as non contractual, with transparent detail and no creation action",()=>{
  const adherent={member_id:"m",role:"adherent" as const,first_name:"Camille",last_name:"Exemple",birth_date:"1990-01-01"};
  const household: HouseholdView={assignedFormula:"PSI 111",starsSoins:"Donnée 2026 à vérifier",starsEquipements:"Donnée 2026 à vérifier",householdId:"h",case:null,adherent,beneficiaries:[],household:{household_id:"h",members:[adherent]},manual:{id:"h",memberId:"m",source:"manual",referenceYear:2026,createdAt:"2026-01-01",updatedAt:"2026-01-01",revision:1,deletedAt:null,firstName:"Camille",lastName:"Exemple",birthDate:"1990-01-01",email:"test@example.invalid",phone:"0600000000",address:"Rue exemple",city:"Commune exemple",effectiveDate:"2026-01-01",formulaKey:"regime_general:PSI 111",postalCode:"45130"}};
- const {container}=render(<><PedagogicalEstimate household={household}/><PedagogicalFormulaBases/></>);
+ const {container}=render(<><PedagogicalEstimate household={household} showPayment/><PedagogicalFormulaBases/></>);
  expect(screen.getAllByText(/Estimation pédagogique — tarif non contractuel/)).toHaveLength(2);
+ expect(screen.getByText("Montant estimé à chaque échéance")).toBeTruthy();
+ expect(screen.getByText("Mensuelle")).toBeTruthy();
  expect(screen.getByText("Voir le détail du calcul")).toBeTruthy();
  expect(container.textContent).toContain("Titulaire");expect(container.textContent).toContain("45130");
  expect(container.textContent).not.toMatch(/Tarif officiel|Tarif Harmonie|Devis/i);

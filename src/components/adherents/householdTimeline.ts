@@ -8,7 +8,7 @@ export function householdTimeline(data:CockpitData,householdId:string,lifecycle?
  const href=`/adherents/${householdId}`;
  documents.forEach(e=>add("document-runtime",e.id,e.at,"Document",e.event,`${href}?tab=documents`));
  simulationHistory.forEach((e,i)=>add("simulation",String(i),e.at,"Simulation",e.event,`${href}?tab=beneficiaires`));
- bankingHistory.forEach((e,i)=>add("banking",String(i),e.at,"Coordonnées bancaires","Coordonnées bancaires mises à jour",`${href}?tab=vue-generale`));
+ bankingHistory.forEach((e,i)=>add("banking",String(i),e.at,"Coordonnées bancaires",e.event==="Modalités de règlement modifiées"?e.event:"Coordonnées bancaires mises à jour",`${href}?tab=cotisations`));
  if(createdAt)add("creation",householdId,createdAt,"Adhésion","Création du foyer",`${href}?tab=vue-generale`);
  data.contacts.filter(p=>p.householdId===householdId).forEach(p=>add("contact",p.id,p.date,p.channel,p.reason,`${href}?tab=contacts`));
  data.appointments.filter(p=>p.householdId===householdId).forEach(p=>{

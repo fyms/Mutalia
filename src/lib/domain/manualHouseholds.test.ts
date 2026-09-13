@@ -245,3 +245,12 @@ it("edits pedagogical overlays per account, preserves source and resets only the
  expect(() => store.updateManualHousehold(owner,id,0,original)).toThrow();
  expect(JSON.stringify(getAllCases())).toBe(source);
 });
+it("persists payment frequency independently, with generic history and no schedule mutation",async()=>{
+ const {generateDemoAccount}=await import('./demoBanking');const owner='frequency-a';
+ const banking={paymentAccount:{...generateDemoAccount(),paymentMethod:'Prélèvement pédagogique',mandateDate:'',mandateStatus:'À signer'},refundAccount:{sameAsPayment:true}};
+ const h=store.createManualHousehold(owner,{...input,banking});
+ store.updateManualHousehold(owner,h.id,h.revision,{...input,banking:{...banking,paymentAccount:{...banking.paymentAccount,paymentFrequency:'Trimestrielle'}}});
+ const connection=new Database(path.join(dir,'mutalia.sqlite'),{readonly:true});
+ try{const payload=JSON.parse((connection.prepare('SELECT payload FROM codex_learner_work WHERE owner=?').get(owner) as {payload:string}).payload);const saved=payload.manualHouseholds[h.id];expect(saved.banking.paymentAccount.paymentFrequency).toBe('Trimestrielle');expect(saved.bankingHistory).toEqual([{at:expect.any(String),event:'Modalités de règlement modifiées'}]);expect(JSON.stringify(saved.bankingHistory)).not.toContain(banking.paymentAccount.iban);expect(payload.cotisations).toBeUndefined();}finally{connection.close();}
+ expect(store.getManualHouseholds('frequency-b')).toEqual([]);
+});

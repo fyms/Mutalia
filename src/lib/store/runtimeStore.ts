@@ -1,3 +1,4 @@
+import { paymentFrequency } from "@/lib/domain/demoBanking";
 import { pedagogicalHouseholdRecord } from "@/lib/domain/pedagogicalHouseholdRecord";
 import { ProspectInputSchema, type Prospect } from "@/lib/domain/prospects";
 import { AppointmentInputSchema, overlaps, sortAppointments, type Appointment, type AppointmentInput } from "@/lib/domain/appointments";
@@ -260,7 +261,9 @@ export function updateManualHousehold(owner: string, id: string, revision: numbe
   return editManualHousehold(owner, id, revision, h => {
     if (input.banking && JSON.stringify(h.banking) !== JSON.stringify(input.banking)) {
       h.bankingHistory ??= [];
-      h.bankingHistory.push({at: new Date().toISOString(), event: "Coordonnées bancaires mises à jour"});
+      const previous=h.banking?.paymentAccount,next=input.banking.paymentAccount;
+      const modalitiesChanged=previous && (previous.paymentMethod!==next.paymentMethod || paymentFrequency(previous.paymentFrequency)!==paymentFrequency(next.paymentFrequency));
+      h.bankingHistory.push({at: new Date().toISOString(), event: modalitiesChanged?"Modalités de règlement modifiées":"Coordonnées bancaires mises à jour"});
     }
     // Older forms omitting banking preserve the current account.
     Object.assign(h, {...input, socialSecurityNumber:input.socialSecurityNumber ?? h.socialSecurityNumber, banking: input.banking ?? h.banking});
