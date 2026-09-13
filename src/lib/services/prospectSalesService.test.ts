@@ -20,14 +20,14 @@ it('persists needs, validates pipeline/lost reasons, isolates accounts and retai
 });
 it('creates immutable V1/V2 PDFs, captures one local mail with exact attachment, schedules a follow-up and converts once',async()=>{
  let p=store.saveProspect('a',person);p=service.saveSalesNeeds('a',p.id,p.revision,needs);const id=p.id;
- const option=service.salesPricingOptions().find(o=>o.config)!;expect(option).toBeTruthy();
+ const option=service.salesPricingOptions().find(o=>o.reference==='PLI411')!;expect(option.config).toBeTruthy();
  const input={reference:option.reference,date:'2026-09-13',frequency:'Mensuelle'};
  const q1=await service.createSalesQuote('a',id,p.revision,input);p=store.getProspects('a').find(p=>p.id===id)!;
  const pdf1=docs.readRuntimeDocument('a',id,q1.documentId)!;expect(await PDFDocument.load(pdf1.bytes)).toBeTruthy();expect(docs.readRuntimeDocument('b',id,q1.documentId)).toBeUndefined();expect(pdf1.record.prospectId).toBe(id);expect(pdf1.record.householdId).toBe('');
  fs.writeFileSync('/tmp/mutalia-sales-review.pdf',pdf1.bytes);
  const q2=await service.createSalesQuote('a',id,p.revision,{...input,previousId:q1.id});p=store.getProspects('a').find(p=>p.id===id)!;
  expect(q2.number).toBe(q1.number);expect(q2.version).toBe(2);expect(q2.documentId).not.toBe(q1.documentId);expect(docs.readRuntimeDocument('a',id,q1.documentId)!.bytes).toEqual(pdf1.bytes);
- expect(p.sales?.quotes[0]).toEqual(q1);expect(q1.estimate.pricingSource).toBe('pedagogical_estimator');expect(q1.estimate.notice).toBe('Estimation pédagogique — tarif non contractuel');
+ expect(p.sales?.quotes[0]).toEqual(q1);const {getCanonicalPricingConfig,estimatePedagogicalPricing}=await import('@/lib/domain/pedagogicalPricing');expect(q1.estimate).toEqual(estimatePedagogicalPricing(getCanonicalPricingConfig('regime_local:PSI 411'),{date:input.date,members:needs.members}));expect(q1.regime).toBe('Régime local');expect(q1.reference).toBe('PLI411');expect(q1.estimate.pricingSource).toBe('pedagogical_estimator');expect(q1.estimate.notice).toBe('Estimation pédagogique — tarif non contractuel');
  for(const g of q1.guarantees){expect(g.reference).toBe(option.reference);expect(g.sourcePage).toBeGreaterThan(0);if(g.status==='needs_review')expect(catalog.getCalculableGuarantee(g.reference,g.id)).toBeUndefined();}
  p=service.changeSalesQuote('a',id,p.revision,q2.id,'Prêt à envoyer');const email={to:person.email,subject:'Proposition Démo',text:'Simulation pédagogique'};
  p=service.captureSalesEmail('a',id,p.revision,q2.id,email);expect(p.sales?.quotes[1].status).toBe('Envoyé');expect(p.sales?.status).toBe('Devis envoyé');expect(p.sales?.emails[0]).toMatchObject({transport:'capture',documentId:q2.documentId,fileName:q2.fileName});
@@ -51,11 +51,9 @@ it('rejects unpriced, foreign or stale quote inputs and does not derive reimburs
  expect(()=>service.estimateProspect(option.reference,{...needs,members:needs.members.map(m=>({...m,birthDate:''}))},'2026-09-13')).toThrow();
 });
 
-it('keeps the exact PLI411 pricing guard while its guarantees remain consultable',async()=>{
- expect(service.salesPricingOptions().find(o=>o.reference==='PLI411')?.config).toBeUndefined();
+it('prices every catalogue product, retains the unknown-reference guard and shares Cotisations configuration',()=>{
+ const options=service.salesPricingOptions();expect(options).toHaveLength(catalog.listProducts().length);expect(options.every(o=>!!o.config)).toBe(true);
  expect(catalog.listForConsultation('PLI411').length).toBeGreaterThan(0);
- expect(()=>service.estimateProspect('PLI411',needs,'2026-09-13')).toThrow('Référence sans correspondance tarifaire pédagogique explicite.');
- let p=store.saveProspect('unpriced',person);p=service.saveSalesNeeds('unpriced',p.id,p.revision,needs);
- await expect(service.createSalesQuote('unpriced',p.id,p.revision,{reference:'PLI411',date:'2026-09-13',frequency:'Mensuelle'})).rejects.toThrow('Référence sans correspondance tarifaire pédagogique explicite.');
- expect(store.getProspects('unpriced')[0].sales?.quotes).toHaveLength(0);
+ expect(service.estimateProspect('PLI411',needs,'2026-09-13').config.formulaKey).toBe('PLI411');
+ expect(()=>service.estimateProspect('PLI999',needs,'2026-09-13')).toThrow('Référence sans correspondance tarifaire pédagogique explicite.');
 });

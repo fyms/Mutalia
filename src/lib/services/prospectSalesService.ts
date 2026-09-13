@@ -6,16 +6,11 @@ import {getProspects,updateProspectSales,HouseholdEditError} from '@/lib/store/r
 import {storeGeneratedDocument,readRuntimeDocument} from '@/lib/store/runtimeDocuments';
 import {individualCatalog2026 as catalog} from '@/lib/data/harmonie/individualCatalog';
 import {createPedagogicalGrid,estimatePedagogicalPricing} from '@/lib/domain/pedagogicalPricing';
-import {getHouseholdFormulas} from '@/lib/domain/householdFormulas';
 import {NeedsSchema,PipelineSchema,QuoteInputSchema,emptySales,type Needs,type ProspectSales,type SalesQuote} from '@/lib/domain/prospectSales';
 import {renderSalesQuotePdf} from './salesQuotePdf';
 const event=(s:ProspectSales,summary:string,quoteId?:string)=>s.history.push({id:randomUUID(),at:new Date().toISOString(),summary,quoteId});
 function prospect(owner:string,id:string){const p=getProspects(owner).find(p=>p.id===id);if(!p)throw new HouseholdEditError('Prospect introuvable.');return p;}
-export function salesPricingOptions(){const formulas=getHouseholdFormulas(),grid=createPedagogicalGrid(formulas);return catalog.listProducts().map(p=>{
- const matches=formulas.filter(f=>f.formula.replace(/\s/g,'')===p.reference && (f.key.startsWith('regime_general:')?p.family==='Particuliers'&&p.regime==='Régime général':f.key.startsWith('regime_local:')?p.family==='Particuliers'&&p.regime==='Régime local':f.key.startsWith('reflexe_eco_pharmacie_et_chambre:')?p.family==='Particuliers — Réflexe eco Pharmacie + chambre particulière':p.family==='Particuliers — Réflexe eco Pharmacie'));
- // Exact canonical reference only; ambiguous/missing mappings never receive an estimate.
- return {...p,config:matches.length===1?grid.find(g=>g.formulaKey===matches[0].key):undefined};
-});}
+export function salesPricingOptions(){const grid=createPedagogicalGrid();return catalog.listProducts().map(p=>({...p,config:grid.find(g=>g.formulaKey===p.reference)}));}
 export function estimateProspect(reference:string,needs:Needs,date:string){const option=salesPricingOptions().find(p=>p.reference===reference);if(!option?.config)throw new Error('Référence sans correspondance tarifaire pédagogique explicite.');return estimatePedagogicalPricing(option.config,{date,members:needs.members});}
 export function saveSalesNeeds(owner:string,id:string,revision:number,raw:unknown){const needs=NeedsSchema.parse(raw);return updateProspectSales(owner,id,revision,(s,p)=>{s.needs=needs;if(['Nouveau','À contacter','RDV planifié'].includes(s.status)&&p.status==='actif')s.status='Besoins identifiés';event(s,'Besoins mis à jour');});}
 export function setSalesPipeline(owner:string,id:string,revision:number,raw:unknown){const input=PipelineSchema.parse(raw);return updateProspectSales(owner,id,revision,(s,p)=>{s.status=input.status;s.lostReason=input.status==='Perdu'?input.lostReason:undefined;p.status=input.status==='Perdu'?'abandonné':'actif';event(s,`${input.status}${s.lostReason?' — '+s.lostReason:''}`);});}

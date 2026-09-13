@@ -4,7 +4,6 @@ import { cleanup, render, screen } from "@testing-library/react";
 import { PedagogicalEstimate, PedagogicalFormulaBases } from "./PedagogicalEstimate";
 import type { HouseholdView } from "@/lib/domain/households";
 vi.mock("server-only",()=>({}));
-vi.mock("@/lib/domain/householdFormulas",()=>({getHouseholdFormulas:()=>[{key:"regime_general:PSI 111",label:"Régime général — PSI 111"}]}));
 vi.mock("@/lib/domain/appointments",()=>({localToday:()=>"2026-09-11"}));
 afterEach(cleanup);
 it("labels estimates and reference bases as non contractual, with transparent detail and no creation action",()=>{
@@ -19,4 +18,13 @@ it("labels estimates and reference bases as non contractual, with transparent de
  expect(container.textContent).not.toMatch(/Tarif officiel|Tarif Harmonie|Devis/i);
  expect(screen.queryByRole("button")).toBeNull();
  expect(container.querySelectorAll('[data-pricing-source="pedagogical_estimator"]')).toHaveLength(2);
+});
+
+it('presents canonical local PLI bases and all catalogue references',()=>{
+ const {container}=render(<PedagogicalFormulaBases/>);
+ expect(screen.getByText('Particuliers · Régime local — PLI411')).toBeTruthy();
+ expect(screen.getByText('Particuliers · Régime général — PSI111')).toBeTruthy();
+ expect(container.querySelectorAll('tbody tr')).toHaveLength(42);
+ expect(container.textContent).not.toMatch(/Régime local — PSI/);
+ expect(container.textContent).toContain('pedagogical-2026-v2');
 });

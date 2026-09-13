@@ -46,7 +46,7 @@ it('uses contextual role labels and displays legacy coverage without changing pe
 
 it('blocks unavailable quote selections, keeps comparison and handles a stale selected tariff',async()=>{
  const {createPedagogicalGrid}=await import('@/lib/domain/pedagogicalPricing');
- const priced={...options[0],config:createPedagogicalGrid([{key:'regime_general:PSI111'}])[0]};
+ const priced={...options[0],config:createPedagogicalGrid().find(c=>c.formulaKey==='PSI111')!};
  const unavailable={reference:'PLI411',family:'Particuliers',regime:'Régime local'};
  const props={prospect,appointments:[],documents:[],options:[priced,unavailable],formulas:[]};
  const view=render(<ProspectWorkspace {...props}/>);
@@ -69,4 +69,16 @@ it('blocks unavailable quote selections, keeps comparison and handles a stale se
  expect(screen.getByText('Garanties PLI411')).toBeTruthy();expect(screen.getByText('Tarif pédagogique indisponible')).toBeTruthy();
  expect(screen.getByText('Devis indisponible — tarif pédagogique non défini')).toBeTruthy();
  expect(screen.getAllByRole('button',{name:'Choisir pour un devis'})).toHaveLength(1);
+});
+
+it('enables canonical PLI411 in comparison and quotes using the shared grid',async()=>{
+ const {createPedagogicalGrid}=await import('@/lib/domain/pedagogicalPricing');
+ const {NeedsSchema}=await import('@/lib/domain/prospectSales');
+ const needs=NeedsSchema.parse({budget:null,hospitalisation:'Normale',dental:'Normale',optical:'Normale',routine:'Normale',protection:false,savings:false,members:[{id:'holder',name:'Démo',birthDate:'1990-01-01',role:'adherent'}]});
+ const choices=['PLI411','PSI111'].map(reference=>({reference,family:'Particuliers',regime:reference.startsWith('PLI')?'Régime local':'Régime général',config:createPedagogicalGrid().find(c=>c.formulaKey===reference)!}));
+ render(<ProspectWorkspace prospect={{...prospect,sales:{...emptySales(),needs}}} appointments={[]} documents={[]} options={choices} formulas={[]}/>);
+ fireEvent.click(screen.getByRole('button',{name:'Comparatif'}));for(const reference of ['PLI411','PSI111'])fireEvent.change(screen.getByLabelText('Ajouter une référence'),{target:{value:reference}});
+ expect(screen.getByText('Garanties PLI411')).toBeTruthy();expect(screen.queryByText('Tarif pédagogique indisponible')).toBeNull();expect(screen.getAllByText(/€\/mois ·/)).toHaveLength(2);
+ fireEvent.click(screen.getAllByRole('button',{name:'Choisir pour un devis'})[0]);expect((screen.getByLabelText('Référence') as HTMLSelectElement).value).toBe('PLI411');
+ expect((screen.getByRole('button',{name:'Générer le PDF'}) as HTMLButtonElement).disabled).toBe(false);
 });
